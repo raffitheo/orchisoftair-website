@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/orchisoftair-website/static/js/main.c368e425.js",
+    "main.js": "/orchisoftair-website/static/js/main.db985ef3.js",
     "static/js/787.e0e16841.chunk.js": "/orchisoftair-website/static/js/787.e0e16841.chunk.js",
     "static/media/logo.png": "/orchisoftair-website/static/media/logo.6b621eed10917def6278.png",
     "index.html": "/orchisoftair-website/index.html",
-    "main.c368e425.js.map": "/orchisoftair-website/static/js/main.c368e425.js.map",
+    "main.db985ef3.js.map": "/orchisoftair-website/static/js/main.db985ef3.js.map",
     "787.e0e16841.chunk.js.map": "/orchisoftair-website/static/js/787.e0e16841.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.c368e425.js"
+    "static/js/main.db985ef3.js"
   ]
 }
