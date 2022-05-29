@@ -148,11 +148,7 @@ export const OrchiWebsite: React.FC = () => {
             <PageContent
                 id='page-content'
             >
-                <div
-                    style={{
-                        height: '200vh'
-                    }}
-                ></div>
+                
             </PageContent>
         </>
     );

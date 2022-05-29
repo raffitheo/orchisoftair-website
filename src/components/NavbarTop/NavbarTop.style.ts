@@ -122,11 +122,9 @@ export const Contacts = styled.div`
     }
 `;
 
-export const ContactTitle = styled.h6`
+export const ContactTitle = styled.h4`
     color: ${(props) => props.theme.textAccent};
-    font-size: 14px;
     line-height: 1;
-    letter-spacing: .7px;
     margin-bottom: 7px;
 
     @media (min-width: 768px) and (max-width: 990px) {
@@ -134,10 +132,8 @@ export const ContactTitle = styled.h6`
     }
 `;
 
-export const ContactInfo = styled.h3`
-    font-size: 24px;
+export const ContactInfo = styled.h1`
     line-height: 1;
-    letter-spacing: 1.2px;
 
     @media (min-width: 768px) and (max-width: 990px) {
         font-size: 16px;
