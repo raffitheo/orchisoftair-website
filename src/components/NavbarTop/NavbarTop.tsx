@@ -64,57 +64,57 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
     const [mobileSubMenuOpen, setMobileSubMenuOpen] = useState<number>(-1);
 
     const [searchActive, setSearchActive] = useState<boolean>(false);
-
-    const handleScroll = (): void => {
-        var desktopContacts: HTMLElement = document.getElementById('desktop-contacts') as HTMLElement;
-        var navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
-        var width = document.documentElement.offsetWidth;
-
-        if (width >= 768 || width <= 320) {
-            if (desktopContacts && navbar) {
-                var pageScroll: number = window.pageYOffset;
-                var desktopContactsHeight: number = desktopContacts.offsetHeight;
-
-                if (pageScroll > 10)
-                    navbar.style.top = `-${desktopContactsHeight + 7}px`;
-                else
-                    navbar.style.top = '0';
-            }
-        } else {
-            navbar.style.top = '0';
-        }
-    };
-
-    const handleInitialSelection = (): void => {
-        var url: string = window.location.toString();
-
-        if (url.indexOf('#') !== -1) {
-            var selection: string = url.split('#')[1];
-
-            if (selection) {
-                navigation.forEach((element, index) => {
-                    if (`#${selection}` === element.link)
-                        setCurrentlySelected(index);
-                    else {
-                        if (element.subMenu && element.subMenu.length >= 1) {
-                            element.subMenu.forEach((subElement, subIndex) => {
-                                if (`#${selection}` === subElement.link) {
-                                    setCurrentlySelected(index);
-                                    setCurrentlySelectedSubMenu(subIndex);
-                                }
-                            });
-                        }
-                    }
-                });
-            } else {
-                setCurrentlySelected(0);
-                setCurrentlySelectedSubMenu(-1);
-            }
-        } else
-            setCurrentlySelected(0);
-    };
     
     useEffect(() => {
+        const handleScroll = (): void => {
+            var desktopContacts: HTMLElement = document.getElementById('desktop-contacts') as HTMLElement;
+            var navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
+            var width = document.documentElement.offsetWidth;
+    
+            if (width >= 768 || width <= 320) {
+                if (desktopContacts && navbar) {
+                    var pageScroll: number = window.pageYOffset;
+                    var desktopContactsHeight: number = desktopContacts.offsetHeight;
+    
+                    if (pageScroll > 10)
+                        navbar.style.top = `-${desktopContactsHeight + 7}px`;
+                    else
+                        navbar.style.top = '0';
+                }
+            } else {
+                navbar.style.top = '0';
+            }
+        };
+
+        const handleInitialSelection = (): void => {
+            var url: string = window.location.toString();
+    
+            if (url.indexOf('#') !== -1) {
+                var selection: string = url.split('#')[1];
+    
+                if (selection) {
+                    navigation.forEach((element, index) => {
+                        if (`#${selection}` === element.link)
+                            setCurrentlySelected(index);
+                        else {
+                            if (element.subMenu && element.subMenu.length >= 1) {
+                                element.subMenu.forEach((subElement, subIndex) => {
+                                    if (`#${selection}` === subElement.link) {
+                                        setCurrentlySelected(index);
+                                        setCurrentlySelectedSubMenu(subIndex);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    setCurrentlySelected(0);
+                    setCurrentlySelectedSubMenu(-1);
+                }
+            } else
+                setCurrentlySelected(0);
+        };
+
         handleInitialSelection();
 
         window.addEventListener('scroll', handleScroll);
@@ -194,9 +194,9 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                     {socials.map((social, index) => {
                                         return (
                                             <SocialLink
-                                                href={social.link}
                                                 key={`Social${index}`}
-                                                hoverColor={social.hoverColor}
+                                                hovercolor={social.hoverColor}
+                                                to={social.link}
                                             >
                                                 <IconExtension
                                                     name={social.icon as IconName}
@@ -251,7 +251,6 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                             >
                                                 <NavigationListElementLink
                                                     className='navbar-list-element'
-                                                    href={element.link}
                                                     onClick={(event) => {
                                                         var pressedElement: HTMLElement = event.target as HTMLElement;
 
@@ -260,39 +259,40 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                             setCurrentlySelectedSubMenu(0);
                                                         }
                                                     }}
+                                                    to={element.link}
                                                 >
                                                     {element.text}
-
-                                                    {element.subMenu ?
-                                                        <NavigationSubMenuList>
-                                                            {element.subMenu.map((subMenuElement, subMenuElementIndex) => {
-                                                                return (
-                                                                    <NavigationSubMenuListElement
-                                                                        className={currentlySelected === elementIndex && currentlySelectedSubMenu === subMenuElementIndex ? 'active' : ''}
-                                                                        key={`List${elementIndex}SubMenuElement${subMenuElementIndex}`}
-                                                                    >
-                                                                        <NavigationSubMenuListElementLink
-                                                                            className='submenu-list-element'
-                                                                            href={subMenuElement.link}
-                                                                            onClick={(event) => {
-                                                                                var pressedElement: HTMLElement = event.target as HTMLElement;
-                                                                                
-                                                                                if (pressedElement && pressedElement?.classList.contains('submenu-list-element')) {
-                                                                                    setCurrentlySelected(elementIndex);
-                                                                                    setCurrentlySelectedSubMenu(subMenuElementIndex);
-                                                                                }
-                                                                            }}
-                                                                        >
-                                                                            {subMenuElement.text}
-                                                                        </NavigationSubMenuListElementLink>
-                                                                    </NavigationSubMenuListElement>
-                                                                );
-                                                            })}
-                                                        </NavigationSubMenuList>
-                                                    :
-                                                        <></>
-                                                    }
                                                 </NavigationListElementLink>
+
+                                                {element.subMenu ?
+                                                    <NavigationSubMenuList>
+                                                        {element.subMenu.map((subMenuElement, subMenuElementIndex) => {
+                                                            return (
+                                                                <NavigationSubMenuListElement
+                                                                    className={currentlySelected === elementIndex && currentlySelectedSubMenu === subMenuElementIndex ? 'active' : ''}
+                                                                    key={`List${elementIndex}SubMenuElement${subMenuElementIndex}`}
+                                                                >
+                                                                    <NavigationSubMenuListElementLink
+                                                                        className='submenu-list-element'
+                                                                        onClick={(event) => {
+                                                                            var pressedElement: HTMLElement = event.target as HTMLElement;
+                                                                            
+                                                                            if (pressedElement && pressedElement?.classList.contains('submenu-list-element')) {
+                                                                                setCurrentlySelected(elementIndex);
+                                                                                setCurrentlySelectedSubMenu(subMenuElementIndex);
+                                                                            }
+                                                                        }}
+                                                                        to={subMenuElement.link}
+                                                                    >
+                                                                        {subMenuElement.text}
+                                                                    </NavigationSubMenuListElementLink>
+                                                                </NavigationSubMenuListElement>
+                                                            );
+                                                        })}
+                                                    </NavigationSubMenuList>
+                                                :
+                                                    <></>
+                                                }
                                             </NavigationListElement>
                                         );
                                     })}
@@ -395,7 +395,6 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                             >
                                                 <MobileNavigationListElementLink
                                                     className='navbar-list-element'
-                                                    href={element.link}
                                                     onClick={(event) => { 
                                                         var pressedElement: HTMLElement = event.target as HTMLElement;
 
@@ -410,10 +409,13 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                             }, 250);
                                                         }
                                                     }}
+                                                    to={element.link}
                                                 >
                                                     {element.text}
+                                                </MobileNavigationListElementLink>
 
-                                                    {element.subMenu ?
+                                                {element.subMenu ?
+                                                    <>
                                                         <MobileNavigationSubMenuList
                                                             className={mobileSubMenuOpen === elementIndex ? 'visible' : ''}
                                                         >
@@ -425,7 +427,6 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                                     >
                                                                         <MobileNavigationSubMenuListElementLink
                                                                             className='submenu-list-element'
-                                                                            href={subMenuElement.link}
                                                                             onClick={(event) => {
                                                                                 var pressedElement: HTMLElement = event.target as HTMLElement;
                                                                                 
@@ -440,6 +441,7 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                                                     }, 250);
                                                                                 }
                                                                             }}
+                                                                            to={subMenuElement.link}
                                                                         >
                                                                             {subMenuElement.text}
                                                                         </MobileNavigationSubMenuListElementLink>
@@ -447,21 +449,17 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                                 );
                                                             })}
                                                         </MobileNavigationSubMenuList>
-                                                    :
-                                                        <></>
-                                                    }
-                                                </MobileNavigationListElementLink>
-                                                
-                                                {element.subMenu ?
-                                                    <MobileNavigationSubMenuListExpand>
-                                                        <IconExtension
-                                                            name={mobileSubMenuOpen === elementIndex ? 'Minus' : 'Plus'}
-                                                            onClick={() => {
-                                                                setMobileSubMenuOpen(mobileSubMenuOpen === elementIndex ? -1 : elementIndex);
-                                                            }}
-                                                            size={16}
-                                                        />
-                                                    </MobileNavigationSubMenuListExpand>
+
+                                                        <MobileNavigationSubMenuListExpand>
+                                                            <IconExtension
+                                                                name={mobileSubMenuOpen === elementIndex ? 'Minus' : 'Plus'}
+                                                                onClick={() => {
+                                                                    setMobileSubMenuOpen(mobileSubMenuOpen === elementIndex ? -1 : elementIndex);
+                                                                }}
+                                                                size={16}
+                                                            />
+                                                        </MobileNavigationSubMenuListExpand>
+                                                    </>
                                                 :
                                                     <></>
                                                 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.section`
@@ -168,7 +169,7 @@ export const SocialsContainer = styled.div`
     }
 `;
 
-export const SocialLink = styled.a<{ hoverColor: string }>`
+export const SocialLink = styled(Link)<{ hovercolor: string }>`
     align-items: center;
     border: 2px solid ${(props) => props.theme.textPrimary};
     border-radius: 50%;
@@ -187,8 +188,8 @@ export const SocialLink = styled.a<{ hoverColor: string }>`
     }
 
     &:hover {
-        border-color: ${(props) => props.hoverColor};
-        color: ${(props) => props.hoverColor};
+        border-color: ${(props) => props.hovercolor};
+        color: ${(props) => props.hovercolor};
     }
 `;
 
@@ -310,7 +311,7 @@ export const NavigationList = styled.ul`
     padding: 0;
 `;
 
-export const NavigationListElementLink = styled.a`
+export const NavigationListElementLink = styled(Link)`
     color: ${(props) => props.theme.textPrimary};
     display: block;
     font-size: 16px;
@@ -378,7 +379,7 @@ export const NavigationListElement = styled.li`
     }
 `;
 
-export const NavigationSubMenuListElementLink = styled.a`
+export const NavigationSubMenuListElementLink = styled(Link)`
     color: ${(props) => props.theme.textPrimary};
     cursor: pointer;
     display: block;
@@ -505,7 +506,7 @@ export const MobileNavigationList = styled.ul`
     padding: 0;
 `;
 
-export const MobileNavigationListElementLink = styled.a`
+export const MobileNavigationListElementLink = styled(Link)`
     color: ${(props) => props.theme.textPrimary};
     display: block;
     font-size: 16px;
@@ -555,10 +556,8 @@ export const MobileNavigationSubMenuList = styled.ul`
     display: none;
     margin-left: 25px;
     opacity: 0;
-    top: 78px;
     transition: all 200ms ease-in-out;
     visibility: hidden;
-    width: 100%;
     z-index: 9;
 
     &.visible {
@@ -568,7 +567,7 @@ export const MobileNavigationSubMenuList = styled.ul`
     }
 `;
 
-export const MobileNavigationSubMenuListElementLink = styled.a`
+export const MobileNavigationSubMenuListElementLink = styled(Link)`
     color: ${(props) => props.theme.textPrimary};
     cursor: pointer;
     display: block;
@@ -586,7 +585,7 @@ export const MobileNavigationSubMenuListElement = styled.li`
     position: relative;
 
     &.last-child {
-        margin-bottom: 0;
+        margin-bottom: 10px;
     }
 
     &:hover, &.active {

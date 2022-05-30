@@ -3,6 +3,12 @@ import React, {
     useState
 } from 'react';
 
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+} from "react-router-dom";
+
 import { NavbarTop } from './NavbarTop/NavbarTop';
 
 import { PageContent } from './OrchiWebsite.style';
@@ -136,7 +142,7 @@ export const OrchiWebsite: React.FC = () => {
     }, []);
 
     return (
-        <>
+        <Router>
             <NavbarTop
                 contacts={contacts}
                 navigation={navigation}
@@ -148,8 +154,10 @@ export const OrchiWebsite: React.FC = () => {
             <PageContent
                 id='page-content'
             >
-                
+                <Routes>
+                    
+                </Routes>
             </PageContent>
-        </>
+        </Router>
     );
 }
