@@ -3,7 +3,7 @@ import React,{
     useState
 } from 'react';
 
-import { INavbarTopProps } from './INavbarTopProps';
+import INavbarTopProps from './INavbarTopProps';
 
 import { IconExtension } from '../IconExtension/IconExtension';
 import { IconName } from '../IconExtension/IIconExtensionProps';
@@ -67,14 +67,14 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
     
     useEffect(() => {
         const handleScroll = (): void => {
-            var desktopContacts: HTMLElement = document.getElementById('desktop-contacts') as HTMLElement;
-            var navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
-            var width = document.documentElement.offsetWidth;
+            let desktopContacts: HTMLElement = document.getElementById('desktop-contacts') as HTMLElement;
+            let navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
+            let width = document.documentElement.offsetWidth;
     
             if (width >= 768 || width <= 320) {
                 if (desktopContacts && navbar) {
-                    var pageScroll: number = window.pageYOffset;
-                    var desktopContactsHeight: number = desktopContacts.offsetHeight;
+                    let pageScroll: number = window.pageYOffset;
+                    let desktopContactsHeight: number = desktopContacts.offsetHeight;
     
                     if (pageScroll > 10)
                         navbar.style.top = `-${desktopContactsHeight + 7}px`;
@@ -87,10 +87,10 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
         };
 
         const handleInitialSelection = (): void => {
-            var url: string = window.location.toString();
+            let url: string = window.location.toString();
     
             if (url.indexOf('#') !== -1) {
-                var selection: string = url.split('#')[1];
+                let selection: string = url.split('#')[1];
     
                 if (selection) {
                     navigation.forEach((element, index) => {
@@ -196,7 +196,7 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                             <SocialLink
                                                 key={`Social${index}`}
                                                 hovercolor={social.hoverColor}
-                                                to={social.link}
+                                                href={social.link}
                                             >
                                                 <IconExtension
                                                     name={social.icon as IconName}
@@ -252,7 +252,7 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                 <NavigationListElementLink
                                                     className='navbar-list-element'
                                                     onClick={(event) => {
-                                                        var pressedElement: HTMLElement = event.target as HTMLElement;
+                                                        let pressedElement: HTMLElement = event.target as HTMLElement;
 
                                                         if (pressedElement && pressedElement?.classList.contains('navbar-list-element')) {
                                                             setCurrentlySelected(elementIndex);
@@ -275,7 +275,7 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                                     <NavigationSubMenuListElementLink
                                                                         className='submenu-list-element'
                                                                         onClick={(event) => {
-                                                                            var pressedElement: HTMLElement = event.target as HTMLElement;
+                                                                            let pressedElement: HTMLElement = event.target as HTMLElement;
                                                                             
                                                                             if (pressedElement && pressedElement?.classList.contains('submenu-list-element')) {
                                                                                 setCurrentlySelected(elementIndex);
@@ -396,7 +396,7 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                 <MobileNavigationListElementLink
                                                     className='navbar-list-element'
                                                     onClick={(event) => { 
-                                                        var pressedElement: HTMLElement = event.target as HTMLElement;
+                                                        let pressedElement: HTMLElement = event.target as HTMLElement;
 
                                                         if (pressedElement && pressedElement?.classList.contains('navbar-list-element')) {
                                                             setCurrentlySelected(elementIndex);
@@ -422,13 +422,13 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                                                             {element.subMenu.map((subMenuElement, subMenuElementIndex) => {
                                                                 return (
                                                                     <MobileNavigationSubMenuListElement
-                                                                        className={`${currentlySelected === elementIndex && currentlySelectedSubMenu === subMenuElementIndex ? 'active' : ''} ${(subMenuElementIndex + 1) == element.subMenu?.length ? 'last-child' : ''}`}
+                                                                        className={`${currentlySelected === elementIndex && currentlySelectedSubMenu === subMenuElementIndex ? 'active' : ''} ${(subMenuElementIndex + 1) === element.subMenu?.length ? 'last-child' : ''}`}
                                                                         key={`List${elementIndex}SubMenuElement${subMenuElementIndex}`}
                                                                     >
                                                                         <MobileNavigationSubMenuListElementLink
                                                                             className='submenu-list-element'
                                                                             onClick={(event) => {
-                                                                                var pressedElement: HTMLElement = event.target as HTMLElement;
+                                                                                let pressedElement: HTMLElement = event.target as HTMLElement;
                                                                                 
                                                                                 if (pressedElement && pressedElement?.classList.contains('submenu-list-element')) {
                                                                                     setCurrentlySelected(elementIndex);

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const Wrapper = styled.section`
     background-color: ${(props) => props.theme.main};
@@ -7,7 +7,7 @@ export const Wrapper = styled.section`
     padding: 7px 0 0 0;
     position: fixed;
     right: 0;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: 100%;
     z-index: 99;
 `;
@@ -27,7 +27,7 @@ export const Container = styled.div`
     }
 
     &::before, &::after {
-        content: " ";
+        content: ' ';
         display: table;
     }
     &::after {
@@ -39,7 +39,7 @@ export const Row = styled.div`
     margin: 0 -15px;
 
     &::before, &::after {
-        content: " ";
+        content: ' ';
         display: table;
     }
     &::after {
@@ -75,7 +75,7 @@ export const Logo = styled.div`
 
 export const LogoImage = styled.img`
     height: 100%;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: auto;
 
     @media (min-width: 320px) and (max-width: 767px) {
@@ -169,7 +169,7 @@ export const SocialsContainer = styled.div`
     }
 `;
 
-export const SocialLink = styled(Link)<{ hovercolor: string }>`
+export const SocialLink = styled.a<{ hovercolor: string }>`
     align-items: center;
     border: 2px solid ${(props) => props.theme.textPrimary};
     border-radius: 50%;
@@ -180,7 +180,7 @@ export const SocialLink = styled(Link)<{ hovercolor: string }>`
     line-height: 1;
     margin-right: 10px;
     text-align: center;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: 40px;
 
     &:last-of-type {
@@ -251,7 +251,7 @@ export const MobileHamburgerLine = styled.span`
     display: block;
     height: 3px;
     position: absolute;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: 100%;
 
     &:nth-of-type(1) {
@@ -317,7 +317,7 @@ export const NavigationListElementLink = styled(Link)`
     font-size: 16px;
     padding: 20px 0 19px;
     text-transform: uppercase;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
 `;
 
 export const NavigationSubMenuList = styled.ul`
@@ -329,7 +329,7 @@ export const NavigationSubMenuList = styled.ul`
     padding: 16px 0 16px 40px;
     position: absolute;
     top: 78px;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     visibility: hidden;
     width: 250px;
     z-index: 9;
@@ -349,7 +349,7 @@ export const NavigationListElement = styled.li`
         left: 0;
         position: absolute;
         right: 0;
-        transition: all 200ms ease-in-out;
+        transition: all 200ms linear;
         width: 0;
     }
 
@@ -386,7 +386,7 @@ export const NavigationSubMenuListElementLink = styled(Link)`
     font-size: 16px;
     padding: 0;
     text-transform: uppercase;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
 `;
 
 export const NavigationSubMenuListElement = styled.li`
@@ -437,7 +437,7 @@ export const SearchbarInput = styled.input`
     margin-right: 20px;
     opacity: 0;
     position: relative;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: 50%;
     -webkit-appearance: none;
 
@@ -461,7 +461,7 @@ export const SearchbarButton = styled.button`
     position: absolute;
     right: 0;
     top: 20px;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
 
     &:hover:not(.no-interaction), &.active:not(.no-interaction) {
         color: ${(props) => props.theme.textAccent};
@@ -476,7 +476,7 @@ export const MobileWrapper = styled.section`
     padding: 7px;
     position: fixed;
     top: 0;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
     width: 250px;
     z-index: 99;
 
@@ -513,7 +513,7 @@ export const MobileNavigationListElementLink = styled(Link)`
     margin-right: 40px;
     padding: 20px 0 5px;
     text-transform: uppercase;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
 
     &:hover {
         color: ${(props) => props.theme.textAccent};
@@ -553,16 +553,21 @@ export const MobileNavigationSubMenuListExpand = styled.div`
 export const MobileNavigationSubMenuList = styled.ul`
     background-color: ${(props) => props.theme.dark};
     cursor: default;
-    display: none;
+    display: block;
+    height: auto;
     margin-left: 25px;
+    max-height: 0;
     opacity: 0;
-    transition: all 200ms ease-in-out;
+    overflow: hidden;
+    pointer-events: none;
+    transition: all 200ms linear;
     visibility: hidden;
     z-index: 9;
 
     &.visible {
-        display: block;
+        max-height: 100vh;
         opacity: 1;
+        pointer-events: auto;
         visibility: visible;
     }
 `;
@@ -574,7 +579,7 @@ export const MobileNavigationSubMenuListElementLink = styled(Link)`
     font-size: 16px;
     padding: 0;
     text-transform: uppercase;
-    transition: all 200ms ease-in-out;
+    transition: all 200ms linear;
 `;
 
 export const MobileNavigationSubMenuListElement = styled.li`
