@@ -22,4 +22,5 @@ export default interface INavbarTopProps {
     
     className?: string | undefined;
     style?: React.CSSProperties | undefined;
+    small?: boolean;
 }

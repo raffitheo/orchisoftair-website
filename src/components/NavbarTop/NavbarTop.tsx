@@ -56,7 +56,7 @@ import {
     Wrapper
 } from './NavbarTop.style';
 
-export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, socials, onMobileMenuChange, isMobile, className, style}) => {
+export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, socials, onMobileMenuChange, isMobile, className, style, small}) => {
     const [currentlySelected, setCurrentlySelected] = useState<number>(-1);
     const [currentlySelectedSubMenu, setCurrentlySelectedSubMenu] = useState<number>(-1);
 
@@ -81,9 +81,8 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
                     else
                         navbar.style.top = '0';
                 }
-            } else {
+            } else
                 navbar.style.top = '0';
-            }
         };
 
         const handleInitialSelection = (): void => {
@@ -117,11 +116,26 @@ export const NavbarTop: React.FC<INavbarTopProps> = ({contacts, navigation, soci
 
         handleInitialSelection();
 
-        window.addEventListener('scroll', handleScroll);
+        if (!small) {
+            window.addEventListener('scroll', handleScroll);
+        
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        } else {
+            let desktopContacts: HTMLElement = document.getElementById('desktop-contacts') as HTMLElement;
+            let navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
+            let width = document.documentElement.offsetWidth;
     
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
+            if (width >= 768 || width <= 320) {
+                if (desktopContacts && navbar) {
+                    let desktopContactsHeight: number = desktopContacts.offsetHeight;
+    
+                    navbar.style.top = `-${desktopContactsHeight + 7}px`;
+                }
+            } else
+                navbar.style.top = '0';
+        }
     }, []);
 
     useEffect(() => {

@@ -11,101 +11,26 @@ import {
 
 import { NavbarTop } from './NavbarTop/NavbarTop';
 
+import {
+    Contacts,
+    Navigation,
+    Social
+} from '../data/navbar';
+
+import { HomePage } from './pages/HomePage/HomePage';
+
 import { PageContent } from './OrchiWebsite.style';
 
 export const OrchiWebsite: React.FC = () => {
-    var contacts: {
-        icon: string,
-        title: string,
-        info: string
-    }[] = [
-        {
-            icon: 'AtSign',
-            title: 'Scrivici',
-            info: 'info@orchisoftair.it'
-        },
-        {
-            icon: 'Phone',
-            title: 'Chiamaci',
-            info: '+39 348 469 1962'
-        }
-    ];
-    var navigation: {
-        text: string,
-        link: string,
-        subMenu?: {
-            text: string,
-            link: string
-        }[]
-    }[] = [
-        {
-            text: 'Home',
-            link: '#home'
-        },
-        {
-            text: 'Chi siamo',
-            link: '#chi-siamo',
-            subMenu: [
-                {
-                    text: 'L\'associazione',
-                    link: '#chi-siamo-l-associazione'
-                },
-                {
-                    text: 'Il team',
-                    link: '#chi-siamo-il-team'
-                },
-                {
-                    text: 'Deve giochiamo',
-                    link: '#chi-siamo-dove-giochiamo'
-                }
-            ]
-        },
-        {
-            text: 'Eventi',
-            link: '#event',
-            subMenu: [
-                {
-                    text: 'In arrivo',
-                    link: '#eventi-in-arrivo'
-                },
-                {
-                    text: 'Storico',
-                    link: '#eventi-storico'
-                }
-            ]
-        },
-        {
-            text: 'Contatti',
-            link: '#contatti'
-        },
-        {
-            text: 'Area riservata',
-            link: '#area-riservata'
-        },
-    ];
-    var socials: {
-        icon: string,
-        link: string,
-        hoverColor: string
-    }[] = [
-        {
-            link: 'https://www.instagram.com/orchisoftair_official/',
-            icon: 'Instagram',
-            hoverColor: 'hsl(349, 75%, 31%)'
-        },
-        {
-            link: 'https://www.facebook.com/orchitrieste/',
-            icon: 'Facebook',
-            hoverColor: 'hsl(349, 75%, 31%)'
-        }
-    ];
-
     const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [navbarHeight, setNavbarHeight] = useState<number>(0);
+
+    const baseURL: string = window.location.href.indexOf('github') ? '/orchisoftair-website' : '/';
 
     const onMobileMenuChange = (newValue: boolean): void => {
-        var navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
-        var navbarMobile: HTMLElement = document.getElementById('navbar-mobile') as HTMLElement;
-        var pageContent: HTMLElement = document.getElementById('page-content') as HTMLElement;
+        let navbar: HTMLElement = document.getElementById('navbar') as HTMLElement;
+        let navbarMobile: HTMLElement = document.getElementById('navbar-mobile') as HTMLElement;
+        let pageContent: HTMLElement = document.getElementById('page-content') as HTMLElement;
 
         if (navbar && navbarMobile && pageContent) {
             if (newValue) {
@@ -124,13 +49,17 @@ export const OrchiWebsite: React.FC = () => {
     
     useEffect(() => {
         const handleResize = (): void => {
-            var width = document.documentElement.offsetWidth;
+            let width = document.documentElement.offsetWidth;
     
             setIsMobile(!(width >= 768 || width <= 320));
     
-            if (width >= 768 || width <= 320) {
+            if (width >= 768 || width <= 320)
                 onMobileMenuChange(false);
-            }
+
+            let navbar = document.getElementById('navbar');
+
+            if (navbar)
+                setNavbarHeight(navbar.offsetHeight);
         };
 
         handleResize();
@@ -144,9 +73,9 @@ export const OrchiWebsite: React.FC = () => {
     return (
         <Router>
             <NavbarTop
-                contacts={contacts}
-                navigation={navigation}
-                socials={socials}
+                contacts={Contacts()}
+                navigation={Navigation()}
+                socials={Social()}
                 onMobileMenuChange={onMobileMenuChange}
                 isMobile={isMobile}
             />
@@ -155,7 +84,14 @@ export const OrchiWebsite: React.FC = () => {
                 id='page-content'
             >
                 <Routes>
-                    
+                    <Route
+                        element={
+                            <HomePage
+                                navbarHeight={navbarHeight}
+                            />
+                        }
+                        path={baseURL}
+                    />
                 </Routes>
             </PageContent>
         </Router>
