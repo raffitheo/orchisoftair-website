@@ -106,7 +106,6 @@
 
 .relative-container {
     background-color: #0C0C0C;
-    background-image: url(src/assets/bg-pattern.webp);
     background-size: cover;
     color: #fff;
     max-width: 1920px;
@@ -173,7 +172,6 @@
 }
 
 .newsletter-section {
-    background-image: url(src/assets/bg-newsletter.png);
     background-position: top;
     background-size: cover;
     color: #fff;

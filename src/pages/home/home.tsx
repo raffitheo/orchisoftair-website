@@ -6,6 +6,8 @@ import { ID, Query } from 'appwrite';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 
+import newsletterBg from '../../assets/bg-newsletter.png';
+import patternBg from '../../assets/bg-pattern.webp';
 import damoclesIcon from '../../assets/damocles_icon.png';
 import ORCHIlogo from '../../assets/ORCHIlogo.webp';
 
@@ -123,7 +125,10 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                 </div>
             </div>
 
-            <div className="relative-container">
+            <div
+                className="relative-container"
+                style={{ backgroundImage: `url(${patternBg})` }}
+            >
                 <div className="gradient-overlay">
                     <div className="gradient-overlay2">
                         <div className="new-section">
@@ -137,7 +142,10 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                 </div>
             </div>
 
-            <section className="newsletter-section">
+            <section
+                className="newsletter-section"
+                style={{ backgroundImage: `url(${newsletterBg})` }}
+            >
                 <div className="overlay">
                     <div className="overlay2">
                         <div className="newsletter-section-box">
