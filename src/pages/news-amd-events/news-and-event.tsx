@@ -124,7 +124,6 @@ const NewsAndEvent = forwardRef<HTMLDivElement, NewsAndEventProps>(
                 import.meta.env.VITE_NEWS_AND_EVENTS_COLLECTION_ID,
                 [
                     Query.select([
-                        '$id',
                         'content',
                         'creationDate',
                         'headerImage',
