@@ -2,7 +2,7 @@
 
 # A.S.D. "Gli Orchi Softair" website
 
-![CI/CD](https://github.com/raffitheo/orchisoftair-website/workflows/CI/CD/badge.svg)![License](https://img.shields.io/github/license/raffitheo/orchisoftair-website)
+![CI/CD](https://vercelbadge.vercel.app/api/raffitheo/orchisoftair-website?style=flat-square) ![License](https://img.shields.io/github/license/raffitheo/orchisoftair-website?style=flat-square)
 
 The official website for the italian airsoft team, A.S.D. "Gli Orchi Softair".
 
