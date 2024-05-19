@@ -8,5 +8,6 @@ export interface Content {
 export default interface Page {
     content: Array<Content>;
     creationDate: Date;
+    headerImage: string;
     title: string;
 }

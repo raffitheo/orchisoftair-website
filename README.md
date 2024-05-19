@@ -1,4 +1,4 @@
-<img src="src/assets/logo.png" height="200px" align="right"/>
+<img src="logo.png" height="200px" align="right"/>
 
 # A.S.D. "Gli Orchi Softair" website
 

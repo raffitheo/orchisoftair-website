@@ -1,28 +1,28 @@
 import Footer from '@components/footer';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import News from '@interfaces/news';
+import NewsAndEvent from '@interfaces/news-and-event';
 import { ID, Query } from 'appwrite';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
 
-import newsletterBg from '../../assets/bg-newsletter.png';
-import patternBg from '../../assets/bg-pattern.webp';
-import damoclesIcon from '../../assets/damocles_icon.png';
-import ORCHIlogo from '../../assets/ORCHIlogo.webp';
+import BackgroundNewsletter from '../../assets/background-newsletter.webp';
+import BackgroundPattern from '../../assets/background-pattern.webp';
+import DamoclesIcon from '../../assets/damocles-icon.webp';
+import Landing from '../../assets/landing.webp';
 
 import './home.css';
 import 'react-multi-carousel/lib/styles.css';
 
-interface NewsItemProps extends HTMLAttributes<HTMLDivElement> {
+interface NewsAndEventItemProps extends HTMLAttributes<HTMLDivElement> {
+    category: string;
     href: string;
     src: string;
-    subtitle: string;
     title: string;
 }
 
-const NewsItem = forwardRef<HTMLDivElement, NewsItemProps>(
-    ({ href, src, subtitle, title, ...props }, ref) => {
+const NewsAndEventItem = forwardRef<HTMLDivElement, NewsAndEventItemProps>(
+    ({ category, href, src, title, ...props }, ref) => {
         return (
             <div className="news-item" ref={ref} {...props}>
                 <a href={href}>
@@ -30,7 +30,7 @@ const NewsItem = forwardRef<HTMLDivElement, NewsItemProps>(
                 </a>
                 <div className="news-item-description">
                     <h3>{title}</h3>
-                    <p>{subtitle}</p>
+                    <p>{category}</p>
                     <a className="news-item-link" href={href}>
                         SCOPRI DI PIÙ →
                     </a>
@@ -45,19 +45,21 @@ export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     const [email, setEmail] = useState<string>('');
     const [emailSent, setEmailSent] = useState<boolean>(false);
-    const [newsList, setNewsList] = useState<Array<News>>([]);
-    const [newsListStatus, setnewsListStatus] =
+    const [newsAndEventsList, setNewsAndEventsList] = useState<
+        Array<NewsAndEvent>
+    >([]);
+    const [newsAndEventsListStatus, setNewsAndEventsListStatus] =
         useState<DataStatus>('initialized');
 
     useEffect(() => {
-        setnewsListStatus('loading');
+        setNewsAndEventsListStatus('loading');
     }, []);
 
     useEffect(() => {
-        if (newsListStatus === 'loading') {
+        if (newsAndEventsListStatus === 'loading') {
             getNews();
         }
-    }, [newsListStatus]);
+    }, [newsAndEventsListStatus]);
 
     const responsive = {
         superLargeDesktop: {
@@ -88,7 +90,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         <div className="main-logo-section">
                             <img
                                 alt="Logo"
-                                src={ORCHIlogo}
+                                src={Landing}
                                 height={333}
                                 width={707}
                             />
@@ -115,7 +117,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                                     <img
                                         alt="Logo"
                                         height={37}
-                                        src={damoclesIcon}
+                                        src={DamoclesIcon}
                                         width={124}
                                     />
                                 </a>
@@ -127,12 +129,12 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
 
             <div
                 className="relative-container"
-                style={{ backgroundImage: `url(${patternBg})` }}
+                style={{ backgroundImage: `url(${BackgroundPattern})` }}
             >
                 <div className="gradient-overlay">
                     <div className="gradient-overlay2">
                         <div className="new-section">
-                            <div className="news-title">EVENTI E NOVITÀ</div>
+                            <div className="news-title">NOVITÀ ED EVENTI</div>
 
                             <div className="news-carousel">
                                 {renderNewsCarousel()}
@@ -144,7 +146,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
 
             <section
                 className="newsletter-section"
-                style={{ backgroundImage: `url(${newsletterBg})` }}
+                style={{ backgroundImage: `url(${BackgroundNewsletter})` }}
             >
                 <div className="overlay">
                     <div className="overlay2">
@@ -190,13 +192,11 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     );
 
     function renderNewsCarousel(): JSX.Element {
-        switch (newsListStatus) {
+        switch (newsAndEventsListStatus) {
             case 'error':
-                return <></>;
-
             case 'initialized':
             case 'loading':
-                return <span>Caricamento in corso...</span>;
+                return <></>;
 
             case 'success':
                 return (
@@ -207,13 +207,13 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         responsive={responsive}
                         swipeable
                     >
-                        {newsList.map((news) => (
-                            <NewsItem
-                                href={news.link}
-                                key={news.id}
-                                src={news.image}
-                                subtitle={news.subtitle}
-                                title={news.title}
+                        {newsAndEventsList.map((newsAndEvent) => (
+                            <NewsAndEventItem
+                                category={newsAndEvent.category}
+                                href={newsAndEvent.redirectLink}
+                                key={newsAndEvent.id}
+                                src={newsAndEvent.thumbnail}
+                                title={newsAndEvent.title}
                             />
                         ))}
                     </Carousel>
@@ -224,29 +224,40 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     async function getNews() {
         const response = await databases.listDocuments(
             import.meta.env.VITE_DATABASE_ID,
-            import.meta.env.VITE_NEWS_COLLECTION_ID,
-            [Query.equal('display', [true]), Query.orderDesc('creationDate')],
+            import.meta.env.VITE_NEWS_AND_EVENTS_COLLECTION_ID,
+            [
+                Query.select([
+                    '$id',
+                    'category',
+                    'creationDate',
+                    'redirectLink',
+                    'thumbnail',
+                    'title',
+                ]),
+                Query.equal('display', [true]),
+                Query.orderDesc('creationDate'),
+            ],
         );
 
         if (response) {
-            setnewsListStatus('success');
+            setNewsAndEventsListStatus('success');
 
-            const newsListResponse: Array<News> = [];
+            const newsListResponse: Array<NewsAndEvent> = [];
 
             response.documents.forEach((documnet) => {
                 newsListResponse.push({
+                    category: documnet.category,
                     creationDate: new Date(documnet.creationDate),
                     id: documnet.$id,
-                    image: documnet.image,
-                    link: documnet.link,
-                    subtitle: documnet.subtitle,
+                    redirectLink: documnet.redirectLink,
+                    thumbnail: documnet.thumbnail,
                     title: documnet.title,
                 });
             });
 
-            setNewsList(newsListResponse);
+            setNewsAndEventsList(newsListResponse);
         } else {
-            setnewsListStatus('error');
+            setNewsAndEventsListStatus('error');
         }
     }
 
@@ -259,7 +270,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             import.meta.env.VITE_DATABASE_ID,
             import.meta.env.VITE_NEWSLETTER_COLLECTION_ID,
             ID.unique(),
-            { email: email, subscribeDate: new Date() },
+            { email: email, subscriptionDate: new Date() },
         );
 
         setEmail('');

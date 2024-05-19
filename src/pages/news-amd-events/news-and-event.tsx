@@ -6,17 +6,20 @@ import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
 import dayjs from 'dayjs';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import lorePattern from '../../assets/lore-pattern.png';
+import LorePattern from '../../assets/lore-pattern.webp';
 
-import './news-and-events.css';
+import './news-and-event.css';
 
 type PageDataStatue = DataStatus | 'error-no-data';
 
-export interface NewsAndEventsProps extends HTMLAttributes<HTMLDivElement> {}
+export interface NewsAndEventProps extends HTMLAttributes<HTMLDivElement> {}
 
-const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
+const NewsAndEvent = forwardRef<HTMLDivElement, NewsAndEventProps>(
     ({ ...props }, ref) => {
+        const location = useLocation();
+
         const [pageData, setPageData] = useState<Page | undefined>(undefined);
         const [pageDataStatus, setPageDataStatus] =
             useState<PageDataStatue>('initialized');
@@ -39,7 +42,12 @@ const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
             case 'success':
                 return (
                     <div className="news-container" ref={ref} {...props}>
-                        <div className="news-header-box2">
+                        <div
+                            className="news-header-box2"
+                            style={{
+                                backgroundImage: `url(${pageData?.headerImage})`,
+                            }}
+                        >
                             <div className="news-banner-box">
                                 <div className="news-header">
                                     <div className="back-button">
@@ -67,7 +75,7 @@ const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
                         <div
                             className="news-main-container"
                             style={{
-                                background: `url(${lorePattern}) no-repeat 50%`,
+                                background: `url(${LorePattern}) no-repeat 50%`,
                             }}
                         >
                             <div className="news-main-box">
@@ -113,8 +121,19 @@ const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
         async function getContent() {
             const response = await databases.listDocuments(
                 import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_PAGES_COLLECTION_ID,
-                [Query.equal('link', [window.location.href]), Query.limit(1)],
+                import.meta.env.VITE_NEWS_AND_EVENTS_COLLECTION_ID,
+                [
+                    Query.select([
+                        '$id',
+                        'content',
+                        'creationDate',
+                        'headerImage',
+                        'redirectLink',
+                        'title',
+                    ]),
+                    Query.equal('redirectLink', [location.pathname]),
+                    Query.limit(1),
+                ],
             );
 
             if (response) {
@@ -123,6 +142,7 @@ const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
                     setPageData({
                         content: JSON.parse(response.documents[0].content),
                         creationDate: response.documents[0].creationDate,
+                        headerImage: response.documents[0].headerImage,
                         title: response.documents[0].title,
                     });
                 } else {
@@ -259,4 +279,4 @@ const NewsAndEvents = forwardRef<HTMLDivElement, NewsAndEventsProps>(
     },
 );
 
-export default NewsAndEvents;
+export default NewsAndEvent;

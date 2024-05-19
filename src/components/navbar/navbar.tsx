@@ -2,7 +2,7 @@ import { HTMLAttributes, forwardRef } from 'react';
 
 import './navbar.css';
 
-import orchiIcon from '../../assets/orchi-icon.png';
+import OrchiIcon from '../../assets/orchi-icon.webp';
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -13,7 +13,7 @@ const Navbar = forwardRef<HTMLDivElement, NavbarProps>(({ ...props }, ref) => {
                 <div className="navbar-logo">
                     <div className="orchi-logo">
                         <a href="/">
-                            <img height={48} src={orchiIcon} width={52} />
+                            <img height={48} src={OrchiIcon} width={52} />
                         </a>
                     </div>
                 </div>

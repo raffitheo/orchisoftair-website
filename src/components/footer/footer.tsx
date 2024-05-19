@@ -2,10 +2,10 @@ import { HTMLAttributes, forwardRef } from 'react';
 
 import './footer.css';
 
-import facebookIcon from '../../assets/facebook_icon.png';
-import instagramIcon from '../../assets/instagram_icon.png';
-import orchiIcon from '../../assets/orchi-icon.png';
-import rvIcon from '../../assets/rv_icon.png';
+import FacebookIcon from '../../assets/facebook-icon.webp';
+import InstagramIcon from '../../assets/instagram-icon.webp';
+import OrchiIcon from '../../assets/orchi-icon.webp';
+import RaffaeleValentiIcon from '../../assets/raffaele-valenti-icon.webp';
 
 interface SocialItemProps extends HTMLAttributes<HTMLAnchorElement> {
     alt: string;
@@ -58,13 +58,17 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                         target="_blank"
                     >
                         <div className="rv">
-                            <img height={45} src={rvIcon} width={45} />
+                            <img
+                                height={45}
+                                src={RaffaeleValentiIcon}
+                                width={45}
+                            />
                         </div>
                     </a>
                     <span>X</span>
                     <a href="/">
                         <div className="orchi">
-                            <img height={45} src={orchiIcon} width={45} />
+                            <img height={45} src={OrchiIcon} width={45} />
                         </div>
                     </a>
                 </div>
@@ -73,12 +77,12 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                     <SocialItem
                         alt="Facebook"
                         href="https://www.facebook.com/orchitrieste/"
-                        src={facebookIcon}
+                        src={FacebookIcon}
                     />
                     <SocialItem
                         alt="instagram"
                         href="https://www.instagram.com/orchisoftair_official/"
-                        src={instagramIcon}
+                        src={InstagramIcon}
                     />
                 </div>
             </div>

@@ -1,5 +1,5 @@
-import NewsAndEvents, { NewsAndEventsProps } from './news-and-events';
+import NewsAndEvent, { NewsAndEventProps } from './news-and-event';
 
-export type { NewsAndEventsProps };
+export type { NewsAndEventProps };
 
-export default NewsAndEvents;
+export default NewsAndEvent;
