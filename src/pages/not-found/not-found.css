@@ -1,0 +1,33 @@
+.not-found {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.not-found-line {
+    line-height: 48px;
+
+    h1 {
+        border-right: 1px solid rgba(255, 255, 255, .3);
+        display: inline-block;
+        font-size: 24px;
+        font-weight: 500;
+        margin: 0 20px 0 0;
+        padding-right: 23px;
+        vertical-align: top;
+    }
+}
+
+.not-found-line-description {
+    display: inline-block;
+
+    h2 {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 28px;
+    }
+}
