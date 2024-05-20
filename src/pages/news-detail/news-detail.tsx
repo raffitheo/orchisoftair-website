@@ -39,72 +39,75 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
 
             case 'success':
                 return (
-                    <div className="news-container" ref={ref} {...props}>
-                        <div
-                            className="news-header-box2"
-                            style={{
-                                backgroundImage: `url(${pageData?.headerImage})`,
-                            }}
-                        >
-                            <div className="news-banner-box">
-                                <div className="news-header">
-                                    <div className="back-button">
-                                        <a href="/">Torna indietro</a>
+                    <div className="news" ref={ref} {...props}>
+                        <div className="news-container" ref={ref} {...props}>
+                            <div
+                                className="news-header-box2"
+                                style={{
+                                    backgroundImage: `url(${pageData?.headerImage})`,
+                                }}
+                            >
+                                <div className="news-banner-box">
+                                    <div className="news-header">
+                                        <div className="back-button">
+                                            <a href="/">Torna indietro</a>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className="news-header-banner">
-                                    <div>
-                                        <h1>
-                                            {pageData ? pageData.title : ''}
-                                        </h1>
-                                        <div className="banner-date">
-                                            {pageData && pageData.creationDate
-                                                ? formatDate(
-                                                      pageData.creationDate,
-                                                  )
-                                                : ''}
+                                    <div className="news-header-banner">
+                                        <div>
+                                            <h1>
+                                                {pageData ? pageData.title : ''}
+                                            </h1>
+                                            <div className="banner-date">
+                                                {pageData &&
+                                                pageData.creationDate
+                                                    ? formatDate(
+                                                          pageData.creationDate,
+                                                      )
+                                                    : ''}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div
-                            className="news-main-container"
-                            style={{
-                                background: `url(${LorePattern}) no-repeat 50%`,
-                            }}
-                        >
-                            <div className="news-main-box">
-                                {pageData && pageData.content ? (
-                                    pageData.content.map(
-                                        (element, elementIndex) => {
-                                            switch (element.type) {
-                                                case 'a':
-                                                case 'h3':
-                                                case 'none':
-                                                case 'p':
-                                                case 'ul':
-                                                    return renderElement(
-                                                        element.type,
-                                                        elementIndex,
-                                                        element.value,
-                                                        element.values,
-                                                        element.link,
-                                                    );
+                            <div
+                                className="news-main-container"
+                                style={{
+                                    background: `url(${LorePattern}) no-repeat 50%`,
+                                }}
+                            >
+                                <div className="news-main-box">
+                                    {pageData && pageData.content ? (
+                                        pageData.content.map(
+                                            (element, elementIndex) => {
+                                                switch (element.type) {
+                                                    case 'a':
+                                                    case 'h3':
+                                                    case 'none':
+                                                    case 'p':
+                                                    case 'ul':
+                                                        return renderElement(
+                                                            element.type,
+                                                            elementIndex,
+                                                            element.value,
+                                                            element.values,
+                                                            element.link,
+                                                        );
 
-                                                default:
-                                                    return <></>;
-                                            }
-                                        },
-                                    )
-                                ) : (
-                                    <></>
-                                )}
-                                <p>Vi ringraziamo per l'attenzione.</p>
-                                <p>- A.S.D. Gli Orchi Trieste</p>
-                                <div className="content-creators"></div>
+                                                    default:
+                                                        return <></>;
+                                                }
+                                            },
+                                        )
+                                    ) : (
+                                        <></>
+                                    )}
+                                    <p>Vi ringraziamo per l'attenzione.</p>
+                                    <p>- A.S.D. Gli Orchi Trieste</p>
+                                    <div className="content-creators"></div>
+                                </div>
                             </div>
                         </div>
 
