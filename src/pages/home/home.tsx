@@ -1,7 +1,7 @@
 import Footer from '@components/footer';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import NewsAndEvent from '@interfaces/news-and-event';
+import News from '@interfaces/news';
 import { ID, Query } from 'appwrite';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import Carousel from 'react-multi-carousel';
@@ -14,14 +14,14 @@ import Landing from '../../assets/landing.webp';
 import './home.css';
 import 'react-multi-carousel/lib/styles.css';
 
-interface NewsAndEventItemProps extends HTMLAttributes<HTMLDivElement> {
+interface NewsItemProps extends HTMLAttributes<HTMLDivElement> {
     category: string;
     href: string;
     src: string;
     title: string;
 }
 
-const NewsAndEventItem = forwardRef<HTMLDivElement, NewsAndEventItemProps>(
+const NewsItem = forwardRef<HTMLDivElement, NewsItemProps>(
     ({ category, href, src, title, ...props }, ref) => {
         return (
             <div className="news-item" ref={ref} {...props}>
@@ -45,21 +45,19 @@ export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     const [email, setEmail] = useState<string>('');
     const [emailSent, setEmailSent] = useState<boolean>(false);
-    const [newsAndEventsList, setNewsAndEventsList] = useState<
-        Array<NewsAndEvent>
-    >([]);
-    const [newsAndEventsListStatus, setNewsAndEventsListStatus] =
+    const [newsList, setNwsList] = useState<Array<News>>([]);
+    const [newsListStatus, setNwsListStatus] =
         useState<DataStatus>('initialized');
 
     useEffect(() => {
-        setNewsAndEventsListStatus('loading');
+        setNwsListStatus('loading');
     }, []);
 
     useEffect(() => {
-        if (newsAndEventsListStatus === 'loading') {
+        if (newsListStatus === 'loading') {
             getNews();
         }
-    }, [newsAndEventsListStatus]);
+    }, [newsListStatus]);
 
     const responsive = {
         superLargeDesktop: {
@@ -192,8 +190,9 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     );
 
     function renderNewsCarousel(): JSX.Element {
-        switch (newsAndEventsListStatus) {
+        switch (newsListStatus) {
             case 'error':
+            case 'error-no-data':
             case 'initialized':
             case 'loading':
                 return <></>;
@@ -207,13 +206,13 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         responsive={responsive}
                         swipeable
                     >
-                        {newsAndEventsList.map((newsAndEvent) => (
-                            <NewsAndEventItem
-                                category={newsAndEvent.category}
-                                href={newsAndEvent.redirectLink}
-                                key={newsAndEvent.id}
-                                src={newsAndEvent.thumbnail}
-                                title={newsAndEvent.title}
+                        {newsList.map((news) => (
+                            <NewsItem
+                                category={news.category}
+                                href={news.redirectLink}
+                                key={news.id}
+                                src={news.thumbnail}
+                                title={news.title}
                             />
                         ))}
                     </Carousel>
@@ -224,7 +223,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     async function getNews() {
         const response = await databases.listDocuments(
             import.meta.env.VITE_DATABASE_ID,
-            import.meta.env.VITE_NEWS_AND_EVENTS_COLLECTION_ID,
+            import.meta.env.VITE_NEWS_COLLECTION_ID,
             [
                 Query.select([
                     '$id',
@@ -240,9 +239,9 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         );
 
         if (response) {
-            setNewsAndEventsListStatus('success');
+            setNwsListStatus('success');
 
-            const newsListResponse: Array<NewsAndEvent> = [];
+            const newsListResponse: Array<News> = [];
 
             response.documents.forEach((documnet) => {
                 newsListResponse.push({
@@ -255,9 +254,9 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                 });
             });
 
-            setNewsAndEventsList(newsListResponse);
+            setNwsList(newsListResponse);
         } else {
-            setNewsAndEventsListStatus('error');
+            setNwsListStatus('error');
         }
     }
 

@@ -10,19 +10,17 @@ import { useLocation } from 'react-router-dom';
 
 import LorePattern from '../../assets/lore-pattern.webp';
 
-import './news-and-event.css';
+import './news-detail.css';
 
-type PageDataStatue = DataStatus | 'error-no-data';
+export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
 
-export interface NewsAndEventProps extends HTMLAttributes<HTMLDivElement> {}
-
-const NewsAndEvent = forwardRef<HTMLDivElement, NewsAndEventProps>(
+const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
     ({ ...props }, ref) => {
         const location = useLocation();
 
         const [pageData, setPageData] = useState<Page | undefined>(undefined);
         const [pageDataStatus, setPageDataStatus] =
-            useState<PageDataStatue>('initialized');
+            useState<DataStatus>('initialized');
 
         useEffect(() => {
             setPageDataStatus('loading');
@@ -121,7 +119,7 @@ const NewsAndEvent = forwardRef<HTMLDivElement, NewsAndEventProps>(
         async function getContent() {
             const response = await databases.listDocuments(
                 import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_NEWS_AND_EVENTS_COLLECTION_ID,
+                import.meta.env.VITE_NEWS_COLLECTION_ID,
                 [
                     Query.select([
                         'content',
@@ -278,4 +276,4 @@ const NewsAndEvent = forwardRef<HTMLDivElement, NewsAndEventProps>(
     },
 );
 
-export default NewsAndEvent;
+export default NewsDetail;

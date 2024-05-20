@@ -1,4 +1,4 @@
-export default interface NewsAndEvent {
+export default interface News {
     category: string;
     creationDate: Date;
     id: string;
