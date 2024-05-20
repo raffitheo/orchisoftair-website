@@ -1,4 +1,5 @@
 import Footer from '@components/footer';
+import Navbar from '@components/navbar';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
@@ -81,6 +82,8 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     return (
         <div ref={ref} {...props}>
             <div className="video-container">
+                <Navbar />
+
                 <div className="video-gradient" />
 
                 <div className="main-box">
