@@ -233,6 +233,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     'category',
                     'creationDate',
                     'redirectLink',
+                    'subtitle',
                     'thumbnail',
                     'title',
                 ]),
@@ -252,6 +253,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     creationDate: new Date(documnet.creationDate),
                     id: documnet.$id,
                     redirectLink: documnet.redirectLink,
+                    subtitle: documnet.subtitle,
                     thumbnail: documnet.thumbnail,
                     title: documnet.title,
                 });

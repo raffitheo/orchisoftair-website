@@ -3,6 +3,7 @@ export default interface News {
     creationDate: Date;
     id: string;
     redirectLink: string;
+    subtitle: string;
     thumbnail: string;
     title: string;
 }

@@ -1,0 +1,142 @@
+.news {
+    background-color: #000;
+}
+
+.news-bg {
+    margin: auto;
+    width: 80%;
+}
+
+.gallery {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: minmax(min-content, max-content);
+    margin: auto;
+    padding: 8rem 0;
+    place-items: center;
+    width: max-content;
+    width: -moz-max-content;
+}
+
+.news-item {
+    background: #141311;
+    color: #fff;
+    max-width: 550px;
+    padding: 30px;
+    text-align: center;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        padding: 1rem 0;
+    }
+}
+
+.center {
+    text-align: -webkit-center;
+}
+
+.spinner {
+    align-items: center;
+    display: flex;
+    height: 300px;
+    justify-content: center;
+
+    &::after {
+        animation: spin 1s linear infinite;
+        border: 5px solid rgba(0, 0, 0, .1);
+        border-radius: 50%;
+        border-top-color: #861A32;
+        content: "";
+        height: 100px;
+        width: 100px;
+    }
+}
+
+.blur {
+    filter: blur(4px);
+    user-select: none;
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.title {
+    text-align: left;
+}
+
+.description {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.tag {
+    color: gray;
+    font-size: .8rem;
+    text-align: right;
+}
+
+.bottom-line {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+        color: #861A32;
+        transition: .3s;
+
+        &:hover {
+            color: #861A32;
+            transform: scale(1.1);
+            transition: .3s;
+        }
+    }
+}
+
+@media (max-width: 1150px) {
+    .news-item {
+        .title {
+            font-size: 1rem;
+        }
+    }
+
+    .description {
+        font-size: .7rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .gallery {
+        gap: 15px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .news-item {
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 650px) {
+    .news-item {
+        max-width: 380px;
+    }
+}
+
+@media (max-width: 550px) {
+    .news-item {
+        max-width: 300px;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(1turn);
+    }
+}
