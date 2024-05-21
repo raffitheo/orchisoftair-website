@@ -1,10 +1,13 @@
+import CookiesNotice from '@components/cookies-notice';
 import { lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+const CookiesPolicy = lazy(() => import('@pages/cookies-policy'));
 const Home = lazy(() => import('@pages/home'));
 const NewsDetail = lazy(() => import('@pages/news-detail'));
 const NewsList = lazy(() => import('@pages/news-list'));
 const NotFound = lazy(() => import('@pages/not-found'));
+const PrivacyPolicy = lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
     return (
@@ -16,8 +19,13 @@ const App = () => {
                 <Route element={<NewsDetail />} path="/news/*" />
                 <Route element={<NewsDetail />} path="/event/*" />
 
+                <Route element={<CookiesPolicy />} path="/cookies-policy" />
+                <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+
                 <Route element={<NotFound />} path="/*" />
             </Routes>
+
+            <CookiesNotice />
         </Router>
     );
 };
