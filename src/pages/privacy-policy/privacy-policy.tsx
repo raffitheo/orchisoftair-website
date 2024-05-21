@@ -199,7 +199,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
 
                             <p>
                                 Per qualsiasi domanda o richiesta relativa alla
-                                privacy dei tuoi dati, puoi contattarci a:
+                                privacy dei tuoi dati, siamo conttatabili a:
                             </p>
 
                             <span style={{ marginTop: '1rem' }}>

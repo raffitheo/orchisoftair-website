@@ -41,13 +41,15 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                     ORCHI SOFTAIR
                     <div className="footer-link">
                         <span>
-                            <a href="/">Informativa sulla privacy</a>
+                            <a href="/privacy-policy">
+                                Informativa sulla privacy
+                            </a>
                         </span>
                         <span>
-                            <a href="/">Unisciti a noi</a>
+                            <a href="/contact-us">Unisciti a noi</a>
                         </span>
                         <span>
-                            <a href="/">FAQ</a>
+                            <a href="/faq">FAQ</a>
                         </span>
                     </div>
                 </div>
