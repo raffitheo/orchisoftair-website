@@ -1,8 +1,10 @@
-import Home from '@pages/home';
-import NewsDetail from '@pages/news-detail';
-import NewsList from '@pages/news-list';
-import NotFound from '@pages/not-found';
+import { lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
+const Home = lazy(() => import('@pages/home'));
+const NewsDetail = lazy(() => import('@pages/news-detail'));
+const NewsList = lazy(() => import('@pages/news-list'));
+const NotFound = lazy(() => import('@pages/not-found'));
 
 const App = () => {
     return (
@@ -10,8 +12,10 @@ const App = () => {
             <Routes>
                 <Route element={<Home />} path="/" />
                 <Route element={<NewsList />} path="/news" />
+
                 <Route element={<NewsDetail />} path="/news/*" />
                 <Route element={<NewsDetail />} path="/event/*" />
+
                 <Route element={<NotFound />} path="/*" />
             </Routes>
         </Router>
