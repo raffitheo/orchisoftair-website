@@ -109,11 +109,12 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
                     <div className="gallery">
                         {newsList && newsList.length >= 1 ? (
                             <>
-                                {newsList.map((news) => (
+                                {newsList.map((news, newsIndex) => (
                                     <NewsListElement
                                         category={news.category}
                                         creationDate={news.creationDate}
                                         redirectLink={news.redirectLink}
+                                        key={newsIndex}
                                         subtitle={news.subtitle}
                                         thumbnail={news.thumbnail}
                                         title={news.title}
