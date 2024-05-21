@@ -8,15 +8,24 @@ export interface CookiesNoticeProps extends HTMLAttributes<HTMLDivElement> {}
 const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
     ({ ...props }, ref) => {
         const [showCookiesNotice, setShowCookiesNotice] =
-            useState<boolean>(false);
+            useState<boolean>(true);
 
         useEffect(() => {
             const storageValue = window.localStorage.getItem(
                 appsettings.COOKIES_NOTICE_ACCEPTED,
             );
 
+            if (!storageValue) {
+                window.localStorage.setItem(
+                    appsettings.COOKIES_NOTICE_ACCEPTED,
+                    'false',
+                );
+            }
+
             if (!storageValue || storageValue === 'false') {
                 setShowCookiesNotice(true);
+            } else {
+                setShowCookiesNotice(false);
             }
         }, []);
 
