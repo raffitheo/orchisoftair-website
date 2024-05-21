@@ -4,7 +4,7 @@
 
 ![CI/CD](https://vercelbadge.vercel.app/api/raffitheo/orchisoftair-website?style=flat-square) ![License](https://img.shields.io/github/license/raffitheo/orchisoftair-website?style=flat-square)
 
-The official website for the italian airsoft team, A.S.D. "Gli Orchi Softair".
+The official website for the italian airsoft team, A.S.D. Gli Orchi Trieste.
 
 ## Release notes
 
