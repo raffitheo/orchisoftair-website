@@ -1,1 +1,12 @@
+.vscode/
+dist/
+public/
 node_modules/
+components.json
+LICENSE.md
+package.json
+package-lock.json
+README.md
+tsconfig.json
+tsconfig.node.json
+vercel.json
