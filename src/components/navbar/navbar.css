@@ -44,7 +44,7 @@
     transition: .3s;
     width: 33%;
 
-    &:hover {
+    &.active, &:hover {
         color: #861A32;
         cursor: pointer;
         transform: scale(1.2);

@@ -103,7 +103,7 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
 
         return (
             <div className="news" ref={ref} {...props}>
-                <Navbar />
+                <Navbar active="news" />
 
                 <div className="news-bg">
                     <div className="gallery">
