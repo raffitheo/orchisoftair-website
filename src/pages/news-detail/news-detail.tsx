@@ -87,6 +87,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                                     case 'h3':
                                                     case 'none':
                                                     case 'p':
+                                                    case 'span':
                                                     case 'ul':
                                                         return renderElement(
                                                             element.type,
@@ -104,8 +105,6 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                     ) : (
                                         <></>
                                     )}
-                                    <p>Vi ringraziamo per l'attenzione.</p>
-                                    <p>- A.S.D. Gli Orchi Trieste</p>
                                     <div className="content-creators"></div>
                                 </div>
                             </div>
@@ -178,7 +177,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
         }
 
         function renderElement(
-            type: 'a' | 'h3' | 'none' | 'p' | 'ul',
+            type: 'a' | 'h3' | 'none' | 'p' | 'span' | 'ul',
             index: number,
             value?: string,
             values?: Array<Content>,
@@ -193,32 +192,6 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                     );
                 case 'h3':
                     return <h3 key={`${type}_${index}`}>{value}</h3>;
-                case 'p':
-                    return (
-                        <p key={`${type}_${index}`}>
-                            {values
-                                ? values?.map((subElement, subElementIndex) => {
-                                      switch (subElement.type) {
-                                          case 'a':
-                                          case 'h3':
-                                          case 'none':
-                                          case 'p':
-                                          case 'ul':
-                                              return renderElement(
-                                                  subElement.type,
-                                                  subElementIndex,
-                                                  subElement.value,
-                                                  subElement.values,
-                                                  subElement.link,
-                                              );
-
-                                          default:
-                                              return <></>;
-                                      }
-                                  })
-                                : value}
-                        </p>
-                    );
                 case 'none':
                     return (
                         <>
@@ -229,6 +202,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                         case 'h3':
                                         case 'none':
                                         case 'p':
+                                        case 'span':
                                         case 'ul':
                                             return renderElement(
                                                 subElement.type,
@@ -250,6 +224,60 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                             )}
                         </>
                     );
+                case 'span':
+                    return (
+                        <span key={`${type}_${index}`}>
+                            {values
+                                ? values?.map((subElement, subElementIndex) => {
+                                      switch (subElement.type) {
+                                          case 'a':
+                                          case 'h3':
+                                          case 'none':
+                                          case 'p':
+                                          case 'span':
+                                          case 'ul':
+                                              return renderElement(
+                                                  subElement.type,
+                                                  subElementIndex,
+                                                  subElement.value,
+                                                  subElement.values,
+                                                  subElement.link,
+                                              );
+
+                                          default:
+                                              return <></>;
+                                      }
+                                  })
+                                : value}
+                        </span>
+                    );
+                case 'p':
+                    return (
+                        <p key={`${type}_${index}`}>
+                            {values
+                                ? values?.map((subElement, subElementIndex) => {
+                                      switch (subElement.type) {
+                                          case 'a':
+                                          case 'h3':
+                                          case 'none':
+                                          case 'p':
+                                          case 'span':
+                                          case 'ul':
+                                              return renderElement(
+                                                  subElement.type,
+                                                  subElementIndex,
+                                                  subElement.value,
+                                                  subElement.values,
+                                                  subElement.link,
+                                              );
+
+                                          default:
+                                              return <></>;
+                                      }
+                                  })
+                                : value}
+                        </p>
+                    );
                 case 'ul':
                     return (
                         <ul key={`${type}_${index}`}>
@@ -259,6 +287,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                     case 'h3':
                                     case 'none':
                                     case 'p':
+                                    case 'span':
                                     case 'ul':
                                         return renderElement(
                                             subElement.type,

@@ -72,17 +72,20 @@
     text-align: left;
     width: 50%;
 
-    p {
+    p, span {
         font-size: 15px;
         font-weight: 300;
         letter-spacing: 0;
         line-height: 17px;
-        margin: 1rem 0;
         text-align: justify;
 
         a {
             color: #861A32;
         }
+    }
+
+    p {
+        margin: 1rem 0;
     }
 
     img {
