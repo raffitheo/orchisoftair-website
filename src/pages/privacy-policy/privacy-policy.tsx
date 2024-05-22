@@ -25,7 +25,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 <div>
                                     <h1>INFORMATIVA SULLA PRIVACY</h1>
                                     <div className="banner-date">
-                                        {formatDate(new Date('2024-05-21'))}
+                                        {formatDate(new Date('2024-05-22'))}
                                     </div>
                                 </div>
                             </div>
@@ -42,9 +42,9 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             <h3>Introduzione</h3>
 
                             <p>
-                                A.S.D. Gli Orchi Trieste (compresi il suo sito
-                                web) prende molto seriamente la privacy dei
-                                propri utenti. Questa informativa descrive come
+                                A.S.D. Gli Orchi Trieste (compreso anche il suo
+                                sito web) prende molto seriamente la privacy dei
+                                propri utenti. Questa Informativa descrive come
                                 raccogliamo, utilizziamo e proteggiamo le
                                 informazioni degli utenti che si iscrivono alla
                                 nostra newsletter.
@@ -54,9 +54,9 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
 
                             <p>
                                 Quando un utente si iscrive alla nostra
-                                newsletter, raccogliamo solo il suo indirizzo
-                                e-mail. Non raccogliamo altre informazioni
-                                personali.
+                                newsletter, raccogliamo unicamente il suo
+                                indirizzo e-mail. Non raccogliamo altre
+                                informazioni personali.
                             </p>
 
                             <h3>2. UTILIZZO DEI DATI</h3>
@@ -104,9 +104,8 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 <li>
                                     <span>
                                         Richiedere l'accesso, la rettifica o la
-                                        cancellazione del tuo indirizzo e-mail
-                                        dal nostro database. Per farlo,
-                                        contattaci a{' '}
+                                        cancellazione dell'indirizzo e-mail dal
+                                        nostro database. Per farlo, contattaci a{' '}
                                         <a
                                             href="mailto:gliorchitrieste@gmail.com"
                                             target="_blank"
@@ -123,9 +122,10 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             </h3>
 
                             <p>
-                                Adottiamo misure di sicurezza per proteggere il
-                                tuo indirizzo e-mail da accessi non autorizzati,
-                                alterazioni, divulgazioni o distruzioni.
+                                Adottiamo misure di sicurezza per proteggere gli
+                                indirizzi e-mail raccolti da accessi non
+                                autorizzati, alterazioni, divulgazioni o
+                                distruzioni.
                             </p>
 
                             <h3>6. UTILIZZO DEI COOKIES</h3>
@@ -135,38 +135,17 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 l'esperienza di navigazione degli utenti. I
                                 cookies sono piccoli file di dati che vengono
                                 salvati sul tuo dispositivo quando visiti il
-                                nostro sito web. Utilizziamo cookies per:
-                            </p>
-
-                            <ul>
-                                <li>
-                                    <span>
-                                        Analizzare l'uso del sito web e
-                                        migliorare le sue prestazioni.
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Ricordare le tue preferenze durante la
-                                        navigazione.
-                                    </span>
-                                </li>
-                            </ul>
-
-                            <p>
-                                Puoi disabilitare i cookies nelle impostazioni
-                                del tuo browser, ma ciò potrebbe influire sulla
-                                funzionalità del sito.
+                                nostro sito web.
                             </p>
 
                             <h3>7. TRATTAMENTO INTERNAZIONALE DEI DATI</h3>
 
                             <p>
-                                Il tuo indirizzo e-mail potrebbe essere
+                                L'indirizzo e-mail dell'utente potrebbe essere
                                 conservato e trattato al di fuori dell'Unione
                                 Europea. Adottiamo misure adeguate per
-                                proteggere i tuoi dati personali in conformità
-                                con questa informativa.
+                                proteggere i dati personali in conformità con
+                                questa Informativa.
                             </p>
 
                             <h3>8. LIMITI DI ETÀ</h3>
@@ -188,11 +167,17 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             <h3>9. MODIFICHE ALL'INFORMATIVA SULLA PRIVACY</h3>
 
                             <p>
-                                Possiamo aggiornare questa informativa sulla
-                                privacy periodicamente. Ti informeremo di
-                                eventuali modifiche pubblicando la nuova
-                                informativa sul nostro sito web. La data di
-                                revisione sarà aggiornata di conseguenza.
+                                Questa Informativa può essere modificata
+                                periodicamente. Provvederemo a informare gli
+                                utenti pubblicando la versione più aggiornata
+                                sul nostro sito web e modificando la data
+                                all'inizio di questa pagina. In caso di
+                                modifiche sostanziali, forniremo un ulteriore
+                                avviso, come inviando un'e-mail o visualizzando
+                                un avviso sul nostro sito web. Continuando a
+                                utilizzare il sito web dopo l'entrata in vigore
+                                di eventuali modifiche, gli utenti accetteranno
+                                automaticamente l'Informativa modificata.
                             </p>
 
                             <h3>10. CONTATTI</h3>

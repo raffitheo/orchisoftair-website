@@ -25,7 +25,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 <div>
                                     <h1>INFORMATIVA SUI COOKIES</h1>
                                     <div className="banner-date">
-                                        {formatDate(new Date('2024-05-21'))}
+                                        {formatDate(new Date('2024-05-22'))}
                                     </div>
                                 </div>
                             </div>
@@ -46,11 +46,10 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 </a>
                                 , utilizziamo i cookies per migliorare
                                 l'esperienza complessiva. La presente
-                                Informativa sui cookies fornisce ulteriori
-                                dettagli su come e perché utilizziamo queste
-                                tecnologie sul nostro sito web. I termini
-                                “Orchi”, “noi”, “ci” e “nostro” includono il
-                                direttivo dell'A.S.D. Gli Orchi Trieste.
+                                Informativa fornisce ulteriori dettagli su come
+                                e perché utilizziamo queste tecnologie sul
+                                nostro sito web. I termini “Orchi”, “noi”, “ci”
+                                e “nostro” includono l'A.S.D. Gli Orchi Trieste.
                                 Utilizzando il nostro sito web, l'utente
                                 acconsente alla memorizzazione e all'accesso ai
                                 cookies e ad altre tecnologie sul proprio
@@ -63,12 +62,12 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                             <p>
                                 <strong>Cosa sono i cookies?</strong> I cookies
                                 sono piccoli file di dati che vengono scaricati
-                                sul dispositivo quando visitate un sito web. I
-                                cookies vengono poi inviati al sito web di
+                                sul dispositivo quando si visita un sito web.
+                                Questi vengono poi inviati al sito web di
                                 origine a ogni visita successiva o a un altro
-                                sito web che riconosce i cookies. I cookies sono
-                                utili perché ci permettono di riconoscere il
-                                dispositivo e migliorare la vostra esperienza di
+                                sito web che li riconosce. I cookies sono utili
+                                perché ci permettono di riconoscere il
+                                dispositivo e migliorare l'esperienza di
                                 navigazione.
                             </p>
 
@@ -96,9 +95,9 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 </li>
                                 <li>
                                     <span>
-                                        Funzionalità: Per ricordare le vostre
-                                        preferenze e migliorare la navigazione
-                                        tra le pagine.
+                                        Funzionalità: Per ricordare le
+                                        preferenze degli utenti e migliorare la
+                                        navigazione tra le pagine.
                                     </span>
                                 </li>
                             </ul>
@@ -147,7 +146,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 impostazione predefinita. Se si preferisce, è
                                 possibile rimuovere o rifiutare i cookies. Per
                                 ulteriori informazioni su come bloccare i
-                                cookies, visitare{' '}
+                                cookies, visitare il sito{' '}
                                 <a
                                     href="https://allaboutcookies.org/"
                                     target="_blank"
@@ -162,17 +161,17 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                             <h3>Revisioni di questa politica</h3>
 
                             <p>
-                                Questa Informativa sui cookies può essere
-                                modificata di tanto in tanto. Provvederemo a
-                                informare l'utente pubblicando la versione più
-                                aggiornata sul nostro sito web e modificando la
-                                data all'inizio di questa pagina. In caso di
+                                Questa Informativa può essere modificata
+                                periodicamente. Provvederemo a informare gli
+                                utenti pubblicando la versione più aggiornata
+                                sul nostro sito web e modificando la data
+                                all'inizio di questa pagina. In caso di
                                 modifiche sostanziali, forniremo un ulteriore
                                 avviso, come inviando un'e-mail o visualizzando
                                 un avviso sul nostro sito web. Continuando a
                                 utilizzare il sito web dopo l'entrata in vigore
-                                di eventuali modifiche, l'utente accetta
-                                l'Informativa sui cookies modificata.
+                                di eventuali modifiche, gli utenti accetteranno
+                                automaticamente l'Informativa modificata.
                             </p>
 
                             <div className="content-creators"></div>
