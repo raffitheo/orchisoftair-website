@@ -2,7 +2,7 @@
   "name": "orchisoftair-website",
   "version": "0.0.1",
   "type": "module",
-  "description": "Official website for the italian softair team A.S.D. \"Gli Orchi Softair\"",
+  "description": "Official website for the italian softair team A.S.D. Gli Orchi Trieste",
   "keywords": [
     "airsoft",
     "club",
@@ -30,7 +30,7 @@
   },
   "private": "true",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "tsc && vite build",
     "clean": "rimraf dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -51,7 +51,7 @@
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.10.0",
     "@typescript-eslint/parser": "^7.10.0",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",

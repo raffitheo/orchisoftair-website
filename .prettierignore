@@ -10,3 +10,5 @@ README.md
 tsconfig.json
 tsconfig.node.json
 vercel.json
+
+*.json
