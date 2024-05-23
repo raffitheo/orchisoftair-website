@@ -1,4 +1,5 @@
 import CookiesNotice from '@components/cookies-notice';
+import DevelopmentPopup from '@components/development-popup';
 import { lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ const App = () => {
             </Routes>
 
             <CookiesNotice />
+            <DevelopmentPopup />
         </Router>
     );
 };

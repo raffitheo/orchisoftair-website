@@ -1,0 +1,52 @@
+$background-color-dark: #151515
+$text-color: #fff
+$primary-color: #861A32
+$transition-speed: .3s
+
+.development-popup-overlay
+    align-items: center
+    background-color: $background-color-dark
+    bottom: 0
+    color: $text-color
+    display: flex
+    flex-direction: column
+    height: 100%
+    left: 0
+    opacity: .9
+    position: fixed
+    right: 0
+    top: 0
+    width: 100%
+    z-index: 10001
+
+    .development-popup-container
+        display: flex
+        flex-direction: column
+        margin: auto
+        max-width: 80%
+
+        h1
+            font-size: 2rem
+            margin: 1rem auto
+
+        span
+            font-size: larger
+
+            a
+                color: $primary-color
+                text-decoration: underline
+
+        .development-popup-button
+            border: 1px solid $primary-color
+            color: $primary-color
+            cursor: pointer
+            display: flex
+            justify-content: center
+            font-weight: bolder
+            margin: 1rem 0 1rem auto
+            padding: .5rem 2rem
+            transition: $transition-speed
+
+            &:hover
+                transition: $transition-speed
+                transform: scale(1.1)
