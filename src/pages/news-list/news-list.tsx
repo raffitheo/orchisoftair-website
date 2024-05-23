@@ -31,10 +31,42 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
             <div className="news-container" ref={ref} {...props}>
                 <Navbar active="news" />
 
-                <div className="news-background">
-                    <div className="news-gallery">
-                        {newsList && newsList.length >= 1 ? (
-                            <>
+                <div className="news-background">{renderNewsList()}</div>
+
+                <Footer />
+            </div>
+        );
+
+        function renderNewsList(): JSX.Element {
+            switch (newsListStatus) {
+                case 'error':
+                case 'error-no-data':
+                    return (
+                        <div className="news-empty">
+                            <h1>
+                                Si è presentato un errore inaspettato. Non è
+                                possibile caricare la lista degli elementi.
+                            </h1>
+                        </div>
+                    );
+
+                case 'initialized':
+                case 'loading':
+                    return (
+                        <div className="news-gallery">
+                            <NewsListElement isLoading />
+                            <NewsListElement isLoading />
+                            <NewsListElement isLoading />
+                            <NewsListElement isLoading />
+                            <NewsListElement isLoading />
+                            <NewsListElement isLoading />
+                        </div>
+                    );
+
+                case 'success':
+                    if (newsList.length >= 1) {
+                        return (
+                            <div className="news-gallery">
                                 {newsList.map((news, newsIndex) => (
                                     <NewsListElement
                                         category={news.category}
@@ -46,23 +78,17 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
                                         title={news.title}
                                     />
                                 ))}
-                            </>
-                        ) : (
-                            <>
-                                <NewsListElement isLoading />
-                                <NewsListElement isLoading />
-                                <NewsListElement isLoading />
-                                <NewsListElement isLoading />
-                                <NewsListElement isLoading />
-                                <NewsListElement isLoading />
-                            </>
-                        )}
-                    </div>
-                </div>
-
-                <Footer />
-            </div>
-        );
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div className="news-empty">
+                                <h1>Non ti sono elementi da visualizzare.</h1>
+                            </div>
+                        );
+                    }
+            }
+        }
 
         async function getNews() {
             const response = await databases.listDocuments(

@@ -208,5 +208,6 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
         }
     },
 );
+CookiesPolicy.displayName = 'CookiesPolicy';
 
 export default CookiesPolicy;

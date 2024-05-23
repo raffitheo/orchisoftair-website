@@ -20,7 +20,7 @@ export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     const [email, setEmail] = useState<string>('');
-    const [emailSent, setEmailSent] = useState<boolean>(false);
+    const [emailStatus, setEmailStatus] = useState<DataStatus>('initialized');
     const [newsList, setNwsList] = useState<Array<News>>([]);
     const [newsListStatus, setNwsListStatus] =
         useState<DataStatus>('initialized');
@@ -131,35 +131,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         <div className="newsletter-section-box">
                             <p className="subtitle">RIMANI AGGIORNATO</p>
 
-                            {emailSent ? (
-                                <p className="success-message">
-                                    Ti ringraziamo per esserti sottoscritto!
-                                </p>
-                            ) : (
-                                <form className="subscribe-form">
-                                    <input
-                                        autoComplete="on"
-                                        className="email-input"
-                                        id="email"
-                                        name="email"
-                                        onChange={(event) =>
-                                            setEmail(event.target.value)
-                                        }
-                                        placeholder="Inserisci e-mail"
-                                        required
-                                        type="email"
-                                        value={email}
-                                    />
-
-                                    <button
-                                        className="subscribe-button"
-                                        onClick={addNewsletterEmail}
-                                        type="submit"
-                                    >
-                                        Iscriviti alla newsletter
-                                    </button>
-                                </form>
-                            )}
+                            {rendernewsLetter()}
                         </div>
                     </div>
                 </div>
@@ -173,11 +145,15 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         switch (newsListStatus) {
             case 'error':
             case 'error-no-data':
+                return (
+                    <h1>
+                        Si è presentato un errore inaspettato. Non è possibile
+                        caricare la lista degli elementi.
+                    </h1>
+                );
+
             case 'initialized':
             case 'loading':
-                return <></>;
-
-            case 'success':
                 return (
                     <Carousel
                         draggable
@@ -186,16 +162,85 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         responsive={responsive}
                         swipeable
                     >
-                        {newsList.map((news) => (
-                            <NewsCarouselElement
-                                category={news.category}
-                                href={news.redirectLink}
-                                key={news.id}
-                                src={news.thumbnail}
-                                title={news.title}
-                            />
-                        ))}
+                        <NewsCarouselElement isLoading />
+                        <NewsCarouselElement isLoading />
+                        <NewsCarouselElement isLoading />
                     </Carousel>
+                );
+
+            case 'success':
+                if (newsList.length >= 1) {
+                    return (
+                        <Carousel
+                            draggable
+                            autoPlay
+                            infinite
+                            responsive={responsive}
+                            swipeable
+                        >
+                            {newsList.map((news) => (
+                                <NewsCarouselElement
+                                    category={news.category}
+                                    href={news.redirectLink}
+                                    key={news.id}
+                                    src={news.thumbnail}
+                                    title={news.title}
+                                />
+                            ))}
+                        </Carousel>
+                    );
+                } else {
+                    return <h1>Non ti sono elementi da visualizzare.</h1>;
+                }
+        }
+    }
+
+    function rendernewsLetter(): JSX.Element {
+        switch (emailStatus) {
+            case 'error':
+            case 'error-no-data':
+                return (
+                    <p className="response-message">
+                        Si è presentato un errore inaspettato. Non è possibile
+                        iscriversi alla newsletter in questo momento.
+                    </p>
+                );
+
+            case 'initialized':
+                return (
+                    <form className="subscribe-form">
+                        <input
+                            autoComplete="on"
+                            className="email-input"
+                            id="email"
+                            name="email"
+                            onChange={(event) => setEmail(event.target.value)}
+                            placeholder="Inserisci e-mail"
+                            required
+                            type="email"
+                            value={email}
+                        />
+
+                        <button
+                            className="subscribe-button"
+                            onClick={addNewsletterEmail}
+                            type="submit"
+                        >
+                            Iscriviti alla newsletter
+                        </button>
+                    </form>
+                );
+
+            case 'loading':
+                return (
+                    <p className="response-message">Caricamento in corso...</p>
+                );
+
+            case 'success':
+                return (
+                    <p className="response-message">
+                        Ti ringraziamo per esserti sottoscritto!
+                    </p>
                 );
         }
     }
@@ -246,17 +291,24 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     ) {
         e.preventDefault();
+        setEmailStatus('loading');
 
-        await databases.createDocument(
+        const response = await databases.createDocument(
             import.meta.env.VITE_DATABASE_ID,
             import.meta.env.VITE_NEWSLETTER_COLLECTION_ID,
             ID.unique(),
             { email: email, subscriptionDate: new Date() },
         );
 
+        if (response) {
+            setEmailStatus('success');
+        } else {
+            setEmailStatus('error');
+        }
+
         setEmail('');
-        setEmailSent(true);
     }
 });
+Home.displayName = 'Home';
 
 export default Home;

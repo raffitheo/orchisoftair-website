@@ -236,5 +236,6 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
         }
     },
 );
+PrivacyPolicy.displayName = 'PrivacyPolicy';
 
 export default PrivacyPolicy;

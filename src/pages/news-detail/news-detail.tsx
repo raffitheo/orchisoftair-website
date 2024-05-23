@@ -32,90 +32,101 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
             }
         }, [pageDataStatus]);
 
-        switch (pageDataStatus) {
-            case 'error':
-            case 'error-no-data':
-                return <NotFound />;
+        return (
+            <div ref={ref} {...props}>
+                {renderPage()}
+            </div>
+        );
 
-            case 'success':
-                return (
-                    <div ref={ref} {...props}>
-                        <div className="news-container">
-                            <div
-                                className="news-header-box2"
-                                style={{
-                                    backgroundImage: `url(${pageData?.headerImage})`,
-                                }}
-                            >
-                                <div className="news-banner-box">
-                                    <div className="news-header">
-                                        <div className="back-button">
-                                            <a href="/">Torna indietro</a>
+        function renderPage(): JSX.Element {
+            switch (pageDataStatus) {
+                case 'error':
+                case 'error-no-data':
+                    return <NotFound />;
+
+                case 'initialized':
+                case 'loading':
+                    return <></>;
+
+                case 'success':
+                    return (
+                        <>
+                            <div className="news-container">
+                                <div
+                                    className="news-header-box2"
+                                    style={{
+                                        backgroundImage: `url(${pageData?.headerImage})`,
+                                    }}
+                                >
+                                    <div className="news-banner-box">
+                                        <div className="news-header">
+                                            <div className="back-button">
+                                                <a href="/">Torna indietro</a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div className="news-header-banner">
-                                        <div>
-                                            <h1>
-                                                {pageData ? pageData.title : ''}
-                                            </h1>
-                                            <div className="banner-date">
-                                                {pageData &&
-                                                pageData.creationDate
-                                                    ? formatDate(
-                                                          pageData.creationDate,
-                                                      )
-                                                    : ''}
+                                        <div className="news-header-banner">
+                                            <div>
+                                                <h1>
+                                                    {pageData
+                                                        ? pageData.title
+                                                        : ''}
+                                                </h1>
+                                                <div className="banner-date">
+                                                    {pageData &&
+                                                    pageData.creationDate
+                                                        ? formatDate(
+                                                              pageData.creationDate,
+                                                          )
+                                                        : ''}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div
-                                className="news-main-container"
-                                style={{
-                                    background: `url(${LorePattern}) no-repeat 50%`,
-                                }}
-                            >
-                                <div className="news-main-box">
-                                    {pageData && pageData.content ? (
-                                        pageData.content.map(
-                                            (element, elementIndex) => {
-                                                switch (element.type) {
-                                                    case 'a':
-                                                    case 'h3':
-                                                    case 'none':
-                                                    case 'p':
-                                                    case 'span':
-                                                    case 'ul':
-                                                        return renderElement(
-                                                            element.type,
-                                                            elementIndex,
-                                                            element.value,
-                                                            element.values,
-                                                            element.link,
-                                                        );
+                                <div
+                                    className="news-main-container"
+                                    style={{
+                                        background: `url(${LorePattern}) no-repeat 50%`,
+                                    }}
+                                >
+                                    <div className="news-main-box">
+                                        {pageData && pageData.content ? (
+                                            pageData.content.map(
+                                                (element, elementIndex) => {
+                                                    switch (element.type) {
+                                                        case 'a':
+                                                        case 'h3':
+                                                        case 'none':
+                                                        case 'p':
+                                                        case 'span':
+                                                        case 'ul':
+                                                            return renderElement(
+                                                                element.type,
+                                                                elementIndex,
+                                                                element.value,
+                                                                element.values,
+                                                                element.link,
+                                                            );
 
-                                                    default:
-                                                        return <></>;
-                                                }
-                                            },
-                                        )
-                                    ) : (
-                                        <></>
-                                    )}
-                                    <div className="content-creators"></div>
+                                                        default:
+                                                            return <></>;
+                                                    }
+                                                },
+                                            )
+                                        ) : (
+                                            <></>
+                                        )}
+                                        <div className="content-creators"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <Footer />
-                    </div>
-                );
-
-            default:
-                return <></>;
+                            <Footer />
+                        </>
+                    );
+            }
         }
 
         async function getContent() {

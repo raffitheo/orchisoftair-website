@@ -35,3 +35,32 @@ $transition-speed: .3s
         &:hover
             transform: scale(1.05)
             transition: transform $transition-speed ease
+
+    .blur
+        filter: blur(4px)
+        user-select: none
+
+    .center
+        text-align: -webkit-center
+
+        .spinner
+            align-items: center
+            display: flex
+            height: 175.5px
+            justify-content: center
+
+            &::after
+                animation: spin 1s linear infinite
+                border: 5px solid rgba(0, 0, 0, .1)
+                border-radius: 50%
+                border-top-color: $primary-color
+                content: ""
+                height: 100px
+                width: 100px
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+
+    100%
+        transform: rotate(1turn)
