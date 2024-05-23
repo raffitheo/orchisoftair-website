@@ -1,87 +1,13 @@
 import Footer from '@components/footer';
 import Navbar from '@components/navbar';
+import NewsListElement from '@components/news-list-element/inext';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
 import { Query } from 'appwrite';
-import dayjs from 'dayjs';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 
-import './news-list.css';
-
-interface NewsListElementProps extends HTMLAttributes<HTMLDivElement> {
-    category?: string;
-    creationDate?: Date;
-    isLoading?: boolean;
-    redirectLink?: string;
-    subtitle?: string;
-    thumbnail?: string;
-    title?: string;
-}
-
-const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
-    (
-        {
-            category,
-            creationDate,
-            isLoading,
-            redirectLink,
-            subtitle,
-            thumbnail,
-            title,
-            ...props
-        },
-        ref,
-    ) => {
-        return (
-            <div className="news-item" ref={ref} {...props}>
-                {isLoading ? (
-                    <>
-                        <div className="center">
-                            <div className="spinner"></div>
-                        </div>
-
-                        <div className="blur">
-                            <h2 className="title">Titolo della news</h2>
-                            <div className="description">
-                                Gli Orchi persentano questa fantastica news...
-                                Che è ancora in caricamento, ma tanto la
-                                schermata è sfocato e non lo saprai mai
-                            </div>
-                            <div className="tag">Caricamento #0</div>
-                            <div className="bottom-line">
-                                <a>
-                                    <p>Scopri di più →</p>
-                                </a>
-                                <p>01/01/2024</p>
-                            </div>
-                        </div>
-                    </>
-                ) : (
-                    <>
-                        <a href={redirectLink}>
-                            <img height={300} src={thumbnail} width={500} />
-                        </a>
-
-                        <h2 className="title">{title}</h2>
-                        <div className="description">{subtitle}</div>
-                        <div className="tag">{category}</div>
-                        <div className="bottom-line">
-                            <a href={redirectLink}>
-                                <p>Scopri di più →</p>
-                            </a>
-                            <p>
-                                {creationDate
-                                    ? dayjs(creationDate).format('DD/MM/YYYY')
-                                    : ''}
-                            </p>
-                        </div>
-                    </>
-                )}
-            </div>
-        );
-    },
-);
+import './news-list.sass';
 
 export interface NewsListProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -102,11 +28,11 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
         }, [newsListStatus]);
 
         return (
-            <div className="news" ref={ref} {...props}>
+            <div className="news-container" ref={ref} {...props}>
                 <Navbar active="news" />
 
-                <div className="news-bg">
-                    <div className="gallery">
+                <div className="news-background">
+                    <div className="news-gallery">
                         {newsList && newsList.length >= 1 ? (
                             <>
                                 {newsList.map((news, newsIndex) => (
@@ -181,5 +107,6 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
         }
     },
 );
+NewsList.displayName = 'NewsList';
 
 export default NewsList;

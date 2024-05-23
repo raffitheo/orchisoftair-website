@@ -1,0 +1,85 @@
+$primary-color: #861A32
+$text-color: #fff
+$transition-speed: .3s
+
+.news-element
+    background: #141311
+    color: $text-color
+    max-width: 550px
+    padding: 30px
+    text-align: center
+
+    @media (max-width: 750px)
+        max-width: 450px
+
+    @media (max-width: 650px)
+        max-width: 380px
+
+    @media (max-width: 550px)
+        max-width: 300px
+
+    h2
+        font-size: 1.5rem
+        font-weight: 600
+        padding: 1rem 0
+
+    .center
+        text-align: -webkit-center
+
+        .spinner
+            align-items: center
+            display: flex
+            height: 300px
+            justify-content: center
+
+            &::after
+                animation: spin 1s linear infinite
+                border: 5px solid rgba(0, 0, 0, .1)
+                border-radius: 50%
+                border-top-color: $primary-color
+                content: ""
+                height: 100px
+                width: 100px
+
+    .blur
+        filter: blur(4px)
+        user-select: none
+
+    .title
+        font-size: 1.5rem
+        text-align: left
+
+        @media (max-width: 1150px)
+            font-size: 1rem
+
+    .subtitle
+        text-align: left
+        margin-bottom: 2rem
+
+        @media (max-width: 1150px)
+            font-size: .7rem
+
+    .category
+        color: gray
+        font-size: .8rem
+        text-align: right
+
+    .bottom-line
+        display: flex
+        justify-content: space-between
+
+        a
+            color: $primary-color
+            transition: $transition-speed
+
+            &:hover
+                color: $primary-color
+                transform: scale(1.1)
+                transition: $transition-speed
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+
+    100%
+        transform: rotate(1turn)

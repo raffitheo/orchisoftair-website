@@ -1,7 +1,7 @@
 import appsettings from '@config/appsettings';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 
-import './cookies-notice.css';
+import './cookies-notice.sass';
 
 export interface CookiesNoticeProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -31,8 +31,8 @@ const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
 
         if (showCookiesNotice) {
             return (
-                <div className="cookies-container" ref={ref} {...props}>
-                    <div className="text">
+                <div className="cookies-notice-container" ref={ref} {...props}>
+                    <div className="cookies-notice-text">
                         <span>
                             Utilizziamo i cookie per migliorare la tua
                             esperienza di navigazione. Continuando a visitare
@@ -44,7 +44,7 @@ const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
                     </div>
 
                     <div
-                        className="button"
+                        className="cookies-notice-button"
                         onClick={() => {
                             setShowCookiesNotice(false);
                             window.localStorage.setItem(
@@ -62,5 +62,6 @@ const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
         }
     },
 );
+CookiesNotice.displayName = 'CookiesNotice';
 
 export default CookiesNotice;

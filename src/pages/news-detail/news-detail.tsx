@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 
 import LorePattern from '../../assets/lore-pattern.webp';
 
-import './news-detail.css';
+import './news-detail.sass';
 
 export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -39,8 +39,8 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
 
             case 'success':
                 return (
-                    <div className="news" ref={ref} {...props}>
-                        <div className="news-container" ref={ref} {...props}>
+                    <div ref={ref} {...props}>
+                        <div className="news-container">
                             <div
                                 className="news-header-box2"
                                 style={{
@@ -307,5 +307,6 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
         }
     },
 );
+NewsDetail.displayName = 'NewsDetail';
 
 export default NewsDetail;

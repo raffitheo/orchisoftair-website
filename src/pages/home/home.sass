@@ -1,0 +1,247 @@
+$background-color: #0C0C0C
+$primary-color: #861A32
+$text-color: #fff
+$transition-speed: .3s
+
+.video-container
+    height: 66dvh
+    min-height: 550px
+    position: relative
+    width: 100%
+
+    .video-overlay
+        background-color: rgba(0, 0, 0, .2)
+
+    .video-gradient
+        background: linear-gradient(0deg, $background-color, hsla(0, 0%, 5%, 0) 10%)
+        height: 100%
+
+    .video-overlay,
+    .video-gradient
+        bottom: 0
+        left: 0
+        position: absolute
+        right: 0
+        top: 0
+
+    .main-box
+        bottom: 0
+        height: 92%
+        left: 0
+        margin: 2% 10%
+        position: absolute
+        right: 0
+        top: 0
+        width: 80%
+        z-index: 0
+
+        .main-logo-flex
+            align-items: center
+            display: flex
+            height: 100%
+            justify-content: center
+            margin: auto
+            width: 70%
+
+            @media (max-width: 800px)
+                width: 90%
+
+            .main-logo-section
+                align-items: center
+                justify-content: center
+                position: relative
+                text-align: -webkit-center
+
+                a
+                    height: auto
+                    margin: auto
+                    width: auto
+
+        .buttom-section
+            display: flex
+            gap: 2.5rem
+            justify-content: space-between
+            margin: 2.5rem 0
+            width: auto
+
+            @media (max-width: 900px)
+                flex-wrap: wrap
+                gap: 0
+                justify-content: center
+                width: 100%
+
+            a
+                flex: 1 1 0
+
+            .about-button
+                background: transparent
+                color: $text-color
+                font-weight: 600
+                line-height: 2.25rem
+                padding: .5rem 2rem
+
+                @media (max-width: 900px)
+                    margin-bottom: 1rem
+                    padding: .5rem 1rem
+
+            .contact-button
+                background-color: $primary-color
+                color: #000
+                display: block
+                font-weight: 700
+                line-height: 2.25rem
+                opacity: .8
+                padding: .5rem 4rem
+
+                @media (max-width: 900px)
+                    border: 5px solid $primary-color
+                    padding: .5rem 2rem
+
+            .about-button,
+            .contact-button
+                border: 5px solid $primary-color
+                font-size: 1.4rem
+                text-align: center
+                transition: transform $transition-speed ease-in-out, opacity $transition-speed ease-in-out
+                width: 100%
+
+                @media (max-width: 900px)
+                    max-width: 230px
+
+                @media (max-width: 600px)
+                    font-size: 1rem
+                    padding: .5rem 3rem
+
+                @media (max-width: 500px)
+                    line-height: 1.25rem
+
+                &:hover
+                    opacity: 1
+                    transform: scale(1.03)
+                    transition: transform $transition-speed ease-in-out, opacity $transition-speed ease-in-out
+
+        .parthners-container
+            display: flex
+            justify-content: space-around
+            width: 80%
+
+            @media (max-width: 900px)
+                width: 100%
+
+            @media (max-width: 500px)
+                flex-wrap: wrap
+
+            .damocles-logo
+                width: 50%
+
+                @media (max-width: 500px)
+                    width: 100%
+
+.relative-container
+    background-color: $background-color
+    background-size: cover
+    color: $text-color
+    max-width: 1920px
+    position: relative
+    text-align: center
+
+    .gradient-overlay2
+        background: linear-gradient(180deg, $background-color, hsla(0, 0%, 5%, 0) 5%)
+
+        .news-section
+            display: flex
+            margin: 0 auto
+            padding: 5% 0
+            position: relative
+            width: 80%
+
+            @media (max-width: 1400px)
+                display: block
+
+            .news-title
+                font-size: 80px
+                font-weight: 700
+                line-height: 90px
+                place-self: center
+                text-align: center
+                width: 40%
+
+                @media (max-width: 1400px)
+                    font-size: 60px
+                    line-height: 70px
+                    margin-bottom: 1rem
+                    width: 100%
+
+                @media (max-width: 630px)
+                    font-size: 40px
+                    line-height: 45px
+                    margin-bottom: 0
+
+                @media (max-width: 430px)
+                    font-size: 30px
+                    line-height: 35px
+
+            .news-carousel
+                display: block
+                place-content: center
+                width: 60%
+
+                @media (max-width: 1400px)
+                    display: block
+                    margin: auto
+                    width: 100%
+
+.newsletter-section
+    background-position: top
+    background-size: cover
+    color: $text-color
+    position: relative
+    text-align: center
+
+    &-box
+        margin: 0 10%
+        padding: 100px 0
+
+    .subtitle
+        font-size: 2rem
+        font-weight: 900
+        margin-bottom: 2rem
+
+    .subscribe-form
+        color: #000
+        display: flow
+        gap: 10px
+        justify-content: center
+        margin: auto
+        text-align: center
+        text-align: -webkit-center
+
+        .email-input
+            border: 1px solid #ccc
+
+        .subscribe-button
+            background-color: $primary-color
+            border: none
+            cursor: pointer
+            color: #000
+            font-weight: 700
+            margin-top: 2rem
+            text-transform: uppercase
+            transition: transform $transition-speed ease-in-out
+
+            @media (max-width: 400px)
+                font-size: .9rem
+
+            &:hover
+                transform: scale(1.03)
+                transition: transform $transition-speed ease-in-out
+
+        .email-input,
+        .subscribe-button
+            display: block
+            max-width: 400px
+            padding: 10px
+            width: 80%
+
+    .success-message
+        font-size: 3rem

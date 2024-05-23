@@ -1,40 +1,19 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
-import './footer.css';
+import './footer.sass';
 
-import FacebookIcon from '../../assets/facebook-icon.webp';
-import InstagramIcon from '../../assets/instagram-icon.webp';
-import OrchiIcon from '../../assets/orchi-icon.webp';
-import RaffaeleValentiIcon from '../../assets/raffaele-valenti-icon.webp';
+import FacebookIcon from '../../assets/icons/facebook-icon.webp';
+import InstagramIcon from '../../assets/icons/instagram-icon.webp';
+import OrchiIcon from '../../assets/icons/orchi-icon.webp';
+import RaffaeleValentiIcon from '../../assets/icons/raffaele-valenti-icon.webp';
 
-interface SocialItemProps extends HTMLAttributes<HTMLAnchorElement> {
-    alt: string;
-    href: string;
-    src: string;
-}
-
-const SocialItem = forwardRef<HTMLAnchorElement, SocialItemProps>(
-    ({ alt, href, src, ...props }, ref) => {
-        return (
-            <a
-                aria-label={alt}
-                className="footer-social-item"
-                href={href}
-                ref={ref}
-                target="_blank"
-                {...props}
-            >
-                <img alt={alt} height={32} src={src} width={32} />
-            </a>
-        );
-    },
-);
+import SocialLink from './social-link';
 
 export interface FooterProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
     return (
-        <div className="footer" ref={ref} {...props}>
+        <div className="footer-container" ref={ref} {...props}>
             <div className="footer-box">
                 <div className="footer-copyright">
                     Tutti i diritti riservati. Raffaele Valenti e A.S.D. GLI
@@ -55,33 +34,22 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                 </div>
 
                 <div className="footer-credits">
-                    <a
+                    <SocialLink
+                        alt="Raffaele Valenti"
                         href="https://raffitheo.github.io/portfolio/"
-                        target="_blank"
-                    >
-                        <div className="rv">
-                            <img
-                                height={45}
-                                src={RaffaeleValentiIcon}
-                                width={45}
-                            />
-                        </div>
-                    </a>
+                        src={RaffaeleValentiIcon}
+                    />
                     <span>X</span>
-                    <a href="/">
-                        <div className="orchi">
-                            <img height={45} src={OrchiIcon} width={45} />
-                        </div>
-                    </a>
+                    <SocialLink alt="Orchi" href="/" src={OrchiIcon} />
                 </div>
 
                 <div className="footer-social">
-                    <SocialItem
+                    <SocialLink
                         alt="Facebook"
                         href="https://www.facebook.com/orchitrieste/"
                         src={FacebookIcon}
                     />
-                    <SocialItem
+                    <SocialLink
                         alt="instagram"
                         href="https://www.instagram.com/orchisoftair_official/"
                         src={InstagramIcon}
@@ -91,5 +59,6 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
         </div>
     );
 });
+Footer.displayName = 'Footer';
 
 export default Footer;

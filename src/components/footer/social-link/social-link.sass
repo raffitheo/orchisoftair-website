@@ -1,0 +1,14 @@
+$transition-speed: .3s
+
+.social-link-element
+    background-color: rgb(0 0 0 / 1)
+    border-radius: .75rem
+    filter: brightness(.75)
+    opacity: .9
+    transition: all $transition-speed ease-in-out
+
+    &:hover
+        filter: brightness(1)
+        opacity: 1
+        transform: scale(1.1)
+        transition: all $transition-speed ease-in-out

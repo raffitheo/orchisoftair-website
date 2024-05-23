@@ -1,0 +1,80 @@
+$background-color: #0C0C0C
+$primary-color: #861A32
+$text-color: #fff
+$transition-speed: .3s
+
+.footer-container,
+.footer-box
+    position: relative
+    width: 100%
+
+.footer-container
+    background: $background-color
+    height: 100%
+
+    .footer-box
+        display: flex
+        justify-content: space-between
+        padding: 3rem 10%
+
+        @media (max-width: 1200px)
+            align-items: center
+            flex-direction: column
+            padding: 2rem 10%
+
+        a
+            align-self: center
+
+        .footer-copyright
+            align-self: center
+            color: $text-color
+            float: left
+            width: 40%
+
+            @media (max-width: 1200px)
+                order: 2
+                text-align: center
+                width: 100%
+
+            .footer-link
+                display: flex
+                margin-top: 1rem
+
+                @media (max-width: 1200px)
+                    flex-wrap: wrap
+                    justify-content: center
+                    margin-top: .5rem
+
+                span
+                    color: $primary-color
+                    margin-right: 1rem
+                    transition: $transition-speed
+
+        .footer-credits
+            align-content: center
+            color: $text-color
+            display: flex
+            flex-direction: row
+            gap: .5rem
+            justify-content: center
+
+            span
+                font-weight: 100
+                margin: auto
+
+        .footer-social
+            align-self: center
+            display: flex
+            gap: 2.5rem
+            justify-content: right
+            margin: 0
+            right: 5rem
+            width: 40%
+
+            @media (max-width: 1200px)
+                gap: .5rem
+                justify-content: center
+                margin: 0
+                order: 1
+                padding: 1rem 0
+                width: 100%

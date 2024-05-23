@@ -4,19 +4,19 @@ import { HTMLAttributes, forwardRef } from 'react';
 
 import LorePattern from '../../assets/lore-pattern.webp';
 
-import './cookies-policy.css';
+import './cookies-policy.sass';
 
 export interface CookiesPolicyProps extends HTMLAttributes<HTMLDivElement> {}
 
 const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
     ({ ...props }, ref) => {
         return (
-            <div className="news" ref={ref} {...props}>
-                <div className="cookies-polity-container" ref={ref} {...props}>
-                    <div className="cookies-polity-header-box2">
-                        <div className="cookies-polity-banner-box">
-                            <div className="cookies-polity-header-banner">
-                                <div className="cookies-polity-header">
+            <div ref={ref} {...props}>
+                <div className="cookies-policy-container">
+                    <div className="cookies-policy-header-box2">
+                        <div className="cookies-policy-banner-box">
+                            <div className="cookies-policy-header-banner">
+                                <div className="cookies-policy-header">
                                     <div className="back-button">
                                         <a href="/">Torna indietro</a>
                                     </div>
@@ -33,12 +33,12 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                     </div>
 
                     <div
-                        className="cookies-polity-main-container"
+                        className="cookies-policy-main-container"
                         style={{
                             background: `url(${LorePattern}) no-repeat 50%`,
                         }}
                     >
-                        <div className="cookies-polity-main-box">
+                        <div className="cookies-policy-main-box">
                             <p>
                                 Come descritto nella nostra{' '}
                                 <a href="/privacy-policy">

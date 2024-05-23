@@ -1,13 +1,13 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
-import './not-found.css';
+import './not-found.sass';
 
 export interface NotFoundProps extends HTMLAttributes<HTMLDivElement> {}
 
 const NotFound = forwardRef<HTMLDivElement, NotFoundProps>(
     ({ ...props }, ref) => {
         return (
-            <div className="not-found" ref={ref} {...props}>
+            <div className="not-found-container" ref={ref} {...props}>
                 <div className="not-found-line">
                     <h1>404</h1>
                     <div className="not-found-line-description">
@@ -18,5 +18,6 @@ const NotFound = forwardRef<HTMLDivElement, NotFoundProps>(
         );
     },
 );
+NotFound.displayName = 'NotFound';
 
 export default NotFound;

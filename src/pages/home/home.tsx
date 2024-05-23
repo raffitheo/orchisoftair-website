@@ -1,5 +1,6 @@
 import Footer from '@components/footer';
 import Navbar from '@components/navbar';
+import NewsCarouselElement from '@components/news-carousel-element';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
@@ -9,37 +10,11 @@ import Carousel from 'react-multi-carousel';
 
 import BackgroundNewsletter from '../../assets/background-newsletter.webp';
 import BackgroundPattern from '../../assets/background-pattern.webp';
-import DamoclesIcon from '../../assets/damocles-icon.webp';
+import DamoclesIcon from '../../assets/icons/damocles-icon.webp';
 import Landing from '../../assets/landing.webp';
 
-import './home.css';
+import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
-
-interface NewsItemProps extends HTMLAttributes<HTMLDivElement> {
-    category: string;
-    href: string;
-    src: string;
-    title: string;
-}
-
-const NewsItem = forwardRef<HTMLDivElement, NewsItemProps>(
-    ({ category, href, src, title, ...props }, ref) => {
-        return (
-            <div className="news-item" ref={ref} {...props}>
-                <a href={href}>
-                    <img alt="news" src={src} />
-                </a>
-                <div className="news-item-description">
-                    <h3>{title}</h3>
-                    <p>{category}</p>
-                    <a className="news-item-link" href={href}>
-                        SCOPRI DI PIÙ →
-                    </a>
-                </div>
-            </div>
-        );
-    },
-);
 
 export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -84,6 +59,8 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             <div className="video-container">
                 <Navbar />
 
+                <div className="video-overlay" />
+
                 <div className="video-gradient" />
 
                 <div className="main-box">
@@ -109,7 +86,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                                 </a>
                             </div>
 
-                            <div className="logo-wraper">
+                            <div className="parthners-container">
                                 <a
                                     className="damocles-logo"
                                     href="https://www.damocles.it/"
@@ -134,7 +111,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             >
                 <div className="gradient-overlay">
                     <div className="gradient-overlay2">
-                        <div className="new-section">
+                        <div className="news-section">
                             <div className="news-title">NOVITÀ ED EVENTI</div>
 
                             <div className="news-carousel">
@@ -210,7 +187,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         swipeable
                     >
                         {newsList.map((news) => (
-                            <NewsItem
+                            <NewsCarouselElement
                                 category={news.category}
                                 href={news.redirectLink}
                                 key={news.id}

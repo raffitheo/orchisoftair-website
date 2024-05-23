@@ -4,7 +4,7 @@ import { HTMLAttributes, forwardRef } from 'react';
 
 import LorePattern from '../../assets/lore-pattern.webp';
 
-import './privacy-policy.css';
+import './privacy-policy.sass';
 
 export interface PrivacyPolicyProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -12,11 +12,11 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
     ({ ...props }, ref) => {
         return (
             <div className="news" ref={ref} {...props}>
-                <div className="privacy-polity-container" ref={ref} {...props}>
-                    <div className="privacy-polity-header-box2">
-                        <div className="privacy-polity-banner-box">
-                            <div className="privacy-polity-header-banner">
-                                <div className="privacy-polity-header">
+                <div className="privacy-policy-container" ref={ref} {...props}>
+                    <div className="privacy-policy-header-box2">
+                        <div className="privacy-policy-banner-box">
+                            <div className="privacy-policy-header-banner">
+                                <div className="privacy-policy-header">
                                     <div className="back-button">
                                         <a href="/">Torna indietro</a>
                                     </div>
@@ -33,12 +33,12 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                     </div>
 
                     <div
-                        className="privacy-polity-main-container"
+                        className="privacy-policy-main-container"
                         style={{
                             background: `url(${LorePattern}) no-repeat 50%`,
                         }}
                     >
-                        <div className="privacy-polity-main-box">
+                        <div className="privacy-policy-main-box">
                             <h3>Introduzione</h3>
 
                             <p>
