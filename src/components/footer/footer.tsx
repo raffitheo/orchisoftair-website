@@ -7,6 +7,7 @@ import InstagramIcon from '../../assets/icons/instagram-icon.webp';
 import OrchiIcon from '../../assets/icons/orchi-icon.webp';
 import RaffaeleValentiIcon from '../../assets/icons/raffaele-valenti-icon.webp';
 
+import CopyrightLink from './copyright-link';
 import SocialLink from './social-link';
 
 export interface FooterProps extends HTMLAttributes<HTMLDivElement> {}
@@ -34,13 +35,13 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                 </div>
 
                 <div className="footer-credits">
-                    <SocialLink
+                    <CopyrightLink
                         alt="Raffaele Valenti"
                         href="https://raffitheo.github.io/portfolio/"
                         src={RaffaeleValentiIcon}
                     />
                     <span>X</span>
-                    <SocialLink alt="Orchi" href="/" src={OrchiIcon} />
+                    <CopyrightLink alt="Orchi" href="/" src={OrchiIcon} />
                 </div>
 
                 <div className="footer-social">
