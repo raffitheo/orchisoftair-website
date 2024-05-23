@@ -81,7 +81,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                                 </a>
                                 <a href="/contact-us">
                                     <button className="contact-button">
-                                        UNISCITI A NOI
+                                        FAI UNA PROVA
                                     </button>
                                 </a>
                             </div>

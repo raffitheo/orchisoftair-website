@@ -54,7 +54,6 @@ $transition-speed: .3s
 
                 a
                     height: auto
-                    margin: auto
                     width: auto
 
         .buttom-section
@@ -72,6 +71,11 @@ $transition-speed: .3s
 
             a
                 flex: 1 1 0
+                margin: auto
+                min-width: calc(50% - (2.5rem * 2))
+
+                @media (max-width: 429px)
+                    min-width: unset
 
             .about-button
                 background: transparent
@@ -81,8 +85,10 @@ $transition-speed: .3s
                 padding: .5rem 2rem
 
                 @media (max-width: 900px)
-                    margin-bottom: 1rem
                     padding: .5rem 1rem
+
+                @media (max-width: 429px)
+                    margin-bottom: 1rem
 
             .contact-button
                 background-color: $primary-color
@@ -110,10 +116,13 @@ $transition-speed: .3s
 
                 @media (max-width: 600px)
                     font-size: 1rem
-                    padding: .5rem 3rem
+                    padding: .5rem 2.5rem
 
                 @media (max-width: 500px)
                     line-height: 1.25rem
+
+                @media (max-width: 429px)
+                    padding: .5rem 3rem
 
                 &:hover
                     opacity: 1
