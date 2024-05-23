@@ -18,7 +18,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             <div className="privacy-policy-header-banner">
                                 <div className="privacy-policy-header">
                                     <div className="back-button">
-                                        <a href="/">Torna indietro</a>
+                                        <a href="/">Torna alla home</a>
                                     </div>
                                 </div>
 

@@ -18,7 +18,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                             <div className="cookies-policy-header-banner">
                                 <div className="cookies-policy-header">
                                     <div className="back-button">
-                                        <a href="/">Torna indietro</a>
+                                        <a href="/">Torna alla home</a>
                                     </div>
                                 </div>
 

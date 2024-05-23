@@ -61,7 +61,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                     <div className="news-banner-box">
                                         <div className="news-header">
                                             <div className="back-button">
-                                                <a href="/">Torna indietro</a>
+                                                <a href="/">Torna alla home</a>
                                             </div>
                                         </div>
 
