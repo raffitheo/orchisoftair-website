@@ -83,7 +83,7 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
                     } else {
                         return (
                             <div className="news-empty">
-                                <h1>Non ti sono elementi da visualizzare.</h1>
+                                <h1>Non ci sono elementi da visualizzare.</h1>
                             </div>
                         );
                     }

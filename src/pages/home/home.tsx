@@ -190,7 +190,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                         </Carousel>
                     );
                 } else {
-                    return <h1>Non ti sono elementi da visualizzare.</h1>;
+                    return <h1>Non ci sono elementi da visualizzare.</h1>;
                 }
         }
     }
