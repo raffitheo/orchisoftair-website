@@ -15,19 +15,19 @@ const DevelopmentPopup = forwardRef<HTMLDivElement, DevelopmentPopupProps>(
                     <div className="development-popup-container">
                         <h1>ATTENZIONE</h1>
                         <span>
-                            Questo sito è attualmente ed attivamente in
-                            sviluppo. Alcune delle funzionalità potrebbero non
-                            essere ancora implementate o potrebbero presentare
-                            malfunzionamenti.
+                            Questo sito è attualmente in fase attiva di
+                            sviluppo. Alcune funzionalità potrebbero non essere
+                            ancora completamente implementate o potrebbero
+                            presentare malfunzionamenti occasionali.
                             <br />
-                            Per segnalare eventuali problematiche, si prega di
+                            Per segnalare eventuali problemi, ti invitiamo a
                             contattare lo sviluppatore all'indirizzo{' '}
                             <a href="mailto:raffaele-valenti@protonmail.com">
                                 raffaele-valenti@protonmail.com
                             </a>
                             .
                             <br />
-                            Grazie per la pazienza e per la comprensione.
+                            Ti ringraziamo per la tua pazienza e comprensione.
                         </span>
 
                         <div
