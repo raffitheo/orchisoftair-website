@@ -86,19 +86,23 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                                 </a>
                             </div>
 
-                            <div className="parthners-container">
-                                <a
-                                    className="damocles-logo"
-                                    href="https://www.damocles.it/"
-                                    target="_blank"
-                                >
-                                    <img
-                                        alt="Logo"
-                                        height={37}
-                                        src={DamoclesIcon}
-                                        width={124}
-                                    />
-                                </a>
+                            <div className="partners-section">
+                                <p>IN COLLABORAZIONE CON</p>
+
+                                <div className="parthners-container">
+                                    <a
+                                        className="damocles-logo"
+                                        href="https://www.damocles.it/"
+                                        target="_blank"
+                                    >
+                                        <img
+                                            alt="Logo"
+                                            height={37}
+                                            src={DamoclesIcon}
+                                            width={124}
+                                        />
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

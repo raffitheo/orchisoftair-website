@@ -129,22 +129,29 @@ $transition-speed: .3s
                     transform: scale(1.03)
                     transition: transform $transition-speed ease-in-out, opacity $transition-speed ease-in-out
 
-        .parthners-container
+        .partners-section
+            color: $text-color
             display: flex
-            justify-content: space-around
-            width: 80%
+            flex-direction: column
+            gap: .75rem
 
-            @media (max-width: 900px)
-                width: 100%
+            .parthners-container
+                display: flex
+                justify-content: space-around
+                margin: auto
+                width: 80%
 
-            @media (max-width: 500px)
-                flex-wrap: wrap
-
-            .damocles-logo
-                width: 50%
+                @media (max-width: 900px)
+                    width: 100%
 
                 @media (max-width: 500px)
-                    width: 100%
+                    flex-wrap: wrap
+
+                .damocles-logo
+                    width: 50%
+
+                    @media (max-width: 500px)
+                        width: 100%
 
 .relative-container
     background-color: $background-color
