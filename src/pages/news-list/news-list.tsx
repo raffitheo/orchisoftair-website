@@ -1,6 +1,6 @@
 import Footer from '@components/footer';
 import Navbar from '@components/navbar';
-import NewsListElement from '@components/news-list-element/inext';
+import NewsListElement from '@components/news-list-element';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
