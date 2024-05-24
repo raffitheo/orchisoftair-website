@@ -1,0 +1,44 @@
+$primary-color: #861A32
+$text-color: #fff
+$transition-speed: .3s
+
+.close
+    .accordion-content-line
+        svg
+            transition: $transition-speed
+            transform: rotate(180deg)
+
+            path
+                stroke: $text-color
+
+    .content
+        display: none
+
+.open
+    .content
+        margin-top: 0.5rem
+
+.close,
+.open
+    border-bottom: 1px solid $text-color
+    padding: 1rem 0
+
+    .accordion-content-line
+        display: flex
+        justify-content: space-between
+        transition: color $transition-speed ease-in-out
+
+        &:hover
+            color: $primary-color
+            cursor: pointer
+            transition: color $transition-speed ease-in-out
+
+            path
+                stroke: $primary-color
+                transition: stroke $transition-speed ease-in-out
+
+        svg
+            transition: $transition-speed
+
+            path
+                transition: stroke $transition-speed ease-in-out

@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const CookiesPolicy = lazy(() => import('@pages/cookies-policy'));
+const FrequentlyAskedQuestions = lazy(() => import('@pages/faq'));
 const Home = lazy(() => import('@pages/home'));
 const NewsDetail = lazy(() => import('@pages/news-detail'));
 const NewsList = lazy(() => import('@pages/news-list'));
@@ -22,6 +23,8 @@ const App = () => {
 
                 <Route element={<CookiesPolicy />} path="/cookies-policy" />
                 <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+
+                <Route element={<FrequentlyAskedQuestions />} path="/faq" />
 
                 <Route element={<NotFound />} path="/*" />
             </Routes>
