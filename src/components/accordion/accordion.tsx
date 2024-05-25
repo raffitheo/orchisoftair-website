@@ -1,4 +1,5 @@
-import { Fragment, HTMLAttributes, forwardRef, useState } from 'react';
+import parse from 'html-react-parser';
+import { HTMLAttributes, forwardRef, useState } from 'react';
 
 import './accordion.sass';
 
@@ -36,17 +37,7 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                         </svg>
                     </div>
 
-                    <div className="content">
-                        {content
-                            .replace(/\\r\\n/g, '\n')
-                            .split('\n')
-                            .map((line, i) => (
-                                <Fragment key={i}>
-                                    {line}
-                                    <br />
-                                </Fragment>
-                            ))}
-                    </div>
+                    <div className="content">{parse(content)}</div>
                 </div>
             </div>
         );

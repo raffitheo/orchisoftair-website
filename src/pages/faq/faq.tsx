@@ -51,7 +51,7 @@ const FrequentlyAskedQuestions = forwardRef<
                         </p>
 
                         <Accordion
-                            content="Il softair è un'attività ludico-sportiva in cui i partecipanti simulano operazioni militari utilizzando repliche di armi da fuoco che sparano pallini di plastica (BB). Questi pallini, solitamente di 6 mm di diametro, sono spinti da aria compressa e\o elettricità.\r\nLe partite di softair possono variare da semplici scontri a scenari complessi con obiettivi specifici.\r\nGli appassionati indossano spesso abbigliamento militare e utilizzano tattiche di squadra, rendendo il gioco un'esperienza realistica ma sicura."
+                            content="Il softair è un'attività ludico-sportiva in cui i partecipanti simulano operazioni militari utilizzando repliche di armi da fuoco che sparano pallini di plastica (BB). Questi pallini, solitamente di 6 mm di diametro, sono spinti da aria compressa e\o elettricità.<br />Le partite di softair possono variare da semplici scontri a scenari complessi con obiettivi specifici.<br />Gli appassionati indossano spesso abbigliamento militare e utilizzano tattiche di squadra, rendendo il gioco un'esperienza realistica ma sicura."
                             title="Cos'è il softair?"
                         />
 
@@ -71,17 +71,17 @@ const FrequentlyAskedQuestions = forwardRef<
                         />
 
                         <Accordion
-                            content="Per contattarci, puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure puoi inviarci un'email. Organizzeremo con piacere un primo incontro di persona per conoscerci e compilare insieme il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pronto per partecipare alle nostre sessioni di gioco.\r\nRicorda, le prime due prove sono sempre gratuite!"
+                            content="Per contattarci, puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure puoi inviarci un'email. Organizzeremo con piacere un primo incontro di persona per conoscerci e compilare insieme il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pronto per partecipare alle nostre sessioni di gioco.<br />Ricorda, le prime due prove sono sempre gratuite!"
                             title="Come mi unisco a voi?"
                         />
 
                         <Accordion
-                            content="Per partecipare alle prove, non è necessario avere nulla di particolare, solo la voglia di giocare e divertirsi! Forniamo noi le repliche e i pallini. Se hai bisogno, possiamo anche fornirti gli occhiali protettivi, obbligatori per giocare, ma ti consigliamo di procurarteli da solo.\r\nNon c'è bisogno di un abbigliamento specifico, basta qualcosa di comodo per muoverti agilmente in campo. Una tuta nera o verde e un paio di scarpe da trekking saranno più che sufficienti.\r\nDopo le prove, se decidi di iscriverti, ti consigliamo di acquistare al più presto la tua prima replica. I pallini possono essere acquistati direttamente dall'Associazione (senza alcun markup, al costo di acquisto) o puoi portare i tuoi."
+                            content="Per partecipare alle prove, non è necessario avere nulla di particolare, solo la voglia di giocare e divertirsi! Forniamo noi le repliche e i pallini. Se hai bisogno, possiamo anche fornirti gli occhiali protettivi, obbligatori per giocare, ma ti consigliamo di procurarteli da solo.<br />Non c'è bisogno di un abbigliamento specifico, basta qualcosa di comodo per muoverti agilmente in campo. Una tuta nera o verde e un paio di scarpe da trekking saranno più che sufficienti.<br />Dopo le prove, se decidi di iscriverti, ti consigliamo di acquistare al più presto la tua prima replica. I pallini possono essere acquistati direttamente dall'Associazione (senza alcun markup, al costo di acquisto) o puoi portare i tuoi."
                             title="Cosa mi serve per giocare?"
                         />
 
                         <Accordion
-                            content="Per partecipare alle nostre attività al di fuori delle prove, è necessario iscriversi al costo annuale di 60€, che include anche l'assicurazione. Al di fuori dell'iscrizione annuale, non sono richiesti ulteriori pagamenti all'Associazione.\r\nPer alcuni eventi speciali, in cui siamo ospiti di altre squadre, potrebbe essere richiesto un contributo aggiuntivo specifico per quella giornata, richiesto dalla squadra ospitante."
+                            content="Per partecipare alle nostre attività al di fuori delle prove, è necessario iscriversi al costo annuale di 60€, che include anche l'assicurazione. Al di fuori dell'iscrizione annuale, non sono richiesti ulteriori pagamenti all'Associazione.<br />Per alcuni eventi speciali, in cui siamo ospiti di altre squadre, potrebbe essere richiesto un contributo aggiuntivo specifico per quella giornata, richiesto dalla squadra ospitante."
                             title="Quanto costa giocare?"
                         />
 

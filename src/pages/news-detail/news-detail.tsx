@@ -1,10 +1,11 @@
 import Footer from '@components/footer';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import Page, { Content } from '@interfaces/page';
+import Page from '@interfaces/page';
 import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
 import dayjs from 'dayjs';
+import parse from 'html-react-parser';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -93,28 +94,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                 >
                                     <div className="news-main-box">
                                         {pageData && pageData.content ? (
-                                            pageData.content.map(
-                                                (element, elementIndex) => {
-                                                    switch (element.type) {
-                                                        case 'a':
-                                                        case 'h3':
-                                                        case 'none':
-                                                        case 'p':
-                                                        case 'span':
-                                                        case 'ul':
-                                                            return renderElement(
-                                                                element.type,
-                                                                elementIndex,
-                                                                element.value,
-                                                                element.values,
-                                                                element.link,
-                                                            );
-
-                                                        default:
-                                                            return <></>;
-                                                    }
-                                                },
-                                            )
+                                            parse(pageData.content)
                                         ) : (
                                             <></>
                                         )}
@@ -185,133 +165,6 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
             const year: number = newDate.year();
 
             return `${day} ${month} ${year}`;
-        }
-
-        function renderElement(
-            type: 'a' | 'h3' | 'none' | 'p' | 'span' | 'ul',
-            index: number,
-            value?: string,
-            values?: Array<Content>,
-            link?: string,
-        ): JSX.Element {
-            switch (type) {
-                case 'a':
-                    return (
-                        <a href={link ? link : '/'} key={`${type}_${index}`}>
-                            {value}
-                        </a>
-                    );
-                case 'h3':
-                    return <h3 key={`${type}_${index}`}>{value}</h3>;
-                case 'none':
-                    return (
-                        <>
-                            {values ? (
-                                values.map((subElement, subElementIndex) => {
-                                    switch (subElement.type) {
-                                        case 'a':
-                                        case 'h3':
-                                        case 'none':
-                                        case 'p':
-                                        case 'span':
-                                        case 'ul':
-                                            return renderElement(
-                                                subElement.type,
-                                                subElementIndex,
-                                                subElement.value,
-                                                subElement.values,
-                                                subElement.link,
-                                            );
-
-                                        default:
-                                            return <></>;
-                                    }
-                                })
-                            ) : (
-                                <>{value}</>
-                            )}
-                        </>
-                    );
-                case 'span':
-                    return (
-                        <span key={`${type}_${index}`}>
-                            {values
-                                ? values?.map((subElement, subElementIndex) => {
-                                      switch (subElement.type) {
-                                          case 'a':
-                                          case 'h3':
-                                          case 'none':
-                                          case 'p':
-                                          case 'span':
-                                          case 'ul':
-                                              return renderElement(
-                                                  subElement.type,
-                                                  subElementIndex,
-                                                  subElement.value,
-                                                  subElement.values,
-                                                  subElement.link,
-                                              );
-
-                                          default:
-                                              return <></>;
-                                      }
-                                  })
-                                : value}
-                        </span>
-                    );
-                case 'p':
-                    return (
-                        <p key={`${type}_${index}`}>
-                            {values
-                                ? values?.map((subElement, subElementIndex) => {
-                                      switch (subElement.type) {
-                                          case 'a':
-                                          case 'h3':
-                                          case 'none':
-                                          case 'p':
-                                          case 'span':
-                                          case 'ul':
-                                              return renderElement(
-                                                  subElement.type,
-                                                  subElementIndex,
-                                                  subElement.value,
-                                                  subElement.values,
-                                                  subElement.link,
-                                              );
-
-                                          default:
-                                              return <></>;
-                                      }
-                                  })
-                                : value}
-                        </p>
-                    );
-                case 'ul':
-                    return (
-                        <ul key={`${type}_${index}`}>
-                            {values?.map((subElement, subElementIndex) => {
-                                switch (subElement.type) {
-                                    case 'a':
-                                    case 'h3':
-                                    case 'none':
-                                    case 'p':
-                                    case 'span':
-                                    case 'ul':
-                                        return renderElement(
-                                            subElement.type,
-                                            subElementIndex,
-                                            subElement.value,
-                                            subElement.values,
-                                            subElement.link,
-                                        );
-
-                                    default:
-                                        return <></>;
-                                }
-                            })}
-                        </ul>
-                    );
-            }
         }
     },
 );
