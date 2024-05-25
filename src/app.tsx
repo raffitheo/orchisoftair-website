@@ -5,6 +5,7 @@ import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import WelcomeMessage from '@interfaces/welcome-message';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Query } from 'appwrite';
 import { lazy, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -86,6 +87,7 @@ const App = () => {
             </Router>
 
             <Analytics />
+            <SpeedInsights />
         </>
     );
 

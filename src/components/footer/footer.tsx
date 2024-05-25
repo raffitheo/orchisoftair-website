@@ -26,7 +26,7 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                             </a>
                         </span>
                         <span>
-                            <a href="/contact-us">Unisciti a noi</a>
+                            <a href="/contact-us">Fai una prova</a>
                         </span>
                         <span>
                             <a href="/faq">FAQ</a>
