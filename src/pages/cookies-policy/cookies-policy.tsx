@@ -84,10 +84,10 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                         web e monitorare le prestazioni.
                                         Utilizziamo servizi come{' '}
                                         <a
-                                            href="https://marketingplatform.google.com/about/#?modal_active=none"
+                                            href="https://vercel.com/products/observability"
                                             target="_blank"
                                         >
-                                            Google Analytics
+                                            Vercel Analytics
                                         </a>{' '}
                                         per raccogliere informazioni
                                         sull'utilizzo del nostro sito.

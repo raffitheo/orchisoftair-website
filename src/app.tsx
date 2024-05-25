@@ -4,6 +4,7 @@ import appsettings from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import WelcomeMessage from '@interfaces/welcome-message';
+import { Analytics } from '@vercel/analytics/react';
 import { Query } from 'appwrite';
 import { lazy, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -41,44 +42,51 @@ const App = () => {
     }, [welcomeMessagesStatus]);
 
     return (
-        <Router>
-            <Routes>
-                <Route element={<Home />} path="/" />
-                <Route element={<NewsList />} path="/news" />
+        <>
+            <Router>
+                <Routes>
+                    <Route element={<Home />} path="/" />
+                    <Route element={<NewsList />} path="/news" />
 
-                <Route element={<NewsDetail />} path="/news/*" />
-                <Route element={<NewsDetail />} path="/event/*" />
+                    <Route element={<NewsDetail />} path="/news/*" />
+                    <Route element={<NewsDetail />} path="/event/*" />
 
-                <Route element={<CookiesPolicy />} path="/cookies-policy" />
-                <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+                    <Route element={<CookiesPolicy />} path="/cookies-policy" />
+                    <Route element={<PrivacyPolicy />} path="/privacy-policy" />
 
-                <Route element={<FrequentlyAskedQuestions />} path="/faq" />
+                    <Route element={<FrequentlyAskedQuestions />} path="/faq" />
 
-                <Route element={<NotFound />} path="/*" />
-            </Routes>
+                    <Route element={<NotFound />} path="/*" />
+                </Routes>
 
-            <CookiesNotice />
+                <CookiesNotice />
 
-            {welcomeMessages.length >= 1 && currentMessageShown != -1 ? (
-                <WelcomeMessagePopup
-                    content={welcomeMessages[currentMessageShown].content}
-                    onClick={() => {
-                        if (currentMessageShown >= welcomeMessages.length - 1) {
-                            setCurrentMessageShown(-1);
+                {welcomeMessages.length >= 1 && currentMessageShown != -1 ? (
+                    <WelcomeMessagePopup
+                        content={welcomeMessages[currentMessageShown].content}
+                        onClick={() => {
+                            if (
+                                currentMessageShown >=
+                                welcomeMessages.length - 1
+                            ) {
+                                setCurrentMessageShown(-1);
 
-                            window.sessionStorage.setItem(
-                                appsettings.WELCOME_MESSAGES_CLOSED,
-                                'true',
-                            );
-                        } else {
-                            setCurrentMessageShown(currentMessageShown + 1);
-                        }
-                    }}
-                />
-            ) : (
-                <></>
-            )}
-        </Router>
+                                window.sessionStorage.setItem(
+                                    appsettings.WELCOME_MESSAGES_CLOSED,
+                                    'true',
+                                );
+                            } else {
+                                setCurrentMessageShown(currentMessageShown + 1);
+                            }
+                        }}
+                    />
+                ) : (
+                    <></>
+                )}
+            </Router>
+
+            <Analytics />
+        </>
     );
 
     async function getWelcomeMessages() {
