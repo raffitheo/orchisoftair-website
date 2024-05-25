@@ -1,6 +1,11 @@
 import CookiesNotice from '@components/cookies-notice';
-import DevelopmentPopup from '@components/development-popup';
-import { lazy } from 'react';
+import WelcomeMessagePopup from '@components/welcome-message-popup';
+import appsettings from '@config/appsettings';
+import { databases } from '@config/appwrite';
+import { DataStatus } from '@interfaces/data-status';
+import WelcomeMessage from '@interfaces/welcome-message';
+import { Query } from 'appwrite';
+import { lazy, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const CookiesPolicy = lazy(() => import('@pages/cookies-policy'));
@@ -12,6 +17,29 @@ const NotFound = lazy(() => import('@pages/not-found'));
 const PrivacyPolicy = lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
+    const [currentMessageShown, setCurrentMessageShown] = useState<number>(-1);
+    const [welcomeMessages, setWelcomeMessages] = useState<
+        Array<WelcomeMessage>
+    >([]);
+    const [welcomeMessagesStatus, setWelcomeMessagesStatus] =
+        useState<DataStatus>('initialized');
+
+    useEffect(() => {
+        const welcomeMessagesClosed = window.sessionStorage.getItem(
+            appsettings.WELCOME_MESSAGES_CLOSED,
+        );
+
+        if (!welcomeMessagesClosed || welcomeMessagesClosed === 'false') {
+            setWelcomeMessagesStatus('loading');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (welcomeMessagesStatus === 'loading') {
+            getWelcomeMessages();
+        }
+    }, [welcomeMessagesStatus]);
+
     return (
         <Router>
             <Routes>
@@ -30,9 +58,67 @@ const App = () => {
             </Routes>
 
             <CookiesNotice />
-            <DevelopmentPopup />
+
+            {welcomeMessages.length >= 1 && currentMessageShown != -1 ? (
+                <WelcomeMessagePopup
+                    content={welcomeMessages[currentMessageShown].content}
+                    onClick={() => {
+                        if (currentMessageShown >= welcomeMessages.length - 1) {
+                            setCurrentMessageShown(-1);
+
+                            window.sessionStorage.setItem(
+                                appsettings.WELCOME_MESSAGES_CLOSED,
+                                'true',
+                            );
+                        } else {
+                            setCurrentMessageShown(currentMessageShown + 1);
+                        }
+                    }}
+                />
+            ) : (
+                <></>
+            )}
         </Router>
     );
+
+    async function getWelcomeMessages() {
+        const response = await databases.listDocuments(
+            import.meta.env.VITE_DATABASE_ID,
+            import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
+            [Query.select(['content']), Query.equal('display', [true])],
+        );
+
+        if (response) {
+            if (response.documents.length >= 1) {
+                setWelcomeMessagesStatus('success');
+
+                const welcomeMessagesResponse: Array<WelcomeMessage> = [];
+
+                response.documents.forEach((documnet) => {
+                    welcomeMessagesResponse.push({
+                        content: documnet.content,
+                    });
+                });
+
+                setWelcomeMessages(welcomeMessagesResponse);
+                setCurrentMessageShown(0);
+            } else {
+                setWelcomeMessagesStatus('error-no-data');
+
+                window.sessionStorage.setItem(
+                    appsettings.WELCOME_MESSAGES_CLOSED,
+                    'true',
+                );
+            }
+        } else {
+            setWelcomeMessagesStatus('error');
+
+            window.sessionStorage.setItem(
+                appsettings.WELCOME_MESSAGES_CLOSED,
+                'true',
+            );
+        }
+    }
 };
 
 export default App;
