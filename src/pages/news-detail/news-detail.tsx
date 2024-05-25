@@ -130,7 +130,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                 if (response.documents.length >= 1) {
                     setPageDataStatus('success');
                     setPageData({
-                        content: JSON.parse(response.documents[0].content),
+                        content: response.documents[0].content,
                         creationDate: response.documents[0].creationDate,
                         headerImage: response.documents[0].headerImage,
                         title: response.documents[0].title,
