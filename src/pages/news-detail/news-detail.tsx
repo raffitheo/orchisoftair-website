@@ -228,10 +228,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                                     }
                                 })
                             ) : (
-                                <>
-                                    {value}
-                                    <br />
-                                </>
+                                <>{value}</>
                             )}
                         </>
                     );
