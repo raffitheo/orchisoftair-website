@@ -102,13 +102,13 @@ const App = () => {
             if (response.documents.length >= 1) {
                 setWelcomeMessagesStatus('success');
 
-                const welcomeMessagesResponse: Array<WelcomeMessage> = [];
-
-                response.documents.forEach((documnet) => {
-                    welcomeMessagesResponse.push({
-                        content: documnet.content,
-                    });
-                });
+                const welcomeMessagesResponse = response.documents.map(
+                    (documnet) => {
+                        return {
+                            content: documnet.content,
+                        };
+                    },
+                );
 
                 setWelcomeMessages(welcomeMessagesResponse);
                 setCurrentMessageShown(0);

@@ -145,7 +145,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         </div>
     );
 
-    function renderNewsCarousel(): JSX.Element {
+    function renderNewsCarousel() {
         switch (newsListStatus) {
             case 'error':
             case 'error-no-data':
@@ -199,7 +199,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         }
     }
 
-    function rendernewsLetter(): JSX.Element {
+    function rendernewsLetter() {
         switch (emailStatus) {
             case 'error':
             case 'error-no-data':
@@ -271,10 +271,8 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         if (response) {
             setNwsListStatus('success');
 
-            const newsListResponse: Array<News> = [];
-
-            response.documents.forEach((documnet) => {
-                newsListResponse.push({
+            const newsListResponse = response.documents.map((documnet) => {
+                return {
                     category: documnet.category,
                     creationDate: new Date(documnet.creationDate),
                     id: documnet.$id,
@@ -282,7 +280,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     subtitle: documnet.subtitle,
                     thumbnail: documnet.thumbnail,
                     title: documnet.title,
-                });
+                };
             });
 
             setNwsList(newsListResponse);

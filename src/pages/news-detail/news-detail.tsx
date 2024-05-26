@@ -39,7 +39,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
             </div>
         );
 
-        function renderPage(): JSX.Element {
+        function renderPage() {
             switch (pageDataStatus) {
                 case 'error':
                 case 'error-no-data':
@@ -145,7 +145,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
 
         function formatDate(date: Date): string {
             const newDate = dayjs(date);
-            const months: Array<string> = [
+            const months = [
                 'gennaio',
                 'febbraio',
                 'marzo',
@@ -160,9 +160,9 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                 'dicembre',
             ];
 
-            const day: number = newDate.date();
-            const month: string = months[newDate.month()];
-            const year: number = newDate.year();
+            const day = newDate.date();
+            const month = months[newDate.month()];
+            const year = newDate.year();
 
             return `${day} ${month} ${year}`;
         }

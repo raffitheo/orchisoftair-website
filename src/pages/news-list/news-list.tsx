@@ -37,7 +37,7 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
             </div>
         );
 
-        function renderNewsList(): JSX.Element {
+        function renderNewsList() {
             switch (newsListStatus) {
                 case 'error':
                 case 'error-no-data':
@@ -112,10 +112,8 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
             if (response) {
                 setNwsListStatus('success');
 
-                const newsListResponse: Array<News> = [];
-
-                response.documents.forEach((documnet) => {
-                    newsListResponse.push({
+                const newsListResponse = response.documents.map((documnet) => {
+                    return {
                         category: documnet.category,
                         creationDate: new Date(documnet.creationDate),
                         id: documnet.$id,
@@ -123,7 +121,7 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
                         subtitle: documnet.subtitle,
                         thumbnail: documnet.thumbnail,
                         title: documnet.title,
-                    });
+                    };
                 });
 
                 setNwsList(newsListResponse);

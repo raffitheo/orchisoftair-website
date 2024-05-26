@@ -185,7 +185,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
 
         function formatDate(date: Date): string {
             const newDate = dayjs(date);
-            const months: Array<string> = [
+            const months = [
                 'gennaio',
                 'febbraio',
                 'marzo',
@@ -200,9 +200,9 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
                 'dicembre',
             ];
 
-            const day: number = newDate.date();
-            const month: string = months[newDate.month()];
-            const year: number = newDate.year();
+            const day = newDate.date();
+            const month = months[newDate.month()];
+            const year = newDate.year();
 
             return `${day} ${month} ${year}`;
         }
