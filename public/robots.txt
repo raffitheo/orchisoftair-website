@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://orchisoftair-website.vercel.app/sitemap_index.xml
