@@ -1,25 +1,27 @@
 {
+	"dir": "ltr",
+	"lang": "it",
+	"name": "A.S.D. Gli Orchi Trieste - Softair Team",
+  	"scope": "/",
+  	"display": "standalone",
+  	"start_url": "https://orchisoftair-website.vercel.app/",
 	"short_name": "A.S.D. Gli Orchi Trieste",
-	"name": "A.S.D. Gli Orchi Trieste",
+	"theme_color": "#8A142A",
+	"description": "Scopri l'A.S.D. Gli Orchi Trieste, che dal 2007 permette ai suoi soci di praticare lo sport del softair nella città di Trieste. Rimani aggiornato sulle ultime novità ed eventi che organizziamo ed iscriviti alla nostra newsletter. Unisciti a noi!",
+  	"orientation": "any",
+	"background_color": "#151515",
+  	"related_applications": [],
+  	"prefer_related_applications": false,
 	"icons": [
 		{
-			"src": "favicon.ico",
-			"sizes": "64x64 32x32 24x24 16x16",
-			"type": "image/x-icon"
+			"sizes": "152x152",
+			"src": "icon152.png",
+			"type": "image/png"
 		},
 		{
-			"src": "logo192.png",
-			"type": "image/png",
-			"sizes": "192x192"
-		},
-		{
-			"src": "logo512.png",
-			"type": "image/png",
-			"sizes": "512x512"
+			"sizes": "196x196",
+			"src": "icon196.png",
+			"type": "image/png"
 		}
-	],
-	"start_url": ".",
-	"display": "standalone",
-	"theme_color": "#8A142A",
-	"background_color": "#B29566"
+	]
 }
