@@ -1,4 +1,4 @@
-<img src="logo.png" height="200px" align="right"/>
+<img src="READMEdocs/orchi-logo.png" height="200px" align="right"/>
 
 # A.S.D. Gli Orchi Trieste website
 
