@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import './not-found.sass';
 
-const PAGE_TITLE = `${appsettings.WELCOME_MESSAGES_CLOSED} | Errore 404`;
+const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Errore 404`;
 
 export interface NotFoundProps extends HTMLAttributes<HTMLDivElement> {}
 

@@ -7,7 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import './privacy-policy.sass';
 
-const PAGE_TITLE = `${appsettings.WELCOME_MESSAGES_CLOSED} | Informativa sulla privacy`;
+const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Informativa sulla privacy`;
 
 export interface PrivacyPolicyProps extends HTMLAttributes<HTMLDivElement> {}
 

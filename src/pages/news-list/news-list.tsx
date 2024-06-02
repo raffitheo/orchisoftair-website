@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 
 import './news-list.sass';
 
-const PAGE_TITLE = `${appsettings.WELCOME_MESSAGES_CLOSED} | Novità ed eventi`;
+const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Novità ed eventi`;
 
 export interface NewsListProps extends HTMLAttributes<HTMLDivElement> {}
 

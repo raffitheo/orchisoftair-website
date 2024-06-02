@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 
 import './news-detail.sass';
 
-const PAGE_TITLE = (title: string) => `${appsettings.WELCOME_MESSAGES_CLOSED} | ${title}`;
+const PAGE_TITLE = (title: string) => `${appsettings.WEBSITE_DEFAULT_TITLE} | ${title}`;
 
 export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
 

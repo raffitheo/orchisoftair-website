@@ -17,7 +17,7 @@ import Carousel from 'react-multi-carousel';
 import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
 
-const PAGE_TITLE = appsettings.WELCOME_MESSAGES_CLOSED;
+const PAGE_TITLE = appsettings.WEBSITE_DEFAULT_TITLE;
 
 export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
