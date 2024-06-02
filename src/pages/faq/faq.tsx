@@ -7,13 +7,9 @@ import LorePattern from '../../assets/lore-pattern.webp';
 
 import './faq.sass';
 
-export interface FrequentlyAskedQuestionsProps
-    extends HTMLAttributes<HTMLDivElement> {}
+export interface FrequentlyAskedQuestionsProps extends HTMLAttributes<HTMLDivElement> {}
 
-const FrequentlyAskedQuestions = forwardRef<
-    HTMLDivElement,
-    FrequentlyAskedQuestionsProps
->(({ ...props }, ref) => {
+const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuestionsProps>(({ ...props }, ref) => {
     return (
         <div ref={ref} {...props}>
             <div className="faq-container">
@@ -28,9 +24,7 @@ const FrequentlyAskedQuestions = forwardRef<
 
                             <div>
                                 <h1>FAQ - FEQUENTLY ASKED QUESTIONS</h1>
-                                <div className="banner-date">
-                                    {formatDate(new Date('2024-05-24'))}
-                                </div>
+                                <div className="banner-date">{formatDate(new Date('2024-05-24'))}</div>
                             </div>
                         </div>
                     </div>
@@ -39,15 +33,13 @@ const FrequentlyAskedQuestions = forwardRef<
                 <div
                     className="faq-main-container"
                     style={{
-                        background: `url(${LorePattern}) no-repeat 50%`,
+                        background: `url(${LorePattern}) no-repeat 50%`
                     }}
                 >
                     <div className="faq-main-box">
                         <p>
-                            In questa sezione cercheremo di rispondere alle
-                            domande più frequenti che ci vengono poste. Non
-                            esitare a contattarci per qualsiasi ulteriore
-                            domanda o chiarimento!
+                            In questa sezione cercheremo di rispondere alle domande più frequenti che ci vengono poste.
+                            Non esitare a contattarci per qualsiasi ulteriore domanda o chiarimento!
                         </p>
 
                         <Accordion
@@ -108,7 +100,7 @@ const FrequentlyAskedQuestions = forwardRef<
             'settembre',
             'ottobre',
             'novembre',
-            'dicembre',
+            'dicembre'
         ];
 
         const day = newDate.date();

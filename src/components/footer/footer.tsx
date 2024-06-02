@@ -17,13 +17,10 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
         <div className="footer-container" ref={ref} {...props}>
             <div className="footer-box">
                 <div className="footer-copyright">
-                    Tutti i diritti riservati. Raffaele Valenti e A.S.D. Gli
-                    Orchi Trieste
+                    Tutti i diritti riservati. Raffaele Valenti e A.S.D. Gli Orchi Trieste
                     <div className="footer-link">
                         <span>
-                            <a href="/privacy-policy">
-                                Informativa sulla privacy
-                            </a>
+                            <a href="/privacy-policy">Informativa sulla privacy</a>
                         </span>
                         <span>
                             <a href="/contact-us">Fai una prova</a>
@@ -45,11 +42,7 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                 </div>
 
                 <div className="footer-social">
-                    <SocialLink
-                        alt="Facebook"
-                        href="https://www.facebook.com/orchitrieste/"
-                        src={FacebookIcon}
-                    />
+                    <SocialLink alt="Facebook" href="https://www.facebook.com/orchitrieste/" src={FacebookIcon} />
                     <SocialLink
                         alt="instagram"
                         href="https://www.instagram.com/orchisoftair_official/"

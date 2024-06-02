@@ -20,16 +20,11 @@ const PrivacyPolicy = lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
     const [currentMessageShown, setCurrentMessageShown] = useState<number>(-1);
-    const [welcomeMessages, setWelcomeMessages] = useState<
-        Array<WelcomeMessage>
-    >([]);
-    const [welcomeMessagesStatus, setWelcomeMessagesStatus] =
-        useState<DataStatus>('initialized');
+    const [welcomeMessages, setWelcomeMessages] = useState<Array<WelcomeMessage>>([]);
+    const [welcomeMessagesStatus, setWelcomeMessagesStatus] = useState<DataStatus>('initialized');
 
     useEffect(() => {
-        const welcomeMessagesClosed = window.sessionStorage.getItem(
-            appsettings.WELCOME_MESSAGES_CLOSED,
-        );
+        const welcomeMessagesClosed = window.sessionStorage.getItem(appsettings.WELCOME_MESSAGES_CLOSED);
 
         if (!welcomeMessagesClosed || welcomeMessagesClosed === 'false') {
             setWelcomeMessagesStatus('loading');
@@ -66,16 +61,10 @@ const App = () => {
                     <WelcomeMessagePopup
                         content={welcomeMessages[currentMessageShown].content}
                         onClick={() => {
-                            if (
-                                currentMessageShown >=
-                                welcomeMessages.length - 1
-                            ) {
+                            if (currentMessageShown >= welcomeMessages.length - 1) {
                                 setCurrentMessageShown(-1);
 
-                                window.sessionStorage.setItem(
-                                    appsettings.WELCOME_MESSAGES_CLOSED,
-                                    'true',
-                                );
+                                window.sessionStorage.setItem(appsettings.WELCOME_MESSAGES_CLOSED, 'true');
                             } else {
                                 setCurrentMessageShown(currentMessageShown + 1);
                             }
@@ -95,38 +84,30 @@ const App = () => {
         const response = await databases.listDocuments(
             import.meta.env.VITE_DATABASE_ID,
             import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
-            [Query.select(['content']), Query.equal('display', [true])],
+            [Query.select(['content']), Query.equal('display', [true])]
         );
 
         if (response) {
             if (response.documents.length >= 1) {
                 setWelcomeMessagesStatus('success');
 
-                const welcomeMessagesResponse = response.documents.map(
-                    (documnet) => {
-                        return {
-                            content: documnet.content,
-                        };
-                    },
-                );
+                const welcomeMessagesResponse = response.documents.map((documnet) => {
+                    return {
+                        content: documnet.content
+                    };
+                });
 
                 setWelcomeMessages(welcomeMessagesResponse);
                 setCurrentMessageShown(0);
             } else {
                 setWelcomeMessagesStatus('error-no-data');
 
-                window.sessionStorage.setItem(
-                    appsettings.WELCOME_MESSAGES_CLOSED,
-                    'true',
-                );
+                window.sessionStorage.setItem(appsettings.WELCOME_MESSAGES_CLOSED, 'true');
             }
         } else {
             setWelcomeMessagesStatus('error');
 
-            window.sessionStorage.setItem(
-                appsettings.WELCOME_MESSAGES_CLOSED,
-                'true',
-            );
+            window.sessionStorage.setItem(appsettings.WELCOME_MESSAGES_CLOSED, 'true');
         }
     }
 };

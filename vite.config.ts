@@ -7,14 +7,14 @@ export default defineConfig({
     plugins: [react()],
     server: {
         host: 'localhost',
-        port: 5173,
+        port: 5173
     },
     resolve: {
         alias: {
             '@components': path.resolve(__dirname, './src/components'),
             '@config': path.resolve(__dirname, './src/config'),
             '@interfaces': path.resolve(__dirname, './src/interfaces'),
-            '@pages': path.resolve(__dirname, './src/pages'),
-        },
-    },
+            '@pages': path.resolve(__dirname, './src/pages')
+        }
+    }
 });
