@@ -1,0 +1,56 @@
+{
+    "codesnap.backgroundColor": "transparent",
+    "codesnap.realLineNumbers": true,
+    "codesnap.roundedCorners": true,
+    "codesnap.showWindowControls": false,
+    "codesnap.showWindowTitle": true,
+    "codesnap.transparentBackground": true,
+
+    "diffEditor.ignoreTrimWhitespace": false,
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "never"
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.linkedEditing": true,
+    "editor.tabSize": 4,
+
+    "files.readonlyInclude": {
+        "node_modules/**": true
+    },
+
+    "javascript.suggest.autoImports": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+
+    "prettier.endOfLine": "auto",
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+
+    "typescript.suggest.autoImports": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+
+    "[css]": {
+        "editor.suggest.insertMode": "replace"
+    },
+
+    "[javascript]": {
+        "editor.rulers": [120]
+    },
+
+    "[javascriptreact]": {
+        "editor.rulers": [120]
+    },
+
+    "[typescript]": {
+        "editor.rulers": [120]
+    },
+
+    "[typescriptreact]": {
+        "editor.rulers": [120]
+    }
+}

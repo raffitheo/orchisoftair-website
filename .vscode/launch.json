@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Vite DEV server (Edge)",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["vite", "--open"],
+            "type": "node",
+            "serverReadyAction": {
+                "action": "debugWithEdge",
+                "pattern": "Local: http://localhost:([0-9]+)",
+                "uriFormat": "http://localhost:%s"
+            }
+        },
+        {
+            "name": "Launch Vite DEV server (Chrome)",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["vite", "--open"],
+            "type": "node",
+            "serverReadyAction": {
+                "action": "debugWithChrome",
+                "pattern": "Local: http://localhost:([0-9]+)",
+                "uriFormat": "http://localhost:%s"
+            }
+        }
+    ]
+}

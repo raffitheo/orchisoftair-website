@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "aron-bond.better-comments", // Better Comments
+        "adpyke.codesnap", // CodeSnap
+        "vivaxy.vscode-conventional-commits", // Conventional Commits
+        "dbaeumer.vscode-eslint", // ESLint
+        "htmlhint.vscode-htmlhint", // HTMLHint
+        "bierner.markdown-preview-github-styles", // Markdown Preview GitHub Styles
+        "sbenp.prettier-vscode", // Prettier
+        "syler.sass-indented", // Sass
+        "meganrogge.template-string-converter", // Template String Converter
+        "chakrounanas.turbo-console-log" // Turbo Console Log
+    ],
+    "unwantedRecommendations": []
+}
