@@ -1,4 +1,6 @@
+import LorePattern from '@assets/lore-pattern.webp';
 import Footer from '@components/footer';
+import appsettings from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import Page from '@interfaces/page';
@@ -10,9 +12,9 @@ import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
-import LorePattern from '../../assets/lore-pattern.webp';
-
 import './news-detail.sass';
+
+const PAGE_TITLE = (title: string) => `${appsettings.WELCOME_MESSAGES_CLOSED} | ${title}`;
 
 export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -58,22 +60,17 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, re
                 return (
                     <>
                         <Helmet>
-                            <title>A.S.D. Gli Orchi Trieste - Softair Team | {pageData?.title}</title>
+                            <title>{PAGE_TITLE(pageData?.title as string)}</title>
 
-                            <meta
-                                name="title"
-                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
-                            />
+                            <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                            <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                            <meta name="title" content={PAGE_TITLE(pageData?.title as string)} />
 
-                            <meta
-                                property="og:title"
-                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
-                            />
+                            <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                            <meta property="og:title" content={PAGE_TITLE(pageData?.title as string)} />
 
-                            <meta
-                                property="twitter:title"
-                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
-                            />
+                            <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                            <meta property="twitter:title" content={PAGE_TITLE(pageData?.title as string)} />
                         </Helmet>
 
                         <div className="news-container">

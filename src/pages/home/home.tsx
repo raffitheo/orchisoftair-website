@@ -1,6 +1,11 @@
+import BackgroundNewsletter from '@assets/background-newsletter.webp';
+import BackgroundPattern from '@assets/background-pattern.webp';
+import DamoclesIcon from '@assets/icons/damocles-icon.webp';
+import Landing from '@assets/landing.webp';
 import Footer from '@components/footer';
 import Navbar from '@components/navbar';
 import NewsCarouselElement from '@components/news-carousel-element';
+import appsettings from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
@@ -9,13 +14,10 @@ import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import Carousel from 'react-multi-carousel';
 
-import BackgroundNewsletter from '../../assets/background-newsletter.webp';
-import BackgroundPattern from '../../assets/background-pattern.webp';
-import DamoclesIcon from '../../assets/icons/damocles-icon.webp';
-import Landing from '../../assets/landing.webp';
-
 import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
+
+const PAGE_TITLE = appsettings.WELCOME_MESSAGES_CLOSED;
 
 export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -57,13 +59,17 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     return (
         <>
             <Helmet>
-                <title>A.S.D. Gli Orchi Trieste - Softair Team</title>
+                <title>{PAGE_TITLE}</title>
 
-                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
+                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
+                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta property="twitter:title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
+                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
             <div ref={ref} {...props}>

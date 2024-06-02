@@ -1,11 +1,13 @@
+import LorePattern from '@assets/lore-pattern.webp';
 import Footer from '@components/footer';
+import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
 import { HTMLAttributes, forwardRef } from 'react';
 import { Helmet } from 'react-helmet';
 
-import LorePattern from '../../assets/lore-pattern.webp';
-
 import './cookies-policy.sass';
+
+const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Informativa sui cookies`;
 
 export interface CookiesPolicyProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -13,16 +15,17 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
     return (
         <>
             <Helmet>
-                <title>A.S.D. Gli Orchi Trieste - Softair Team | Informativa sui cookies</title>
+                <title>{PAGE_TITLE}</title>
 
-                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team | Informativa sui cookies" />
+                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Informativa sui cookies" />
+                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta
-                    property="twitter:title"
-                    content="A.S.D. Gli Orchi Trieste - Softair Team | Informativa sui cookies"
-                />
+                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
             <div ref={ref} {...props}>

@@ -1,7 +1,10 @@
+import appsettings from '@config/appsettings';
 import { HTMLAttributes, forwardRef } from 'react';
 import { Helmet } from 'react-helmet';
 
 import './not-found.sass';
+
+const PAGE_TITLE = `${appsettings.WELCOME_MESSAGES_CLOSED} | Errore 404`;
 
 export interface NotFoundProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -9,13 +12,17 @@ const NotFound = forwardRef<HTMLDivElement, NotFoundProps>(({ ...props }, ref) =
     return (
         <>
             <Helmet>
-                <title>A.S.D. Gli Orchi Trieste - Softair Team | Errore 404</title>
+                <title>{PAGE_TITLE}</title>
 
-                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team | Errore 404" />
+                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Errore 404" />
+                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta property="twitter:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Errore 404" />
+                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
             <div className="not-found-container" ref={ref} {...props}>

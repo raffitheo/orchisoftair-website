@@ -1,12 +1,14 @@
+import LorePattern from '@assets/lore-pattern.webp';
 import Accordion from '@components/accordion';
 import Footer from '@components/footer';
+import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
 import { HTMLAttributes, forwardRef } from 'react';
 import { Helmet } from 'react-helmet';
 
-import LorePattern from '../../assets/lore-pattern.webp';
-
 import './faq.sass';
+
+const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Frequently Asked Questions`;
 
 export interface FrequentlyAskedQuestionsProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -14,19 +16,17 @@ const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuest
     return (
         <>
             <Helmet>
-                <title>A.S.D. Gli Orchi Trieste - Softair Team | Frequently Asked Questions</title>
+                <title>{PAGE_TITLE}</title>
 
-                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team | Frequently Asked Questions" />
+                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta name="title" content={PAGE_TITLE} />
 
-                <meta
-                    property="og:title"
-                    content="A.S.D. Gli Orchi Trieste - Softair Team | Frequently Asked Questions"
-                />
+                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta
-                    property="twitter:title"
-                    content="A.S.D. Gli Orchi Trieste - Softair Team | Frequently Asked Questions"
-                />
+                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
             <div ref={ref} {...props}>

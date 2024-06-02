@@ -1,6 +1,7 @@
 import Footer from '@components/footer';
 import Navbar from '@components/navbar';
 import NewsListElement from '@components/news-list-element';
+import appsettings from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
@@ -9,6 +10,8 @@ import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 
 import './news-list.sass';
+
+const PAGE_TITLE = `${appsettings.WELCOME_MESSAGES_CLOSED} | Novità ed eventi`;
 
 export interface NewsListProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -29,13 +32,17 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(({ ...props }, ref) =
     return (
         <>
             <Helmet>
-                <title>A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi</title>
+                <title>{PAGE_TITLE}</title>
 
-                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi" />
+                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
+                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi" />
+                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta property="twitter:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventis" />
+                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
             <div className="news-container" ref={ref} {...props}>

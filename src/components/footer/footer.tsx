@@ -1,11 +1,11 @@
+import FacebookIcon from '@assets/icons/facebook-icon.webp';
+import InstagramIcon from '@assets/icons/instagram-icon.webp';
+import OrchiIcon from '@assets/icons/orchi-icon.webp';
+import RaffaeleValentiIcon from '@assets/icons/raffaele-valenti-icon.webp';
+import appsettings from '@config/appsettings';
 import { HTMLAttributes, forwardRef } from 'react';
 
 import './footer.sass';
-
-import FacebookIcon from '../../assets/icons/facebook-icon.webp';
-import InstagramIcon from '../../assets/icons/instagram-icon.webp';
-import OrchiIcon from '../../assets/icons/orchi-icon.webp';
-import RaffaeleValentiIcon from '../../assets/icons/raffaele-valenti-icon.webp';
 
 import CopyrightLink from './copyright-link';
 import SocialLink from './social-link';
@@ -17,7 +17,7 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
         <div className="footer-container" ref={ref} {...props}>
             <div className="footer-box">
                 <div className="footer-copyright">
-                    Tutti i diritti riservati. Raffaele Valenti e A.S.D. Gli Orchi Trieste
+                    Tutti i diritti riservati. {appsettings.WEBSITE_DEFAULT_AUTHOR}
                     <div className="footer-link">
                         <span>
                             <a href="/privacy-policy">Informativa sulla privacy</a>

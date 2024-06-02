@@ -1,8 +1,7 @@
+import OrchiIcon from '@assets/icons/orchi-icon.webp';
 import { HTMLAttributes, forwardRef } from 'react';
 
 import './navbar.sass';
-
-import OrchiIcon from '../../assets/icons/orchi-icon.webp';
 
 export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
     active?: 'about' | 'contact-us' | 'news';
