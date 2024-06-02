@@ -7,6 +7,7 @@ import { Query } from 'appwrite';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
 import LorePattern from '../../assets/lore-pattern.webp';
@@ -45,11 +46,36 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, re
 
             case 'initialized':
             case 'loading':
-                return <></>;
+                return (
+                    <>
+                        <Helmet>
+                            <title>Caricamento in corso...</title>
+                        </Helmet>
+                    </>
+                );
 
             case 'success':
                 return (
                     <>
+                        <Helmet>
+                            <title>A.S.D. Gli Orchi Trieste - Softair Team | {pageData?.title}</title>
+
+                            <meta
+                                name="title"
+                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
+                            />
+
+                            <meta
+                                property="og:title"
+                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
+                            />
+
+                            <meta
+                                property="twitter:title"
+                                content={`A.S.D. Gli Orchi Trieste - Softair Team | ${pageData?.title}`}
+                            />
+                        </Helmet>
+
                         <div className="news-container">
                             <div
                                 className="news-header-box2"

@@ -6,6 +6,7 @@ import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
 import { Query } from 'appwrite';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 
 import './news-list.sass';
 
@@ -26,13 +27,25 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(({ ...props }, ref) =
     }, [newsListStatus]);
 
     return (
-        <div className="news-container" ref={ref} {...props}>
-            <Navbar active="news" />
+        <>
+            <Helmet>
+                <title>A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi</title>
 
-            <div className="news-background">{renderNewsList()}</div>
+                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi" />
 
-            <Footer />
-        </div>
+                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventi" />
+
+                <meta property="twitter:title" content="A.S.D. Gli Orchi Trieste - Softair Team | Novità ed eventis" />
+            </Helmet>
+
+            <div className="news-container" ref={ref} {...props}>
+                <Navbar active="news" />
+
+                <div className="news-background">{renderNewsList()}</div>
+
+                <Footer />
+            </div>
+        </>
     );
 
     function renderNewsList() {

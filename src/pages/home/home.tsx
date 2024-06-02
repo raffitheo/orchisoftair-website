@@ -6,6 +6,7 @@ import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
 import { ID, Query } from 'appwrite';
 import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Carousel from 'react-multi-carousel';
 
 import BackgroundNewsletter from '../../assets/background-newsletter.webp';
@@ -54,68 +55,80 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     };
 
     return (
-        <div ref={ref} {...props}>
-            <div className="video-container">
-                <Navbar />
+        <>
+            <Helmet>
+                <title>A.S.D. Gli Orchi Trieste - Softair Team</title>
 
-                <div className="video-overlay" />
+                <meta name="title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
 
-                <div className="video-gradient" />
+                <meta property="og:title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
 
-                <div className="main-box">
-                    <div className="main-logo-flex">
-                        <div className="main-logo-section">
-                            <img alt="Logo" src={Landing} height={333} width={707} />
+                <meta property="twitter:title" content="A.S.D. Gli Orchi Trieste - Softair Team" />
+            </Helmet>
 
-                            <div className="buttom-section">
-                                <a href="/about">
-                                    <button className="about-button">SU DI NOI</button>
-                                </a>
-                                <a href="/contact-us">
-                                    <button className="contact-button">FAI UNA PROVA</button>
-                                </a>
-                            </div>
+            <div ref={ref} {...props}>
+                <div className="video-container">
+                    <Navbar />
 
-                            <div className="partners-section">
-                                <p>IN COLLABORAZIONE CON</p>
+                    <div className="video-overlay" />
 
-                                <div className="parthners-container">
-                                    <a className="damocles-logo" href="https://www.damocles.it/" target="_blank">
-                                        <img alt="Logo" height={37} src={DamoclesIcon} width={124} />
+                    <div className="video-gradient" />
+
+                    <div className="main-box">
+                        <div className="main-logo-flex">
+                            <div className="main-logo-section">
+                                <img alt="Logo" src={Landing} height={333} width={707} />
+
+                                <div className="buttom-section">
+                                    <a href="/about">
+                                        <button className="about-button">SU DI NOI</button>
                                     </a>
+                                    <a href="/contact-us">
+                                        <button className="contact-button">FAI UNA PROVA</button>
+                                    </a>
+                                </div>
+
+                                <div className="partners-section">
+                                    <p>IN COLLABORAZIONE CON</p>
+
+                                    <div className="parthners-container">
+                                        <a className="damocles-logo" href="https://www.damocles.it/" target="_blank">
+                                            <img alt="Logo" height={37} src={DamoclesIcon} width={124} />
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="relative-container" style={{ backgroundImage: `url(${BackgroundPattern})` }}>
-                <div className="gradient-overlay">
-                    <div className="gradient-overlay2">
-                        <div className="news-section">
-                            <div className="news-title">NOVITÀ ED EVENTI</div>
+                <div className="relative-container" style={{ backgroundImage: `url(${BackgroundPattern})` }}>
+                    <div className="gradient-overlay">
+                        <div className="gradient-overlay2">
+                            <div className="news-section">
+                                <div className="news-title">NOVITÀ ED EVENTI</div>
 
-                            <div className="news-carousel">{renderNewsCarousel()}</div>
+                                <div className="news-carousel">{renderNewsCarousel()}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <section className="newsletter-section" style={{ backgroundImage: `url(${BackgroundNewsletter})` }}>
-                <div className="overlay">
-                    <div className="overlay2">
-                        <div className="newsletter-section-box">
-                            <p className="subtitle">RIMANI AGGIORNATO</p>
+                <section className="newsletter-section" style={{ backgroundImage: `url(${BackgroundNewsletter})` }}>
+                    <div className="overlay">
+                        <div className="overlay2">
+                            <div className="newsletter-section-box">
+                                <p className="subtitle">RIMANI AGGIORNATO</p>
 
-                            {rendernewsLetter()}
+                                {rendernewsLetter()}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <Footer />
-        </div>
+                <Footer />
+            </div>
+        </>
     );
 
     function renderNewsCarousel() {
