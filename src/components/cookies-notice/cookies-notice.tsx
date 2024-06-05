@@ -28,10 +28,9 @@ const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(({ ...props
                 <div className="cookies-notice-text">
                     <span>
                         Utilizziamo i cookie per migliorare la tua esperienza di navigazione. Continuando a visitare
-                        questo sito, acconsenti al loro uso.{' '}
-                        <a href="/cookies-policy">
-                            <span>Informativa sui cookie</span>
-                        </a>
+                        questo sito, acconsenti al loro uso.
+                        <br />
+                        <a href="/cookies-policy">Informativa sui cookie</a>
                     </span>
                 </div>
 
