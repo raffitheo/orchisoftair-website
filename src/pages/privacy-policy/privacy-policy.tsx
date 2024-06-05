@@ -41,7 +41,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
 
                                 <div>
                                     <h1>INFORMATIVA SULLA PRIVACY</h1>
-                                    <div className="banner-date">{formatDate(new Date('2024-05-22'))}</div>
+                                    <div className="banner-date">{formatDate(new Date('2024-06-05'))}</div>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                         }}
                     >
                         <div className="privacy-policy-main-box">
-                            <h3>Introduzione</h3>
+                            <h2>Introduzione</h2>
 
                             <p>
                                 A.S.D. Gli Orchi Trieste (compreso anche il suo sito web) prende molto seriamente la
@@ -62,14 +62,14 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 proteggiamo le informazioni degli utenti che si iscrivono alla nostra newsletter.
                             </p>
 
-                            <h3>1. RACCOLTA DEI DATI</h3>
+                            <h2>1. RACCOLTA DEI DATI</h2>
 
                             <p>
                                 Quando un utente si iscrive alla nostra newsletter, raccogliamo unicamente il suo
                                 indirizzo e-mail. Non raccogliamo altre informazioni personali.
                             </p>
 
-                            <h3>2. UTILIZZO DEI DATI</h3>
+                            <h2>2. UTILIZZO DEI DATI</h2>
 
                             <p>Utilizziamo gli indirizzi e-mail per:</p>
 
@@ -84,14 +84,14 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 </li>
                             </ul>
 
-                            <h3 style={{ marginTop: '1rem' }}>3. CONSERVAZIONE DEI DATI</h3>
+                            <h2>3. CONSERVAZIONE DEI DATI</h2>
 
                             <p>
                                 Gli indirizzi e-mail verranno conservati fino a quando l'utente non decide di annullare
                                 l'iscrizione alla nostra newsletter.
                             </p>
 
-                            <h3>4. DIRITTI DELL'UTENTE</h3>
+                            <h2>4. DIRITTI DELL'UTENTE</h2>
 
                             <p>Tutti gli utenti hanno diritto a:</p>
 
@@ -114,14 +114,14 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 </li>
                             </ul>
 
-                            <h3 style={{ marginTop: '1rem' }}>5. SICUREZZA DEI DATI</h3>
+                            <h2>5. SICUREZZA DEI DATI</h2>
 
                             <p>
                                 Adottiamo misure di sicurezza per proteggere gli indirizzi e-mail raccolti da accessi
                                 non autorizzati, alterazioni, divulgazioni o distruzioni.
                             </p>
 
-                            <h3>6. UTILIZZO DEI COOKIES</h3>
+                            <h2>6. UTILIZZO DEI COOKIES</h2>
 
                             <p>
                                 Il nostro sito utilizza cookies per migliorare l'esperienza di navigazione degli utenti.
@@ -129,7 +129,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 visiti il nostro sito web.
                             </p>
 
-                            <h3>7. TRATTAMENTO INTERNAZIONALE DEI DATI</h3>
+                            <h2>7. TRATTAMENTO INTERNAZIONALE DEI DATI</h2>
 
                             <p>
                                 L'indirizzo e-mail dell'utente potrebbe essere conservato e trattato al di fuori
@@ -137,7 +137,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 conformità con questa Informativa.
                             </p>
 
-                            <h3>8. LIMITI DI ETÀ</h3>
+                            <h2>8. LIMITI DI ETÀ</h2>
 
                             <p>
                                 Non raccogliamo dati di persone di età inferiore ai 14 anni. Inoltre, non consentiamo
@@ -148,7 +148,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 inferiore ai 14 anni, preghiamo di contattarci.
                             </p>
 
-                            <h3>9. MODIFICHE ALL'INFORMATIVA SULLA PRIVACY</h3>
+                            <h2>9. MODIFICHE ALL'INFORMATIVA SULLA PRIVACY</h2>
 
                             <p>
                                 Questa Informativa può essere modificata periodicamente. Provvederemo a informare gli
@@ -159,7 +159,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                 gli utenti accetteranno automaticamente l'Informativa modificata.
                             </p>
 
-                            <h3>10. CONTATTI</h3>
+                            <h2>10. CONTATTI</h2>
 
                             <p>
                                 Per qualsiasi domanda o richiesta relativa alla privacy dei tuoi dati, siamo

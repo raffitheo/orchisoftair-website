@@ -41,7 +41,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
 
                                 <div>
                                     <h1>INFORMATIVA SUI COOKIES</h1>
-                                    <div className="banner-date">{formatDate(new Date('2024-05-22'))}</div>
+                                    <div className="banner-date">{formatDate(new Date('2024-06-05'))}</div>
                                 </div>
                             </div>
                         </div>
@@ -64,42 +64,49 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
                                 la presente Politica sui cookies.
                             </p>
 
-                            <h3>Cookies</h3>
+                            <h2>Cookies</h2>
+
+                            <h3 style={{ marginTop: '1rem' }}>Cosa sono i cookies?</h3>
 
                             <p>
-                                <strong>Cosa sono i cookies?</strong> I cookies sono piccoli file di dati che vengono
-                                scaricati sul dispositivo quando si visita un sito web. Questi vengono poi inviati al
-                                sito web di origine a ogni visita successiva o a un altro sito web che li riconosce. I
-                                cookies sono utili perché ci permettono di riconoscere il dispositivo e migliorare
-                                l'esperienza di navigazione.
+                                I cookies sono piccoli file di dati che vengono scaricati sul dispositivo quando si
+                                visita un sito web. Questi vengono poi inviati al sito web di origine a ogni visita
+                                successiva o a un altro sito web che li riconosce. I cookies sono utili perché ci
+                                permettono di riconoscere il dispositivo e migliorare l'esperienza di navigazione.
                             </p>
 
-                            <p>
-                                <strong>Come utilizziamo i cookies?</strong> Utilizziamo i cookies per i seguenti scopi:
-                            </p>
+                            <h3>Come utilizziamo i cookies?</h3>
+
+                            <p>Utilizziamo i cookies per i seguenti scopi:</p>
 
                             <ul>
                                 <li>
                                     <span>
-                                        Prestazioni, analisi e ricerca: Per analizzare l'accesso e l'uso del sito web e
-                                        monitorare le prestazioni. Utilizziamo servizi come{' '}
+                                        <b>Prestazioni, analisi e ricerca:</b> Per analizzare l'accesso e l'uso del sito
+                                        web e monitorare le prestazioni. Utilizziamo servizi come{' '}
                                         <a href="https://vercel.com/products/observability" target="_blank">
                                             Vercel Analytics
+                                        </a>
+                                        , <a href="https://vercel.com/docs/speed-insights">Vercel Speed Insights</a> e
+                                        <a href="https://marketingplatform.google.com/about/analytics/">
+                                            Google Analytics
                                         </a>{' '}
                                         per raccogliere informazioni sull'utilizzo del nostro sito.
                                     </span>
                                 </li>
                                 <li>
                                     <span>
-                                        Funzionalità: Per ricordare le preferenze degli utenti e migliorare la
+                                        <b>Funzionalità:</b> Per ricordare le preferenze degli utenti e migliorare la
                                         navigazione tra le pagine.
                                     </span>
                                 </li>
                             </ul>
 
+                            <h3 style={{ marginTop: '1rem' }}>Quanto tempo restano salvati i cookies?</h3>
+
                             <p>
-                                <strong>Quanto tempo restano salvati i cookies?</strong> I cookies si distinguono in due
-                                categorie, a seconda della durata con cui rimangono salvati sul dispositivo:
+                                I cookies si distinguono in due categorie, a seconda della durata con cui rimangono
+                                salvati sul dispositivo:
                             </p>
 
                             <ul>
@@ -117,14 +124,13 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
                                 </li>
                             </ul>
 
-                            <h3 style={{ marginTop: '1rem' }}>Altre tecnologie</h3>
+                            <h2>Altre tecnologie</h2>
 
-                            <p>
-                                <strong>Archiviazione locale:</strong> Utilizzata per memorizzare le preferenze degli
-                                utenti.
-                            </p>
+                            <h3 style={{ marginTop: '1rem' }}>Archiviazione locale</h3>
 
-                            <h3>Rinuncia ai cookies</h3>
+                            <p>Utilizzata per memorizzare le preferenze degli utenti.</p>
+
+                            <h2>Rinuncia ai cookies</h2>
 
                             <p>
                                 La maggior parte dei dispositivi e dei browser web sono impostati per accettare i
@@ -138,7 +144,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
                                 disponibilità e sulla funzionalità del nostro sito web.
                             </p>
 
-                            <h3>Revisioni di questa politica</h3>
+                            <h2>Revisioni di questa politica</h2>
 
                             <p>
                                 Questa Informativa può essere modificata periodicamente. Provvederemo a informare gli

@@ -86,6 +86,35 @@ $text-color: #fff
                 font-size: 14px
                 line-height: 16px
 
+            h1,
+            h2
+                font-weight: 600
+                letter-spacing: 0
+                text-transform: uppercase
+
+                @media (max-width: 1000px)
+                    font-size: 24px
+                    line-height: 36px
+                    padding: 1.5rem 0 0
+
+            h1
+                font-size: 30px
+                line-height: 40px
+                padding: 2.5rem 0 1rem
+                color: $text-color
+
+                @media (max-width: 600px)
+                    font-size: 20px
+                    line-height: 25px
+
+            h2
+                font-size: 22px
+                line-height: 26px
+                padding: 1rem 0 0
+
+                @media (max-width: 600px)
+                    padding: 1.5rem 0 0
+
             p,
             span
                 font-size: 15px
@@ -107,6 +136,9 @@ $text-color: #fff
             img
                 margin: 1rem 0
                 width: 100%
+
+            video
+                margin: 1rem 0
 
         .content-creators
             display: flex
