@@ -34,7 +34,7 @@ const Footer = forwardRef<HTMLDivElement, FooterProps>(({ ...props }, ref) => {
                 <div className="footer-credits">
                     <CopyrightLink
                         alt="Raffaele Valenti"
-                        href="https://raffaele-valenti-portfolio.vercel.app/"
+                        href="https://www.raffaelevalenti.it"
                         src={RaffaeleValentiIcon}
                     />
                     <span>X</span>
