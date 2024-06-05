@@ -86,11 +86,8 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
                                         web e monitorare le prestazioni. Utilizziamo servizi come{' '}
                                         <a href="https://vercel.com/products/observability" target="_blank">
                                             Vercel Analytics
-                                        </a>
-                                        , <a href="https://vercel.com/docs/speed-insights">Vercel Speed Insights</a> e
-                                        <a href="https://marketingplatform.google.com/about/analytics/">
-                                            Google Analytics
                                         </a>{' '}
+                                        e <a href="https://vercel.com/docs/speed-insights">Vercel Speed Insights</a>
                                         per raccogliere informazioni sull'utilizzo del nostro sito.
                                     </span>
                                 </li>
