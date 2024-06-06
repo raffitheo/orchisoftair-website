@@ -41,7 +41,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
 
                                 <div>
                                     <h1>INFORMATIVA SULLA PRIVACY</h1>
-                                    <div className="banner-date">{formatDate(new Date('2024-06-05'))}</div>
+                                    <div className="banner-date">{formatDate(new Date('2024-06-07'))}</div>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +106,8 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                                     <span>
                                         Richiedere l'accesso, la rettifica o la cancellazione dell'indirizzo e-mail dal
                                         nostro database. Per farlo, contattaci a{' '}
-                                        <a href="mailto:gliorchitrieste@gmail.com" target="_blank">
-                                            gliorchitrieste@gmail.com
+                                        <a href="mailto:orchitriestesoftair@gmail.com" target="_blank">
+                                            orchitriestesoftair@gmail.com
                                         </a>
                                         .
                                     </span>
@@ -171,8 +171,8 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(({ ...props
                             <span>Via Caccia 11, Trieste, 34129 Italia</span>
                             <br />
                             <span style={{ marginBottom: '1rem' }}>
-                                <a href="mailto:gliorchitrieste@gmail.com" target="_blank">
-                                    gliorchitrieste@gmail.com
+                                <a href="mailto:orchitriestesoftair@gmail.com" target="_blank">
+                                    orchitriestesoftair@gmail.com
                                 </a>
                             </span>
 
