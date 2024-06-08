@@ -19,9 +19,9 @@ const NotFound = lazy(() => import('@pages/not-found'));
 const PrivacyPolicy = lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
-    const [currentMessageShown, setCurrentMessageShown] = useState<number>(-1);
-    const [welcomeMessages, setWelcomeMessages] = useState<Array<WelcomeMessage>>([]);
-    const [welcomeMessagesStatus, setWelcomeMessagesStatus] = useState<DataStatus>('initialized');
+    const [currentMessageShown, setCurrentMessageShown] = useState(-1);
+    const [welcomeMessages, setWelcomeMessages] = useState([] as WelcomeMessage[]);
+    const [welcomeMessagesStatus, setWelcomeMessagesStatus] = useState('initialized' as DataStatus);
 
     useEffect(() => {
         const welcomeMessagesClosed = window.sessionStorage.getItem(appsettings.WELCOME_MESSAGES_CLOSED);

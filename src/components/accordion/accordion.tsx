@@ -9,7 +9,7 @@ export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Accordion = forwardRef<HTMLDivElement, AccordionProps>(({ content, title, ...props }, ref) => {
-    const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <div ref={ref} {...props}>

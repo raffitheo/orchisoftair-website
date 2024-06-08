@@ -162,7 +162,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(({ ...props
         </>
     );
 
-    function formatDate(date: Date): string {
+    function formatDate(date: Date) {
         const newDate = dayjs(date);
         const months = [
             'gennaio',

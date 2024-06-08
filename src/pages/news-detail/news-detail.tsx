@@ -21,8 +21,8 @@ export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
 const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, ref) => {
     const location = useLocation();
 
-    const [pageData, setPageData] = useState<Page | undefined>(undefined);
-    const [pageDataStatus, setPageDataStatus] = useState<DataStatus>('initialized');
+    const [pageData, setPageData] = useState(undefined as Page | undefined);
+    const [pageDataStatus, setPageDataStatus] = useState('initialized' as DataStatus);
 
     useEffect(() => {
         setPageDataStatus('loading');
@@ -49,11 +49,9 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, re
             case 'initialized':
             case 'loading':
                 return (
-                    <>
-                        <Helmet>
-                            <title>Caricamento in corso...</title>
-                        </Helmet>
-                    </>
+                    <Helmet>
+                        <title>Caricamento in corso...</title>
+                    </Helmet>
                 );
 
             case 'success':
@@ -107,7 +105,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, re
                                 }}
                             >
                                 <div className="news-main-box">
-                                    {pageData && pageData.content ? parse(pageData.content) : <></>}
+                                    {pageData && pageData.content && parse(pageData.content)}
                                     <div className="content-creators"></div>
                                 </div>
                             </div>
@@ -147,7 +145,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(({ ...props }, re
         }
     }
 
-    function formatDate(date: Date): string {
+    function formatDate(date: Date) {
         const newDate = dayjs(date);
         const months = [
             'gennaio',

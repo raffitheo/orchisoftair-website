@@ -22,10 +22,10 @@ const PAGE_TITLE = appsettings.WEBSITE_DEFAULT_TITLE;
 export interface HomeProps extends HTMLAttributes<HTMLDivElement> {}
 
 const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
-    const [email, setEmail] = useState<string>('');
-    const [emailStatus, setEmailStatus] = useState<DataStatus>('initialized');
-    const [newsList, setNwsList] = useState<Array<News>>([]);
-    const [newsListStatus, setNwsListStatus] = useState<DataStatus>('initialized');
+    const [email, setEmail] = useState('');
+    const [emailStatus, setEmailStatus] = useState('initialized' as DataStatus);
+    const [newsList, setNwsList] = useState([] as News[]);
+    const [newsListStatus, setNwsListStatus] = useState('initialized' as DataStatus);
 
     useEffect(() => {
         setNwsListStatus('loading');

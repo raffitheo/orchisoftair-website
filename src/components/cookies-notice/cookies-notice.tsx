@@ -6,7 +6,7 @@ import './cookies-notice.sass';
 export interface CookiesNoticeProps extends HTMLAttributes<HTMLDivElement> {}
 
 const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(({ ...props }, ref) => {
-    const [showCookiesNotice, setShowCookiesNotice] = useState<boolean>(true);
+    const [showCookiesNotice, setShowCookiesNotice] = useState(true);
 
     useEffect(() => {
         const storageValue = window.localStorage.getItem(appsettings.COOKIES_NOTICE_ACCEPTED);

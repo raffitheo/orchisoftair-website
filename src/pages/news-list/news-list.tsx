@@ -16,8 +16,8 @@ const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Novità ed eventi`;
 export interface NewsListProps extends HTMLAttributes<HTMLDivElement> {}
 
 const NewsList = forwardRef<HTMLDivElement, NewsListProps>(({ ...props }, ref) => {
-    const [newsList, setNwsList] = useState<Array<News>>([]);
-    const [newsListStatus, setNwsListStatus] = useState<DataStatus>('initialized');
+    const [newsList, setNwsList] = useState([] as News[]);
+    const [newsListStatus, setNwsListStatus] = useState('initialized' as DataStatus);
 
     useEffect(() => {
         setNwsListStatus('loading');
