@@ -124,7 +124,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     <div className="overlay">
                         <div className="overlay2">
                             <div className="newsletter-section-box">
-                                <p className="subtitle">RIMANI AGGIORNATO</p>
+                                <p className="subtitle">RIMANI AGGIORNAT*</p>
 
                                 {rendernewsLetter()}
                             </div>

@@ -81,17 +81,17 @@ const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuest
                             />
 
                             <Accordion
-                                content="Per contattarci, puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure puoi inviarci un'email. Organizzeremo con piacere un primo incontro di persona per conoscerci e compilare insieme il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pronto per partecipare alle nostre sessioni di gioco.<br />Ricorda, le prime due prove sono sempre gratuite!"
+                                content="Per contattarci, ti consigliamo di compilare il modulo presente nel sito. In alternativa puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure un'email. Organizzeremo con piacere un primo incontro di persona per conoscerci e compilare insieme il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pront* per partecipare alle nostre sessioni di gioco.<br />Ricorda, le prime due prove sono sempre gratuite!"
                                 title="Come mi unisco a voi?"
                             />
 
                             <Accordion
-                                content="Per partecipare alle prove, non è necessario avere nulla di particolare, solo la voglia di giocare e divertirsi! Forniamo noi le repliche e i pallini. Se hai bisogno, possiamo anche fornirti gli occhiali protettivi, obbligatori per giocare, ma ti consigliamo di procurarteli da solo.<br />Non c'è bisogno di un abbigliamento specifico, basta qualcosa di comodo per muoverti agilmente in campo. Una tuta nera o verde e un paio di scarpe da trekking saranno più che sufficienti.<br />Dopo le prove, se decidi di iscriverti, ti consigliamo di acquistare al più presto la tua prima replica. I pallini possono essere acquistati direttamente dall'Associazione (senza alcun markup, al costo di acquisto) o puoi portare i tuoi."
+                                content="Per partecipare alle prove, non è necessario avere nulla di particolare, solo la voglia di giocare e divertirsi! Forniamo noi le repliche e i pallini. Se hai bisogno, possiamo anche fornirti gli occhiali protettivi, obbligatori per giocare, ma ti consigliamo di procurarteli da sol*.<br />Non c'è bisogno di un abbigliamento specifico, basta qualcosa di comodo per muoverti agilmente in campo. Una tuta nera o verde ed un paio di scarpe da trekking saranno più che sufficienti.<br />Dopo le prove, se decidi di iscriverti, ti consigliamo di acquistare al più presto la tua prima replica. I pallini possono essere acquistati direttamente dall'Associazione (senza alcun markup, al costo di acquisto) o puoi portare i tuoi."
                                 title="Cosa mi serve per giocare?"
                             />
 
                             <Accordion
-                                content="Per partecipare alle nostre attività al di fuori delle prove, è necessario iscriversi al costo annuale di 60€, che include anche l'assicurazione. Al di fuori dell'iscrizione annuale, non sono richiesti ulteriori pagamenti all'Associazione.<br />Per alcuni eventi speciali, in cui siamo ospiti di altre squadre, potrebbe essere richiesto un contributo aggiuntivo specifico per quella giornata, richiesto dalla squadra ospitante."
+                                content="Per partecipare alle nostre attività al di fuori delle prove, è necessario iscriversi al costo annuale di 60€, che include anche l'assicurazione. Al di fuori dell'iscrizione annuale, non sono richiesti ulteriori pagamenti all'Associazione.<br />Per alcuni eventi speciali, in cui siamo ospiti di altre squadre, potrebbe essere richiesto un contributo aggiuntivo specifico per quella giornata, richiesto dalla squadra ospitante. Questo costo potrebbe essere coperto totalmente o parzialmente dall'Accociazione, ma ogni caso è valutato a se."
                                 title="Quanto costa giocare?"
                             />
 
