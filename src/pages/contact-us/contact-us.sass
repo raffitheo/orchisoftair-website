@@ -1,0 +1,154 @@
+$primary-color: #861A32
+$text-color: #fff
+$transition-speed: .3s
+
+.contact-us-container
+    background-color: #000
+    margin: auto
+
+    .contact-us-header-box2
+        background-position: center
+        background-size: cover
+        color: $text-color
+        height: 400px
+        position: relative
+        text-align: center
+        width: 100%
+
+        .contact-us-banner-box
+            height: 100%
+            margin: 0 25%
+            position: relative
+            width: 50%
+
+            @media (max-width: 1500px)
+                margin: 0 10%
+                width: 80%
+
+            .contact-us-header
+                position: absolute
+                right: 20px
+                top: 20px
+
+                &-banner
+                    align-items: center
+                    display: flex
+                    height: 100%
+                    justify-content: center
+                    text-align: left
+
+                    h1
+                        font-size: 70px
+                        font-weight: 700
+                        letter-spacing: 0
+                        line-height: 84px
+
+                    .banner-date
+                        color: #cfd2d3
+                        float: left
+                        font-size: 16px
+                        font-weight: 600
+                        letter-spacing: 0
+                        line-height: 29px
+                        text-align: left
+
+            .contact-us-header-banner
+                h1
+                    @media (max-width: 1000px)
+                        font-size: 50px
+                        line-height: 60px
+
+    .contact-us-main-container
+        background-color: #000
+        font-size: 18px
+        font-weight: 400
+        letter-spacing: 0
+        line-height: 29px
+        padding-bottom: 5rem
+
+        .contact-us-main-box
+            background: #141311
+            color: #cfd2d3
+            font-size: 1rem
+            font-weight: 300
+            letter-spacing: 0
+            line-height: 20px
+            margin: 0 25%
+            padding: calc(30px - 1rem) 30px 30px 30px
+            position: relative
+            text-align: left
+            width: 50%
+
+            @media (max-width: 1500px)
+                margin: 0 10%
+                width: 80%
+
+            @media (max-width: 1000px)
+                font-size: 14px
+                line-height: 16px
+
+            p
+                font-size: 15px
+                font-weight: 300
+                letter-spacing: 0
+                line-height: 17px
+                margin: 1rem 0
+                text-align: justify
+
+                @media (max-width: 1000px)
+                    font-size: 14px
+                    line-height: 16px
+
+                a
+                    color: $primary-color
+
+            .contact-us-element
+                display: flex
+                flex-direction: column-reverse
+                margin: 1rem 0
+
+                input[required] + label:after,
+                textarea[required] + label:after
+                    content: '*'
+                    color: $primary-color
+
+                label
+                    margin-bottom: 0.25rem
+
+                input,
+                textarea
+                    border: 1px solid #ccc
+                    color: #000
+                    padding: 10px
+                    width: 100%
+
+                span
+                    margin-top: 0.25rem
+                    text-align: right
+
+            .contact-submit
+                background-color: $primary-color
+                border: none
+                cursor: pointer
+                color: #000
+                display: block
+                font-weight: 700
+                margin: auto
+                max-width: 400px
+                padding: 10px
+                text-transform: uppercase
+                transition: transform $transition-speed ease-in-out
+                width: 100%
+
+                @media (max-width: 400px)
+                    font-size: .9rem
+
+                &:hover
+                    transform: scale(1.03)
+                    transition: transform $transition-speed ease-in-out
+
+            .contact-us-response-message
+                font-size: 2rem
+                line-height: 2rem
+                margin-top: 2rem
+                text-align: center

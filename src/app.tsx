@@ -10,6 +10,7 @@ import { Query } from 'appwrite';
 import { lazy, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+const ContactUs = lazy(() => import('@pages/contact-us'));
 const CookiesPolicy = lazy(() => import('@pages/cookies-policy'));
 const FrequentlyAskedQuestions = lazy(() => import('@pages/faq'));
 const Home = lazy(() => import('@pages/home'));
@@ -43,6 +44,7 @@ const App = () => {
                 <Routes>
                     <Route element={<Home />} path="/" />
                     <Route element={<NewsList />} path="/news" />
+                    <Route element={<ContactUs />} path="/contact-us" />
 
                     <Route element={<NewsDetail />} path="/news/*" />
                     <Route element={<NewsDetail />} path="/event/*" />
