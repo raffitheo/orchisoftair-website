@@ -10,22 +10,38 @@ import './faq.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Frequently Asked Questions`;
 
-export interface FrequentlyAskedQuestionsProps extends HTMLAttributes<HTMLDivElement> {}
+export interface FrequentlyAskedQuestionsProps
+    extends HTMLAttributes<HTMLDivElement> {}
 
-const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuestionsProps>(({ ...props }, ref) => {
+const FrequentlyAskedQuestions = forwardRef<
+    HTMLDivElement,
+    FrequentlyAskedQuestionsProps
+>(({ ...props }, ref) => {
     return (
         <>
             <Helmet>
                 <title>{PAGE_TITLE}</title>
 
-                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
-                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    name="author"
+                    content={appsettings.WEBSITE_DEFAULT_AUTHOR}
+                />
+                <meta
+                    name="description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    property="og:description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    property="twitter:description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
@@ -42,7 +58,9 @@ const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuest
 
                                 <div>
                                     <h1>FAQ - FEQUENTLY ASKED QUESTIONS</h1>
-                                    <div className="banner-date">{formatDate(new Date('2024-05-24'))}</div>
+                                    <div className="banner-date">
+                                        {formatDate(new Date('2024-05-24'))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,13 +69,15 @@ const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuest
                     <div
                         className="faq-main-container"
                         style={{
-                            background: `url(${LorePattern}) no-repeat 50%`
+                            background: `url(${LorePattern}) no-repeat 50%`,
                         }}
                     >
                         <div className="faq-main-box">
                             <p>
-                                In questa sezione cercheremo di rispondere alle domande più frequenti che ci vengono
-                                poste. Non esitare a contattarci per qualsiasi ulteriore domanda o chiarimento!
+                                In questa sezione cercheremo di rispondere alle
+                                domande più frequenti che ci vengono poste. Non
+                                esitare a contattarci per qualsiasi ulteriore
+                                domanda o chiarimento!
                             </p>
 
                             <Accordion
@@ -119,7 +139,7 @@ const FrequentlyAskedQuestions = forwardRef<HTMLDivElement, FrequentlyAskedQuest
             'settembre',
             'ottobre',
             'novembre',
-            'dicembre'
+            'dicembre',
         ];
 
         const day = newDate.date();

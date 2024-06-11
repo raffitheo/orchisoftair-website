@@ -25,7 +25,9 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     const [email, setEmail] = useState('');
     const [emailStatus, setEmailStatus] = useState('initialized' as DataStatus);
     const [newsList, setNwsList] = useState([] as News[]);
-    const [newsListStatus, setNwsListStatus] = useState('initialized' as DataStatus);
+    const [newsListStatus, setNwsListStatus] = useState(
+        'initialized' as DataStatus,
+    );
 
     useEffect(() => {
         setNwsListStatus('loading');
@@ -40,20 +42,20 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
-            items: 3
+            items: 3,
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 3
+            items: 3,
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
-            items: 1
+            items: 1,
         },
         mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
+            items: 1,
+        },
     };
 
     return (
@@ -61,14 +63,26 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             <Helmet>
                 <title>{PAGE_TITLE}</title>
 
-                <meta name="author" content={appsettings.WEBSITE_DEFAULT_AUTHOR} />
-                <meta name="description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    name="author"
+                    content={appsettings.WEBSITE_DEFAULT_AUTHOR}
+                />
+                <meta
+                    name="description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta name="title" content={PAGE_TITLE} />
 
-                <meta property="og:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    property="og:description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta property="og:title" content={PAGE_TITLE} />
 
-                <meta property="twitter:description" content={appsettings.WEBSITE_DEFAULT_DESCRIPTION} />
+                <meta
+                    property="twitter:description"
+                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
+                />
                 <meta property="twitter:title" content={PAGE_TITLE} />
             </Helmet>
 
@@ -83,14 +97,23 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     <div className="main-box">
                         <div className="main-logo-flex">
                             <div className="main-logo-section">
-                                <img alt="Logo" src={Landing} height={333} width={707} />
+                                <img
+                                    alt="Logo"
+                                    src={Landing}
+                                    height={333}
+                                    width={707}
+                                />
 
                                 <div className="buttom-section">
                                     <a href="/about">
-                                        <button className="about-button">SU DI NOI</button>
+                                        <button className="about-button">
+                                            SU DI NOI
+                                        </button>
                                     </a>
                                     <a href="/contact-us">
-                                        <button className="contact-button">FAI UNA PROVA</button>
+                                        <button className="contact-button">
+                                            FAI UNA PROVA
+                                        </button>
                                     </a>
                                 </div>
 
@@ -98,8 +121,17 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                                     <p>IN COLLABORAZIONE CON</p>
 
                                     <div className="parthners-container">
-                                        <a className="damocles-logo" href="https://www.damocles.it/" target="_blank">
-                                            <img alt="Logo" height={37} src={DamoclesIcon} width={124} />
+                                        <a
+                                            className="damocles-logo"
+                                            href="https://www.damocles.it/"
+                                            target="_blank"
+                                        >
+                                            <img
+                                                alt="Logo"
+                                                height={37}
+                                                src={DamoclesIcon}
+                                                width={124}
+                                            />
                                         </a>
                                     </div>
                                 </div>
@@ -108,19 +140,29 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     </div>
                 </div>
 
-                <div className="relative-container" style={{ backgroundImage: `url(${BackgroundPattern})` }}>
+                <div
+                    className="relative-container"
+                    style={{ backgroundImage: `url(${BackgroundPattern})` }}
+                >
                     <div className="gradient-overlay">
                         <div className="gradient-overlay2">
                             <div className="news-section">
-                                <div className="news-title">NOVITÀ ED EVENTI</div>
+                                <div className="news-title">
+                                    NOVITÀ ED EVENTI
+                                </div>
 
-                                <div className="news-carousel">{renderNewsCarousel()}</div>
+                                <div className="news-carousel">
+                                    {renderNewsCarousel()}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <section className="newsletter-section" style={{ backgroundImage: `url(${BackgroundNewsletter})` }}>
+                <section
+                    className="newsletter-section"
+                    style={{ backgroundImage: `url(${BackgroundNewsletter})` }}
+                >
                     <div className="overlay">
                         <div className="overlay2">
                             <div className="newsletter-section-box">
@@ -142,13 +184,22 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             case 'error':
             case 'error-no-data':
                 return (
-                    <h1>Si è presentato un errore inaspettato. Non è possibile caricare la lista degli elementi.</h1>
+                    <h1>
+                        Si è presentato un errore inaspettato. Non è possibile
+                        caricare la lista degli elementi.
+                    </h1>
                 );
 
             case 'initialized':
             case 'loading':
                 return (
-                    <Carousel draggable autoPlay infinite responsive={responsive} swipeable>
+                    <Carousel
+                        draggable
+                        autoPlay
+                        infinite
+                        responsive={responsive}
+                        swipeable
+                    >
                         <NewsCarouselElement isLoading />
                         <NewsCarouselElement isLoading />
                         <NewsCarouselElement isLoading />
@@ -158,7 +209,13 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             case 'success':
                 if (newsList.length >= 1) {
                     return (
-                        <Carousel draggable autoPlay infinite responsive={responsive} swipeable>
+                        <Carousel
+                            draggable
+                            autoPlay
+                            infinite
+                            responsive={responsive}
+                            swipeable
+                        >
                             {newsList.map((news) => (
                                 <NewsCarouselElement
                                     category={news.category}
@@ -182,8 +239,8 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             case 'error-no-data':
                 return (
                     <p className="response-message">
-                        Si è presentato un errore inaspettato. Non è possibile iscriversi alla newsletter in questo
-                        momento.
+                        Si è presentato un errore inaspettato. Non è possibile
+                        iscriversi alla newsletter in questo momento.
                     </p>
                 );
 
@@ -202,17 +259,27 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                             value={email}
                         />
 
-                        <button className="subscribe-button" onClick={addNewsletterEmail} type="submit">
+                        <button
+                            className="subscribe-button"
+                            onClick={addNewsletterEmail}
+                            type="submit"
+                        >
                             Iscriviti alla newsletter
                         </button>
                     </form>
                 );
 
             case 'loading':
-                return <p className="response-message">Caricamento in corso...</p>;
+                return (
+                    <p className="response-message">Caricamento in corso...</p>
+                );
 
             case 'success':
-                return <p className="response-message">Ti ringraziamo per esserti sottoscritto!</p>;
+                return (
+                    <p className="response-message">
+                        Ti ringraziamo per esserti sottoscritto!
+                    </p>
+                );
         }
     }
 
@@ -221,10 +288,18 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             import.meta.env.VITE_DATABASE_ID,
             import.meta.env.VITE_NEWS_COLLECTION_ID,
             [
-                Query.select(['$id', 'category', 'creationDate', 'redirectLink', 'subtitle', 'thumbnail', 'title']),
+                Query.select([
+                    '$id',
+                    'category',
+                    'creationDate',
+                    'redirectLink',
+                    'subtitle',
+                    'thumbnail',
+                    'title',
+                ]),
                 Query.equal('display', [true]),
-                Query.orderDesc('creationDate')
-            ]
+                Query.orderDesc('creationDate'),
+            ],
         );
 
         if (response) {
@@ -238,7 +313,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
                     redirectLink: documnet.redirectLink,
                     subtitle: documnet.subtitle,
                     thumbnail: documnet.thumbnail,
-                    title: documnet.title
+                    title: documnet.title,
                 };
             });
 
@@ -248,7 +323,9 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
         }
     }
 
-    async function addNewsletterEmail(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    async function addNewsletterEmail(
+        e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    ) {
         e.preventDefault();
         setEmailStatus('loading');
 
@@ -256,7 +333,7 @@ const Home = forwardRef<HTMLDivElement, HomeProps>(({ ...props }, ref) => {
             import.meta.env.VITE_DATABASE_ID,
             import.meta.env.VITE_NEWSLETTER_COLLECTION_ID,
             ID.unique(),
-            { email: email, subscriptionDate: new Date() }
+            { email: email, subscriptionDate: new Date() },
         );
 
         if (response) {

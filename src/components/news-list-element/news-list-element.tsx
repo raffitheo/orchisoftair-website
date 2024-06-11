@@ -14,7 +14,19 @@ export interface NewsListElementProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
-    ({ category, creationDate, isLoading, redirectLink, subtitle, thumbnail, title, ...props }, ref) => {
+    (
+        {
+            category,
+            creationDate,
+            isLoading,
+            redirectLink,
+            subtitle,
+            thumbnail,
+            title,
+            ...props
+        },
+        ref,
+    ) => {
         return (
             <div className="news-element" ref={ref} {...props}>
                 {isLoading ? (
@@ -26,7 +38,8 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
                         <div className="blur">
                             <h2 className="title">Titolo della news</h2>
                             <div className="subtitle">
-                                Gli Orchi persentano questa fantastica news... Che è ancora in caricamento, ma tanto la
+                                Gli Orchi persentano questa fantastica news...
+                                Che è ancora in caricamento, ma tanto la
                                 schermata è sfocato e non lo saprai mai
                             </div>
                             <div className="category">Caricamento #0</div>
@@ -51,13 +64,17 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
                             <a href={redirectLink}>
                                 <p>Scopri di più →</p>
                             </a>
-                            <p>{creationDate ? dayjs(creationDate).format('DD/MM/YYYY') : ''}</p>
+                            <p>
+                                {creationDate
+                                    ? dayjs(creationDate).format('DD/MM/YYYY')
+                                    : ''}
+                            </p>
                         </div>
                     </>
                 )}
             </div>
         );
-    }
+    },
 );
 NewsListElement.displayName = 'NewsListElement';
 
