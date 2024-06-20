@@ -20,7 +20,7 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
         const [subjectText, setSubjectText] = React.useState<string>('');
 
         const [emailStatus, setEmailStatus] =
-            React.useState<DataStatus>('success');
+            React.useState<DataStatus>('initialized');
 
         const form = React.useRef<HTMLFormElement>(null);
 
