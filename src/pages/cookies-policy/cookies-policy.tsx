@@ -2,19 +2,19 @@ import LorePattern from '@assets/lore-pattern.webp';
 import Footer from '@components/footer';
 import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './cookies-policy.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Informativa sui cookies`;
 
-export interface CookiesPolicyProps extends HTMLAttributes<HTMLDivElement> {}
+interface CookiesPolicyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
+const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
     ({ ...props }, ref) => {
         return (
-            <>
+            <React.Fragment>
                 <Helmet>
                     <title>{PAGE_TITLE}</title>
 
@@ -230,7 +230,7 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
 
                     <Footer />
                 </div>
-            </>
+            </React.Fragment>
         );
 
         function formatDate(date: Date) {
@@ -260,4 +260,5 @@ const CookiesPolicy = forwardRef<HTMLDivElement, CookiesPolicyProps>(
 );
 CookiesPolicy.displayName = 'CookiesPolicy';
 
+export type { CookiesPolicyProps };
 export default CookiesPolicy;

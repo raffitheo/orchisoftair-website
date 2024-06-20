@@ -1,19 +1,19 @@
 import dayjs from 'dayjs';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
 import './news-list-element.sass';
 
-export interface NewsListElementProps extends HTMLAttributes<HTMLDivElement> {
-    category?: string;
-    creationDate?: Date;
-    isLoading?: boolean;
-    redirectLink?: string;
-    subtitle?: string;
-    thumbnail?: string;
-    title?: string;
+interface NewsListElementProps extends React.HTMLAttributes<HTMLDivElement> {
+    category?: string | undefined;
+    creationDate?: Date | undefined;
+    isLoading?: boolean | undefined;
+    redirectLink?: string | undefined;
+    subtitle?: string | undefined;
+    thumbnail?: string | undefined;
+    title?: string | undefined;
 }
 
-const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
+const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
     (
         {
             category,
@@ -30,7 +30,7 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
         return (
             <div className="news-element" ref={ref} {...props}>
                 {isLoading ? (
-                    <>
+                    <React.Fragment>
                         <div className="center">
                             <div className="spinner"></div>
                         </div>
@@ -50,9 +50,9 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
                                 <p>01/01/2024</p>
                             </div>
                         </div>
-                    </>
+                    </React.Fragment>
                 ) : (
-                    <>
+                    <React.Fragment>
                         <a href={redirectLink}>
                             <img height={300} src={thumbnail} width={500} />
                         </a>
@@ -70,7 +70,7 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
                                     : ''}
                             </p>
                         </div>
-                    </>
+                    </React.Fragment>
                 )}
             </div>
         );
@@ -78,4 +78,5 @@ const NewsListElement = forwardRef<HTMLDivElement, NewsListElementProps>(
 );
 NewsListElement.displayName = 'NewsListElement';
 
+export type { NewsListElementProps };
 export default NewsListElement;

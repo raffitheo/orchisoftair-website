@@ -1,15 +1,15 @@
 import parse from 'html-react-parser';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
 import './welcome-message-popup.sass';
 
-export interface WelcomeMessagePopupProps
-    extends HTMLAttributes<HTMLDivElement> {
+interface WelcomeMessagePopupProps
+    extends React.HTMLAttributes<HTMLDivElement> {
     content: string;
     onClick: React.MouseEventHandler<HTMLDivElement>;
 }
 
-const WelcomeMessagePopup = forwardRef<
+const WelcomeMessagePopup = React.forwardRef<
     HTMLDivElement,
     WelcomeMessagePopupProps
 >(({ content, onClick, ...props }, ref) => {
@@ -27,4 +27,5 @@ const WelcomeMessagePopup = forwardRef<
 });
 WelcomeMessagePopup.displayName = 'WelcomeMessagePopup';
 
+export type { WelcomeMessagePopupProps };
 export default WelcomeMessagePopup;

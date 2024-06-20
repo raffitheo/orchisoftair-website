@@ -1,13 +1,13 @@
 import OrchiIcon from '@assets/icons/orchi-icon.webp';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
 import './navbar.sass';
 
-export interface NavbarProps extends HTMLAttributes<HTMLDivElement> {
-    active?: 'about' | 'contact-us' | 'news';
+interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
+    active?: 'about' | 'contact-us' | 'news' | undefined;
 }
 
-const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
+const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
     ({ active, ...props }, ref) => {
         return (
             <div className="navbar-container" ref={ref} {...props}>
@@ -47,4 +47,5 @@ const Navbar = forwardRef<HTMLDivElement, NavbarProps>(
 );
 Navbar.displayName = 'Navbar';
 
+export type { NavbarProps };
 export default Navbar;

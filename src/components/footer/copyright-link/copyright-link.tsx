@@ -1,12 +1,12 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
-export interface CopyrightLinkProps extends HTMLAttributes<HTMLAnchorElement> {
+interface CopyrightLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     alt: string;
     href: string;
     src: string;
 }
 
-const CopyrightLink = forwardRef<HTMLAnchorElement, CopyrightLinkProps>(
+const CopyrightLink = React.forwardRef<HTMLAnchorElement, CopyrightLinkProps>(
     ({ alt, href, src, ...props }, ref) => {
         return (
             <a
@@ -25,4 +25,5 @@ const CopyrightLink = forwardRef<HTMLAnchorElement, CopyrightLinkProps>(
 );
 CopyrightLink.displayName = 'CopyrightLink';
 
+export type { CopyrightLinkProps };
 export default CopyrightLink;

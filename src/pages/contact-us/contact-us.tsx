@@ -3,28 +3,29 @@ import Navbar from '@components/navbar';
 import appsettings from '@config/appsettings';
 import emailjs from '@emailjs/browser';
 import { DataStatus } from '@interfaces/data-status';
-import { HTMLAttributes, forwardRef, useRef, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './contact-us.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Contatti`;
 
-export interface ContactUsProps extends HTMLAttributes<HTMLDivElement> {}
+interface ContactUsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const ContactUs = forwardRef<HTMLDivElement, ContactUsProps>(
+const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
     ({ ...props }, ref) => {
-        const [emailText, setEmailText] = useState('');
-        const [messageText, setMessageText] = useState('');
-        const [nameText, setNameText] = useState('');
-        const [subjectText, setSubjectText] = useState('');
+        const [emailText, setEmailText] = React.useState<string>('');
+        const [messageText, setMessageText] = React.useState<string>('');
+        const [nameText, setNameText] = React.useState<string>('');
+        const [subjectText, setSubjectText] = React.useState<string>('');
 
-        const [emailStatus, setEmailStatus] = useState('success' as DataStatus);
+        const [emailStatus, setEmailStatus] =
+            React.useState<DataStatus>('success');
 
-        const form = useRef(null);
+        const form = React.useRef<HTMLFormElement>(null);
 
         return (
-            <>
+            <React.Fragment>
                 <Helmet>
                     <title>{PAGE_TITLE}</title>
 
@@ -98,7 +99,7 @@ const ContactUs = forwardRef<HTMLDivElement, ContactUsProps>(
 
                     <Footer />
                 </div>
-            </>
+            </React.Fragment>
         );
 
         function renderEmailForm() {
@@ -231,4 +232,5 @@ const ContactUs = forwardRef<HTMLDivElement, ContactUsProps>(
 );
 ContactUs.displayName = 'ContactUs';
 
+export type { ContactUsProps };
 export default ContactUs;

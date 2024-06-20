@@ -1,24 +1,24 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
 import './news-carousel-element.sass';
 
-export interface NewsCarouselElementProps
-    extends HTMLAttributes<HTMLDivElement> {
-    category?: string;
-    href?: string;
-    isLoading?: boolean;
-    src?: string;
-    title?: string;
+interface NewsCarouselElementProps
+    extends React.HTMLAttributes<HTMLDivElement> {
+    category?: string | undefined;
+    href?: string | undefined;
+    isLoading?: boolean | undefined;
+    src?: string | undefined;
+    title?: string | undefined;
 }
 
-const NewsCarouselElement = forwardRef<
+const NewsCarouselElement = React.forwardRef<
     HTMLDivElement,
     NewsCarouselElementProps
 >(({ category, href, isLoading, src, title, ...props }, ref) => {
     return (
         <div className="news-item" ref={ref} {...props}>
             {isLoading ? (
-                <>
+                <React.Fragment>
                     <div className="center">
                         <div className="spinner"></div>
                     </div>
@@ -30,9 +30,9 @@ const NewsCarouselElement = forwardRef<
                             SCOPRI DI PIÙ →
                         </a>
                     </div>
-                </>
+                </React.Fragment>
             ) : (
-                <>
+                <React.Fragment>
                     <a href={href}>
                         <img alt="news" src={src} />
                     </a>
@@ -43,11 +43,12 @@ const NewsCarouselElement = forwardRef<
                             SCOPRI DI PIÙ →
                         </a>
                     </div>
-                </>
+                </React.Fragment>
             )}
         </div>
     );
 });
 NewsCarouselElement.displayName = 'NewsCarouselElement';
 
+export type { NewsCarouselElementProps };
 export default NewsCarouselElement;

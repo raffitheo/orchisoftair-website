@@ -7,28 +7,28 @@ import WelcomeMessage from '@interfaces/welcome-message';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Query } from 'appwrite';
-import { lazy, useEffect, useState } from 'react';
+import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
-const ContactUs = lazy(() => import('@pages/contact-us'));
-const CookiesPolicy = lazy(() => import('@pages/cookies-policy'));
-const FrequentlyAskedQuestions = lazy(() => import('@pages/faq'));
-const Home = lazy(() => import('@pages/home'));
-const NewsDetail = lazy(() => import('@pages/news-detail'));
-const NewsList = lazy(() => import('@pages/news-list'));
-const NotFound = lazy(() => import('@pages/not-found'));
-const PrivacyPolicy = lazy(() => import('@pages/privacy-policy'));
+const ContactUs = React.lazy(() => import('@pages/contact-us'));
+const CookiesPolicy = React.lazy(() => import('@pages/cookies-policy'));
+const FrequentlyAskedQuestions = React.lazy(() => import('@pages/faq'));
+const Home = React.lazy(() => import('@pages/home'));
+const NewsDetail = React.lazy(() => import('@pages/news-detail'));
+const NewsList = React.lazy(() => import('@pages/news-list'));
+const NotFound = React.lazy(() => import('@pages/not-found'));
+const PrivacyPolicy = React.lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
-    const [currentMessageShown, setCurrentMessageShown] = useState(-1);
-    const [welcomeMessages, setWelcomeMessages] = useState(
-        [] as WelcomeMessage[],
-    );
-    const [welcomeMessagesStatus, setWelcomeMessagesStatus] = useState(
-        'initialized' as DataStatus,
-    );
+    const [currentMessageShown, setCurrentMessageShown] =
+        React.useState<number>(-1);
+    const [welcomeMessages, setWelcomeMessages] = React.useState<
+        WelcomeMessage[]
+    >([]);
+    const [welcomeMessagesStatus, setWelcomeMessagesStatus] =
+        React.useState<DataStatus>('initialized');
 
-    useEffect(() => {
+    React.useEffect(() => {
         const welcomeMessagesClosed = window.sessionStorage.getItem(
             appsettings.WELCOME_MESSAGES_CLOSED,
         );
@@ -38,14 +38,14 @@ const App = () => {
         }
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (welcomeMessagesStatus === 'loading') {
             getWelcomeMessages();
         }
     }, [welcomeMessagesStatus]);
 
     return (
-        <>
+        <React.Fragment>
             <Router>
                 <Routes>
                     <Route element={<Home />} path="/" />
@@ -65,7 +65,7 @@ const App = () => {
 
                 <CookiesNotice />
 
-                {welcomeMessages.length >= 1 && currentMessageShown != -1 ? (
+                {welcomeMessages.length >= 1 && currentMessageShown != -1 && (
                     <WelcomeMessagePopup
                         content={welcomeMessages[currentMessageShown].content}
                         onClick={() => {
@@ -84,14 +84,12 @@ const App = () => {
                             }
                         }}
                     />
-                ) : (
-                    <></>
                 )}
             </Router>
 
             <Analytics />
             <SpeedInsights />
-        </>
+        </React.Fragment>
     );
 
     async function getWelcomeMessages() {

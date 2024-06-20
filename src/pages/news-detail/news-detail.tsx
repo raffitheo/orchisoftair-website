@@ -8,7 +8,7 @@ import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
 import dayjs from 'dayjs';
 import parse from 'html-react-parser';
-import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router-dom';
 
@@ -17,22 +17,23 @@ import './news-detail.sass';
 const PAGE_TITLE = (title: string) =>
     `${appsettings.WEBSITE_DEFAULT_TITLE} | ${title}`;
 
-export interface NewsDetailProps extends HTMLAttributes<HTMLDivElement> {}
+interface NewsDetailProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
+const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
     ({ ...props }, ref) => {
         const location = useLocation();
 
-        const [pageData, setPageData] = useState(undefined as Page | undefined);
-        const [pageDataStatus, setPageDataStatus] = useState(
-            'initialized' as DataStatus,
+        const [pageData, setPageData] = React.useState<Page | undefined>(
+            undefined,
         );
+        const [pageDataStatus, setPageDataStatus] =
+            React.useState<DataStatus>('initialized');
 
-        useEffect(() => {
+        React.useEffect(() => {
             setPageDataStatus('loading');
         }, []);
 
-        useEffect(() => {
+        React.useEffect(() => {
             if (pageDataStatus === 'loading') {
                 getContent();
             }
@@ -60,7 +61,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
 
                 case 'success':
                     return (
-                        <>
+                        <React.Fragment>
                             <Helmet>
                                 <title>
                                     {PAGE_TITLE(pageData?.title as string)}
@@ -160,7 +161,7 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
                             </div>
 
                             <Footer />
-                        </>
+                        </React.Fragment>
                     );
             }
         }
@@ -226,4 +227,5 @@ const NewsDetail = forwardRef<HTMLDivElement, NewsDetailProps>(
 );
 NewsDetail.displayName = 'NewsDetail';
 
+export type { NewsDetailProps };
 export default NewsDetail;

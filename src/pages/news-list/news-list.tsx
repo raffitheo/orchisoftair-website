@@ -6,34 +6,33 @@ import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
 import News from '@interfaces/news';
 import { Query } from 'appwrite';
-import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './news-list.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Novità ed eventi`;
 
-export interface NewsListProps extends HTMLAttributes<HTMLDivElement> {}
+interface NewsListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
+const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
     ({ ...props }, ref) => {
-        const [newsList, setNwsList] = useState([] as News[]);
-        const [newsListStatus, setNwsListStatus] = useState(
-            'initialized' as DataStatus,
-        );
+        const [newsList, setNwsList] = React.useState<News[]>([]);
+        const [newsListStatus, setNwsListStatus] =
+            React.useState<DataStatus>('initialized');
 
-        useEffect(() => {
+        React.useEffect(() => {
             setNwsListStatus('loading');
         }, []);
 
-        useEffect(() => {
+        React.useEffect(() => {
             if (newsListStatus === 'loading') {
                 getNews();
             }
         }, [newsListStatus]);
 
         return (
-            <>
+            <React.Fragment>
                 <Helmet>
                     <title>{PAGE_TITLE}</title>
 
@@ -67,7 +66,7 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
 
                     <Footer />
                 </div>
-            </>
+            </React.Fragment>
         );
 
         function renderNewsList() {
@@ -166,4 +165,5 @@ const NewsList = forwardRef<HTMLDivElement, NewsListProps>(
 );
 NewsList.displayName = 'NewsList';
 
+export type { NewsListProps };
 export default NewsList;

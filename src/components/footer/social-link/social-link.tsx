@@ -1,14 +1,14 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 
 import './social-link.sass';
 
-export interface SocialLinkProps extends HTMLAttributes<HTMLAnchorElement> {
+interface SocialLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     alt: string;
     href: string;
     src: string;
 }
 
-const SocialLink = forwardRef<HTMLAnchorElement, SocialLinkProps>(
+const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
     ({ alt, href, src, ...props }, ref) => {
         return (
             <a
@@ -26,4 +26,5 @@ const SocialLink = forwardRef<HTMLAnchorElement, SocialLinkProps>(
 );
 SocialLink.displayName = 'SocialLink';
 
+export type { SocialLinkProps };
 export default SocialLink;

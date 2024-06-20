@@ -1,15 +1,16 @@
 import appsettings from '@config/appsettings';
-import { HTMLAttributes, forwardRef, useEffect, useState } from 'react';
+import React from 'react';
 
 import './cookies-notice.sass';
 
-export interface CookiesNoticeProps extends HTMLAttributes<HTMLDivElement> {}
+interface CookiesNoticeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
+const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
     ({ ...props }, ref) => {
-        const [showCookiesNotice, setShowCookiesNotice] = useState(true);
+        const [showCookiesNotice, setShowCookiesNotice] =
+            React.useState<boolean>(true);
 
-        useEffect(() => {
+        React.useEffect(() => {
             const storageValue = window.localStorage.getItem(
                 appsettings.COOKIES_NOTICE_ACCEPTED,
             );
@@ -55,11 +56,10 @@ const CookiesNotice = forwardRef<HTMLDivElement, CookiesNoticeProps>(
                     </div>
                 </div>
             );
-        } else {
-            return <></>;
         }
     },
 );
 CookiesNotice.displayName = 'CookiesNotice';
 
+export type { CookiesNoticeProps };
 export default CookiesNotice;

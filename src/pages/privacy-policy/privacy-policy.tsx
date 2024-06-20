@@ -2,19 +2,19 @@ import LorePattern from '@assets/lore-pattern.webp';
 import Footer from '@components/footer';
 import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './privacy-policy.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Informativa sulla privacy`;
 
-export interface PrivacyPolicyProps extends HTMLAttributes<HTMLDivElement> {}
+interface PrivacyPolicyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
+const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
     ({ ...props }, ref) => {
         return (
-            <>
+            <React.Fragment>
                 <Helmet>
                     <title>{PAGE_TITLE}</title>
 
@@ -250,7 +250,7 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
 
                     <Footer />
                 </div>
-            </>
+            </React.Fragment>
         );
 
         function formatDate(date: Date) {
@@ -280,4 +280,5 @@ const PrivacyPolicy = forwardRef<HTMLDivElement, PrivacyPolicyProps>(
 );
 PrivacyPolicy.displayName = 'PrivacyPolicy';
 
+export type { PrivacyPolicyProps };
 export default PrivacyPolicy;

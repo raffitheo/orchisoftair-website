@@ -3,22 +3,22 @@ import Accordion from '@components/accordion';
 import Footer from '@components/footer';
 import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './faq.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Frequently Asked Questions`;
 
-export interface FrequentlyAskedQuestionsProps
-    extends HTMLAttributes<HTMLDivElement> {}
+interface FrequentlyAskedQuestionsProps
+    extends React.HTMLAttributes<HTMLDivElement> {}
 
-const FrequentlyAskedQuestions = forwardRef<
+const FrequentlyAskedQuestions = React.forwardRef<
     HTMLDivElement,
     FrequentlyAskedQuestionsProps
 >(({ ...props }, ref) => {
     return (
-        <>
+        <React.Fragment>
             <Helmet>
                 <title>{PAGE_TITLE}</title>
 
@@ -122,7 +122,7 @@ const FrequentlyAskedQuestions = forwardRef<
 
                 <Footer />
             </div>
-        </>
+        </React.Fragment>
     );
 
     function formatDate(date: Date) {
@@ -151,4 +151,5 @@ const FrequentlyAskedQuestions = forwardRef<
 });
 FrequentlyAskedQuestions.displayName = 'FrequentlyAskedQuestions';
 
+export type { FrequentlyAskedQuestionsProps };
 export default FrequentlyAskedQuestions;

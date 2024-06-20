@@ -1,16 +1,16 @@
 import parse from 'html-react-parser';
-import { HTMLAttributes, forwardRef, useState } from 'react';
+import React from 'react';
 
 import './accordion.sass';
 
-export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
+interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
     content: string;
     title: string;
 }
 
-const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
+const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     ({ content, title, ...props }, ref) => {
-        const [isOpen, setIsOpen] = useState(false);
+        const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
         return (
             <div ref={ref} {...props}>
@@ -45,4 +45,5 @@ const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
 );
 Accordion.displayName = 'Accordion';
 
+export type { AccordionProps };
 export default Accordion;

@@ -8,6 +8,40 @@ module.exports = {
         'plugin:prettier/recommended',
     ],
     ignorePatterns: ['dist', '.eslintrc.cjs'],
+    overrides: [
+        {
+            files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+            rules: {
+                'import/order': [
+                    'error',
+                    {
+                        groups: [
+                            'builtin',
+                            'external',
+                            'internal',
+                            'parent',
+                            'sibling',
+                            'index',
+                        ],
+                        'newlines-between': 'always',
+                        alphabetize: {
+                            order: 'asc',
+                            caseInsensitive: true,
+                        },
+                    },
+                ],
+                'max-len': [
+                    'error',
+                    {
+                        code: 120,
+                        ignorePattern: '^import |^export \\{(.*?)\\}',
+                        ignoreStrings: true,
+                        ignoreRegExpLiterals: true,
+                    },
+                ],
+            },
+        },
+    ],
     parser: '@typescript-eslint/parser',
     plugins: ['react-refresh', 'import', 'prettier'],
     rules: {

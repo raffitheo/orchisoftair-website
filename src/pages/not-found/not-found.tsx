@@ -1,17 +1,17 @@
 import appsettings from '@config/appsettings';
-import { HTMLAttributes, forwardRef } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 
 import './not-found.sass';
 
 const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Errore 404`;
 
-export interface NotFoundProps extends HTMLAttributes<HTMLDivElement> {}
+interface NotFoundProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const NotFound = forwardRef<HTMLDivElement, NotFoundProps>(
+const NotFound = React.forwardRef<HTMLDivElement, NotFoundProps>(
     ({ ...props }, ref) => {
         return (
-            <>
+            <React.Fragment>
                 <Helmet>
                     <title>{PAGE_TITLE}</title>
 
@@ -46,10 +46,11 @@ const NotFound = forwardRef<HTMLDivElement, NotFoundProps>(
                         </div>
                     </div>
                 </div>
-            </>
+            </React.Fragment>
         );
     },
 );
 NotFound.displayName = 'NotFound';
 
+export type { NotFoundProps };
 export default NotFound;
