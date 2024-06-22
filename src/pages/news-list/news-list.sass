@@ -1,7 +1,59 @@
-
 $text-color: #fff
+
 .news-container
     background-color: #000
+
+    .news-header-box2
+        background-position: center
+        background-size: cover
+        color: $text-color
+        height: 400px
+        position: relative
+        text-align: center
+        width: 100%
+
+        .news-banner-box
+            height: 100%
+            margin: 0 25%
+            position: relative
+            width: 50%
+
+            @media (max-width: 1500px)
+                margin: 0 10%
+                width: 80%
+
+            .news-header
+                position: absolute
+                right: 20px
+                top: 20px
+
+                &-banner
+                    align-items: center
+                    display: flex
+                    height: 100%
+                    justify-content: center
+                    text-align: left
+
+                    h1
+                        font-size: 70px
+                        font-weight: 700
+                        letter-spacing: 0
+                        line-height: 84px
+
+                    .banner-date
+                        color: #cfd2d3
+                        float: left
+                        font-size: 16px
+                        font-weight: 600
+                        letter-spacing: 0
+                        line-height: 29px
+                        text-align: left
+
+            .news-header-banner
+                h1
+                    @media (max-width: 1000px)
+                        font-size: 50px
+                        line-height: 60px
 
     .news-background
         margin: auto
@@ -23,7 +75,7 @@ $text-color: #fff
             grid-template-columns: repeat(2, 1fr)
             grid-auto-rows: minmax(min-content, max-content)
             margin: auto
-            padding: 8rem 0
+            padding-bottom: 5rem
             place-items: center
             width: max-content
             width: -moz-max-content

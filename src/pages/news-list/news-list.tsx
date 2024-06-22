@@ -59,10 +59,26 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                     <meta property="twitter:title" content={PAGE_TITLE} />
                 </Helmet>
 
-                <div className="news-container" ref={ref} {...props}>
+                <div ref={ref} {...props}>
                     <Navbar active="news" />
 
-                    <div className="news-background">{renderNewsList()}</div>
+                    <div className="news-container">
+                        <div className="news-header-box2">
+                            <div className="news-banner-box">
+                                <div className="news-header-banner">
+                                    <div className="news-header" />
+
+                                    <div>
+                                        <h1>NOVITÀ ED EVENTI</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="news-background">
+                            {renderNewsList()}
+                        </div>
+                    </div>
 
                     <Footer />
                 </div>
