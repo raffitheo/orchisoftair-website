@@ -69,6 +69,8 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
                             </div>
                         </div>
 
+                        <div className="video-gradient" />
+
                         <div className="contact-us-main-container">
                             <div className="contact-us-main-box">
                                 <p>

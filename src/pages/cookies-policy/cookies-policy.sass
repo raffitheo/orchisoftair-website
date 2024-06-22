@@ -6,6 +6,7 @@ $text-color: #fff
     background-color: $background-color-dark
     margin: auto
     max-width: 1920px
+    position: relative
 
     .cookies-policy-header-box2
         background-position: center
@@ -58,6 +59,16 @@ $text-color: #fff
                     @media (max-width: 1000px)
                         font-size: 50px
                         line-height: 60px
+
+    .video-gradient
+        background: linear-gradient(0deg, $background-color-dark, hsla(0, 0%, 5%, 0) 10%)
+        bottom: 0
+        height: 400px
+        left: 0
+        pointer-events: none
+        position: absolute
+        right: 0
+        top: 0
 
     .cookies-policy-main-container
         background-position: bottom

@@ -63,6 +63,8 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                             </div>
                         </div>
 
+                        <div className="video-gradient" />
+
                         <div
                             className="cookies-policy-main-container"
                             style={{

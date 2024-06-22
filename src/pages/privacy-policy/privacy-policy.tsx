@@ -67,6 +67,8 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             </div>
                         </div>
 
+                        <div className="video-gradient" />
+
                         <div
                             className="privacy-policy-main-container"
                             style={{

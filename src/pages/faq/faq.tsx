@@ -67,6 +67,8 @@ const FrequentlyAskedQuestions = React.forwardRef<
                         </div>
                     </div>
 
+                    <div className="video-gradient" />
+
                     <div
                         className="faq-main-container"
                         style={{

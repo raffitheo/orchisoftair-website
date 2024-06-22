@@ -147,6 +147,8 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
                                     </div>
                                 </div>
 
+                                <div className="video-gradient" />
+
                                 <div
                                     className="news-main-container"
                                     style={{
