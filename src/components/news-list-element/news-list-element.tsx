@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './news-list-element.sass';
 
@@ -7,7 +8,7 @@ interface NewsListElementProps extends React.HTMLAttributes<HTMLDivElement> {
     category?: string | undefined;
     creationDate?: Date | undefined;
     isLoading?: boolean | undefined;
-    redirectLink?: string | undefined;
+    redirectLink: string;
     subtitle?: string | undefined;
     thumbnail?: string | undefined;
     title?: string | undefined;
@@ -44,26 +45,26 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
                             </div>
                             <div className="category">Caricamento #0</div>
                             <div className="bottom-line">
-                                <a>
+                                <Link to="#">
                                     <p>Scopri di più →</p>
-                                </a>
+                                </Link>
                                 <p>01/01/2024</p>
                             </div>
                         </div>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <a href={redirectLink}>
+                        <Link to={redirectLink}>
                             <img height={300} src={thumbnail} width={500} />
-                        </a>
+                        </Link>
 
                         <h2 className="title">{title}</h2>
                         <div className="subtitle">{subtitle}</div>
                         <div className="category">{category}</div>
                         <div className="bottom-line">
-                            <a href={redirectLink}>
+                            <Link to={redirectLink}>
                                 <p>Scopri di più →</p>
-                            </a>
+                            </Link>
                             <p>
                                 {creationDate
                                     ? dayjs(creationDate).format('DD/MM/YYYY')

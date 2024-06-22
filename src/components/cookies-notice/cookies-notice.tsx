@@ -1,5 +1,6 @@
 import appsettings from '@config/appsettings';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './cookies-notice.sass';
 
@@ -38,7 +39,9 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                             esperienza di navigazione. Continuando a visitare
                             questo sito, acconsenti al loro uso.
                             <br />
-                            <a href="/cookies-policy">Informativa sui cookie</a>
+                            <Link to="/cookies-policy">
+                                Informativa sui cookie
+                            </Link>
                         </span>
                     </div>
 

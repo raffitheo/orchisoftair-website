@@ -13,6 +13,7 @@ import { ID, Query } from 'appwrite';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Carousel from 'react-multi-carousel';
+import { Link } from 'react-router-dom';
 
 import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
@@ -106,26 +107,26 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                     />
 
                                     <div className="buttom-section">
-                                        <a href="/about">
+                                        <Link to="/about">
                                             <button className="about-button">
                                                 SU DI NOI
                                             </button>
-                                        </a>
-                                        <a href="/contact-us">
+                                        </Link>
+                                        <Link to="/contact-us">
                                             <button className="contact-button">
                                                 FAI UNA PROVA
                                             </button>
-                                        </a>
+                                        </Link>
                                     </div>
 
                                     <div className="partners-section">
                                         <p>IN COLLABORAZIONE CON</p>
 
                                         <div className="parthners-container">
-                                            <a
+                                            <Link
                                                 className="damocles-logo"
-                                                href="https://www.damocles.it/"
                                                 target="_blank"
+                                                to="https://www.damocles.it/"
                                             >
                                                 <img
                                                     alt="Logo"
@@ -133,7 +134,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                                     src={DamoclesIcon}
                                                     width={124}
                                                 />
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -205,9 +206,9 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                             responsive={responsive}
                             swipeable
                         >
-                            <NewsCarouselElement isLoading />
-                            <NewsCarouselElement isLoading />
-                            <NewsCarouselElement isLoading />
+                            <NewsCarouselElement isLoading to="#" />
+                            <NewsCarouselElement isLoading to="#" />
+                            <NewsCarouselElement isLoading to="#" />
                         </Carousel>
                     );
 
@@ -224,10 +225,10 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                 {newsList.map((news) => (
                                     <NewsCarouselElement
                                         category={news.category}
-                                        href={news.redirectLink}
                                         key={news.id}
                                         src={news.thumbnail}
                                         title={news.title}
+                                        to={news.redirectLink}
                                     />
                                 ))}
                             </Carousel>

@@ -1,26 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './social-link.sass';
 
 interface SocialLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     alt: string;
-    href: string;
     src: string;
+    to: string;
 }
 
 const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
-    ({ alt, href, src, ...props }, ref) => {
+    ({ alt, to, src, ...props }, ref) => {
         return (
-            <a
+            <Link
                 aria-label={alt}
                 className="social-link-element"
-                href={href}
                 ref={ref}
                 target="_blank"
+                to={to}
                 {...props}
             >
                 <img alt={alt} height={32} src={src} width={32} />
-            </a>
+            </Link>
         );
     },
 );

@@ -1,20 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './news-carousel-element.sass';
 
 interface NewsCarouselElementProps
     extends React.HTMLAttributes<HTMLDivElement> {
     category?: string | undefined;
-    href?: string | undefined;
     isLoading?: boolean | undefined;
     src?: string | undefined;
     title?: string | undefined;
+    to: string;
 }
 
 const NewsCarouselElement = React.forwardRef<
     HTMLDivElement,
     NewsCarouselElementProps
->(({ category, href, isLoading, src, title, ...props }, ref) => {
+>(({ category, isLoading, src, title, to, ...props }, ref) => {
     return (
         <div className="news-item" ref={ref} {...props}>
             {isLoading ? (
@@ -26,22 +27,22 @@ const NewsCarouselElement = React.forwardRef<
                     <div className="blur news-item-description">
                         <h3>Titolo della news</h3>
                         <p>Caricamento #0</p>
-                        <a className="news-item-link" href={href}>
+                        <Link className="news-item-link" to={to}>
                             SCOPRI DI PIÙ →
-                        </a>
+                        </Link>
                     </div>
                 </React.Fragment>
             ) : (
                 <React.Fragment>
-                    <a href={href}>
+                    <Link to={to}>
                         <img alt="news" src={src} />
-                    </a>
+                    </Link>
                     <div className="news-item-description">
                         <h3>{title}</h3>
                         <p>{category}</p>
-                        <a className="news-item-link" href={href}>
+                        <Link className="news-item-link" to={to}>
                             SCOPRI DI PIÙ →
-                        </a>
+                        </Link>
                     </div>
                 </React.Fragment>
             )}

@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import { DataStatus } from '@interfaces/data-status';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 import './contact-us.sass';
 
@@ -74,13 +75,13 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
                                     Se hai domande da farci, puoi contattarci
                                     tramite messaggio privato sui nostri canali
                                     social, come{' '}
-                                    <a href="https://www.instagram.com/orchisoftair_official/">
+                                    <Link to="https://www.instagram.com/orchisoftair_official/">
                                         Instagram
-                                    </a>{' '}
+                                    </Link>{' '}
                                     o{' '}
-                                    <a href="https://www.facebook.com/orchitrieste/">
+                                    <Link to="https://www.facebook.com/orchitrieste/">
                                         Facebook
-                                    </a>
+                                    </Link>
                                     . Siamo sempre felici di rispondere alle tue
                                     domande e fornirti tutte le informazioni di
                                     cui hai bisogno. Tuttavia, per facilitare la

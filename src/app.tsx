@@ -48,19 +48,82 @@ const App = () => {
         <React.Fragment>
             <Router>
                 <Routes>
-                    <Route element={<Home />} path="/" />
-                    <Route element={<NewsList />} path="/news" />
-                    <Route element={<ContactUs />} path="/contact-us" />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <Home />
+                            </React.Suspense>
+                        }
+                        path="/"
+                    />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <NewsList />
+                            </React.Suspense>
+                        }
+                        path="/news"
+                    />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <ContactUs />
+                            </React.Suspense>
+                        }
+                        path="/contact-us"
+                    />
 
-                    <Route element={<NewsDetail />} path="/news/*" />
-                    <Route element={<NewsDetail />} path="/event/*" />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <NewsDetail />
+                            </React.Suspense>
+                        }
+                        path="/news/*"
+                    />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <NewsDetail />
+                            </React.Suspense>
+                        }
+                        path="/event/*"
+                    />
 
-                    <Route element={<CookiesPolicy />} path="/cookies-policy" />
-                    <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <CookiesPolicy />
+                            </React.Suspense>
+                        }
+                        path="/cookies-policy"
+                    />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <PrivacyPolicy />
+                            </React.Suspense>
+                        }
+                        path="/privacy-policy"
+                    />
 
-                    <Route element={<FrequentlyAskedQuestions />} path="/faq" />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <FrequentlyAskedQuestions />
+                            </React.Suspense>
+                        }
+                        path="/faq"
+                    />
 
-                    <Route element={<NotFound />} path="/*" />
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <NotFound />
+                            </React.Suspense>
+                        }
+                        path="/*"
+                    />
                 </Routes>
 
                 <CookiesNotice />

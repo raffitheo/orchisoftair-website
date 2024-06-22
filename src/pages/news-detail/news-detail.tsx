@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import parse from 'html-react-parser';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './news-detail.sass';
 
@@ -121,7 +121,9 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
                                     <div className="news-banner-box">
                                         <div className="news-header">
                                             <div className="back-button">
-                                                <a href="/">Torna alla home</a>
+                                                <Link to="/">
+                                                    Torna alla home
+                                                </Link>
                                             </div>
                                         </div>
 

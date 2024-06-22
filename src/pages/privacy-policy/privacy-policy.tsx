@@ -4,6 +4,7 @@ import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 import './privacy-policy.sass';
 
@@ -52,7 +53,7 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 <div className="privacy-policy-header-banner">
                                     <div className="privacy-policy-header">
                                         <div className="back-button">
-                                            <a href="/">Torna alla home</a>
+                                            <Link to="/">Torna alla home</Link>
                                         </div>
                                     </div>
 
@@ -142,12 +143,12 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                             la cancellazione dell'indirizzo
                                             e-mail dal nostro database. Per
                                             farlo, contattaci a{' '}
-                                            <a
-                                                href="mailto:orchitriestesoftair@gmail.com"
+                                            <Link
                                                 target="_blank"
+                                                to="mailto:orchitriestesoftair@gmail.com"
                                             >
                                                 orchitriestesoftair@gmail.com
-                                            </a>
+                                            </Link>
                                             .
                                         </span>
                                     </li>
@@ -235,12 +236,12 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 </span>
                                 <br />
                                 <span style={{ marginBottom: '1rem' }}>
-                                    <a
-                                        href="mailto:orchitriestesoftair@gmail.com"
+                                    <Link
                                         target="_blank"
+                                        to="mailto:orchitriestesoftair@gmail.com"
                                     >
                                         orchitriestesoftair@gmail.com
-                                    </a>
+                                    </Link>
                                 </span>
 
                                 <div className="content-creators"></div>

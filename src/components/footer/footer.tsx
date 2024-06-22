@@ -4,6 +4,7 @@ import OrchiIcon from '@assets/icons/orchi-icon.webp';
 import RaffaeleValentiIcon from '@assets/icons/raffaele-valenti-icon.webp';
 import appsettings from '@config/appsettings';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './footer.sass';
 
@@ -22,15 +23,15 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                         {appsettings.WEBSITE_DEFAULT_AUTHOR}
                         <div className="footer-link">
                             <span>
-                                <a href="/privacy-policy">
+                                <Link to="/privacy-policy">
                                     Informativa sulla privacy
-                                </a>
+                                </Link>
                             </span>
                             <span>
-                                <a href="/contact-us">Fai una prova</a>
+                                <Link to="/contact-us">Fai una prova</Link>
                             </span>
                             <span>
-                                <a href="/faq">FAQ</a>
+                                <Link to="/faq">FAQ</Link>
                             </span>
                         </div>
                     </div>
@@ -38,23 +39,23 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                     <div className="footer-credits">
                         <CopyrightLink
                             alt="Raffaele Valenti"
-                            href="https://www.raffaelevalenti.it"
                             src={RaffaeleValentiIcon}
+                            to="https://www.raffaelevalenti.it"
                         />
                         <span>X</span>
-                        <CopyrightLink alt="Orchi" href="/" src={OrchiIcon} />
+                        <CopyrightLink alt="Orchi" src={OrchiIcon} to="/" />
                     </div>
 
                     <div className="footer-social">
                         <SocialLink
                             alt="Facebook"
-                            href="https://www.facebook.com/orchitrieste/"
                             src={FacebookIcon}
+                            to="https://www.facebook.com/orchitrieste/"
                         />
                         <SocialLink
                             alt="instagram"
-                            href="https://www.instagram.com/orchisoftair_official/"
                             src={InstagramIcon}
+                            to="https://www.instagram.com/orchisoftair_official/"
                         />
                     </div>
                 </div>

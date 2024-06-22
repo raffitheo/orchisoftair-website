@@ -5,6 +5,7 @@ import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 import './faq.sass';
 
@@ -52,7 +53,7 @@ const FrequentlyAskedQuestions = React.forwardRef<
                             <div className="faq-header-banner">
                                 <div className="faq-header">
                                     <div className="back-button">
-                                        <a href="/">Torna alla home</a>
+                                        <Link to="/">Torna alla home</Link>
                                     </div>
                                 </div>
 

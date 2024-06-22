@@ -1,5 +1,6 @@
 import OrchiIcon from '@assets/icons/orchi-icon.webp';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './navbar.sass';
 
@@ -14,31 +15,31 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                 <div className="navbar-box">
                     <div className="navbar-logo">
                         <div className="orchi-logo">
-                            <a href="/">
+                            <Link to="/">
                                 <img height={48} src={OrchiIcon} width={52} />
-                            </a>
+                            </Link>
                         </div>
                     </div>
 
                     <div className="navbar-buttons">
-                        <a
+                        <Link
                             className={`navbar-button${active === 'about' ? ' active' : ''}`}
-                            href="/about"
+                            to="/about"
                         >
                             chi siamo
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             className={`navbar-button${active === 'news' ? ' active' : ''}`}
-                            href="/news"
+                            to="/news"
                         >
                             news
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             className={`navbar-button${active === 'contact-us' ? ' active' : ''}`}
-                            href="/contact-us"
+                            to="/contact-us"
                         >
                             contatti
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

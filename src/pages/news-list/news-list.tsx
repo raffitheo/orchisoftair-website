@@ -86,12 +86,12 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                 case 'loading':
                     return (
                         <div className="news-gallery">
-                            <NewsListElement isLoading />
-                            <NewsListElement isLoading />
-                            <NewsListElement isLoading />
-                            <NewsListElement isLoading />
-                            <NewsListElement isLoading />
-                            <NewsListElement isLoading />
+                            <NewsListElement isLoading redirectLink="#" />
+                            <NewsListElement isLoading redirectLink="#" />
+                            <NewsListElement isLoading redirectLink="#" />
+                            <NewsListElement isLoading redirectLink="#" />
+                            <NewsListElement isLoading redirectLink="#" />
+                            <NewsListElement isLoading redirectLink="#" />
                         </div>
                     );
 

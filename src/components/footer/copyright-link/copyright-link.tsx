@@ -1,25 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface CopyrightLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     alt: string;
-    href: string;
     src: string;
+    to: string;
 }
 
 const CopyrightLink = React.forwardRef<HTMLAnchorElement, CopyrightLinkProps>(
-    ({ alt, href, src, ...props }, ref) => {
+    ({ alt, to, src, ...props }, ref) => {
         return (
-            <a
-                aria-label={alt}
-                href={href}
-                ref={ref}
-                target="_blank"
-                {...props}
-            >
+            <Link aria-label={alt} ref={ref} target="_blank" to={to} {...props}>
                 <div className="copyright-link">
                     <img height={45} src={src} width={45} />
                 </div>
-            </a>
+            </Link>
         );
     },
 );

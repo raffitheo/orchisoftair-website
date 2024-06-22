@@ -4,6 +4,7 @@ import appsettings from '@config/appsettings';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
 import './cookies-policy.sass';
 
@@ -48,7 +49,7 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 <div className="cookies-policy-header-banner">
                                     <div className="cookies-policy-header">
                                         <div className="back-button">
-                                            <a href="/">Torna alla home</a>
+                                            <Link to="/">Torna alla home</Link>
                                         </div>
                                     </div>
 
@@ -71,9 +72,9 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                             <div className="cookies-policy-main-box">
                                 <p>
                                     Come descritto nella nostra{' '}
-                                    <a href="/privacy-policy">
+                                    <Link to="/privacy-policy">
                                         Informativa sulla privacy
-                                    </a>
+                                    </Link>
                                     , utilizziamo i cookies per migliorare
                                     l'esperienza complessiva. La presente
                                     Informativa fornisce ulteriori dettagli su
@@ -121,16 +122,16 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                             sito web e monitorare le
                                             prestazioni. Utilizziamo servizi
                                             come{' '}
-                                            <a
-                                                href="https://vercel.com/products/observability"
+                                            <Link
                                                 target="_blank"
+                                                to="https://vercel.com/products/observability"
                                             >
                                                 Vercel Analytics
-                                            </a>{' '}
+                                            </Link>{' '}
                                             e{' '}
-                                            <a href="https://vercel.com/docs/speed-insights">
+                                            <Link to="https://vercel.com/docs/speed-insights">
                                                 Vercel Speed Insights
-                                            </a>
+                                            </Link>
                                             per raccogliere informazioni
                                             sull'utilizzo del nostro sito.
                                         </span>
@@ -194,12 +195,12 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                     rifiutare i cookies. Per ulteriori
                                     informazioni su come bloccare i cookies,
                                     visitare il sito{' '}
-                                    <a
-                                        href="https://allaboutcookies.org/"
+                                    <Link
                                         target="_blank"
+                                        to="https://allaboutcookies.org/"
                                     >
                                         allaboutcookies.org
-                                    </a>
+                                    </Link>
                                     . Si noti che la scelta di rimuovere o
                                     rifiutare i cookies potrebbe influire sulla
                                     disponibilità e sulla funzionalità del
