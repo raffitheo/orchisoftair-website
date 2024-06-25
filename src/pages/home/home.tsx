@@ -27,12 +27,12 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
         const [email, setEmail] = React.useState<string>('');
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
-        const [newsList, setNwsList] = React.useState<News[]>([]);
-        const [newsListStatus, setNwsListStatus] =
+        const [newsList, setNewsList] = React.useState<News[]>([]);
+        const [newsListStatus, setNewsListStatus] =
             React.useState<DataStatus>('initialized');
 
         React.useEffect(() => {
-            setNwsListStatus('loading');
+            setNewsListStatus('loading');
         }, []);
 
         React.useEffect(() => {
@@ -174,7 +174,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                         RIMANI AGGIORNAT*
                                     </p>
 
-                                    {rendernewsLetter()}
+                                    {renderNewsletter()}
                                 </div>
                             </div>
                         </div>
@@ -239,7 +239,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             }
         }
 
-        function rendernewsLetter() {
+        function renderNewsletter() {
             switch (emailStatus) {
                 case 'error':
                 case 'error-no-data':
@@ -314,7 +314,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             );
 
             if (response) {
-                setNwsListStatus('success');
+                setNewsListStatus('success');
 
                 const newsListResponse = response.documents.map((documnet) => {
                     return {
@@ -328,9 +328,9 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                     };
                 });
 
-                setNwsList(newsListResponse);
+                setNewsList(newsListResponse);
             } else {
-                setNwsListStatus('error');
+                setNewsListStatus('error');
             }
         }
 
