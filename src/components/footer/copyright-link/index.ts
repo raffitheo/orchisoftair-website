@@ -1,4 +1,4 @@
-import CopyrightLink, { CopyrightLinkProps } from './copyright-link';
+import { CopyrightLinkProps } from './copyright-link';
 
 export type { CopyrightLinkProps };
-export default CopyrightLink;
+export { default as CopyrightLink } from './copyright-link';

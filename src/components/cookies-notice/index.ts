@@ -1,4 +1,4 @@
-import CookiesNotice, { CookiesNoticeProps } from './cookies-notice';
+import { CookiesNoticeProps } from './cookies-notice';
 
 export type { CookiesNoticeProps };
-export default CookiesNotice;
+export { default as CookiesNotice } from './cookies-notice';

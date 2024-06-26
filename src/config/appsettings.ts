@@ -7,4 +7,4 @@ const appsettings = {
     WEBSITE_DEFAULT_TITLE: 'A.S.D. Gli Orchi Trieste - Softair Team',
 };
 
-export default appsettings;
+export { appsettings };

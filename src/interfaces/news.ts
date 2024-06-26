@@ -1,4 +1,4 @@
-export default interface News {
+interface News {
     category: string;
     creationDate: Date;
     id: string;
@@ -7,3 +7,5 @@ export default interface News {
     thumbnail: string;
     title: string;
 }
+
+export type { News };

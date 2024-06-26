@@ -16,7 +16,13 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                     <div className="navbar-logo">
                         <div className="orchi-logo">
                             <Link to="/">
-                                <img height={48} src={OrchiIcon} width={52} />
+                                <img
+                                    alt="orchi-icon"
+                                    height={48}
+                                    loading="lazy"
+                                    src={OrchiIcon}
+                                    width={52}
+                                />
                             </Link>
                         </div>
                     </div>

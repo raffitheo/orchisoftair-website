@@ -1,7 +1,7 @@
 import LorePattern from '@assets/lore-pattern.webp';
-import Accordion from '@components/accordion';
-import Footer from '@components/footer';
-import appsettings from '@config/appsettings';
+import { Accordion } from '@components/accordion';
+import { Footer } from '@components/footer';
+import { appsettings } from '@config/appsettings';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Helmet } from 'react-helmet';

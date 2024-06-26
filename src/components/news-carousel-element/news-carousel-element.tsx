@@ -7,7 +7,7 @@ interface NewsCarouselElementProps
     extends React.HTMLAttributes<HTMLDivElement> {
     category?: string | undefined;
     isLoading?: boolean | undefined;
-    src?: string | undefined;
+    thumbnail?: string | undefined;
     title?: string | undefined;
     to: string;
 }
@@ -15,7 +15,7 @@ interface NewsCarouselElementProps
 const NewsCarouselElement = React.forwardRef<
     HTMLDivElement,
     NewsCarouselElementProps
->(({ category, isLoading, src, title, to, ...props }, ref) => {
+>(({ category, isLoading, thumbnail, title, to, ...props }, ref) => {
     return (
         <div className="news-item" ref={ref} {...props}>
             {isLoading ? (
@@ -35,7 +35,11 @@ const NewsCarouselElement = React.forwardRef<
             ) : (
                 <React.Fragment>
                     <Link to={to}>
-                        <img alt="news" src={src} />
+                        <img
+                            alt="news-thumbnail"
+                            loading="lazy"
+                            src={thumbnail}
+                        />
                     </Link>
                     <div className="news-item-description">
                         <h3>{title}</h3>

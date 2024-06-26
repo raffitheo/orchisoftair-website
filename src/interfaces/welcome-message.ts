@@ -1,3 +1,5 @@
-export default interface WelcomeMessage {
+interface WelcomeMessage {
     content: string;
 }
+
+export type { WelcomeMessage };

@@ -1,4 +1,4 @@
-import appsettings from '@config/appsettings';
+import { appsettings } from '@config/appsettings';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 

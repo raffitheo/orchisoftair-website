@@ -2,14 +2,14 @@ import FacebookIcon from '@assets/icons/facebook-icon.webp';
 import InstagramIcon from '@assets/icons/instagram-icon.webp';
 import OrchiIcon from '@assets/icons/orchi-icon.webp';
 import RaffaeleValentiIcon from '@assets/icons/raffaele-valenti-icon.webp';
-import appsettings from '@config/appsettings';
+import { appsettings } from '@config/appsettings';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './footer.sass';
 
-import CopyrightLink from './copyright-link';
-import SocialLink from './social-link';
+import { CopyrightLink } from './copyright-link';
+import { SocialLink } from './social-link';
 
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -27,9 +27,11 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                                     Informativa sulla privacy
                                 </Link>
                             </span>
+
                             <span>
                                 <Link to="/contact-us">Fai una prova</Link>
                             </span>
+
                             <span>
                                 <Link to="/faq">FAQ</Link>
                             </span>
@@ -38,23 +40,30 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
 
                     <div className="footer-credits">
                         <CopyrightLink
-                            alt="Raffaele Valenti"
-                            src={RaffaeleValentiIcon}
+                            alt="raffaele-valenti-icon"
+                            image={RaffaeleValentiIcon}
                             to="https://www.raffaelevalenti.it"
                         />
+
                         <span>X</span>
-                        <CopyrightLink alt="Orchi" src={OrchiIcon} to="/" />
+
+                        <CopyrightLink
+                            alt="orchi-icon"
+                            image={OrchiIcon}
+                            to="/"
+                        />
                     </div>
 
                     <div className="footer-social">
                         <SocialLink
-                            alt="Facebook"
-                            src={FacebookIcon}
+                            alt="facebook-icon"
+                            image={FacebookIcon}
                             to="https://www.facebook.com/orchitrieste/"
                         />
+
                         <SocialLink
-                            alt="instagram"
-                            src={InstagramIcon}
+                            alt="instagram-icon"
+                            image={InstagramIcon}
                             to="https://www.instagram.com/orchisoftair_official/"
                         />
                     </div>

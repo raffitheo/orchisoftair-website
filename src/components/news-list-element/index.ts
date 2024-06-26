@@ -1,4 +1,4 @@
-import NewsListElement, { NewsListElementProps } from './news-list-element';
+import { NewsListElementProps } from './news-list-element';
 
 export type { NewsListElementProps };
-export default NewsListElement;
+export { default as NewsListElement } from './news-list-element';

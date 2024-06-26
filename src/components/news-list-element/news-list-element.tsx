@@ -55,7 +55,13 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
                 ) : (
                     <React.Fragment>
                         <Link to={redirectLink}>
-                            <img height={300} src={thumbnail} width={500} />
+                            <img
+                                alt="news-thumbnail"
+                                height={300}
+                                loading="lazy"
+                                src={thumbnail}
+                                width={500}
+                            />
                         </Link>
 
                         <h2 className="title">{title}</h2>

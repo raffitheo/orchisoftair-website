@@ -1,4 +1,4 @@
-import Navbar, { NavbarProps } from './navbar';
+import { NavbarProps } from './navbar';
 
 export type { NavbarProps };
-export default Navbar;
+export { default as Navbar } from './navbar';

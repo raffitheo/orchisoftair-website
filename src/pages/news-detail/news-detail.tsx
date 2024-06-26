@@ -1,9 +1,9 @@
 import LorePattern from '@assets/lore-pattern.webp';
-import Footer from '@components/footer';
-import appsettings from '@config/appsettings';
+import { Footer } from '@components/footer';
+import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import Page from '@interfaces/page';
+import { Page } from '@interfaces/page';
 import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
 import dayjs from 'dayjs';

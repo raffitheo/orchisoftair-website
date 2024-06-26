@@ -1,9 +1,9 @@
-import CookiesNotice from '@components/cookies-notice';
-import WelcomeMessagePopup from '@components/welcome-message-popup';
-import appsettings from '@config/appsettings';
+import { CookiesNotice } from '@components/cookies-notice';
+import { WelcomeMessagePopup } from '@components/welcome-message-popup';
+import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import WelcomeMessage from '@interfaces/welcome-message';
+import { WelcomeMessage } from '@interfaces/welcome-message';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Query } from 'appwrite';
@@ -64,6 +64,7 @@ const App = () => {
                         }
                         path="/news"
                     />
+
                     <Route
                         element={
                             <React.Suspense>
@@ -81,6 +82,7 @@ const App = () => {
                         }
                         path="/news/*"
                     />
+
                     <Route
                         element={
                             <React.Suspense>
@@ -98,6 +100,7 @@ const App = () => {
                         }
                         path="/cookies-policy"
                     />
+
                     <Route
                         element={
                             <React.Suspense>

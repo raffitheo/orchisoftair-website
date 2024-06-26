@@ -5,12 +5,12 @@ import './social-link.sass';
 
 interface SocialLinkProps extends React.HTMLAttributes<HTMLAnchorElement> {
     alt: string;
-    src: string;
+    image: string;
     to: string;
 }
 
 const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
-    ({ alt, to, src, ...props }, ref) => {
+    ({ alt, to, image, ...props }, ref) => {
         return (
             <Link
                 aria-label={alt}
@@ -20,7 +20,13 @@ const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
                 to={to}
                 {...props}
             >
-                <img alt={alt} height={32} src={src} width={32} />
+                <img
+                    alt={alt}
+                    height={32}
+                    loading="lazy"
+                    src={image}
+                    width={32}
+                />
             </Link>
         );
     },

@@ -1,6 +1,4 @@
-import WelcomeMessagePopup, {
-    WelcomeMessagePopupProps,
-} from './welcome-message-popup';
+import { WelcomeMessagePopupProps } from './welcome-message-popup';
 
 export type { WelcomeMessagePopupProps };
-export default WelcomeMessagePopup;
+export { default as WelcomeMessagePopup } from './welcome-message-popup';

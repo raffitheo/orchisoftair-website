@@ -2,13 +2,13 @@ import BackgroundNewsletter from '@assets/background-newsletter.webp';
 import BackgroundPattern from '@assets/background-pattern.webp';
 import DamoclesIcon from '@assets/icons/damocles-icon.webp';
 import Landing from '@assets/landing.webp';
-import Footer from '@components/footer';
-import Navbar from '@components/navbar';
-import NewsCarouselElement from '@components/news-carousel-element';
-import appsettings from '@config/appsettings';
+import { Footer } from '@components/footer';
+import { Navbar } from '@components/navbar';
+import { NewsCarouselElement } from '@components/news-carousel-element';
+import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { DataStatus } from '@interfaces/data-status';
-import News from '@interfaces/news';
+import { News } from '@interfaces/news';
 import { ID, Query } from 'appwrite';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -100,9 +100,10 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                             <div className="main-logo-flex">
                                 <div className="main-logo-section">
                                     <img
-                                        alt="Logo"
-                                        src={Landing}
+                                        alt="landing-logo"
                                         height={333}
+                                        loading="lazy"
+                                        src={Landing}
                                         width={707}
                                     />
 
@@ -129,8 +130,9 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                                 to="https://www.damocles.it/"
                                             >
                                                 <img
-                                                    alt="Logo"
+                                                    alt="damocles-icon"
                                                     height={37}
+                                                    loading="lazy"
                                                     src={DamoclesIcon}
                                                     width={124}
                                                 />
@@ -226,7 +228,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                     <NewsCarouselElement
                                         category={news.category}
                                         key={news.id}
-                                        src={news.thumbnail}
+                                        thumbnail={news.thumbnail}
                                         title={news.title}
                                         to={news.redirectLink}
                                     />

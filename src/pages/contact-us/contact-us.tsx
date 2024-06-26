@@ -1,6 +1,6 @@
-import Footer from '@components/footer';
-import Navbar from '@components/navbar';
-import appsettings from '@config/appsettings';
+import { Footer } from '@components/footer';
+import { Navbar } from '@components/navbar';
+import { appsettings } from '@config/appsettings';
 import emailjs from '@emailjs/browser';
 import { DataStatus } from '@interfaces/data-status';
 import React from 'react';

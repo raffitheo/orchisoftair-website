@@ -1,6 +1,4 @@
-import NewsCarouselElement, {
-    NewsCarouselElementProps,
-} from './news-carousel-element';
+import { NewsCarouselElementProps } from './news-carousel-element';
 
 export type { NewsCarouselElementProps };
-export default NewsCarouselElement;
+export { default as NewsCarouselElement } from './news-carousel-element';

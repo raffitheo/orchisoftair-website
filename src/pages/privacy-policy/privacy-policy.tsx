@@ -1,6 +1,6 @@
 import LorePattern from '@assets/lore-pattern.webp';
-import Footer from '@components/footer';
-import appsettings from '@config/appsettings';
+import { Footer } from '@components/footer';
+import { appsettings } from '@config/appsettings';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Helmet } from 'react-helmet';

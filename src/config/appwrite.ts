@@ -6,6 +6,6 @@ client
     .setEndpoint('https://cloud.appwrite.io/v1')
     .setProject(import.meta.env.VITE_PROJECT_ID);
 
-export const databases = new Databases(client);
+const databases = new Databases(client);
 
-export default client;
+export { client, databases };
