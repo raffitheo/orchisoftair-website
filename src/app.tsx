@@ -10,6 +10,7 @@ import { Query } from 'appwrite';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
+const About = React.lazy(() => import('@pages/about'));
 const ContactUs = React.lazy(() => import('@pages/contact-us'));
 const CookiesPolicy = React.lazy(() => import('@pages/cookies-policy'));
 const FrequentlyAskedQuestions = React.lazy(() => import('@pages/faq'));
@@ -56,6 +57,16 @@ const App = () => {
                         }
                         path="/"
                     />
+
+                    <Route
+                        element={
+                            <React.Suspense>
+                                <About />
+                            </React.Suspense>
+                        }
+                        path="/about"
+                    />
+
                     <Route
                         element={
                             <React.Suspense>
