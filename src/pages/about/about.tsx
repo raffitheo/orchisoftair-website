@@ -351,7 +351,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                                                 <div className="about-member-element-details">
                                                     <h2>
                                                         {member.nickname ||
-                                                            'Nessun nome in codice assegnato'}
+                                                            'Non assegnato'}
                                                     </h2>
 
                                                     <p>
