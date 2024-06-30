@@ -71,6 +71,7 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
                             <Link to={redirectLink}>
                                 <p>Scopri di più →</p>
                             </Link>
+
                             <p>
                                 {creationDate
                                     ? dayjs(creationDate).format('DD/MM/YYYY')
