@@ -382,16 +382,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
             const response = await databases.listDocuments(
                 import.meta.env.VITE_DATABASE_ID,
                 import.meta.env.VITE_FIELDS_COLLECTION_ID,
-                [
-                    Query.select([
-                        '$id',
-                        'alt',
-                        'description',
-                        'image',
-                        'title',
-                    ]),
-                    Query.orderAsc('title'),
-                ],
+                [Query.select(['$id', 'alt', 'description', 'image', 'title'])],
             );
 
             if (response) {
