@@ -1,6 +1,6 @@
 {
     "name": "orchisoftair-website",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "type": "module",
     "description": "Official website for the italian softair team A.S.D. Gli Orchi Trieste",
     "keywords": [
@@ -21,7 +21,8 @@
     "license": "MIT",
     "author": {
         "email": "raffaele-valenti@protonmail.com",
-        "name": "Raffaele Valenti"
+        "name": "Raffaele Valenti",
+        "url": "https://raffaelevalenti.it/"
     },
     "main": "index.js",
     "repository": {
