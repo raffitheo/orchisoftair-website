@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import './navbar.sass';
 
 interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
-    active?: 'about' | 'contact-us' | 'news' | undefined;
+    active?: 'about' | 'contact-us' | 'news';
 }
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(

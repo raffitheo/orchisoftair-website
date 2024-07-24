@@ -8,8 +8,7 @@ interface CookiesNoticeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
     ({ ...props }, ref) => {
-        const [showCookiesNotice, setShowCookiesNotice] =
-            React.useState<boolean>(true);
+        const [showCookiesNotice, setShowCookiesNotice] = React.useState(true);
 
         React.useEffect(() => {
             const storageValue = window.localStorage.getItem(

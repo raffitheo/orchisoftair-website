@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import './news-list-element.sass';
 
 interface NewsListElementProps extends React.HTMLAttributes<HTMLDivElement> {
-    category?: string | undefined;
-    creationDate?: Date | undefined;
-    isLoading?: boolean | undefined;
+    category?: string;
+    creationDate?: Date;
+    isLoading?: boolean;
     redirectLink: string;
-    subtitle?: string | undefined;
-    thumbnail?: string | undefined;
-    title?: string | undefined;
+    subtitle?: string;
+    thumbnail?: string;
+    title?: string;
 }
 
 const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(

@@ -1,9 +1,9 @@
 interface Member {
     alt: string;
-    description?: string | undefined;
+    description?: string;
     firstName: string;
     lastName: string;
-    nickname?: string | undefined;
+    nickname?: string;
     role: string;
     thumbnail: string;
 }

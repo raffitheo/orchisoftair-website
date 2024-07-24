@@ -5,10 +5,10 @@ import './news-carousel-element.sass';
 
 interface NewsCarouselElementProps
     extends React.HTMLAttributes<HTMLDivElement> {
-    category?: string | undefined;
-    isLoading?: boolean | undefined;
-    thumbnail?: string | undefined;
-    title?: string | undefined;
+    category?: string;
+    isLoading?: boolean;
+    thumbnail?: string;
+    title?: string;
     to: string;
 }
 

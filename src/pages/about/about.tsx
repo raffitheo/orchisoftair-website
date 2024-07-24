@@ -7,9 +7,9 @@ import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
-import { DataStatus } from '@interfaces/data-status';
-import { Field } from '@interfaces/field';
-import { Member } from '@interfaces/member';
+import { type DataStatus } from '@interfaces/data-status';
+import { type Field } from '@interfaces/field';
+import { type Member } from '@interfaces/member';
 import { Query } from 'appwrite';
 import parse from 'html-react-parser';
 import React from 'react';
@@ -29,7 +29,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
         const [fieldsListStatus, setFieldsListStatus] =
             React.useState<DataStatus>('initialized');
 
-        const [activeField, setActiveField] = React.useState<number>(0);
+        const [activeField, setActiveField] = React.useState(0);
 
         const [membersList, setMembersList] = React.useState<Member[]>([]);
         const [membersListStatus, setMembersListStatus] =

@@ -2,8 +2,8 @@ import LorePattern from '@assets/lore-pattern.webp';
 import { Footer } from '@components/footer';
 import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
-import { DataStatus } from '@interfaces/data-status';
-import { Page } from '@interfaces/page';
+import { type DataStatus } from '@interfaces/data-status';
+import { type Page } from '@interfaces/page';
 import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
 import dayjs from 'dayjs';
@@ -23,9 +23,7 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
     ({ ...props }, ref) => {
         const location = useLocation();
 
-        const [pageData, setPageData] = React.useState<Page | undefined>(
-            undefined,
-        );
+        const [pageData, setPageData] = React.useState<Page>();
         const [pageDataStatus, setPageDataStatus] =
             React.useState<DataStatus>('initialized');
 

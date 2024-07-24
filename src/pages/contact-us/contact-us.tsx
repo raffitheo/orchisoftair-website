@@ -2,7 +2,7 @@ import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { appsettings } from '@config/appsettings';
 import emailjs from '@emailjs/browser';
-import { DataStatus } from '@interfaces/data-status';
+import { type DataStatus } from '@interfaces/data-status';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
@@ -15,10 +15,10 @@ interface ContactUsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
     ({ ...props }, ref) => {
-        const [emailText, setEmailText] = React.useState<string>('');
-        const [messageText, setMessageText] = React.useState<string>('');
-        const [nameText, setNameText] = React.useState<string>('');
-        const [subjectText, setSubjectText] = React.useState<string>('');
+        const [emailText, setEmailText] = React.useState<string>();
+        const [messageText, setMessageText] = React.useState<string>();
+        const [nameText, setNameText] = React.useState<string>();
+        const [subjectText, setSubjectText] = React.useState<string>();
 
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
@@ -139,7 +139,7 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
                             </div>
 
                             <div className="contact-us-element">
-                                <span>{subjectText.length}/100</span>
+                                <span>{subjectText?.length ?? 0}/100</span>
                                 <input
                                     id="subject"
                                     maxLength={100}
@@ -156,7 +156,7 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
                             </div>
 
                             <div className="contact-us-element">
-                                <span>{messageText.length}/500</span>
+                                <span>{messageText?.length ?? 0}/500</span>
                                 <textarea
                                     id="message"
                                     maxLength={500}

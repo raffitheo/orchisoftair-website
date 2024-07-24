@@ -7,8 +7,8 @@ import { Navbar } from '@components/navbar';
 import { NewsCarouselElement } from '@components/news-carousel-element';
 import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
-import { DataStatus } from '@interfaces/data-status';
-import { News } from '@interfaces/news';
+import { type DataStatus } from '@interfaces/data-status';
+import { type News } from '@interfaces/news';
 import { ID, Query } from 'appwrite';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -24,7 +24,7 @@ interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Home = React.forwardRef<HTMLDivElement, HomeProps>(
     ({ ...props }, ref) => {
-        const [email, setEmail] = React.useState<string>('');
+        const [email, setEmail] = React.useState<string>();
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
         const [newsList, setNewsList] = React.useState<News[]>([]);

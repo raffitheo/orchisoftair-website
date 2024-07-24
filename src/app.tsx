@@ -2,8 +2,8 @@ import { CookiesNotice } from '@components/cookies-notice';
 import { WelcomeMessagePopup } from '@components/welcome-message-popup';
 import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
-import { DataStatus } from '@interfaces/data-status';
-import { WelcomeMessage } from '@interfaces/welcome-message';
+import { type DataStatus } from '@interfaces/data-status';
+import { type WelcomeMessage } from '@interfaces/welcome-message';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Query } from 'appwrite';
@@ -21,8 +21,7 @@ const NotFound = React.lazy(() => import('@pages/not-found'));
 const PrivacyPolicy = React.lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
-    const [currentMessageShown, setCurrentMessageShown] =
-        React.useState<number>(-1);
+    const [currentMessageShown, setCurrentMessageShown] = React.useState(-1);
     const [welcomeMessages, setWelcomeMessages] = React.useState<
         WelcomeMessage[]
     >([]);
@@ -49,95 +48,16 @@ const App = () => {
         <React.Fragment>
             <Router>
                 <Routes>
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <Home />
-                            </React.Suspense>
-                        }
-                        path="/"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <About />
-                            </React.Suspense>
-                        }
-                        path="/about"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <NewsList />
-                            </React.Suspense>
-                        }
-                        path="/news"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <ContactUs />
-                            </React.Suspense>
-                        }
-                        path="/contact-us"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <NewsDetail />
-                            </React.Suspense>
-                        }
-                        path="/news/*"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <NewsDetail />
-                            </React.Suspense>
-                        }
-                        path="/event/*"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <CookiesPolicy />
-                            </React.Suspense>
-                        }
-                        path="/cookies-policy"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <PrivacyPolicy />
-                            </React.Suspense>
-                        }
-                        path="/privacy-policy"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <FrequentlyAskedQuestions />
-                            </React.Suspense>
-                        }
-                        path="/faq"
-                    />
-
-                    <Route
-                        element={
-                            <React.Suspense>
-                                <NotFound />
-                            </React.Suspense>
-                        }
-                        path="/*"
-                    />
+                    {route(<Home />, '/')}
+                    {route(<About />, '/about')}
+                    {route(<NewsList />, '/news')}
+                    {route(<ContactUs />, '/contact-us')}
+                    {route(<NewsDetail />, '/news/*')}
+                    {route(<NewsDetail />, '/event/*')}
+                    {route(<CookiesPolicy />, '/cookies-policy')}
+                    {route(<PrivacyPolicy />, '/privacy-policy')}
+                    {route(<FrequentlyAskedQuestions />, '/faq')}
+                    {route(<NotFound />, '/*')}
                 </Routes>
 
                 <CookiesNotice />
@@ -206,6 +126,15 @@ const App = () => {
                 'true',
             );
         }
+    }
+
+    function route(element: React.ReactNode, path: string) {
+        return (
+            <Route
+                element={<React.Suspense>{element}</React.Suspense>}
+                path={path}
+            />
+        );
     }
 };
 
