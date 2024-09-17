@@ -34,12 +34,12 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                 <div className="cookies-notice-container" ref={ref} {...props}>
                     <div className="cookies-notice-text">
                         <span>
-                            Utilizziamo i cookie per migliorare la tua
+                            Utilizziamo i cookies per migliorare la tua
                             esperienza di navigazione. Continuando a visitare
                             questo sito, acconsenti al loro uso.
                             <br />
                             <Link to="/cookies-policy">
-                                Informativa sui cookie
+                                Informativa sui cookies
                             </Link>
                         </span>
                     </div>
