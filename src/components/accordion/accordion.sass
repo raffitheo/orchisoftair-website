@@ -18,25 +18,25 @@
 
 .close,
 .open
-    border-bottom: 1px solid $text-color
+    border-bottom: 1px solid variables.$text-color
     padding: 1rem 0
 
     .accordion-content-line
         display: flex
         justify-content: space-between
-        transition: color $transition-speed ease-in-out
+        transition: color variables.$transition-speed ease-in-out
 
         &:hover
             color: variables.$primary-color
             cursor: pointer
-            transition: color $transition-speed ease-in-out
+            transition: color variables.$transition-speed ease-in-out
 
             path
                 stroke: variables.$primary-color
-                transition: stroke $transition-speed ease-in-out
+                transition: stroke variables.$transition-speed ease-in-out
 
         svg
             transition: variables.$transition-speed
 
             path
-                transition: stroke $transition-speed ease-in-out
+                transition: stroke variables.$transition-speed ease-in-out
