@@ -1,12 +1,9 @@
-$primary-color: #861A32
-$border-radius: 2px
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .news-element
     background: #141311
-    border-radius: $border-radius
-    color: $text-color
+    border-radius: variables.$border-radius
+    color: variables.$text-color
     max-width: 550px
     padding: 30px
     text-align: center
@@ -38,7 +35,7 @@ $transition-speed: .3s
                 animation: spin 1s linear infinite
                 border: 5px solid rgba(0, 0, 0, .1)
                 border-radius: 50%
-                border-top-color: $primary-color
+                border-top-color: variables.$primary-color
                 content: ""
                 height: 100px
                 width: 100px
@@ -71,13 +68,13 @@ $transition-speed: .3s
         justify-content: space-between
 
         a
-            color: $primary-color
-            transition: $transition-speed
+            color: variables.$primary-color
+            transition: variables.$transition-speed
 
             &:hover
-                color: $primary-color
+                color: variables.$primary-color
                 transform: scale(1.1)
-                transition: $transition-speed
+                transition: variables.$transition-speed
 
 @keyframes spin
     0%

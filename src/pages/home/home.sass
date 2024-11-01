@@ -1,8 +1,4 @@
-$background-color: #0C0C0C
-$border-radius: 2px
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .video-container
     height: 66vh
@@ -14,7 +10,7 @@ $transition-speed: .3s
         background-color: rgba(0, 0, 0, .2)
 
     .video-gradient
-        background: linear-gradient(0deg, $background-color, hsla(0, 0%, 5%, 0) 10%)
+        background: linear-gradient(0deg, variables.$background-color, hsla(0, 0%, 5%, 0) 10%)
         height: 100%
 
     .video-overlay,
@@ -80,7 +76,7 @@ $transition-speed: .3s
 
             .about-button
                 background: transparent
-                color: $text-color
+                color: variables.$text-color
                 font-weight: 600
                 line-height: 2.25rem
                 padding: .5rem 2rem
@@ -92,7 +88,7 @@ $transition-speed: .3s
                     margin-bottom: 1rem
 
             .contact-button
-                background-color: $primary-color
+                background-color: variables.$primary-color
                 color: #000
                 display: block
                 font-weight: 700
@@ -101,16 +97,16 @@ $transition-speed: .3s
                 padding: .5rem 4rem
 
                 @media (max-width: 900px)
-                    border: 5px solid $primary-color
+                    border: 5px solid variables.$primary-color
                     padding: .5rem 2rem
 
             .about-button,
             .contact-button
-                border: 5px solid $primary-color
-                border-radius: $border-radius
+                border: 5px solid variables.$primary-color
+                border-radius: variables.$border-radius
                 font-size: 1.4rem
                 text-align: center
-                transition: transform $transition-speed ease-in-out, opacity $transition-speed ease-in-out
+                transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
                 width: 100%
 
                 @media (max-width: 900px)
@@ -129,10 +125,10 @@ $transition-speed: .3s
                 &:hover
                     opacity: 1
                     transform: scale(1.03)
-                    transition: transform $transition-speed ease-in-out, opacity $transition-speed ease-in-out
+                    transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
 
         .partners-section
-            color: $text-color
+            color: variables.$text-color
             display: flex
             flex-direction: column
             gap: .75rem
@@ -156,15 +152,15 @@ $transition-speed: .3s
                         width: 100%
 
 .relative-container
-    background-color: $background-color
+    background-color: variables.$background-color
     background-size: cover
-    color: $text-color
+    color: variables.$text-color
     max-width: 1920px
     position: relative
     text-align: center
 
     .gradient-overlay2
-        background: linear-gradient(180deg, $background-color, hsla(0, 0%, 5%, 0) 5%)
+        background: linear-gradient(180deg, variables.$background-color, hsla(0, 0%, 5%, 0) 5%)
 
         .news-section
             display: flex
@@ -228,7 +224,7 @@ $transition-speed: .3s
 .newsletter-section
     background-position: top
     background-size: cover
-    color: $text-color
+    color: variables.$text-color
     position: relative
     text-align: center
 
@@ -254,25 +250,25 @@ $transition-speed: .3s
             border: 1px solid #ccc
 
         .subscribe-button
-            background-color: $primary-color
+            background-color: variables.$primary-color
             border: none
             cursor: pointer
             color: #000
             font-weight: 700
             margin-top: 2rem
             text-transform: uppercase
-            transition: transform $transition-speed ease-in-out
+            transition: transform variables.$transition-speed ease-in-out
 
             @media (max-width: 400px)
                 font-size: .9rem
 
             &:hover
                 transform: scale(1.03)
-                transition: transform $transition-speed ease-in-out
+                transition: transform variables.$transition-speed ease-in-out
 
         .email-input,
         .subscribe-button
-            border-radius: $border-radius
+            border-radius: variables.$border-radius
             display: block
             max-width: 400px
             padding: 10px

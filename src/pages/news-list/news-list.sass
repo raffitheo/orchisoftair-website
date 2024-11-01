@@ -1,4 +1,4 @@
-$text-color: #fff
+@use '../../variables' as variables
 
 .news-container
     background-color: #000
@@ -6,7 +6,7 @@ $text-color: #fff
     .news-header-box2
         background-position: center
         background-size: cover
-        color: $text-color
+        color: variables.$text-color
         height: 400px
         position: relative
         text-align: center
@@ -65,7 +65,7 @@ $text-color: #fff
             width: 100%
 
             h1
-                color: $text-color
+                color: variables.$text-color
                 margin: auto
                 text-align: center
 

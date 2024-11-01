@@ -1,9 +1,7 @@
-$background-color-dark: #151515
-$primary-color: #861A32
-$text-color: #fff
+@use '../../variables' as variables
 
 .faq-container
-    background-color: $background-color-dark
+    background-color: variables.$background-color-dark
     margin: auto
     max-width: 1920px
     position: relative
@@ -11,7 +9,7 @@ $text-color: #fff
     .faq-header-box2
         background-position: center
         background-size: cover
-        color: $text-color
+        color: variables.$text-color
         height: 400px
         position: relative
         text-align: center
@@ -112,7 +110,7 @@ $text-color: #fff
                 font-size: 30px
                 line-height: 40px
                 padding: 2.5rem 0 1rem
-                color: $text-color
+                color: variables.$text-color
 
                 @media (max-width: 600px)
                     font-size: 20px
@@ -135,7 +133,7 @@ $text-color: #fff
                 text-align: justify
 
                 a
-                    color: $primary-color
+                    color: variables.$primary-color
 
             p
                 margin: 1rem 0

@@ -1,8 +1,4 @@
-$background-color-dark: #151515
-$border-radius: 2px
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .contact-us-container
     background-color: #000
@@ -12,7 +8,7 @@ $transition-speed: .3s
     .contact-us-header-box2
         background-position: center
         background-size: cover
-        color: $text-color
+        color: variables.$text-color
         height: 400px
         position: relative
         text-align: center
@@ -71,8 +67,8 @@ $transition-speed: .3s
         padding-bottom: 5rem
 
         .contact-us-main-box
-            background: $background-color-dark
-            border-radius: $border-radius
+            background: variables.$background-color-dark
+            border-radius: variables.$border-radius
             color: #cfd2d3
             font-size: 1rem
             font-weight: 300
@@ -105,7 +101,7 @@ $transition-speed: .3s
                     line-height: 16px
 
                 a
-                    color: $primary-color
+                    color: variables.$primary-color
 
             .contact-us-element
                 display: flex
@@ -115,7 +111,7 @@ $transition-speed: .3s
                 input[required] + label:after,
                 textarea[required] + label:after
                     content: '*'
-                    color: $primary-color
+                    color: variables.$primary-color
 
                 label
                     margin-bottom: 0.25rem
@@ -123,7 +119,7 @@ $transition-speed: .3s
                 input,
                 textarea
                     border: 1px solid #ccc
-                    border-radius: $border-radius
+                    border-radius: variables.$border-radius
                     color: #000
                     padding: 10px
                     width: 100%
@@ -133,8 +129,8 @@ $transition-speed: .3s
                     text-align: right
 
             .contact-submit
-                background-color: $primary-color
-                border-radius: $border-radius
+                background-color: variables.$primary-color
+                border-radius: variables.$border-radius
                 border: none
                 cursor: pointer
                 color: #000

@@ -1,7 +1,4 @@
-$background-color: #0C0C0C
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .footer-container,
 .footer-box
@@ -9,7 +6,7 @@ $transition-speed: .3s
     width: 100%
 
 .footer-container
-    background: $background-color
+    background: variables.$background-color
     height: 100%
 
     .footer-box
@@ -27,7 +24,7 @@ $transition-speed: .3s
 
         .footer-copyright
             align-self: center
-            color: $text-color
+            color: variables.$text-color
             float: left
             width: 40%
 
@@ -46,13 +43,13 @@ $transition-speed: .3s
                     margin-top: .5rem
 
                 span
-                    color: $primary-color
+                    color: variables.$primary-color
                     margin-right: 1rem
-                    transition: $transition-speed
+                    transition: variables.$transition-speed
 
         .footer-credits
             align-content: center
-            color: $text-color
+            color: variables.$text-color
             display: flex
             flex-direction: row
             gap: .5rem

@@ -1,8 +1,4 @@
-$background-color-dark: #151515
-$border-radius: 2px
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .about-main-background
     background-size: cover
@@ -38,7 +34,7 @@ $transition-speed: .3s
         top: 0
 
         .about-info-box
-            color: $text-color
+            color: variables.$text-color
             font-size: 1rem
             font-weight: 500
             line-height: 1.3rem
@@ -96,8 +92,8 @@ $transition-speed: .3s
                         display: block
 
 .about-fields
-    color: $text-color
-    background-color: $background-color-dark
+    color: variables.$text-color
+    background-color: variables.$background-color-dark
     background-position: 50%
     background-repeat: no-repeat
     background-size: cover
@@ -146,14 +142,14 @@ $transition-speed: .3s
                     direction: ltr
 
                 h2
-                    color: $primary-color
+                    color: variables.$primary-color
                     font-weight: 700
 
                 p
                     margin-top: 1rem
 
                 a
-                    color: $primary-color
+                    color: variables.$primary-color
 
             .about-carousel
                 display: flex
@@ -173,16 +169,16 @@ $transition-speed: .3s
                     opacity: .6
                     position: relative
                     transform: scale(.9)
-                    transition: $transition-speed
+                    transition: variables.$transition-speed
 
                     &:not(.loading):not(.active):hover
                         transform: scale(1)
-                        transition: $transition-speed
+                        transition: variables.$transition-speed
 
                     &.active
                         opacity: 1
                         transform: scale(1.2)
-                        transition: $transition-speed
+                        transition: variables.$transition-speed
                         z-index: 3
 
                     &.loading
@@ -205,13 +201,13 @@ $transition-speed: .3s
                                     animation: spin 1s linear infinite
                                     border: 5px solid rgba(0, 0, 0, .1)
                                     border-radius: 50%
-                                    border-top-color: $primary-color
+                                    border-top-color: variables.$primary-color
                                     content: ""
                                     height: 100px
                                     width: 100px
 
                     img
-                        border-radius: $border-radius
+                        border-radius: variables.$border-radius
 
 .about-members
     overflow: hidden
@@ -245,7 +241,7 @@ $transition-speed: .3s
             padding: 5% 10%
 
         h1
-            color: $text-color
+            color: variables.$text-color
             font-size: 70px
             font-weight: 700
             letter-spacing: 0
@@ -269,11 +265,11 @@ $transition-speed: .3s
             width: 100%
 
             p
-                color: $text-color
+                color: variables.$text-color
                 text-align: center
 
             .about-members-element
-                border-radius: $border-radius
+                border-radius: variables.$border-radius
                 cursor: pointer
                 height: 30rem
                 margin: auto
@@ -294,16 +290,16 @@ $transition-speed: .3s
 
                 .about-members-inner-element
                     background-color: #141311
-                    border-radius: $border-radius
+                    border-radius: variables.$border-radius
                     height: 100%
                     position: relative
-                    transition: $transition-speed
+                    transition: variables.$transition-speed
                     transform-style: preserve-3d
                     width: 100%
 
                     img
                         backface-visibility: hidden
-                        border-radius: $border-radius
+                        border-radius: variables.$border-radius
                         height: 100%
                         left: 0
                         padding: .5rem
@@ -315,8 +311,8 @@ $transition-speed: .3s
 
                     .about-member-element-details
                         backface-visibility: hidden
-                        background-color: $background-color-dark
-                        border-radius: $border-radius
+                        background-color: variables.$background-color-dark
+                        border-radius: variables.$border-radius
                         bottom: 0
                         display: flex
                         flex-direction: column
@@ -331,13 +327,13 @@ $transition-speed: .3s
                         -webkit-backface-visibility: hidden
 
                         h2
-                            color: $primary-color
+                            color: variables.$primary-color
                             font-size: 1.5rem
                             text-align: center
                             text-transform: uppercase
 
                         p
-                            color: $text-color
+                            color: variables.$text-color
                             display: -webkit-box
                             overflow: hidden
                             text-align: left
@@ -348,8 +344,8 @@ $transition-speed: .3s
 
                     .center
                         backface-visibility: hidden
-                        background-color: $background-color-dark
-                        border-radius: $border-radius
+                        background-color: variables.$background-color-dark
+                        border-radius: variables.$border-radius
                         display: flex
                         height: calc(100% - 1rem)
                         justify-content: center
@@ -370,7 +366,7 @@ $transition-speed: .3s
                                 animation: spin 1s linear infinite
                                 border: 5px solid rgba(0, 0, 0, .1)
                                 border-radius: 50%
-                                border-top-color: $primary-color
+                                border-top-color: variables.$primary-color
                                 content: ""
                                 height: 100px
                                 width: 100px

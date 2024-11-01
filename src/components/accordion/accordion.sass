@@ -1,15 +1,13 @@
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@import ../../index.sass;
 
 .close
     .accordion-content-line
         svg
-            transition: $transition-speed
+            transition: variables.$transition-speed
             transform: rotate(180deg)
 
             path
-                stroke: $text-color
+                stroke: variables.$text-color
 
     .content
         display: none
@@ -29,16 +27,16 @@ $transition-speed: .3s
         transition: color $transition-speed ease-in-out
 
         &:hover
-            color: $primary-color
+            color: variables.$primary-color
             cursor: pointer
             transition: color $transition-speed ease-in-out
 
             path
-                stroke: $primary-color
+                stroke: variables.$primary-color
                 transition: stroke $transition-speed ease-in-out
 
         svg
-            transition: $transition-speed
+            transition: variables.$transition-speed
 
             path
                 transition: stroke $transition-speed ease-in-out

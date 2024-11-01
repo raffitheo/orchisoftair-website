@@ -1,11 +1,9 @@
-$primary-color: #861A32
-$text-color: #fff
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .navbar-container
     align-content: center
     background-color: rgba(0, 0, 0, .33)
-    color: $text-color
+    color: variables.$text-color
     font-size: 1rem
     height: 80px
     position: absolute
@@ -48,12 +46,12 @@ $transition-speed: .3s
 
             .navbar-button
                 align-content: center
-                transition: $transition-speed
+                transition: variables.$transition-speed
                 width: 33%
 
                 &.active,
                 &:hover
-                    color: $primary-color
+                    color: variables.$primary-color
                     cursor: pointer
                     transform: scale(1.2)
-                    transition: $transition-speed
+                    transition: variables.$transition-speed

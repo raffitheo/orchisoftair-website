@@ -1,14 +1,10 @@
-$background-color-dark: #151515
-$border-radius: 2px
-$text-color: #fff
-$primary-color: #861A32
-$transition-speed: .3s
+@use '../../variables' as variables
 
 .development-popup-overlay
     align-items: center
-    background-color: $background-color-dark
+    background-color: variables.$background-color-dark
     bottom: 0
-    color: $text-color
+    color: variables.$text-color
     display: flex
     flex-direction: column
     height: 100%
@@ -34,21 +30,21 @@ $transition-speed: .3s
             font-size: larger
 
             a
-                color: $primary-color
+                color: variables.$primary-color
                 text-decoration: underline
 
         .development-popup-button
-            border: 1px solid $primary-color
-            border-radius: $border-radius
-            color: $primary-color
+            border: 1px solid variables.$primary-color
+            border-radius: variables.$border-radius
+            color: variables.$primary-color
             cursor: pointer
             display: flex
             justify-content: center
             font-weight: bolder
             margin: 1rem 0 1rem auto
             padding: .5rem 2rem
-            transition: $transition-speed
+            transition: variables.$transition-speed
 
             &:hover
                 transform: scale(1.1)
-                transition: $transition-speed
+                transition: variables.$transition-speed
