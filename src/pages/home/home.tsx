@@ -7,6 +7,7 @@ import { Navbar } from '@components/navbar';
 import { NewsCarouselElement } from '@components/news-carousel-element';
 import { SEO } from '@components/seo';
 import { databases } from '@config/appwrite';
+import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type DataStatus } from '@interfaces/data-status';
 import { type News } from '@interfaces/news';
 import { ID, Query } from 'appwrite';
@@ -24,19 +25,33 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
         const [email, setEmail] = React.useState<string>();
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
-        const [newsList, setNewsList] = React.useState<News[]>([]);
-        const [newsListStatus, setNewsListStatus] =
-            React.useState<DataStatus>('initialized');
 
-        React.useEffect(() => {
-            setNewsListStatus('loading');
-        }, []);
-
-        React.useEffect(() => {
-            if (newsListStatus === 'loading') {
-                getNews();
-            }
-        }, [newsListStatus]);
+        const { data: newsList, status: newsListStatus } =
+            useAppwriteQuery<News>({
+                collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
+                queries: [
+                    Query.select([
+                        '$id',
+                        'category',
+                        'creationDate',
+                        'redirectLink',
+                        'subtitle',
+                        'thumbnail',
+                        'title',
+                    ]),
+                    Query.equal('display', [true]),
+                    Query.orderDesc('creationDate'),
+                ],
+                transform: (doc) => ({
+                    category: doc.category,
+                    creationDate: new Date(doc.creationDate),
+                    id: doc.$id,
+                    redirectLink: doc.redirectLink,
+                    subtitle: doc.subtitle,
+                    thumbnail: doc.thumbnail,
+                    title: doc.title,
+                }),
+            });
 
         const responsive = {
             superLargeDesktop: {
@@ -266,46 +281,6 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                             Ti ringraziamo per esserti sottoscritto!
                         </p>
                     );
-            }
-        }
-
-        async function getNews() {
-            const response = await databases.listDocuments(
-                import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_NEWS_COLLECTION_ID,
-                [
-                    Query.select([
-                        '$id',
-                        'category',
-                        'creationDate',
-                        'redirectLink',
-                        'subtitle',
-                        'thumbnail',
-                        'title',
-                    ]),
-                    Query.equal('display', [true]),
-                    Query.orderDesc('creationDate'),
-                ],
-            );
-
-            if (response) {
-                setNewsListStatus('success');
-
-                const newsListResponse = response.documents.map((documnet) => {
-                    return {
-                        category: documnet.category,
-                        creationDate: new Date(documnet.creationDate),
-                        id: documnet.$id,
-                        redirectLink: documnet.redirectLink,
-                        subtitle: documnet.subtitle,
-                        thumbnail: documnet.thumbnail,
-                        title: documnet.title,
-                    };
-                });
-
-                setNewsList(newsListResponse);
-            } else {
-                setNewsListStatus('error');
             }
         }
 

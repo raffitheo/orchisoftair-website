@@ -1,8 +1,7 @@
 import LorePattern from '@assets/lore-pattern.webp';
 import { Footer } from '@components/footer';
-import { databases } from '@config/appwrite';
-import { type DataStatus } from '@interfaces/data-status';
 import { SEO } from '@components/seo';
+import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type Page } from '@interfaces/page';
 import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
@@ -20,19 +19,29 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
     ({ ...props }, ref) => {
         const location = useLocation();
 
-        const [pageData, setPageData] = React.useState<Page>();
-        const [pageDataStatus, setPageDataStatus] =
-            React.useState<DataStatus>('initialized');
+        const { data: pageDataArray, status: pageDataStatus } =
+            useAppwriteQuery<Page>({
+                collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
+                queries: [
+                    Query.select([
+                        'content',
+                        'creationDate',
+                        'headerImage',
+                        'redirectLink',
+                        'title',
+                    ]),
+                    Query.equal('redirectLink', [location.pathname]),
+                    Query.limit(1),
+                ],
+                transform: (doc) => ({
+                    content: doc.content,
+                    creationDate: new Date(doc.creationDate),
+                    headerImage: doc.headerImage,
+                    title: doc.title,
+                }),
+            });
 
-        React.useEffect(() => {
-            setPageDataStatus('loading');
-        }, []);
-
-        React.useEffect(() => {
-            if (pageDataStatus === 'loading') {
-                getContent();
-            }
-        }, [pageDataStatus]);
+        const pageData = pageDataArray?.[0];
 
         return (
             <div ref={ref} {...props}>
@@ -118,40 +127,6 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
                             <Footer />
                         </React.Fragment>
                     );
-            }
-        }
-
-        async function getContent() {
-            const response = await databases.listDocuments(
-                import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_NEWS_COLLECTION_ID,
-                [
-                    Query.select([
-                        'content',
-                        'creationDate',
-                        'headerImage',
-                        'redirectLink',
-                        'title',
-                    ]),
-                    Query.equal('redirectLink', [location.pathname]),
-                    Query.limit(1),
-                ],
-            );
-
-            if (response) {
-                if (response.documents.length >= 1) {
-                    setPageDataStatus('success');
-                    setPageData({
-                        content: response.documents[0].content,
-                        creationDate: response.documents[0].creationDate,
-                        headerImage: response.documents[0].headerImage,
-                        title: response.documents[0].title,
-                    });
-                } else {
-                    setPageDataStatus('error-no-data');
-                }
-            } else {
-                setPageDataStatus('error');
             }
         }
 

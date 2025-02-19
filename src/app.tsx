@@ -1,8 +1,7 @@
 import { CookiesNotice } from '@components/cookies-notice';
 import { WelcomeMessagePopup } from '@components/welcome-message-popup';
 import { appsettings } from '@config/appsettings';
-import { databases } from '@config/appwrite';
-import { type DataStatus } from '@interfaces/data-status';
+import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type WelcomeMessage } from '@interfaces/welcome-message';
 import { Query } from 'appwrite';
 import React from 'react';
@@ -20,27 +19,34 @@ const PrivacyPolicy = React.lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
     const [currentMessageShown, setCurrentMessageShown] = React.useState(-1);
-    const [welcomeMessages, setWelcomeMessages] = React.useState<
-        WelcomeMessage[]
-    >([]);
-    const [welcomeMessagesStatus, setWelcomeMessagesStatus] =
-        React.useState<DataStatus>('initialized');
+
+    const { data: welcomeMessages, status: welcomeMessagesStatus } =
+        useAppwriteQuery<WelcomeMessage>({
+            collectionId: import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
+            queries: [
+                Query.select(['content']),
+                Query.equal('display', [true]),
+            ],
+            transform: (doc) => ({
+                content: doc.content,
+            }),
+            enabled: !window.sessionStorage.getItem(
+                appsettings.WELCOME_MESSAGES_CLOSED,
+            ),
+        });
 
     React.useEffect(() => {
-        const welcomeMessagesClosed = window.sessionStorage.getItem(
-            appsettings.WELCOME_MESSAGES_CLOSED,
-        );
-
-        if (!welcomeMessagesClosed || welcomeMessagesClosed === 'false') {
-            setWelcomeMessagesStatus('loading');
-        }
-    }, []);
-
-    React.useEffect(() => {
-        if (welcomeMessagesStatus === 'loading') {
-            getWelcomeMessages();
-        }
-    }, [welcomeMessagesStatus]);
+        if (welcomeMessagesStatus === 'success' && welcomeMessages.length > 0)
+            setCurrentMessageShown(0);
+        else if (
+            welcomeMessagesStatus === 'error' ||
+            welcomeMessagesStatus === 'error-no-data'
+        )
+            window.sessionStorage.setItem(
+                appsettings.WELCOME_MESSAGES_CLOSED,
+                'true',
+            );
+    }, [welcomeMessagesStatus, welcomeMessages]);
 
     return (
         <React.Fragment>
@@ -83,45 +89,6 @@ const App = () => {
             </Router>
         </React.Fragment>
     );
-
-    async function getWelcomeMessages() {
-        const response = await databases.listDocuments(
-            import.meta.env.VITE_DATABASE_ID,
-            import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
-            [Query.select(['content']), Query.equal('display', [true])],
-        );
-
-        if (response) {
-            if (response.documents.length >= 1) {
-                setWelcomeMessagesStatus('success');
-
-                const welcomeMessagesResponse = response.documents.map(
-                    (documnet) => {
-                        return {
-                            content: documnet.content,
-                        };
-                    },
-                );
-
-                setWelcomeMessages(welcomeMessagesResponse);
-                setCurrentMessageShown(0);
-            } else {
-                setWelcomeMessagesStatus('error-no-data');
-
-                window.sessionStorage.setItem(
-                    appsettings.WELCOME_MESSAGES_CLOSED,
-                    'true',
-                );
-            }
-        } else {
-            setWelcomeMessagesStatus('error');
-
-            window.sessionStorage.setItem(
-                appsettings.WELCOME_MESSAGES_CLOSED,
-                'true',
-            );
-        }
-    }
 
     function route(element: React.ReactNode, path: string) {
         return (

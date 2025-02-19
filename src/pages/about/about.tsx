@@ -5,9 +5,8 @@ import FieldsLoading from '@assets/fields-loading.webp';
 import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
-import { databases } from '@config/appwrite';
-import { type DataStatus } from '@interfaces/data-status';
 import { SEO } from '@components/seo';
+import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type Field } from '@interfaces/field';
 import { type Member } from '@interfaces/member';
 import { Query } from 'appwrite';
@@ -22,30 +21,50 @@ interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const About = React.forwardRef<HTMLDivElement, AboutProps>(
     ({ ...props }, ref) => {
-        const [fieldsList, setFieldsList] = React.useState<Field[]>([]);
-        const [fieldsListStatus, setFieldsListStatus] =
-            React.useState<DataStatus>('initialized');
-
         const [activeField, setActiveField] = React.useState(0);
 
-        const [membersList, setMembersList] = React.useState<Member[]>([]);
-        const [membersListStatus, setMembersListStatus] =
-            React.useState<DataStatus>('initialized');
+        const { data: fieldsList, status: fieldsListStatus } =
+            useAppwriteQuery<Field>({
+                collectionId: import.meta.env.VITE_FIELDS_COLLECTION_ID,
+                queries: [
+                    Query.select(['alt', 'description', 'image', 'title']),
+                    Query.orderAsc('title'),
+                ],
+                transform: (doc) => ({
+                    alt: doc.alt,
+                    description: doc.description,
+                    id: doc.$id,
+                    image: doc.image,
+                    title: doc.title,
+                }),
+            });
 
-        React.useEffect(() => {
-            setFieldsListStatus('loading');
-            setMembersListStatus('loading');
-        }, []);
-
-        React.useEffect(() => {
-            if (fieldsListStatus === 'loading') {
-                getFields();
-            }
-
-            if (membersListStatus === 'loading') {
-                getMembers();
-            }
-        }, [fieldsListStatus, membersListStatus]);
+        const { data: membersList, status: membersListStatus } =
+            useAppwriteQuery<Member>({
+                collectionId: import.meta.env.VITE_MEMBERS_COLLECTION_ID,
+                queries: [
+                    Query.select([
+                        'alt',
+                        'description',
+                        'firstName',
+                        'lastName',
+                        'nickname',
+                        'role',
+                        'thumbnail',
+                    ]),
+                    Query.orderAsc('nickname'),
+                    Query.equal('active', true),
+                ],
+                transform: (doc) => ({
+                    alt: doc.alt,
+                    description: doc.description,
+                    firstName: doc.firstName,
+                    lastName: doc.lastName,
+                    nickname: doc.nickname,
+                    role: doc.role,
+                    thumbnail: doc.thumbnail,
+                }),
+            });
 
         const responsive = {
             superLargeDesktop: {
@@ -342,78 +361,6 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                             </Carousel>
                         </div>
                     );
-            }
-        }
-
-        async function getFields() {
-            const response = await databases.listDocuments(
-                import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_FIELDS_COLLECTION_ID,
-                [Query.select(['$id', 'alt', 'description', 'image', 'title'])],
-            );
-
-            if (response) {
-                setFieldsListStatus('success');
-
-                const fieldsListResponse = response.documents.map(
-                    (documnet) => {
-                        return {
-                            alt: documnet.alt,
-                            description: documnet.description,
-                            id: documnet.$id,
-                            image: documnet.image,
-                            title: documnet.title,
-                        };
-                    },
-                );
-
-                setFieldsList(fieldsListResponse);
-            } else {
-                setFieldsListStatus('error');
-            }
-        }
-
-        async function getMembers() {
-            const response = await databases.listDocuments(
-                import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_MEMBERS_COLLECTION_ID,
-                [
-                    Query.select([
-                        '$id',
-                        'alt',
-                        'description',
-                        'firstName',
-                        'lastName',
-                        'nickname',
-                        'role',
-                        'thumbnail',
-                    ]),
-                    Query.orderAsc('nickname'),
-                    Query.equal('active', true),
-                ],
-            );
-
-            if (response) {
-                setMembersListStatus('success');
-
-                const membersListResponse = response.documents.map(
-                    (documnet) => {
-                        return {
-                            alt: documnet.alt,
-                            description: documnet.description,
-                            firstName: documnet.firstName,
-                            id: documnet.$id,
-                            lastName: documnet.lastName,
-                            nickname: documnet.nickname,
-                            role: documnet.role,
-                            thumbnail: documnet.thumbnail,
-                        };
-                    },
-                );
-
-                setMembersList(membersListResponse);
-            } else {
-                setMembersListStatus('error');
             }
         }
     },

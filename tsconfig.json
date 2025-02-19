@@ -25,6 +25,7 @@
             "@assets/*": ["./assets/*"],
             "@components/*": ["./components/*"],
             "@config/*": ["./config/*"],
+            "@hooks/*": ["./hooks/*"],
             "@interfaces/*": ["./interfaces/*"],
             "@pages/*": ["./pages/*"]
         }
