@@ -1,15 +1,12 @@
 import LorePattern from '@assets/lore-pattern.webp';
 import { Accordion } from '@components/accordion';
 import { Footer } from '@components/footer';
-import { appsettings } from '@config/appsettings';
+import { SEO } from '@components/seo';
 import dayjs from 'dayjs';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import './faq.sass';
-
-const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Frequently Asked Questions`;
 
 interface FrequentlyAskedQuestionsProps
     extends React.HTMLAttributes<HTMLDivElement> {}
@@ -20,31 +17,7 @@ const FrequentlyAskedQuestions = React.forwardRef<
 >(({ ...props }, ref) => {
     return (
         <React.Fragment>
-            <Helmet>
-                <title>{PAGE_TITLE}</title>
-
-                <meta
-                    name="author"
-                    content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                />
-                <meta
-                    name="description"
-                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                />
-                <meta name="title" content={PAGE_TITLE} />
-
-                <meta
-                    property="og:description"
-                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                />
-                <meta property="og:title" content={PAGE_TITLE} />
-
-                <meta
-                    property="twitter:description"
-                    content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                />
-                <meta property="twitter:title" content={PAGE_TITLE} />
-            </Helmet>
+            <SEO title="Frequently Asked Questions" type="article" />
 
             <div ref={ref} {...props}>
                 <div className="faq-container">

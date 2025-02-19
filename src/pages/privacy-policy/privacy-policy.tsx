@@ -1,14 +1,11 @@
 import LorePattern from '@assets/lore-pattern.webp';
 import { Footer } from '@components/footer';
-import { appsettings } from '@config/appsettings';
+import { SEO } from '@components/seo';
 import dayjs from 'dayjs';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import './privacy-policy.sass';
-
-const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Informativa sulla privacy`;
 
 interface PrivacyPolicyProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -16,31 +13,7 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
     ({ ...props }, ref) => {
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>{PAGE_TITLE}</title>
-
-                    <meta
-                        name="author"
-                        content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                    />
-                    <meta
-                        name="description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta name="title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="og:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="og:title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="twitter:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="twitter:title" content={PAGE_TITLE} />
-                </Helmet>
+                <SEO title="Informativa sulla privacy" type="article" />
 
                 <div className="news" ref={ref} {...props}>
                     <div

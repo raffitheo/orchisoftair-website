@@ -5,20 +5,17 @@ import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { NewsCarouselElement } from '@components/news-carousel-element';
-import { appsettings } from '@config/appsettings';
+import { SEO } from '@components/seo';
 import { databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
 import { type News } from '@interfaces/news';
 import { ID, Query } from 'appwrite';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import Carousel from 'react-multi-carousel';
 import { Link } from 'react-router-dom';
 
 import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
-
-const PAGE_TITLE = appsettings.WEBSITE_DEFAULT_TITLE;
 
 interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -62,31 +59,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
 
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>{PAGE_TITLE}</title>
-
-                    <meta
-                        name="author"
-                        content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                    />
-                    <meta
-                        name="description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta name="title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="og:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="og:title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="twitter:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="twitter:title" content={PAGE_TITLE} />
-                </Helmet>
+                <SEO />
 
                 <div ref={ref} {...props}>
                     <div className="video-container">

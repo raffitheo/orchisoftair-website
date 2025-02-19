@@ -1,8 +1,8 @@
 import LorePattern from '@assets/lore-pattern.webp';
 import { Footer } from '@components/footer';
-import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
+import { SEO } from '@components/seo';
 import { type Page } from '@interfaces/page';
 import NotFound from '@pages/not-found';
 import { Query } from 'appwrite';
@@ -13,9 +13,6 @@ import { Helmet } from 'react-helmet';
 import { Link, useLocation } from 'react-router-dom';
 
 import './news-detail.sass';
-
-const PAGE_TITLE = (title: string) =>
-    `${appsettings.WEBSITE_DEFAULT_TITLE} | ${title}`;
 
 interface NewsDetailProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -60,54 +57,10 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
                 case 'success':
                     return (
                         <React.Fragment>
-                            <Helmet>
-                                <title>
-                                    {PAGE_TITLE(pageData?.title as string)}
-                                </title>
-
-                                <meta
-                                    name="author"
-                                    content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                                />
-                                <meta
-                                    name="description"
-                                    content={
-                                        appsettings.WEBSITE_DEFAULT_DESCRIPTION
-                                    }
-                                />
-                                <meta
-                                    name="title"
-                                    content={PAGE_TITLE(
-                                        pageData?.title as string,
-                                    )}
-                                />
-
-                                <meta
-                                    property="og:description"
-                                    content={
-                                        appsettings.WEBSITE_DEFAULT_DESCRIPTION
-                                    }
-                                />
-                                <meta
-                                    property="og:title"
-                                    content={PAGE_TITLE(
-                                        pageData?.title as string,
-                                    )}
-                                />
-
-                                <meta
-                                    property="twitter:description"
-                                    content={
-                                        appsettings.WEBSITE_DEFAULT_DESCRIPTION
-                                    }
-                                />
-                                <meta
-                                    property="twitter:title"
-                                    content={PAGE_TITLE(
-                                        pageData?.title as string,
-                                    )}
-                                />
-                            </Helmet>
+                            <SEO
+                                title={pageData?.title as string}
+                                type="article"
+                            />
 
                             <div className="news-container">
                                 <div

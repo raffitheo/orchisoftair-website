@@ -5,21 +5,18 @@ import FieldsLoading from '@assets/fields-loading.webp';
 import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
-import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
+import { SEO } from '@components/seo';
 import { type Field } from '@interfaces/field';
 import { type Member } from '@interfaces/member';
 import { Query } from 'appwrite';
 import parse from 'html-react-parser';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import Carousel from 'react-multi-carousel';
 
 import './about.sass';
 import 'react-multi-carousel/lib/styles.css';
-
-const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Su di noi`;
 
 interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -62,31 +59,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
 
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>{PAGE_TITLE}</title>
-
-                    <meta
-                        name="author"
-                        content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                    />
-                    <meta
-                        name="description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta name="title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="og:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="og:title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="twitter:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="twitter:title" content={PAGE_TITLE} />
-                </Helmet>
+                <SEO title="Su di noi" />
 
                 <div ref={ref} {...props}>
                     <Navbar active="about" />

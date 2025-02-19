@@ -1,15 +1,12 @@
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
-import { appsettings } from '@config/appsettings';
+import { SEO } from '@components/seo';
 import emailjs from '@emailjs/browser';
 import { type DataStatus } from '@interfaces/data-status';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import './contact-us.sass';
-
-const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Contatti`;
 
 interface ContactUsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -27,31 +24,7 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
 
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>{PAGE_TITLE}</title>
-
-                    <meta
-                        name="author"
-                        content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                    />
-                    <meta
-                        name="description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta name="title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="og:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="og:title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="twitter:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="twitter:title" content={PAGE_TITLE} />
-                </Helmet>
+                <SEO title="Contatti" />
 
                 <div ref={ref} {...props}>
                     <Navbar active="contact-us" />
