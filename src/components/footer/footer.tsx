@@ -19,8 +19,8 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
             <div className="footer-container" ref={ref} {...props}>
                 <div className="footer-box">
                     <div className="footer-copyright">
-                        Tutti i diritti riservati.{' '}
-                        {appsettings.WEBSITE_DEFAULT_AUTHOR}
+                        © 2024-2025 {appsettings.WEBSITE_DEFAULT_AUTHOR}. Tutti
+                        i diritti riservati.
                         <div className="footer-link">
                             <span>
                                 <Link to="/privacy-policy">

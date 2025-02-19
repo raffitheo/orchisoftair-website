@@ -4,8 +4,8 @@
 
 ![CI/CD](https://vercelbadge.vercel.app/api/raffitheo/orchisoftair-website?style=for-the-badge)
 [![GitHub license](https://img.shields.io/github/license/raffitheo/orchisoftair-website?style=for-the-badge)](https://github.com/raffitheo/orchisoftair-website/blob/master/LICENSE)
-[![Node Version](https://img.shields.io/static/v1?label=Node&message=^20.15.0&color=026e00&style=for-the-badge)](https://nodejs.org)
-[![npm Version](https://img.shields.io/static/v1?label=npm&message=^10.8.1&color=cb0000&style=for-the-badge)](https://nodejs.org)
+[![Node Version](https://img.shields.io/static/v1?label=Node&message=^22.14.0&color=026e00&style=for-the-badge)](https://nodejs.org)
+[![npm Version](https://img.shields.io/static/v1?label=npm&message=^11.1.0&color=cb0000&style=for-the-badge)](https://nodejs.org)
 
 The official website for the italian airsoft team, A.S.D. Gli Orchi Trieste - Softair Team.
 <br />

@@ -35,17 +35,19 @@
 
             .footer-link
                 display: flex
+                flex-wrap: wrap
                 margin-top: 1rem
 
                 @media (max-width: 1200px)
-                    flex-wrap: wrap
                     justify-content: center
                     margin-top: .5rem
 
                 span
                     color: variables.$primary-color
                     margin-right: 1rem
+                    overflow: hidden
                     transition: variables.$transition-speed
+                    white-space: nowrap
 
         .footer-credits
             align-content: center
