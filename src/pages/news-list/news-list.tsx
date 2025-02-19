@@ -1,17 +1,14 @@
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { NewsListElement } from '@components/news-list-element';
-import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
+import { SEO } from '@components/seo';
 import { type News } from '@interfaces/news';
 import { Query } from 'appwrite';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 import './news-list.sass';
-
-const PAGE_TITLE = `${appsettings.WEBSITE_DEFAULT_TITLE} | Novità ed eventi`;
 
 interface NewsListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -33,31 +30,7 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
 
         return (
             <React.Fragment>
-                <Helmet>
-                    <title>{PAGE_TITLE}</title>
-
-                    <meta
-                        name="author"
-                        content={appsettings.WEBSITE_DEFAULT_AUTHOR}
-                    />
-                    <meta
-                        name="description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta name="title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="og:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="og:title" content={PAGE_TITLE} />
-
-                    <meta
-                        property="twitter:description"
-                        content={appsettings.WEBSITE_DEFAULT_DESCRIPTION}
-                    />
-                    <meta property="twitter:title" content={PAGE_TITLE} />
-                </Helmet>
+                <SEO title="Novità ed eventi" />
 
                 <div ref={ref} {...props}>
                     <Navbar active="news" />
