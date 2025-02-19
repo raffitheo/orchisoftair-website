@@ -98,7 +98,7 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
         function getRootUrl(): string {
             const { protocol, hostname, port } = window.location;
 
-            return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+            return `${protocol}//${hostname}${port ? `:${port}` : ''}`;
         }
     },
 );
