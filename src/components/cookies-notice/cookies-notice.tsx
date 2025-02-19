@@ -22,14 +22,12 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                 );
             }
 
-            if (!storageValue || storageValue === 'false') {
+            if (!storageValue || storageValue === 'false')
                 setShowCookiesNotice(true);
-            } else {
-                setShowCookiesNotice(false);
-            }
+            else setShowCookiesNotice(false);
         }, []);
 
-        if (showCookiesNotice) {
+        if (showCookiesNotice)
             return (
                 <div className="cookies-notice-container" ref={ref} {...props}>
                     <div className="cookies-notice-text">
@@ -58,7 +56,6 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                     </div>
                 </div>
             );
-        }
     },
 );
 CookiesNotice.displayName = 'CookiesNotice';

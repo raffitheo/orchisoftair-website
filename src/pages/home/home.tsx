@@ -203,7 +203,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                     );
 
                 case 'success':
-                    if (newsList.length >= 1) {
+                    if (newsList.length >= 1)
                         return (
                             <Carousel
                                 draggable
@@ -223,9 +223,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                 ))}
                             </Carousel>
                         );
-                    } else {
-                        return <h1>Non ci sono elementi da visualizzare.</h1>;
-                    }
+                    else return <h1>Non ci sono elementi da visualizzare.</h1>;
             }
         }
 
@@ -297,11 +295,8 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                 { email: email, subscriptionDate: new Date() },
             );
 
-            if (response) {
-                setEmailStatus('success');
-            } else {
-                setEmailStatus('error');
-            }
+            if (response) setEmailStatus('success');
+            else setEmailStatus('error');
 
             setEmail('');
         }

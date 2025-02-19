@@ -96,7 +96,7 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                     );
 
                 case 'success':
-                    if (newsList.length >= 1) {
+                    if (newsList.length >= 1)
                         return (
                             <div className="news-gallery">
                                 {newsList.map((news, newsIndex) => (
@@ -112,13 +112,12 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                                 ))}
                             </div>
                         );
-                    } else {
+                    else
                         return (
                             <div className="news-empty">
                                 <h1>Non ci sono elementi da visualizzare.</h1>
                             </div>
                         );
-                    }
             }
         }
     },

@@ -182,7 +182,7 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
 
             setEmailStatus('loading');
 
-            if (form.current) {
+            if (form.current)
                 emailjs
                     .sendForm(
                         import.meta.env.VITE_EMAIL_SERVICE_ID,
@@ -200,7 +200,6 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
                             setEmailStatus('error');
                         },
                     );
-            }
         }
     },
 );

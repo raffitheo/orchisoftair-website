@@ -47,7 +47,7 @@ const SEO: React.FC<SEOProps> = ({
             { property: 'og:locale', content: 'it_IT' },
         ];
 
-        if (type === 'article') {
+        if (type === 'article')
             tags.push(
                 { property: 'article:author', content: author },
                 {
@@ -55,7 +55,6 @@ const SEO: React.FC<SEOProps> = ({
                     content: appsettings.WEBSITE_DEFAULT_TITLE,
                 },
             );
-        }
 
         return tags;
     }, [author, description, fullTitle, image, keywords, type, canonicalUrl]);

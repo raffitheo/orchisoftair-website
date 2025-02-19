@@ -80,9 +80,8 @@ const App = () => {
                                     appsettings.WELCOME_MESSAGES_CLOSED,
                                     'true',
                                 );
-                            } else {
+                            } else
                                 setCurrentMessageShown(currentMessageShown + 1);
-                            }
                         }}
                     />
                 )}
