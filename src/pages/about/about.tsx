@@ -416,6 +416,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                         'thumbnail',
                     ]),
                     Query.orderAsc('nickname'),
+                    Query.equal('active', true),
                 ],
             );
 
