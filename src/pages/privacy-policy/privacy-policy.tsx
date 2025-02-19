@@ -230,14 +230,19 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 </p>
 
                                 <span style={{ marginTop: '1rem' }}>
-                                    A.S.D. Gli Orchi Trieste
+                                    Associazione Sportiva Dilettantistica "Gli
+                                    Orchi Trieste"
                                 </span>
                                 <br />
+                                <span>Codice Fiscale: 90114470322</span>
+                                <br />
                                 <span>
-                                    Via Caccia 11, Trieste, 34129 Italia
+                                    Sede legale: Via Caccia 11, Trieste, 34129
+                                    Italia
                                 </span>
                                 <br />
                                 <span style={{ marginBottom: '1rem' }}>
+                                    Email:{' '}
                                     <Link
                                         target="_blank"
                                         to="mailto:orchitriestesoftair@gmail.com"

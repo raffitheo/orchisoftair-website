@@ -21,6 +21,12 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                     <div className="footer-copyright">
                         © 2024-2025 {appsettings.WEBSITE_DEFAULT_AUTHOR}. Tutti
                         i diritti riservati.
+                        <div className="footer-legal">
+                            <span>C.F. 90114470322</span>
+                            <span>
+                                Sede legale: Via Caccia11, Trieste, 34129 Italia
+                            </span>
+                        </div>
                         <div className="footer-link">
                             <span>
                                 <Link to="/privacy-policy">
@@ -34,6 +40,24 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
 
                             <span>
                                 <Link to="/faq">FAQ</Link>
+                            </span>
+
+                            <span>
+                                <a
+                                    download
+                                    href={`${getRootUrl()}/files/modelloorganizzativo290824.pdf`}
+                                >
+                                    Modello organizzativo
+                                </a>
+                            </span>
+
+                            <span>
+                                <a
+                                    download
+                                    href={`${getRootUrl()}/files/codicedicondotta290824.pdf`}
+                                >
+                                    Codice di Condotta
+                                </a>
                             </span>
                         </div>
                     </div>
@@ -70,6 +94,12 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                 </div>
             </div>
         );
+
+        function getRootUrl(): string {
+            const { protocol, hostname, port } = window.location;
+
+            return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+        }
     },
 );
 Footer.displayName = 'Footer';
