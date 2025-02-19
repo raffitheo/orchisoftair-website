@@ -104,7 +104,7 @@ const FrequentlyAskedQuestions = React.forwardRef<
                             />
 
                             <Accordion
-                                content="Per contattarci, ti consigliamo di compilare il modulo presente nel sito. In alternativa puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure un'email. Organizzeremo con piacere un primo incontro di persona per conoscerci e compilare insieme il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pront* per partecipare alle nostre sessioni di gioco.<br />Ricorda, le prime due prove sono sempre gratuite!"
+                                content="Per contattarci, ti consigliamo di compilare il modulo presente nel sito. In alternativa puoi inviare un messaggio privato sulla nostra pagina Facebook o Instagram, oppure un'email. Verrai ricontattat* da un membro del direttivo e vi metterete d'accordo per effettuare la prima prova.<br />Il giorno della prova dovrai presentarti al posto e all'orario concordato e, come prima cosa, ti verrà chiesto di compilare il modulo per l'assicurazione giornaliera. Una volta completato questo passaggio, sarai pront* per partecipare alle nostre sessioni di gioco.<br />Ricorda, le prime due prove sono sempre gratuite!"
                                 title="Come mi unisco a voi?"
                             />
 
