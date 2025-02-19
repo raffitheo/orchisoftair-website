@@ -4,8 +4,6 @@ import { appsettings } from '@config/appsettings';
 import { databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
 import { type WelcomeMessage } from '@interfaces/welcome-message';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Query } from 'appwrite';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
@@ -83,9 +81,6 @@ const App = () => {
                     />
                 )}
             </Router>
-
-            <Analytics />
-            <SpeedInsights />
         </React.Fragment>
     );
 
