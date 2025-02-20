@@ -17,7 +17,6 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
             useAppwriteQuery<News>({
                 collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
                 queries: [
-                    Query.orderDesc('creationDate'),
                     Query.select([
                         'category',
                         'creationDate',
@@ -27,6 +26,8 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                         'thumbnail',
                         'title',
                     ]),
+                    Query.equal('display', [true]),
+                    Query.orderDesc('creationDate'),
                 ],
                 transform: (doc) => ({
                     category: doc.category,
