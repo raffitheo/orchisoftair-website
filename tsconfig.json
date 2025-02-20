@@ -27,7 +27,8 @@
             "@config/*": ["./config/*"],
             "@hooks/*": ["./hooks/*"],
             "@interfaces/*": ["./interfaces/*"],
-            "@pages/*": ["./pages/*"]
+            "@pages/*": ["./pages/*"],
+            "@services/*": ["./services/*"]
         }
     },
     "include": ["src"],

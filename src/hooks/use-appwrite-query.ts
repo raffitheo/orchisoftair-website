@@ -1,48 +1,47 @@
-import { databases } from '@config/appwrite';
+import { client, databases } from '@config/appwrite';
 import { type DataStatus } from '@interfaces/data-status';
-import { useState, useEffect, useRef } from 'react';
+import cacheService from '@services/cache-service';
+import React from 'react';
 
 interface UseAppwriteQueryOptions<T> {
+    cache?: boolean;
+    cacheTTL?: number;
     collectionId: string;
+    enabled?: boolean;
+    forceRefresh?: boolean;
     queries?: string[];
     transform?: (data: any) => T;
-    enabled?: boolean;
 }
 
 function useAppwriteQuery<T>({
+    cache = true,
+    cacheTTL,
     collectionId,
+    enabled = true,
+    forceRefresh = false,
     queries = [],
     transform,
-    enabled = true,
 }: UseAppwriteQueryOptions<T>) {
-    const [data, setData] = useState<T[]>([]);
-    const [status, setStatus] = useState<DataStatus>('initialized');
-    const [error, setError] = useState<Error | null>(null);
+    const [data, setData] = React.useState<T[]>([]);
+    const [status, setStatus] = React.useState<DataStatus>('initialized');
+    const [error, setError] = React.useState<Error | null>(null);
 
-    const previousQueriesRef = useRef<string[]>([]);
-    const previousCollectionIdRef = useRef<string>('');
-
-    useEffect(() => {
+    React.useEffect(() => {
         if (!enabled) return;
-
-        const queriesChanged =
-            JSON.stringify(previousQueriesRef.current) !==
-            JSON.stringify(queries);
-        const collectionIdChanged =
-            previousCollectionIdRef.current !== collectionId;
-
-        if (
-            !queriesChanged &&
-            !collectionIdChanged &&
-            previousCollectionIdRef.current !== ''
-        )
-            return;
-
-        previousQueriesRef.current = queries;
-        previousCollectionIdRef.current = collectionId;
 
         async function fetchData() {
             try {
+                const cacheKey = `${collectionId}-${JSON.stringify(queries)}`;
+
+                if (cache && !forceRefresh) {
+                    const cachedData = cacheService.get<T[]>(cacheKey);
+                    if (cachedData) {
+                        setData(cachedData);
+                        setStatus('success');
+                        return;
+                    }
+                }
+
                 setStatus('loading');
                 const response = await databases.listDocuments(
                     import.meta.env.VITE_DATABASE_ID,
@@ -51,9 +50,15 @@ function useAppwriteQuery<T>({
                 );
 
                 if (response?.documents?.length) {
+                    const transformedData = transform
+                        ? response.documents.map(transform)
+                        : (response.documents as T[]);
+
+                    if (cache)
+                        cacheService.set(cacheKey, transformedData, cacheTTL);
+
+                    setData(transformedData);
                     setStatus('success');
-                    if (transform) setData(response.documents.map(transform));
-                    else setData(response.documents as T[]);
                 } else setStatus('error-no-data');
             } catch (err) {
                 setStatus('error');
@@ -63,8 +68,41 @@ function useAppwriteQuery<T>({
             }
         }
 
+        const unsubscribe = client.subscribe(
+            `databases.${import.meta.env.VITE_DATABASE_ID}.collections.${collectionId}.documents`,
+            (response) => {
+                if (
+                    response.events.includes(
+                        'databases.*.collections.*.documents.*.create',
+                    ) ||
+                    response.events.includes(
+                        'databases.*.collections.*.documents.*.update',
+                    ) ||
+                    response.events.includes(
+                        'databases.*.collections.*.documents.*.delete',
+                    )
+                ) {
+                    cacheService.invalidateByCollection(collectionId);
+
+                    fetchData();
+                }
+            },
+        );
+
         fetchData();
-    }, [collectionId, queries, transform, enabled]);
+
+        return () => {
+            unsubscribe();
+        };
+    }, [
+        cache,
+        cacheTTL,
+        collectionId,
+        enabled,
+        forceRefresh,
+        queries,
+        transform,
+    ]);
 
     return { data, status, error };
 }
