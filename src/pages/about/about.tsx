@@ -5,6 +5,7 @@ import FieldsLoading from '@assets/fields-loading.webp';
 import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
+import { OptimizedImage } from '@components/optimized-image';
 import { SEO } from '@components/seo';
 import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
@@ -93,9 +94,8 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                         <div className="video-gradient">
                             <div className="about-info-box">
                                 <div className="title-holder">
-                                    <img
+                                    <OptimizedImage
                                         alt="laing-logo"
-                                        loading="lazy"
                                         src={Landing}
                                     />
                                 </div>
@@ -185,9 +185,8 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
 
                             <div className="about-carousel">
                                 <div className="item loading">
-                                    <img
+                                    <OptimizedImage
                                         alt="loading-first"
-                                        loading="lazy"
                                         src={FieldsLoading}
                                     />
 
@@ -217,9 +216,8 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                                         key={field.alt}
                                         onClick={() => setActiveField(index)}
                                     >
-                                        <img
+                                        <OptimizedImage
                                             alt={field.alt}
-                                            loading="lazy"
                                             src={field.image}
                                         />
                                     </div>
@@ -329,9 +327,8 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
                                             key={member.nickname}
                                         >
                                             <div className="about-members-inner-element">
-                                                <img
+                                                <OptimizedImage
                                                     alt={member.alt}
-                                                    loading="lazy"
                                                     src={member.thumbnail}
                                                 />
 

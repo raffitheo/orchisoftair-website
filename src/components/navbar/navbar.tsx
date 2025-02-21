@@ -1,4 +1,5 @@
 import OrchiIcon from '@assets/icons/orchi-icon.webp';
+import { OptimizedImage } from '@components/optimized-image';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,10 +21,9 @@ const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
                     <div className="navbar-logo">
                         <div className="orchi-logo">
                             <Link to="/">
-                                <img
+                                <OptimizedImage
                                     alt="orchi-icon"
                                     height={48}
-                                    loading="lazy"
                                     src={OrchiIcon}
                                     width={52}
                                 />

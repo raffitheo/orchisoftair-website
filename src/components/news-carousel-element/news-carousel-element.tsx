@@ -1,3 +1,4 @@
+import { OptimizedImage } from '@components/optimized-image';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -39,11 +40,7 @@ const NewsCarouselElement = React.forwardRef<
             ) : (
                 <React.Fragment>
                     <Link to={to}>
-                        <img
-                            alt="news-thumbnail"
-                            loading="lazy"
-                            src={thumbnail}
-                        />
+                        <OptimizedImage alt="news-thumbnail" src={thumbnail} />
                     </Link>
                     <div className="news-item-description">
                         <h3>{title}</h3>

@@ -53,7 +53,7 @@ const App = () => {
     }, [welcomeMessagesStatus, welcomeMessages]);
 
     return (
-        <React.Fragment>
+        <React.Suspense fallback={<p>Loading...</p>}>
             <Router>
                 <Routes>
                     {route(<Home />, '/')}
@@ -96,7 +96,7 @@ const App = () => {
                         />
                     )}
             </Router>
-        </React.Fragment>
+        </React.Suspense>
     );
 
     function route(element: React.ReactNode, path: string) {

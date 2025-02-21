@@ -1,3 +1,4 @@
+import { OptimizedImage } from '@components/optimized-image';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,10 +13,9 @@ const CopyrightLink = React.forwardRef<HTMLAnchorElement, CopyrightLinkProps>(
         return (
             <Link aria-label={alt} ref={ref} target="_blank" to={to} {...props}>
                 <div className="copyright-link">
-                    <img
+                    <OptimizedImage
                         alt={alt}
                         height={45}
-                        loading="lazy"
                         src={image}
                         width={45}
                     />

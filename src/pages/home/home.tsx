@@ -5,6 +5,7 @@ import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { NewsCarouselElement } from '@components/news-carousel-element';
+import { OptimizedImage } from '@components/optimized-image';
 import { SEO } from '@components/seo';
 import { databases } from '@config/appwrite';
 import env from '@config/env';
@@ -92,10 +93,9 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                         <div className="main-box">
                             <div className="main-logo-flex">
                                 <div className="main-logo-section">
-                                    <img
+                                    <OptimizedImage
                                         alt="landing-logo"
                                         height={333}
-                                        loading="lazy"
                                         src={Landing}
                                         width={707}
                                     />
@@ -122,10 +122,9 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                                 target="_blank"
                                                 to="https://www.damocles.it/"
                                             >
-                                                <img
+                                                <OptimizedImage
                                                     alt="damocles-icon"
                                                     height={37}
-                                                    loading="lazy"
                                                     src={DamoclesIcon}
                                                     width={124}
                                                 />

@@ -1,3 +1,4 @@
+import { OptimizedImage } from '@components/optimized-image';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -20,13 +21,7 @@ const SocialLink = React.forwardRef<HTMLAnchorElement, SocialLinkProps>(
                 to={to}
                 {...props}
             >
-                <img
-                    alt={alt}
-                    height={32}
-                    loading="lazy"
-                    src={image}
-                    width={32}
-                />
+                <OptimizedImage alt={alt} height={32} src={image} width={32} />
             </Link>
         );
     },

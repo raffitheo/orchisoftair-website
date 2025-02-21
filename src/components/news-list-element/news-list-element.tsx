@@ -1,3 +1,4 @@
+import { OptimizedImage } from '@components/optimized-image';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -60,10 +61,9 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
                 ) : (
                     <React.Fragment>
                         <Link to={redirectLink}>
-                            <img
+                            <OptimizedImage
                                 alt="news-thumbnail"
                                 height={300}
-                                loading="lazy"
                                 src={thumbnail}
                                 width={500}
                             />
