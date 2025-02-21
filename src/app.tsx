@@ -1,6 +1,5 @@
 import { CookiesNotice } from '@components/cookies-notice';
 import { WelcomeMessagePopup } from '@components/welcome-message-popup';
-import { appsettings } from '@config/appsettings';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type WelcomeMessage } from '@interfaces/welcome-message';
 import { Query } from 'appwrite';
@@ -19,33 +18,37 @@ const PrivacyPolicy = React.lazy(() => import('@pages/privacy-policy'));
 
 const App = () => {
     const [currentMessageShown, setCurrentMessageShown] = React.useState(-1);
+    const [welcomeMessagesToShow, setWelcomeMessagesToShow] = React.useState<
+        WelcomeMessage[]
+    >([]);
 
     const { data: welcomeMessages, status: welcomeMessagesStatus } =
         useAppwriteQuery<WelcomeMessage>({
             collectionId: import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
             queries: [
-                Query.select(['content']),
+                Query.select(['content', 'key']),
                 Query.equal('display', [true]),
             ],
             transform: (doc) => ({
                 content: doc.content,
+                key: doc.key,
             }),
-            enabled: !window.sessionStorage.getItem(
-                appsettings.WELCOME_MESSAGES_CLOSED,
-            ),
         });
 
     React.useEffect(() => {
-        if (welcomeMessagesStatus === 'success' && welcomeMessages.length > 0)
-            setCurrentMessageShown(0);
-        else if (
-            welcomeMessagesStatus === 'error' ||
-            welcomeMessagesStatus === 'error-no-data'
-        )
-            window.sessionStorage.setItem(
-                appsettings.WELCOME_MESSAGES_CLOSED,
-                'true',
-            );
+        if (welcomeMessagesStatus === 'success' && welcomeMessages.length > 0) {
+            const newWelcomeMessagesToShow: WelcomeMessage[] = [];
+            welcomeMessages.forEach((welcomeMessage) => {
+                if (
+                    !window.localStorage.getItem(welcomeMessage.key) ||
+                    window.localStorage.getItem(welcomeMessage.key) === 'false'
+                )
+                    newWelcomeMessagesToShow.push(welcomeMessage);
+            });
+
+            if (newWelcomeMessagesToShow.length > 0) setCurrentMessageShown(0);
+            setWelcomeMessagesToShow(newWelcomeMessagesToShow);
+        }
     }, [welcomeMessagesStatus, welcomeMessages]);
 
     return (
@@ -66,25 +69,31 @@ const App = () => {
 
                 <CookiesNotice />
 
-                {welcomeMessages.length >= 1 && currentMessageShown != -1 && (
-                    <WelcomeMessagePopup
-                        content={welcomeMessages[currentMessageShown].content}
-                        onClick={() => {
-                            if (
-                                currentMessageShown >=
-                                welcomeMessages.length - 1
-                            ) {
-                                setCurrentMessageShown(-1);
-
-                                window.sessionStorage.setItem(
-                                    appsettings.WELCOME_MESSAGES_CLOSED,
+                {welcomeMessagesToShow.length >= 1 &&
+                    currentMessageShown != -1 && (
+                        <WelcomeMessagePopup
+                            content={
+                                welcomeMessagesToShow[currentMessageShown]
+                                    .content
+                            }
+                            onClick={() => {
+                                window.localStorage.setItem(
+                                    welcomeMessagesToShow[currentMessageShown]
+                                        .key,
                                     'true',
                                 );
-                            } else
-                                setCurrentMessageShown(currentMessageShown + 1);
-                        }}
-                    />
-                )}
+                                if (
+                                    currentMessageShown >=
+                                    welcomeMessagesToShow.length - 1
+                                )
+                                    setCurrentMessageShown(-1);
+                                else
+                                    setCurrentMessageShown(
+                                        currentMessageShown + 1,
+                                    );
+                            }}
+                        />
+                    )}
             </Router>
         </React.Fragment>
     );
