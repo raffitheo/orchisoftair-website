@@ -51,10 +51,10 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                             <h2>Introduzione</h2>
 
                             <p>
-                                A.S.D. Gli Orchi Trieste (compreso anche il suo
-                                sito web) prende molto seriamente la privacy dei
-                                propri utenti. Questa Informativa descrive come
-                                raccogliamo, utilizziamo e proteggiamo le
+                                L'A.S.D. Gli Orchi Trieste (compreso anche il
+                                suo sito web) prende molto seriamente la privacy
+                                dei propri utenti. Questa Informativa descrive
+                                come raccogliamo, utilizziamo e proteggiamo le
                                 informazioni degli utenti che si iscrivono alla
                                 nostra newsletter.
                             </p>
