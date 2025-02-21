@@ -12,13 +12,17 @@ interface WelcomeMessagePopupProps
 const WelcomeMessagePopup = React.forwardRef<
     HTMLDivElement,
     WelcomeMessagePopupProps
->(({ content, onClick, ...props }, ref) => {
+>(({ className, content, onClick, ...props }, ref) => {
     return (
-        <div className="development-popup-overlay" ref={ref} {...props}>
-            <div className="development-popup-container">
+        <div
+            className={`welcome-popup-overlay${className ? ` ${className}` : ''}`}
+            ref={ref}
+            {...props}
+        >
+            <div className="welcome-popup">
                 {parse(content)}
 
-                <div className="development-popup-button" onClick={onClick}>
+                <div className="welcome-popup-button" onClick={onClick}>
                     OK
                 </div>
             </div>

@@ -21,7 +21,7 @@ import 'react-multi-carousel/lib/styles.css';
 interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Home = React.forwardRef<HTMLDivElement, HomeProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         const [email, setEmail] = React.useState<string>();
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
@@ -76,7 +76,11 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             <React.Fragment>
                 <SEO />
 
-                <div ref={ref} {...props}>
+                <div
+                    className={`all${className ? ` ${className}` : ''}`}
+                    ref={ref}
+                    {...props}
+                >
                     <div className="video-container">
                         <Navbar />
 

@@ -15,9 +15,13 @@ interface NewsCarouselElementProps
 const NewsCarouselElement = React.forwardRef<
     HTMLDivElement,
     NewsCarouselElementProps
->(({ category, isLoading, thumbnail, title, to, ...props }, ref) => {
+>(({ category, className, isLoading, thumbnail, title, to, ...props }, ref) => {
     return (
-        <div className="news-item" ref={ref} {...props}>
+        <div
+            className={`news-item${className ? ` ${className}` : ''}`}
+            ref={ref}
+            {...props}
+        >
             {isLoading ? (
                 <React.Fragment>
                     <div className="center">

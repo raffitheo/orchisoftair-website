@@ -14,9 +14,13 @@ import { SocialLink } from './social-link';
 interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         return (
-            <div className="footer-container" ref={ref} {...props}>
+            <div
+                className={`footer${className ? ` ${className}` : ''}`}
+                ref={ref}
+                {...props}
+            >
                 <div className="footer-box">
                     <div className="footer-copyright">
                         © 2024-2025 {appsettings.WEBSITE_DEFAULT_AUTHOR}. Tutti

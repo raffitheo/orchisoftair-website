@@ -16,7 +16,7 @@ import './news-detail.sass';
 interface NewsDetailProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         const location = useLocation();
 
         const { data: pageDataArray, status: pageDataStatus } =
@@ -43,24 +43,28 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
 
         const pageData = pageDataArray?.[0];
 
-        return (
-            <div ref={ref} {...props}>
-                {renderPage()}
-            </div>
-        );
+        return renderPage();
 
         function renderPage() {
             switch (pageDataStatus) {
                 case 'error':
                 case 'error-no-data':
-                    return <NotFound />;
+                    return (
+                        <div ref={ref} {...props}>
+                            <NotFound />
+                        </div>
+                    );
 
                 case 'initialized':
                 case 'loading':
                     return (
-                        <Helmet>
-                            <title>Caricamento in corso...</title>
-                        </Helmet>
+                        <React.Fragment>
+                            <Helmet>
+                                <title>Caricamento in corso...</title>
+                            </Helmet>
+
+                            <div ref={ref} {...props}></div>
+                        </React.Fragment>
                     );
 
                 case 'success':
@@ -71,7 +75,11 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
                                 type="article"
                             />
 
-                            <div className="news-container">
+                            <div
+                                className={`news-container${className ? ` ${className}` : ''}`}
+                                ref={ref}
+                                {...props}
+                            >
                                 <div
                                     className="news-header-box2"
                                     style={{

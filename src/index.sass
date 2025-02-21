@@ -1,3 +1,5 @@
+@use './variables' as variables
+
 *,
 :after,
 :before
@@ -17,6 +19,7 @@ html
     -webkit-tap-highlight-color: transparent
 
 body
+    background-color: variables.$background-color
     margin: 0
     font-family: "Inter", sans-serif
     font-style: normal

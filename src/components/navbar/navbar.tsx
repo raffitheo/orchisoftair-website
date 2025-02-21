@@ -9,9 +9,13 @@ interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Navbar = React.forwardRef<HTMLDivElement, NavbarProps>(
-    ({ active, ...props }, ref) => {
+    ({ active, className, ...props }, ref) => {
         return (
-            <div className="navbar-container" ref={ref} {...props}>
+            <div
+                className={`navbar${className ? ` ${className}` : ''}`}
+                ref={ref}
+                {...props}
+            >
                 <div className="navbar-box">
                     <div className="navbar-logo">
                         <div className="orchi-logo">

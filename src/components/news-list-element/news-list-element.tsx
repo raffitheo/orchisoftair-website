@@ -18,6 +18,7 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
     (
         {
             category,
+            className,
             creationDate,
             isLoading,
             redirectLink,
@@ -29,7 +30,11 @@ const NewsListElement = React.forwardRef<HTMLDivElement, NewsListElementProps>(
         ref,
     ) => {
         return (
-            <div className="news-element" ref={ref} {...props}>
+            <div
+                className={`news-element${className ? ` ${className}` : ''}`}
+                ref={ref}
+                {...props}
+            >
                 {isLoading ? (
                     <React.Fragment>
                         <div className="center">

@@ -1,278 +1,280 @@
 @use '../../variables' as variables
 
-.video-container
-    height: 66vh
-    min-height: 550px
-    position: relative
-    width: 100%
+.all
+    background-color: variables.$background-color
 
-    .video-overlay
-        background-color: rgba(0, 0, 0, .2)
+    .video-container
+        height: 66vh
+        min-height: 550px
+        position: relative
+        width: 100%
 
-    .video-gradient
-        background: linear-gradient(0deg, variables.$background-color, hsla(0, 0%, 5%, 0) 10%)
-        height: 100%
+        .video-overlay
+            background-color: rgba(0, 0, 0, .2)
 
-    .video-overlay,
-    .video-gradient
-        bottom: 0
-        left: 0
-        position: absolute
-        right: 0
-        top: 0
-
-    .main-box
-        bottom: 0
-        height: 92%
-        left: 0
-        margin: 2% 10%
-        position: absolute
-        right: 0
-        top: 0
-        width: 80%
-        z-index: 0
-
-        .main-logo-flex
-            align-items: center
-            display: flex
+        .video-gradient
+            background: linear-gradient(0deg, variables.$background-color, hsla(0, 0%, 5%, 0) 10%)
             height: 100%
-            justify-content: center
-            margin: auto
-            width: 70%
 
-            @media (max-width: 800px)
-                width: 90%
+        .video-overlay,
+        .video-gradient
+            bottom: 0
+            left: 0
+            position: absolute
+            right: 0
+            top: 0
 
-            .main-logo-section
+        .main-box
+            bottom: 0
+            height: 92%
+            left: 0
+            margin: 2% 10%
+            position: absolute
+            right: 0
+            top: 0
+            width: 80%
+            z-index: 0
+
+            .main-logo-flex
                 align-items: center
+                display: flex
+                height: 100%
                 justify-content: center
-                position: relative
-                text-align: -webkit-center
+                margin: auto
+                width: 70%
+
+                @media (max-width: 800px)
+                    width: 90%
+
+                @media (max-width: 500px)
+                    margin-top: 4rem
+
+                .main-logo-section
+                    align-items: center
+                    justify-content: center
+                    position: relative
+                    text-align: -webkit-center
+
+                    a
+                        height: auto
+                        width: auto
+
+            .buttom-section
+                display: flex
+                gap: 2.5rem
+                justify-content: space-between
+                margin: 2.5rem 0
+                width: auto
+
+                @media (max-width: 900px)
+                    flex-wrap: wrap
+                    gap: 0
+                    justify-content: center
+                    width: 100%
+
+                @media (max-width: 500px)
+                    margin-bottom: 1.5rem
+                    margin-top: 1.5rem
 
                 a
-                    height: auto
-                    width: auto
+                    flex: 1 1 0
+                    min-width: calc(50% - (2.5rem * 2))
 
-        .buttom-section
-            display: flex
-            gap: 2.5rem
-            justify-content: space-between
-            margin: 2.5rem 0
-            width: auto
+                    @media (max-width: 429px)
+                        min-width: unset
 
-            @media (max-width: 900px)
-                flex-wrap: wrap
-                gap: 0
-                justify-content: center
-                width: 100%
-
-            a
-                flex: 1 1 0
-                margin: auto
-                min-width: calc(50% - (2.5rem * 2))
-
-                @media (max-width: 429px)
-                    min-width: unset
-
-            .about-button
-                background: transparent
-                color: variables.$text-color
-                font-weight: 600
-                line-height: 2.25rem
-                padding: .5rem 2rem
-
-                @media (max-width: 900px)
-                    padding: .5rem 1rem
-
-                @media (max-width: 409px)
-                    margin-bottom: 1rem
-
-            .contact-button
-                background-color: variables.$primary-color
-                color: #000
-                display: block
-                font-weight: 700
-                line-height: 2.25rem
-                opacity: .8
-                padding: .5rem 4rem
-
-                @media (max-width: 900px)
-                    border: 5px solid variables.$primary-color
+                .about-button
+                    background: transparent
+                    color: variables.$text-color
+                    font-weight: 600
                     padding: .5rem 2rem
 
-            .about-button,
-            .contact-button
-                border: 5px solid variables.$primary-color
-                border-radius: variables.$border-radius
-                font-size: 1.4rem
-                text-align: center
-                transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
-                width: 100%
+                    @media (max-width: 900px)
+                        margin-bottom: 1rem
 
-                @media (max-width: 900px)
-                    max-width: 230px
+                .contact-button
+                    background-color: variables.$primary-color
+                    color: #000
+                    display: block
+                    font-weight: 700
+                    opacity: .8
+                    padding: .5rem 4rem
+                    text-align: center
 
-                @media (max-width: 600px)
-                    font-size: 1rem
-                    padding: .5rem 2.5rem
+                    @media (max-width: 900px)
+                        border: 5px solid variables.$primary-color
 
-                @media (max-width: 500px)
-                    line-height: 1.25rem
-
-                @media (max-width: 429px)
-                    padding: .5rem 3rem
-
-                &:hover
-                    opacity: 1
-                    transform: scale(1.03)
+                .about-button,
+                .contact-button
+                    border: 5px solid variables.$primary-color
+                    cursor: pointer
+                    font-size: 1.4rem
+                    line-height: 2.25rem
                     transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
-
-        .partners-section
-            color: variables.$text-color
-            display: flex
-            flex-direction: column
-            gap: .75rem
-
-            .parthners-container
-                display: flex
-                justify-content: space-around
-                margin: auto
-                width: 80%
-
-                @media (max-width: 900px)
                     width: 100%
 
-                @media (max-width: 500px)
-                    flex-wrap: wrap
+                    @media (max-width: 900px)
+                        max-width: 230px
+                        padding: .5rem 1rem
 
-                .damocles-logo
-                    width: 50%
+                    @media (max-width: 600px)
+                        font-size: 1rem
+                        padding: .5rem 3rem
 
                     @media (max-width: 500px)
+                        line-height: 1.25rem
+
+                    &:hover
+                        opacity: 1
+                        transform: scale(1.03)
+                        transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
+
+            .partners-section
+                color: variables.$text-color
+                display: flex
+                flex-direction: column
+                gap: .75rem
+
+                .parthners-container
+                    display: flex
+                    justify-content: space-around
+                    margin: auto
+                    width: 80%
+
+                    @media (max-width: 900px)
                         width: 100%
 
-.relative-container
-    background-color: variables.$background-color
-    background-size: cover
-    color: variables.$text-color
-    max-width: 1920px
-    position: relative
-    text-align: center
+                    @media (max-width: 500px)
+                        flex-wrap: wrap
 
-    .gradient-overlay2
-        background: linear-gradient(180deg, variables.$background-color, hsla(0, 0%, 5%, 0) 5%)
+                    .damocles-logo
+                        width: 50%
 
-        .news-section
-            display: flex
-            margin: 0 auto
-            padding: 5% 0
-            position: relative
-            width: 80%
+                        @media (max-width: 500px)
+                            width: 100%
 
-            @media (max-width: 1400px)
-                display: block
+    .relative-container
+        background-color: variables.$background-color
+        background-size: cover
+        color: variables.$text-color
+        max-width: 1920px
+        position: relative
+        text-align: center
 
-            .news-title
-                font-size: 80px
-                font-weight: 700
-                line-height: 90px
-                place-self: center
-                text-align: center
-                width: 40%
+        .gradient-overlay2
+            background: linear-gradient(180deg, variables.$background-color, hsla(0, 0%, 5%, 0) 5%)
 
-                @media (max-width: 1400px)
-                    font-size: 60px
-                    line-height: 70px
-                    margin-bottom: 1rem
-                    width: 100%
-
-                @media (max-width: 630px)
-                    font-size: 40px
-                    line-height: 45px
-                    margin-bottom: 0
-
-                @media (max-width: 430px)
-                    font-size: 30px
-                    line-height: 35px
-
-            .news-carousel
-                display: block
-                place-content: center
-                width: 60%
-
-                h1
-                    font-size: 1.5rem
-                    margin: 3rem 0
-
-                    @media (max-width: 1400px)
-                        font-size: 1.25rem
-                        margin: 2.5rem 0
-
-                    @media (max-width: 630px)
-                        font-size: 1.125rem
-                        margin: 2rem 0
-
-                    @media (max-width: 430px)
-                        font-size: 1rem
-                        margin: 1.5rem 0
+            .news-section
+                display: flex
+                margin: 0 auto
+                padding: 5% 0
+                position: relative
+                width: 80%
 
                 @media (max-width: 1400px)
                     display: block
-                    margin: auto
-                    width: 100%
 
-.newsletter-section
-    background-position: top
-    background-size: cover
-    color: variables.$text-color
-    position: relative
-    text-align: center
+                .news-title
+                    font-size: 80px
+                    font-weight: 700
+                    line-height: 90px
+                    place-self: center
+                    text-align: center
+                    width: 40%
 
-    &-box
-        margin: 0 10%
-        padding: 100px 0
+                    @media (max-width: 1400px)
+                        font-size: 60px
+                        line-height: 70px
+                        margin-bottom: 1rem
+                        width: 100%
 
-    .subtitle
-        font-size: 2rem
-        font-weight: 900
-        margin-bottom: 2rem
+                    @media (max-width: 630px)
+                        font-size: 40px
+                        line-height: 45px
+                        margin-bottom: 0
 
-    .subscribe-form
-        color: #000
-        display: flow
-        gap: 10px
-        justify-content: center
-        margin: auto
+                    @media (max-width: 430px)
+                        font-size: 30px
+                        line-height: 35px
+
+                .news-carousel
+                    display: block
+                    place-content: center
+                    width: 60%
+
+                    @media (max-width: 1400px)
+                        display: block
+                        margin: auto
+                        width: 100%
+
+                    h1
+                        font-size: 1.5rem
+                        margin: 3rem 0
+
+                        @media (max-width: 1400px)
+                            font-size: 1.25rem
+                            margin: 2.5rem 0
+
+                        @media (max-width: 630px)
+                            font-size: 1.125rem
+                            margin: 2rem 0
+
+                        @media (max-width: 430px)
+                            font-size: 1rem
+                            margin: 1.5rem 0
+
+    .newsletter-section
+        background-position: top
+        background-size: cover
+        color: variables.$text-color
+        position: relative
         text-align: center
-        text-align: -webkit-center
 
-        .email-input
-            border: 1px solid #ccc
+        &-box
+            margin: 0 10%
+            padding: 100px 0
 
-        .subscribe-button
-            background-color: variables.$primary-color
-            border: none
-            cursor: pointer
+        .subtitle
+            font-size: 2rem
+            font-weight: 900
+            margin-bottom: 2rem
+
+        .subscribe-form
             color: #000
-            font-weight: 700
-            margin-top: 2rem
-            text-transform: uppercase
-            transition: transform variables.$transition-speed ease-in-out
+            display: flow
+            gap: 10px
+            justify-content: center
+            margin: auto
+            text-align: center
+            text-align: -webkit-center
 
-            @media (max-width: 400px)
-                font-size: .9rem
+            .email-input
+                border: 1px solid #ccc
 
-            &:hover
-                transform: scale(1.03)
+            .subscribe-button
+                background-color: variables.$primary-color
+                border: none
+                cursor: pointer
+                color: #000
+                font-weight: 700
+                margin-top: 2rem
+                text-transform: uppercase
                 transition: transform variables.$transition-speed ease-in-out
 
-        .email-input,
-        .subscribe-button
-            border-radius: variables.$border-radius
-            display: block
-            max-width: 400px
-            padding: 10px
-            width: 80%
+                @media (max-width: 400px)
+                    font-size: .9rem
 
-    .response-message
-        font-size: 3rem
+                &:hover
+                    transform: scale(1.03)
+                    transition: transform variables.$transition-speed ease-in-out
+
+            .email-input,
+            .subscribe-button
+                border-radius: variables.$border-radius
+                display: block
+                max-width: 400px
+                padding: 10px
+                width: 80%
+
+        .response-message
+            font-size: 3rem

@@ -12,7 +12,7 @@ import './news-list.sass';
 interface NewsListProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         const { data: newsList, status: newsListStatus } =
             useAppwriteQuery<News>({
                 collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
@@ -44,26 +44,14 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
             <React.Fragment>
                 <SEO title="Novità ed eventi" />
 
-                <div ref={ref} {...props}>
+                <div
+                    className={`news${className ? ` ${className}` : ''}`}
+                    ref={ref}
+                    {...props}
+                >
                     <Navbar active="news" />
 
-                    <div className="news-container">
-                        <div className="news-header-box2">
-                            <div className="news-banner-box">
-                                <div className="news-header-banner">
-                                    <div className="news-header" />
-
-                                    <div>
-                                        <h1>NOVITÀ ED EVENTI</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="news-background">
-                            {renderNewsList()}
-                        </div>
-                    </div>
+                    <div className="news-bg">{renderNewsList()}</div>
 
                     <Footer />
                 </div>
@@ -86,30 +74,44 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
                 case 'initialized':
                 case 'loading':
                     return (
-                        <div className="news-gallery">
-                            <NewsListElement isLoading redirectLink="#" />
-                            <NewsListElement isLoading redirectLink="#" />
-                            <NewsListElement isLoading redirectLink="#" />
-                            <NewsListElement isLoading redirectLink="#" />
-                            <NewsListElement isLoading redirectLink="#" />
-                            <NewsListElement isLoading redirectLink="#" />
+                        <div className="gallery">
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
+                            <div>
+                                <NewsListElement isLoading redirectLink="#" />
+                            </div>
                         </div>
                     );
 
                 case 'success':
                     if (newsList.length >= 1)
                         return (
-                            <div className="news-gallery">
+                            <div className="gallery">
                                 {newsList.map((news, newsIndex) => (
-                                    <NewsListElement
-                                        category={news.category}
-                                        creationDate={news.creationDate}
-                                        redirectLink={news.redirectLink}
-                                        key={newsIndex}
-                                        subtitle={news.subtitle}
-                                        thumbnail={news.thumbnail}
-                                        title={news.title}
-                                    />
+                                    <div>
+                                        <NewsListElement
+                                            category={news.category}
+                                            creationDate={news.creationDate}
+                                            redirectLink={news.redirectLink}
+                                            key={newsIndex}
+                                            subtitle={news.subtitle}
+                                            thumbnail={news.thumbnail}
+                                            title={news.title}
+                                        />
+                                    </div>
                                 ))}
                             </div>
                         );

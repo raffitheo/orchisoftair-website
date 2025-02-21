@@ -11,7 +11,7 @@ import './contact-us.sass';
 interface ContactUsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         const [emailText, setEmailText] = React.useState<string>();
         const [messageText, setMessageText] = React.useState<string>();
         const [nameText, setNameText] = React.useState<string>();
@@ -26,53 +26,55 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
             <React.Fragment>
                 <SEO title="Contatti" />
 
-                <div ref={ref} {...props}>
-                    <Navbar active="contact-us" />
+                <Navbar active="contact-us" />
 
-                    <div className="contact-us-container">
-                        <div className="contact-us-header-box2">
-                            <div className="contact-us-banner-box">
-                                <div className="contact-us-header-banner">
-                                    <div className="contact-us-header" />
+                <div
+                    className={`contact-us${className ? ` ${className}` : ''}`}
+                    ref={ref}
+                    {...props}
+                >
+                    <div className="contact-us-header-box2">
+                        <div className="contact-us-banner-box">
+                            <div className="contact-us-header-banner">
+                                <div className="contact-us-header" />
 
-                                    <div>
-                                        <h1>MODULO DI CONTATTO</h1>
-                                    </div>
+                                <div>
+                                    <h1>MODULO DI CONTATTO</h1>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="contact-us-main-container">
-                            <div className="contact-us-main-box">
-                                <p>
-                                    Se hai domande da farci, puoi contattarci
-                                    tramite messaggio privato sui nostri canali
-                                    social, come{' '}
-                                    <Link to="https://www.instagram.com/orchisoftair_official/">
-                                        Instagram
-                                    </Link>{' '}
-                                    o{' '}
-                                    <Link to="https://www.facebook.com/orchitrieste/">
-                                        Facebook
-                                    </Link>
-                                    . Siamo sempre felici di rispondere alle tue
-                                    domande e fornirti tutte le informazioni di
-                                    cui hai bisogno. Tuttavia, per facilitare la
-                                    comunicazione e garantirti una risposta
-                                    rapida e accurata, ti invitiamo a compilare
-                                    il modulo seguente. In questo modo, possiamo
-                                    raccogliere tutte le informazioni necessarie
-                                    per ricontattarti nel modo più efficiente
-                                    possibile. Grazie per la tua collaborazione!
-                                </p>
-
-                                {renderEmailForm()}
                             </div>
                         </div>
                     </div>
 
-                    <Footer />
+                    <div className="contact-us-main-container">
+                        <div className="contact-us-main-box">
+                            <p>
+                                Se hai domande da farci, puoi contattarci
+                                tramite messaggio privato sui nostri canali
+                                social, come{' '}
+                                <Link to="https://www.instagram.com/orchisoftair_official/">
+                                    Instagram
+                                </Link>{' '}
+                                o{' '}
+                                <Link to="https://www.facebook.com/orchitrieste/">
+                                    Facebook
+                                </Link>
+                                . Siamo sempre felici di rispondere alle tue
+                                domande e fornirti tutte le informazioni di cui
+                                hai bisogno. Tuttavia, per facilitare la
+                                comunicazione e garantirti una risposta rapida e
+                                accurata, ti invitiamo a compilare il modulo
+                                seguente. In questo modo, possiamo raccogliere
+                                tutte le informazioni necessarie per
+                                ricontattarti nel modo più efficiente possibile.
+                                Grazie per la tua collaborazione!
+                            </p>
+
+                            {renderEmailForm()}
+                        </div>
+                    </div>
                 </div>
+
+                <Footer />
             </React.Fragment>
         );
 

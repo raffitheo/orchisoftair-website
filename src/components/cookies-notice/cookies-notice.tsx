@@ -7,7 +7,7 @@ import './cookies-notice.sass';
 interface CookiesNoticeProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
-    ({ ...props }, ref) => {
+    ({ className, ...props }, ref) => {
         const [showCookiesNotice, setShowCookiesNotice] = React.useState(true);
 
         React.useEffect(() => {
@@ -29,7 +29,11 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
 
         if (showCookiesNotice)
             return (
-                <div className="cookies-notice-container" ref={ref} {...props}>
+                <div
+                    className={`cookies-notice${className ? ` ${className}` : ''}`}
+                    ref={ref}
+                    {...props}
+                >
                     <div className="cookies-notice-text">
                         <span>
                             Utilizziamo i cookies per migliorare la tua
