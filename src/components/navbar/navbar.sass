@@ -1,19 +1,18 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .navbar
     align-content: center
     background-color: rgba(0, 0, 0, .33)
-    color: variables.$text-color
-    font-size: 1rem
+    color: color('text')
+    font-size: font-size('base')
     height: 80px
     position: absolute
     width: 100%
     z-index: 1
 
     .navbar-box
-        display: flex
+        @include flex(row, nowrap, space-between, stretch)
         height: 100%
-        justify-content: space-between
         margin: 0 10%
 
         @media (max-width: 1000px)
@@ -31,8 +30,8 @@
                     max-width: none
 
         .navbar-buttons
-            display: flex
-            font-weight: 600
+            @include flex(row, nowrap, flex-start, stretch)
+            font-weight: font-weight('semibold')
             opacity: 1
             text-align: center
             text-transform: uppercase
@@ -46,12 +45,12 @@
 
             .navbar-button
                 align-content: center
-                transition: variables.$transition-speed
+                transition: $transition-speed
                 width: 33%
 
                 &.active,
                 &:hover
-                    color: variables.$primary-color
+                    color: color('primary')
                     cursor: pointer
                     transform: scale(1.2)
-                    transition: variables.$transition-speed
+                    transition: $transition-speed

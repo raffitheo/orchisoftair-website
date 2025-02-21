@@ -1,4 +1,4 @@
-@use './variables' as variables
+@use './variables' as *
 
 *,
 :after,
@@ -19,7 +19,7 @@ html
     -webkit-tap-highlight-color: transparent
 
 body
-    background-color: variables.$background-color
+    background-color: color('background')
     margin: 0
     font-family: "Inter", sans-serif
     font-style: normal
@@ -48,7 +48,7 @@ a
 
 b,
 strong
-    font-weight: bolder
+    font-weight: font-weight('bolder')
 
 code,
 kbd,
@@ -57,7 +57,7 @@ samp
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace
     font-feature-settings: normal
     font-variation-settings: normal
-    font-size: 1em
+    font-size: font-size('base')
 
 small
     font-size: 80%

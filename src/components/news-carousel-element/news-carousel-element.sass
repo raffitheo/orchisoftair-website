@@ -1,15 +1,15 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .news-item
-    padding: 1rem
+    padding: spacing('md')
 
     h3
-        font-size: 1.5rem
-        font-weight: 600
-        padding-top: 1rem
+        font-size: font-size('2xl')
+        font-weight: font-weight('semibold')
+        padding-top: spacing('md')
 
         @media (max-width: 600px)
-            font-size: 1rem
+            font-size: font-size('base')
 
     img
         height: auto
@@ -22,22 +22,22 @@
         -o-object-fit: cover
 
     p
-        font-size: 1rem
-        margin-bottom: 1rem
+        font-size: font-size('base')
+        margin-bottom: spacing('md')
 
     &-description
         text-align: left
 
     &-link
-        color: variables.$primary-color
-        font-weight: 600
-        transition: transform variables.$transition-speed ease
+        color: color('primary')
+        font-weight: font-weight('semibold')
+        transition: transform $transition-speed ease
         width: -moz-fit-content
         width: fit-content
 
         &:hover
             transform: scale(1.05)
-            transition: transform variables.$transition-speed ease
+            transition: transform $transition-speed ease
 
     .blur
         filter: blur(4px)
@@ -47,16 +47,14 @@
         text-align: -webkit-center
 
         .spinner
-            align-items: center
-            display: flex
+            @include flex(row, nowrap, center, center)
             height: 175.5px
-            justify-content: center
 
             &::after
                 animation: spin 1s linear infinite
                 border: 5px solid rgba(0, 0, 0, .1)
                 border-radius: 50%
-                border-top-color: variables.$primary-color
+                border-top-color: color('primary')
                 content: ""
                 height: 100px
                 width: 100px

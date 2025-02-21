@@ -1,12 +1,10 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .welcome-popup-overlay
-    align-items: center
-    background-color: variables.$background-color-dark
+    @include flex(column, nowrap, flex-start, center)
+    background-color: color('background-dark')
     bottom: 0
-    color: variables.$text-color
-    display: flex
-    flex-direction: column
+    color: color('text')
     height: 100%
     left: 0
     opacity: .9
@@ -14,37 +12,35 @@
     right: 0
     top: 0
     width: 100%
-    z-index: 10001
+    z-index: z-index('tooltip')
 
     .welcome-popup
-        display: flex
-        flex-direction: column
+        @include flex(column, nowrap, flex-start, stretch)
         margin: auto
         max-width: 80%
 
         h1
             font-size: 2rem
-            margin: 1rem auto
+            margin: spacing('md') auto
 
         span
             font-size: larger
 
             a
-                color: variables.$primary-color
+                color: color('primary')
                 text-decoration: underline
 
         .welcome-popup-button
-            border: 1px solid variables.$primary-color
-            border-radius: variables.$border-radius
-            color: variables.$primary-color
+            @include flex(row, nowrap, center, stretch)
+            border: 1px solid color('primary')
+            border-radius: $border-radius
+            color: color('primary')
             cursor: pointer
-            display: flex
-            justify-content: center
-            font-weight: bolder
-            margin: 1rem 0 1rem auto
-            padding: .5rem 2rem
-            transition: variables.$transition-speed
+            font-weight: font-weight('bolder')
+            margin: spacing('md') 0 spacing('md') auto
+            padding: spacing('sm') spacing('xl')
+            transition: $transition-speed
 
             &:hover
                 transform: scale(1.1)
-                transition: variables.$transition-speed
+                transition: $transition-speed

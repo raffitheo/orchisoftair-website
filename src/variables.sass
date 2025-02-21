@@ -1,6 +1,77 @@
-$background-color: #0C0C0C
-$background-color-dark: #151515
+@use 'sass:map'
+
+$colors: (
+    'primary': #861A32,
+    'background': #0C0C0C,
+    'background-dark': #151515,
+    'text': #fff,
+    'text-secondary': rgba(255, 255, 255, 0.7),
+    'border': rgba(255, 255, 255, 0.1)
+)
+
+$font-sizes: (
+    'xs': 0.75rem,
+    'sm': 0.875rem,
+    'base': 1rem,
+    'lg': 1.125rem,
+    'xl': 1.25rem,
+    '2xl': 1.5rem,
+    '3xl': 1.875rem,
+    '4xl': 2.25rem
+)
+
+$font-weights: (
+    'thin': 100,
+    'extralight': 200,
+    'light': 300,
+    'regular': 400,
+    'medium': 500,
+    'semibold': 600,
+    'bold': 700,
+    'bolder': 800,
+    'black': 900
+)
+
+$spacing: (
+    'xs': 0.25rem,
+    'sm': 0.5rem,
+    'md': 1rem,
+    'lg': 1.5rem,
+    'xl': 2rem,
+    '2xl': 3rem
+)
+
+$z-index: (
+    'dropdown': 1000,
+    'sticky': 1020,
+    'modal': 1030,
+    'popover': 1040,
+    'tooltip': 1050
+)
+
 $border-radius: 2px
-$primary-color: #861A32
-$text-color: #fff
+
 $transition-speed: .3s
+$transition-timing: ease-in-out
+
+@function color($key)
+    @return map.get($colors, $key)
+
+@function font-size($key)
+    @return map.get($font-sizes, $key)
+
+@function font-weight($key)
+    @return map.get($font-weights, $key)
+
+@function spacing($key)
+    @return map.get($spacing, $key)
+
+@function z-index($key)
+    @return map.get($z-index, $key)
+
+@mixin flex($direction: row, $wrap: wrap, $justify: flex-start, $align: stretch)
+    display: flex
+    flex-direction: $direction
+    flex-wrap: $wrap
+    justify-content: $justify
+    align-items: $align

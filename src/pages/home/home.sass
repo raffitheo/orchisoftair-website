@@ -1,7 +1,7 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .all
-    background-color: variables.$background-color
+    background-color: color('background')
 
     .video-container
         height: 66vh
@@ -13,7 +13,7 @@
             background-color: rgba(0, 0, 0, .2)
 
         .video-gradient
-            background: linear-gradient(0deg, variables.$background-color, hsla(0, 0%, 5%, 0) 10%)
+            background: linear-gradient(0deg, color('background'), hsla(0, 0%, 5%, 0) 10%)
             height: 100%
 
         .video-overlay,
@@ -36,10 +36,8 @@
             z-index: 0
 
             .main-logo-flex
-                align-items: center
-                display: flex
+                @include flex(row, nowrap, center, center)
                 height: 100%
-                justify-content: center
                 margin: auto
                 width: 70%
 
@@ -60,9 +58,8 @@
                         width: auto
 
             .buttom-section
-                display: flex
+                @include flex(row, nowrap, space-between, stretch)
                 gap: 2.5rem
-                justify-content: space-between
                 margin: 2.5rem 0
                 width: auto
 
@@ -73,8 +70,8 @@
                     width: 100%
 
                 @media (max-width: 500px)
-                    margin-bottom: 1.5rem
-                    margin-top: 1.5rem
+                    margin-bottom: spacing('lg')
+                    margin-top: spacing('lg')
 
                 a
                     flex: 1 1 0
@@ -85,41 +82,41 @@
 
                 .about-button
                     background: transparent
-                    color: variables.$text-color
-                    font-weight: 600
-                    padding: .5rem 2rem
+                    color: color('text')
+                    font-weight: font-weight('semibold')
+                    padding: spacing('sm') spacing('xl')
 
                     @media (max-width: 900px)
-                        margin-bottom: 1rem
+                        margin-bottom: spacing('md')
 
                 .contact-button
-                    background-color: variables.$primary-color
+                    background-color: color('primary')
                     color: #000
                     display: block
-                    font-weight: 700
+                    font-weight: font-weight('bold')
                     opacity: .8
-                    padding: .5rem 4rem
+                    padding: spacing('sm') 4rem
                     text-align: center
 
                     @media (max-width: 900px)
-                        border: 5px solid variables.$primary-color
+                        border: 5px solid color('primary')
 
                 .about-button,
                 .contact-button
-                    border: 5px solid variables.$primary-color
+                    border: 5px solid color('primary')
                     cursor: pointer
                     font-size: 1.4rem
                     line-height: 2.25rem
-                    transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
+                    transition: transform $transition-speed $transition-timing, opacity $transition-speed $transition-timing
                     width: 100%
 
                     @media (max-width: 900px)
                         max-width: 230px
-                        padding: .5rem 1rem
+                        padding: spacing('sm') spacing('md')
 
                     @media (max-width: 600px)
-                        font-size: 1rem
-                        padding: .5rem 3rem
+                        font-size: font-size('base')
+                        padding: spacing('sm') spacing('2xl')
 
                     @media (max-width: 500px)
                         line-height: 1.25rem
@@ -127,17 +124,15 @@
                     &:hover
                         opacity: 1
                         transform: scale(1.03)
-                        transition: transform variables.$transition-speed ease-in-out, opacity variables.$transition-speed ease-in-out
+                        transition: transform $transition-speed $transition-timing, opacity $transition-speed $transition-timing
 
             .partners-section
-                color: variables.$text-color
-                display: flex
-                flex-direction: column
+                @include flex(column, nowrap, flex-start, stretch)
+                color: color('text')
                 gap: .75rem
 
                 .parthners-container
-                    display: flex
-                    justify-content: space-around
+                    @include flex(row, nowrap, space-around, stretch)
                     margin: auto
                     width: 80%
 
@@ -154,18 +149,18 @@
                             width: 100%
 
     .relative-container
-        background-color: variables.$background-color
+        background-color: color('background')
         background-size: cover
-        color: variables.$text-color
+        color: color('text')
         max-width: 1920px
         position: relative
         text-align: center
 
         .gradient-overlay2
-            background: linear-gradient(180deg, variables.$background-color, hsla(0, 0%, 5%, 0) 5%)
+            background: linear-gradient(180deg, color('background'), hsla(0, 0%, 5%, 0) 5%)
 
             .news-section
-                display: flex
+                @include flex(row, nowrap, flex-start, stretch)
                 margin: 0 auto
                 padding: 5% 0
                 position: relative
@@ -176,7 +171,7 @@
 
                 .news-title
                     font-size: 80px
-                    font-weight: 700
+                    font-weight: font-weight('bold')
                     line-height: 90px
                     place-self: center
                     text-align: center
@@ -185,7 +180,7 @@
                     @media (max-width: 1400px)
                         font-size: 60px
                         line-height: 70px
-                        margin-bottom: 1rem
+                        margin-bottom: spacing('md')
                         width: 100%
 
                     @media (max-width: 630px)
@@ -194,7 +189,7 @@
                         margin-bottom: 0
 
                     @media (max-width: 430px)
-                        font-size: 30px
+                        font-size: font-size('3xl')
                         line-height: 35px
 
                 .news-carousel
@@ -208,25 +203,25 @@
                         width: 100%
 
                     h1
-                        font-size: 1.5rem
-                        margin: 3rem 0
+                        font-size: font-size('2xl')
+                        margin: spacing('2xl') 0
 
                         @media (max-width: 1400px)
-                            font-size: 1.25rem
+                            font-size: font-size('xl')
                             margin: 2.5rem 0
 
                         @media (max-width: 630px)
-                            font-size: 1.125rem
-                            margin: 2rem 0
+                            font-size: font-size('lg')
+                            margin: spacing('xl') 0
 
                         @media (max-width: 430px)
-                            font-size: 1rem
-                            margin: 1.5rem 0
+                            font-size: font-size('base')
+                            margin: spacing('lg') 0
 
     .newsletter-section
         background-position: top
         background-size: cover
-        color: variables.$text-color
+        color: color('text')
         position: relative
         text-align: center
 
@@ -236,8 +231,8 @@
 
         .subtitle
             font-size: 2rem
-            font-weight: 900
-            margin-bottom: 2rem
+            font-weight: font-weight('black')
+            margin-bottom: spacing('xl')
 
         .subscribe-form
             color: #000
@@ -252,25 +247,25 @@
                 border: 1px solid #ccc
 
             .subscribe-button
-                background-color: variables.$primary-color
+                background-color: color('primary')
                 border: none
                 cursor: pointer
                 color: #000
-                font-weight: 700
-                margin-top: 2rem
+                font-weight: font-weight('bold')
+                margin-top: spacing('xl')
                 text-transform: uppercase
-                transition: transform variables.$transition-speed ease-in-out
+                transition: transform $transition-speed $transition-timing
 
                 @media (max-width: 400px)
                     font-size: .9rem
 
                 &:hover
                     transform: scale(1.03)
-                    transition: transform variables.$transition-speed ease-in-out
+                    transition: transform $transition-speed $transition-timing
 
             .email-input,
             .subscribe-button
-                border-radius: variables.$border-radius
+                border-radius: $border-radius
                 display: block
                 max-width: 400px
                 padding: 10px

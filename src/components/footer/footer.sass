@@ -1,4 +1,4 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .footer,
 .footer-box
@@ -6,25 +6,24 @@
     width: 100%
 
 .footer
-    background: variables.$background-color
+    background: color('background')
     height: 100%
 
     .footer-box
-        display: flex
-        justify-content: space-between
-        padding: 3rem 10%
+        @include flex(row, nowrap, space-between, stretch)
+        padding: spacing('2xl') 10%
 
         @media (max-width: 1200px)
             align-items: center
             flex-direction: column
-            padding: 2rem 10%
+            padding: spacing('xl') 10%
 
         a
             align-self: center
 
         .footer-copyright
             align-self: center
-            color: variables.$text-color
+            color: color('text')
             float: left
             width: 40%
 
@@ -34,61 +33,55 @@
                 width: 100%
 
             .footer-legal
-                display: flex
-                flex-direction: column
-                margin-top: 1rem
+                @include flex(column, nowrap, flex-start, stretch)
+                margin-top: spacing('md')
 
                 @media (max-width: 1200px)
-                    margin-top: .5rem
+                    margin-top: spacing('sm')
 
                 a
-                    color: variables.$primary-color
-                    transition: variables.$transition-speed
+                    color: color('primary')
+                    transition: $transition-speed
 
             .footer-link
-                display: flex
-                flex-wrap: wrap
-                margin-top: 1rem
+                @include flex(row, wrap, flex-start, stretch)
+                margin-top: spacing('md')
 
                 @media (max-width: 1200px)
                     justify-content: center
-                    margin-top: .5rem
+                    margin-top: spacing('sm')
 
                 span
-                    color: variables.$primary-color
-                    margin-right: 1rem
+                    color: color('primary')
+                    margin-right: spacing('md')
                     overflow: hidden
-                    transition: variables.$transition-speed
+                    transition: $transition-speed
                     white-space: nowrap
 
         .footer-credits
-            align-content: center
-            color: variables.$text-color
-            display: flex
+            @include flex(row, nowrap, center, center)
+            color: color('text')
             flex-direction: row
-            gap: .5rem
-            justify-content: center
+            gap: spacing('sm')
 
             span
-                font-weight: 100
+                font-weight: font-weight('thin')
                 margin: auto
 
         .footer-social
-            align-self: center
-            display: flex
+            @include flex(row, nowrap, right, center)
             gap: 2.5rem
-            justify-content: right
             margin: 0
             right: 5rem
             width: 40%
 
             @media (max-width: 1600px)
-                gap: 1.5rem
+                gap: spacing('lg')
 
             @media (max-width: 1200px)
-                gap: .5rem
+                gap: spacing('sm')
                 justify-content: center
                 margin: 0
                 order: 1
-                padding: 1rem 0
+                padding: spacing('md') 0
                 width: 100%

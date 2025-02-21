@@ -1,42 +1,41 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .close
     .accordion-content-line
         svg
-            transition: variables.$transition-speed
+            transition: $transition-speed
             transform: rotate(180deg)
 
             path
-                stroke: variables.$text-color
+                stroke: color('text')
 
     .content
         display: none
 
 .open
     .content
-        margin-top: 0.5rem
+        margin-top: spacing('sm')
 
 .close,
 .open
-    border-bottom: 1px solid variables.$text-color
-    padding: 1rem 0
+    border-bottom: 1px solid color('text')
+    padding: spacing('md') 0
 
     .accordion-content-line
-        display: flex
-        justify-content: space-between
-        transition: color variables.$transition-speed ease-in-out
+        @include flex(row, nowrap, space-between, center)
+        transition: color $transition-speed $transition-timing
 
         &:hover
-            color: variables.$primary-color
+            color: color('primary')
             cursor: pointer
-            transition: color variables.$transition-speed ease-in-out
+            transition: color $transition-speed $transition-timing
 
             path
-                stroke: variables.$primary-color
-                transition: stroke variables.$transition-speed ease-in-out
+                stroke: color('primary')
+                transition: stroke $transition-speed $transition-timing
 
         svg
-            transition: variables.$transition-speed
+            transition: $transition-speed
 
             path
-                transition: stroke variables.$transition-speed ease-in-out
+                transition: stroke $transition-speed $transition-timing

@@ -1,7 +1,7 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .cookies-policy
-    background-color: variables.$background-color-dark
+    background-color: color('background-dark')
     margin: auto
     max-width: 1920px
     position: relative
@@ -9,7 +9,7 @@
     .cookies-policy-header-box2
         background-position: center
         background-size: cover
-        color: variables.$text-color
+        color: color('text')
         height: 400px
         position: relative
         text-align: center
@@ -31,23 +31,21 @@
                 top: 20px
 
                 &-banner
-                    align-items: center
-                    display: flex
+                    @include flex(row, nowrap, center, center)
                     height: 100%
-                    justify-content: center
                     text-align: left
 
                     h1
                         font-size: 70px
-                        font-weight: 700
+                        font-weight: font-weight('bold')
                         letter-spacing: 0
                         line-height: 84px
 
                     .banner-date
                         color: #cfd2d3
                         float: left
-                        font-size: 16px
-                        font-weight: 600
+                        font-size: font-size('base')
+                        font-weight: font-weight('semibold')
                         letter-spacing: 0
                         line-height: 29px
                         text-align: left
@@ -59,7 +57,7 @@
                         line-height: 60px
 
     .video-gradient
-        background: linear-gradient(0deg, variables.$background-color-dark, hsla(0, 0%, 5%, 0) 10%)
+        background: linear-gradient(0deg, color('background-dark'), hsla(0, 0%, 5%, 0) 10%)
         bottom: 0
         height: 400px
         left: 0
@@ -70,16 +68,16 @@
 
     .cookies-policy-main-container
         background-position: bottom
-        font-size: 18px
-        font-weight: 400
+        font-size: font-size('lg')
+        font-weight: font-weight('regular')
         letter-spacing: 0
         line-height: 29px
         padding-bottom: 5rem
 
         .cookies-policy-main-box
             color: #cfd2d3
-            font-size: 1rem
-            font-weight: 300
+            font-size: font-size('base')
+            font-weight: font-weight('light')
             letter-spacing: 0
             line-height: 20px
             margin: 0 25%
@@ -92,66 +90,65 @@
                 width: 80%
 
             @media (max-width: 1000px)
-                font-size: 14px
+                font-size: font-size('sm')
                 line-height: 16px
 
             h1,
             h2
-                font-weight: 600
+                font-weight: font-weight('semibold')
                 letter-spacing: 0
                 text-transform: uppercase
 
                 @media (max-width: 1000px)
-                    font-size: 24px
+                    font-size: font-size('2xl')
                     line-height: 36px
-                    padding: 1.5rem 0 0
+                    padding: spacing('lg') 0 0
 
             h1
-                font-size: 30px
+                font-size: font-size('3xl')
                 line-height: 40px
-                padding: 2.5rem 0 1rem
-                color: variables.$text-color
+                padding: 2.5rem 0 spacing('md')
+                color: color('text')
 
                 @media (max-width: 600px)
-                    font-size: 20px
+                    font-size: font-size('xl')
                     line-height: 25px
 
             h2
                 font-size: 22px
                 line-height: 26px
-                padding: 1rem 0 0
+                padding: spacing('md') 0 0
 
                 @media (max-width: 600px)
-                    padding: 1.5rem 0 0
+                    padding: spacing('lg') 0 0
 
             p,
             span
                 font-size: 15px
-                font-weight: 300
+                font-weight: font-weight('light')
                 letter-spacing: 0
                 line-height: 17px
                 text-align: justify
 
                 a
-                    color: variables.$primary-color
+                    color: color('primary')
 
             p
-                margin: 1rem 0
+                margin: spacing('md') 0
 
                 @media (max-width: 1000px)
-                    font-size: 14px
+                    font-size: font-size('sm')
                     line-height: 16px
 
             img
-                margin: 1rem 0
+                margin: spacing('md') 0
                 width: 100%
 
             video
-                margin: 1rem 0
+                margin: spacing('md') 0
 
         .content-creators
-            display: flex
-            justify-content: space-between
+            @include flex(row, nowrap, space-between, stretch)
 
             @media (max-width: 1000px)
                 display: block

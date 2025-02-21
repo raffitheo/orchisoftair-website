@@ -1,19 +1,19 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .news
-    background-color: variables.$background-color
+    background-color: color('background')
 
     .news-bg
         margin: auto
         width: 80%
 
         .news-empty
-            display: flex
+            @include flex(row, nowrap, flex-start, stretch)
             height: 60vh
             width: 100%
 
             h1
-                color: variables.$text-color
+                color: color('text')
                 margin: auto
                 text-align: center
 

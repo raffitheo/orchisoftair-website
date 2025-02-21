@@ -1,14 +1,14 @@
-@use '../../../variables' as variables
+@use '../../../variables' as *
 
 .social-link-element
     background-color: rgb(0 0 0 / 1)
     border-radius: .75rem
     filter: brightness(.75)
     opacity: .9
-    transition: all variables.$transition-speed ease-in-out
+    transition: all $transition-speed $transition-timing
 
     &:hover
         filter: brightness(1)
         opacity: 1
         transform: scale(1.1)
-        transition: all variables.$transition-speed ease-in-out
+        transition: all $transition-speed $transition-timing

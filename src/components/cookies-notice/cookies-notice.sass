@@ -1,51 +1,46 @@
-@use '../../variables' as variables
+@use '../../variables' as *
 
 .cookies-notice
-    align-items: center
-    background-color: variables.$background-color-dark
+    @include flex(row, wrap, space-evenly, center)
+    background-color: color('background-dark')
     bottom: 0
-    color: variables.$text-color
-    display: flex
-    flex-direction: row
+    color: color('text')
     flex-wrap: wrap
-    justify-content: space-evenly
     left: 0
     opacity: .9
     position: fixed
     position: --webkit-fixed
     width: 100%
-    z-index: 10000
+    z-index: z-index('popover')
 
     a
-        color: variables.$text-color
+        color: color('text')
         text-decoration: underline
 
     .cookies-notice-text
-        align-items: center
-        color: variables.$text-color
-        display: flex
+        @include flex(row, nowrap, flex-start, center)
+        color: color('text')
         font-size: larger
-        padding: 2rem 0
+        padding: spacing('xl') 0
 
         span
-            margin: 0 1rem
+            margin: 0 spacing('md')
 
         a, a:hover
-            color: variables.$primary-color
-            transition: variables.$transition-speed
+            color: color('primary')
+            transition: $transition-speed
 
     .cookies-notice-button
-        border: 1px solid variables.$primary-color
-        border-radius: variables.$border-radius
-        color: variables.$primary-color
+        @include flex(row, nowrap, center, stretch)
+        border: 1px solid color('primary')
+        border-radius: $border-radius
+        color: color('primary')
         cursor: pointer
-        display: flex
-        justify-content: center
-        font-weight: bolder
-        margin: 1rem 0
-        padding: .5rem 2rem
-        transition: variables.$transition-speed
+        font-weight: font-weight('bolder')
+        margin: spacing('md') 0
+        padding: spacing('sm') spacing('xl')
+        transition: $transition-speed
 
         &:hover
             transform: scale(1.1)
-            transition: variables.$transition-speed
+            transition: $transition-speed
