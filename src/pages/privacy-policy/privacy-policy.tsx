@@ -32,7 +32,7 @@ const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
                                 <div>
                                     <h1>INFORMATIVA SULLA PRIVACY</h1>
                                     <div className="banner-date">
-                                        {formatDate(new Date('2024-06-07'))}
+                                        {formatDate(new Date('2024-10-04'))}
                                     </div>
                                 </div>
                             </div>

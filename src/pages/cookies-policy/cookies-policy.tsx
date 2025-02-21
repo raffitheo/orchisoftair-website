@@ -32,7 +32,7 @@ const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
                                 <div>
                                     <h1>INFORMATIVA SUI COOKIES</h1>
                                     <div className="banner-date">
-                                        {formatDate(new Date('2024-06-05'))}
+                                        {formatDate(new Date('2024-10-04'))}
                                     </div>
                                 </div>
                             </div>

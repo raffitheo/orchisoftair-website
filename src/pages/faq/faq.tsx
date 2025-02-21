@@ -36,7 +36,7 @@ const FrequentlyAskedQuestions = React.forwardRef<
                             <div>
                                 <h1>FAQ - FEQUENTLY ASKED QUESTIONS</h1>
                                 <div className="banner-date">
-                                    {formatDate(new Date('2024-05-24'))}
+                                    {formatDate(new Date('2024-10-04'))}
                                 </div>
                             </div>
                         </div>
