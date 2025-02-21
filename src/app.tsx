@@ -1,5 +1,6 @@
 import { CookiesNotice } from '@components/cookies-notice';
 import { WelcomeMessagePopup } from '@components/welcome-message-popup';
+import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type WelcomeMessage } from '@interfaces/welcome-message';
 import { Query } from 'appwrite';
@@ -24,7 +25,7 @@ const App = () => {
 
     const { data: welcomeMessages, status: welcomeMessagesStatus } =
         useAppwriteQuery<WelcomeMessage>({
-            collectionId: import.meta.env.VITE_WELCOME_MESSAGE_COLLECTION_ID,
+            collectionId: env.collections.welcomeMessage,
             queries: [
                 Query.select(['content', 'key']),
                 Query.equal('display', [true]),

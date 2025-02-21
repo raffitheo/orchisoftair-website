@@ -28,8 +28,14 @@
             "@hooks/*": ["./hooks/*"],
             "@interfaces/*": ["./interfaces/*"],
             "@pages/*": ["./pages/*"],
-            "@services/*": ["./services/*"]
-        }
+            "@services/*": ["./services/*"],
+            "@utils/*": ["./utils/*"]
+        },
+
+        /* Advanced Options */
+        "forceConsistentCasingInFileNames": true,
+        "incremental": true,
+        "sourceMap": true
     },
     "include": ["src"],
     "references": [{ "path": "./tsconfig.node.json" }]

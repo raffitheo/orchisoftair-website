@@ -2,6 +2,7 @@ import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { NewsListElement } from '@components/news-list-element';
 import { SEO } from '@components/seo';
+import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type News } from '@interfaces/news';
 import { Query } from 'appwrite';
@@ -15,7 +16,7 @@ const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
     ({ className, ...props }, ref) => {
         const { data: newsList, status: newsListStatus } =
             useAppwriteQuery<News>({
-                collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
+                collectionId: env.collections.news,
                 queries: [
                     Query.select([
                         'category',

@@ -6,6 +6,7 @@ import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { SEO } from '@components/seo';
+import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type Field } from '@interfaces/field';
 import { type Member } from '@interfaces/member';
@@ -25,7 +26,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
 
         const { data: fieldsList, status: fieldsListStatus } =
             useAppwriteQuery<Field>({
-                collectionId: import.meta.env.VITE_FIELDS_COLLECTION_ID,
+                collectionId: env.collections.fields,
                 queries: [
                     Query.select(['alt', 'description', 'image', 'title']),
                     Query.orderAsc('title'),
@@ -41,7 +42,7 @@ const About = React.forwardRef<HTMLDivElement, AboutProps>(
 
         const { data: membersList, status: membersListStatus } =
             useAppwriteQuery<Member>({
-                collectionId: import.meta.env.VITE_MEMBERS_COLLECTION_ID,
+                collectionId: env.collections.members,
                 queries: [
                     Query.select([
                         'alt',

@@ -1,6 +1,7 @@
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
 import { SEO } from '@components/seo';
+import env from '@config/env';
 import emailjs from '@emailjs/browser';
 import { type DataStatus } from '@interfaces/data-status';
 import React from 'react';
@@ -187,11 +188,11 @@ const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
             if (form.current)
                 emailjs
                     .sendForm(
-                        import.meta.env.VITE_EMAIL_SERVICE_ID,
-                        import.meta.env.VITE_EMAIL_TEMPLATE_ID,
+                        env.email.serviceId,
+                        env.email.templateId,
                         form.current,
                         {
-                            publicKey: import.meta.env.VITE_EMAIL_USER_ID,
+                            publicKey: env.email.userId,
                         },
                     )
                     .then(

@@ -1,6 +1,7 @@
 import LorePattern from '@assets/lore-pattern.webp';
 import { Footer } from '@components/footer';
 import { SEO } from '@components/seo';
+import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type Page } from '@interfaces/page';
 import NotFound from '@pages/not-found';
@@ -21,7 +22,7 @@ const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
 
         const { data: pageDataArray, status: pageDataStatus } =
             useAppwriteQuery<Page>({
-                collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
+                collectionId: env.collections.news,
                 queries: [
                     Query.select([
                         'content',

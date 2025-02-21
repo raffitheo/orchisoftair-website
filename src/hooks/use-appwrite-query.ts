@@ -1,4 +1,5 @@
 import { client, databases } from '@config/appwrite';
+import env from '@config/env';
 import { type DataStatus } from '@interfaces/data-status';
 import cacheService from '@services/cache-service';
 import React from 'react';
@@ -44,7 +45,7 @@ function useAppwriteQuery<T>({
 
                 setStatus('loading');
                 const response = await databases.listDocuments(
-                    import.meta.env.VITE_DATABASE_ID,
+                    env.project.databaseId,
                     collectionId,
                     queries,
                 );
@@ -69,7 +70,7 @@ function useAppwriteQuery<T>({
         }
 
         const unsubscribe = client.subscribe(
-            `databases.${import.meta.env.VITE_DATABASE_ID}.collections.${collectionId}.documents`,
+            `databases.${env.project.databaseId}.collections.${collectionId}.documents`,
             (response) => {
                 if (
                     response.events.includes(

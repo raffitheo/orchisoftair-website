@@ -7,6 +7,7 @@ import { Navbar } from '@components/navbar';
 import { NewsCarouselElement } from '@components/news-carousel-element';
 import { SEO } from '@components/seo';
 import { databases } from '@config/appwrite';
+import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
 import { type DataStatus } from '@interfaces/data-status';
 import { type News } from '@interfaces/news';
@@ -28,7 +29,7 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
 
         const { data: newsList, status: newsListStatus } =
             useAppwriteQuery<News>({
-                collectionId: import.meta.env.VITE_NEWS_COLLECTION_ID,
+                collectionId: env.collections.news,
                 queries: [
                     Query.select([
                         '$id',
@@ -293,8 +294,8 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             setEmailStatus('loading');
 
             const response = await databases.createDocument(
-                import.meta.env.VITE_DATABASE_ID,
-                import.meta.env.VITE_NEWSLETTER_COLLECTION_ID,
+                env.project.databaseId,
+                env.collections.newsletter,
                 ID.unique(),
                 { email: email, subscriptionDate: new Date() },
             );
