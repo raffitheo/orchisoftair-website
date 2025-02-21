@@ -26,9 +26,10 @@ const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
                         © 2024-2025 {appsettings.WEBSITE_DEFAULT_AUTHOR}. Tutti
                         i diritti riservati.
                         <div className="footer-legal">
-                            <span>C.F. 90114470322</span>
+                            <span>Codice Fiscale: 90114470322</span>
                             <span>
-                                Sede legale: Via Caccia11, Trieste, 34129 Italia
+                                Sede legale: Via Caccia 11, Trieste, 34129{' '}
+                                Italia
                             </span>
                         </div>
                         <div className="footer-link">
