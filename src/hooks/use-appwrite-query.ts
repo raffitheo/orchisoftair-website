@@ -11,7 +11,7 @@ interface UseAppwriteQueryOptions<T> {
     enabled?: boolean;
     forceRefresh?: boolean;
     queries?: string[];
-    transform?: (data: any) => T;
+    transform?: (data: unknown) => T;
 }
 
 function useAppwriteQuery<T>({

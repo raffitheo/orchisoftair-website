@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import './contact-us.sass';
 
-interface ContactUsProps extends React.HTMLAttributes<HTMLDivElement> {}
+type ContactUsProps = React.HTMLAttributes<HTMLDivElement>;
 
 const ContactUs = React.forwardRef<HTMLDivElement, ContactUsProps>(
     ({ className, ...props }, ref) => {

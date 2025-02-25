@@ -8,8 +8,7 @@ import { Link } from 'react-router-dom';
 
 import './faq.sass';
 
-interface FrequentlyAskedQuestionsProps
-    extends React.HTMLAttributes<HTMLDivElement> {}
+type FrequentlyAskedQuestionsProps = React.HTMLAttributes<HTMLDivElement>;
 
 const FrequentlyAskedQuestions = React.forwardRef<
     HTMLDivElement,

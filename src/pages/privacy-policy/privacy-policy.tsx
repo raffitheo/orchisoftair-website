@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import './privacy-policy.sass';
 
-interface PrivacyPolicyProps extends React.HTMLAttributes<HTMLDivElement> {}
+type PrivacyPolicyProps = React.HTMLAttributes<HTMLDivElement>;
 
 const PrivacyPolicy = React.forwardRef<HTMLDivElement, PrivacyPolicyProps>(
     ({ className, ...props }, ref) => {

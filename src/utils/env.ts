@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 type EnvVar = keyof ImportMetaEnv;
 
 class EnvironmentError extends Error {

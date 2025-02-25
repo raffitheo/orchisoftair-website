@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './cookies-notice.sass';
 
-interface CookiesNoticeProps extends React.HTMLAttributes<HTMLDivElement> {}
+type CookiesNoticeProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
     ({ className, ...props }, ref) => {

@@ -6,7 +6,7 @@ type CacheItem<T> = {
 
 class CacheService {
     private static instance: CacheService;
-    private cache: Map<string, CacheItem<any>>;
+    private cache: Map<string, CacheItem<unknown>>;
     private readonly defaultTTL: number = 5 * 60 * 1000;
 
     private constructor() {

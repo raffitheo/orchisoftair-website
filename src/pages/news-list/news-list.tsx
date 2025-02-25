@@ -10,7 +10,7 @@ import React from 'react';
 
 import './news-list.sass';
 
-interface NewsListProps extends React.HTMLAttributes<HTMLDivElement> {}
+type NewsListProps = React.HTMLAttributes<HTMLDivElement>;
 
 const NewsList = React.forwardRef<HTMLDivElement, NewsListProps>(
     ({ className, ...props }, ref) => {

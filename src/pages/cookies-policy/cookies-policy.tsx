@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import './cookies-policy.sass';
 
-interface CookiesPolicyProps extends React.HTMLAttributes<HTMLDivElement> {}
+type CookiesPolicyProps = React.HTMLAttributes<HTMLDivElement>;
 
 const CookiesPolicy = React.forwardRef<HTMLDivElement, CookiesPolicyProps>(
     ({ className, ...props }, ref) => {

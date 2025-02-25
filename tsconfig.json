@@ -35,8 +35,11 @@
         /* Advanced Options */
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
-        "sourceMap": true
+        "sourceMap": true,
+
+        "types": ["vite/client"],
+        "typeRoots": ["./node_modules/@types"]
     },
-    "include": ["src"],
+    "include": ["src/**/*", "vite.config.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

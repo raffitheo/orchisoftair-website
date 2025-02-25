@@ -3,7 +3,7 @@ import React from 'react';
 
 import './not-found.sass';
 
-interface NotFoundProps extends React.HTMLAttributes<HTMLDivElement> {}
+type NotFoundProps = React.HTMLAttributes<HTMLDivElement>;
 
 const NotFound = React.forwardRef<HTMLDivElement, NotFoundProps>(
     ({ className, ...props }, ref) => {

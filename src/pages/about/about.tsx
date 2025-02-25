@@ -19,7 +19,7 @@ import Carousel from 'react-multi-carousel';
 import './about.sass';
 import 'react-multi-carousel/lib/styles.css';
 
-interface AboutProps extends React.HTMLAttributes<HTMLDivElement> {}
+type AboutProps = React.HTMLAttributes<HTMLDivElement>;
 
 const About = React.forwardRef<HTMLDivElement, AboutProps>(
     ({ ...props }, ref) => {

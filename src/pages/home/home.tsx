@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import './home.sass';
 import 'react-multi-carousel/lib/styles.css';
 
-interface HomeProps extends React.HTMLAttributes<HTMLDivElement> {}
+type HomeProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Home = React.forwardRef<HTMLDivElement, HomeProps>(
     ({ className, ...props }, ref) => {

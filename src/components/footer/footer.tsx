@@ -11,7 +11,7 @@ import './footer.sass';
 import { CopyrightLink } from './copyright-link';
 import { SocialLink } from './social-link';
 
-interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {}
+type FooterProps = React.HTMLAttributes<HTMLDivElement>;
 
 const Footer = React.forwardRef<HTMLDivElement, FooterProps>(
     ({ className, ...props }, ref) => {

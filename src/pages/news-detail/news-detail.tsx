@@ -14,7 +14,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import './news-detail.sass';
 
-interface NewsDetailProps extends React.HTMLAttributes<HTMLDivElement> {}
+type NewsDetailProps = React.HTMLAttributes<HTMLDivElement>;
 
 const NewsDetail = React.forwardRef<HTMLDivElement, NewsDetailProps>(
     ({ className, ...props }, ref) => {
