@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { client, databases } from '@config/appwrite';
 import env from '@config/env';
 import { type DataStatus } from '@interfaces/data-status';
@@ -11,7 +13,7 @@ interface UseAppwriteQueryOptions<T> {
     enabled?: boolean;
     forceRefresh?: boolean;
     queries?: string[];
-    transform?: (data: unknown) => T;
+    transform?: (data: any) => T;
 }
 
 function useAppwriteQuery<T>({
