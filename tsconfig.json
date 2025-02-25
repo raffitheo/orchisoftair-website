@@ -40,6 +40,6 @@
         "types": ["vite/client"],
         "typeRoots": ["./node_modules/@types"]
     },
-    "include": ["src/**/*", "vite.config.ts"],
+    "include": ["src/**/*"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }
