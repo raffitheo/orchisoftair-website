@@ -11,18 +11,19 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
         const [showCookiesNotice, setShowCookiesNotice] = React.useState(true);
 
         React.useEffect(() => {
-            const storageValue = window.localStorage.getItem(
-                appsettings.COOKIES_NOTICE_ACCEPTED,
-            );
+            const cookieValue = document.cookie
+                .split('; ')
+                .find((row) =>
+                    row.startsWith(appsettings.COOKIES_NOTICE_ACCEPTED),
+                )
+                ?.split('=')[1];
 
-            if (!storageValue) {
-                window.localStorage.setItem(
-                    appsettings.COOKIES_NOTICE_ACCEPTED,
-                    'false',
-                );
-            }
+            const sixMonthsInSeconds = 180 * 24 * 60 * 60;
 
-            if (!storageValue || storageValue === 'false')
+            if (!cookieValue)
+                document.cookie = `${appsettings.COOKIES_NOTICE_ACCEPTED}=false; path=/; max-age=${sixMonthsInSeconds}`;
+
+            if (!cookieValue || cookieValue === 'false')
                 setShowCookiesNotice(true);
             else setShowCookiesNotice(false);
         }, []);
@@ -50,10 +51,11 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                         className="cookies-notice-button"
                         onClick={() => {
                             setShowCookiesNotice(false);
-                            window.localStorage.setItem(
-                                appsettings.COOKIES_NOTICE_ACCEPTED,
-                                'true',
-                            );
+
+                            const sixMonthsInSeconds = 180 * 24 * 60 * 60;
+
+                            // eslint-disable-next-line max-len
+                            document.cookie = `${appsettings.COOKIES_NOTICE_ACCEPTED}=true; path=/; max-age=${sixMonthsInSeconds}`;
                         }}
                     >
                         OK
