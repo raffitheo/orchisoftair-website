@@ -2,26 +2,24 @@ import { appsettings } from '@config/appsettings';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './cookies-notice.sass';
+import './cookies-banner.sass';
 
-type CookiesNoticeProps = React.HTMLAttributes<HTMLDivElement>;
+type CookiesBannerProps = React.HTMLAttributes<HTMLDivElement>;
 
-const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
+const CookiesBanner = React.forwardRef<HTMLDivElement, CookiesBannerProps>(
     ({ className, ...props }, ref) => {
         const [showCookiesNotice, setShowCookiesNotice] = React.useState(true);
 
         React.useEffect(() => {
             const cookieValue = document.cookie
                 .split('; ')
-                .find((row) =>
-                    row.startsWith(appsettings.COOKIES_NOTICE_ACCEPTED),
-                )
+                .find((row) => row.startsWith(appsettings.COOKIES_ACCEPTED))
                 ?.split('=')[1];
 
             const sixMonthsInSeconds = 180 * 24 * 60 * 60;
 
             if (!cookieValue)
-                document.cookie = `${appsettings.COOKIES_NOTICE_ACCEPTED}=false; path=/; max-age=${sixMonthsInSeconds}`;
+                document.cookie = `${appsettings.COOKIES_ACCEPTED}=false; path=/; max-age=${sixMonthsInSeconds}`;
 
             if (!cookieValue || cookieValue === 'false')
                 setShowCookiesNotice(true);
@@ -31,11 +29,11 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
         if (showCookiesNotice)
             return (
                 <div
-                    className={`cookies-notice${className ? ` ${className}` : ''}`}
+                    className={`cookies-banner${className ? ` ${className}` : ''}`}
                     ref={ref}
                     {...props}
                 >
-                    <div className="cookies-notice-text">
+                    <div className="cookies-banner-text">
                         <span>
                             Utilizziamo i cookies per migliorare la tua
                             esperienza di navigazione. Continuando a visitare
@@ -48,14 +46,14 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
                     </div>
 
                     <div
-                        className="cookies-notice-button"
+                        className="cookies-banner-button"
                         onClick={() => {
                             setShowCookiesNotice(false);
 
                             const sixMonthsInSeconds = 180 * 24 * 60 * 60;
 
                             // eslint-disable-next-line max-len
-                            document.cookie = `${appsettings.COOKIES_NOTICE_ACCEPTED}=true; path=/; max-age=${sixMonthsInSeconds}`;
+                            document.cookie = `${appsettings.COOKIES_ACCEPTED}=true; path=/; max-age=${sixMonthsInSeconds}`;
                         }}
                     >
                         OK
@@ -64,7 +62,7 @@ const CookiesNotice = React.forwardRef<HTMLDivElement, CookiesNoticeProps>(
             );
     },
 );
-CookiesNotice.displayName = 'CookiesNotice';
+CookiesBanner.displayName = 'CookiesBanner';
 
-export type { CookiesNoticeProps };
-export default CookiesNotice;
+export type { CookiesBannerProps };
+export default CookiesBanner;

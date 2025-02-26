@@ -1,4 +1,4 @@
-import { CookiesNotice } from '@components/cookies-notice';
+import { CookiesBanner } from '@components/cookies-banner';
 import { WelcomeMessagePopup } from '@components/welcome-message-popup';
 import env from '@config/env';
 import useAppwriteQuery from '@hooks/use-appwrite-query';
@@ -68,7 +68,7 @@ const App = () => {
                     {route(<NotFound />, '/*')}
                 </Routes>
 
-                <CookiesNotice />
+                <CookiesBanner />
 
                 {welcomeMessagesToShow.length >= 1 &&
                     currentMessageShown != -1 && (

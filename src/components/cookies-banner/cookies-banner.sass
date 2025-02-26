@@ -1,6 +1,6 @@
 @use '../../variables' as *
 
-.cookies-notice
+.cookies-banner
     @include flex(row, wrap, space-evenly, center)
     background-color: color('background-dark')
     bottom: 0
@@ -17,7 +17,7 @@
         color: color('text')
         text-decoration: underline
 
-    .cookies-notice-text
+    .cookies-banner-text
         @include flex(row, nowrap, flex-start, center)
         color: color('text')
         font-size: larger
@@ -30,7 +30,7 @@
             color: color('primary')
             transition: $transition-speed
 
-    .cookies-notice-button
+    .cookies-banner-button
         @include flex(row, nowrap, center, stretch)
         border: 1px solid color('primary')
         border-radius: $border-radius
