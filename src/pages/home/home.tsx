@@ -100,7 +100,12 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                         width={707}
                                     />
 
-                                    <div className="buttom-section">
+                                    <div className="landing-title">
+                                        ASSOCIAZIONE SPORTIVA DILETTANTISTICA
+                                        "GLI ORCHI TRIESTE - SOFTAIR TEAM"
+                                    </div>
+
+                                    <div className="button-section">
                                         <Link to="/about">
                                             <button className="about-button">
                                                 SU DI NOI
