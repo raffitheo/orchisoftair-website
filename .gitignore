@@ -23,3 +23,18 @@ dist-ssr
 
 # Variables
 .env
+
+# Coverage directory
+coverage/
+
+# Build cache
+.cache/
+
+# Environment files
+.env*
+!.env.example
+
+# IDE specific files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
