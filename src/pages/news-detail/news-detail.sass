@@ -15,11 +15,22 @@
         text-align: center
         width: 100%
 
+        &::before
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3))
+            content: ''
+            left: 0
+            position: absolute
+            top: 0
+            height: 100%
+            width: 100%
+            z-index: 1
+
         .news-banner-box
             height: 100%
             margin: 0 25%
             position: relative
             width: 50%
+            z-index: 2
 
             @media (max-width: 1500px)
                 margin: 0 10%
@@ -40,6 +51,7 @@
                         font-weight: font-weight('bold')
                         letter-spacing: 0
                         line-height: 84px
+                        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8)
 
                     .banner-date
                         color: #cfd2d3
@@ -49,6 +61,10 @@
                         letter-spacing: 0
                         line-height: 29px
                         text-align: left
+                        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)
+
+                .back-button a
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)
 
             .news-header-banner
                 h1
@@ -57,7 +73,7 @@
                         line-height: 60px
 
     .video-gradient
-        background: linear-gradient(0deg, color('background-dark'), hsla(0, 0%, 5%, 0) 10%)
+        background: linear-gradient(0deg, #1e1e1e, hsla(0, 0%, 5%, 0) 10%)
         bottom: 0
         height: 400px
         left: 0
@@ -72,7 +88,7 @@
         font-weight: font-weight('regular')
         letter-spacing: 0
         line-height: 29px
-        padding-bottom: 5rem
+        padding: spacing('md') 0 5rem 0
 
         .news-main-box
             color: #cfd2d3

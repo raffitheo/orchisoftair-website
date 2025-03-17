@@ -335,20 +335,19 @@
                             -webkit-line-clamp: 16
                             -webkit-box-orient: vertical
 
-
                     .center
                         @include flex(row, nowrap, center, stretch)
                         backface-visibility: hidden
                         background-color: color('background-dark')
                         border-radius: $border-radius
-                        height: calc(100% - 1rem)
+                        height: calc(100% - spacing('md'))
                         left: 0
                         margin: spacing('sm')
                         object-fit: cover
                         position: absolute
                         text-align: -webkit-center
                         top: 0
-                        width: calc(100% - 1rem)
+                        width: calc(100% - spacing('md'))
 
                         .spinner
                             @include flex(row, nowrap, center, center)
