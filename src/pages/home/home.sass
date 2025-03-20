@@ -134,6 +134,7 @@
                 @include flex(column, nowrap, flex-start, stretch)
                 color: color('text')
                 gap: .75rem
+                visibility: hidden
 
                 .parthners-container
                     @include flex(row, nowrap, space-around, stretch)
@@ -146,7 +147,7 @@
                     @media (max-width: 500px)
                         flex-wrap: wrap
 
-                    .damocles-logo
+                    .parthner-logo
                         width: 50%
 
                         @media (max-width: 500px)
@@ -237,6 +238,7 @@
             font-size: 2rem
             font-weight: font-weight('black')
             margin-bottom: spacing('xl')
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8)
 
         .subscribe-form
             color: #000
@@ -249,6 +251,10 @@
 
             .email-input
                 border: 1px solid #ccc
+
+            .error-message
+                color: color('text')
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8)
 
             .subscribe-button
                 background-color: color('primary')

@@ -1,6 +1,5 @@
 import BackgroundNewsletter from '@assets/background-newsletter.webp';
 import BackgroundPattern from '@assets/background-pattern.webp';
-import DamoclesIcon from '@assets/icons/damocles-icon.webp';
 import Landing from '@assets/landing.webp';
 import { Footer } from '@components/footer';
 import { Navbar } from '@components/navbar';
@@ -25,6 +24,7 @@ type HomeProps = React.HTMLAttributes<HTMLDivElement>;
 const Home = React.forwardRef<HTMLDivElement, HomeProps>(
     ({ className, ...props }, ref) => {
         const [email, setEmail] = React.useState<string>();
+        const [emailError, setEmailError] = React.useState<string>();
         const [emailStatus, setEmailStatus] =
             React.useState<DataStatus>('initialized');
 
@@ -122,18 +122,18 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                         <p>IN COLLABORAZIONE CON</p>
 
                                         <div className="parthners-container">
-                                            <Link
-                                                className="damocles-logo"
+                                            {/* <Link
+                                                className="parthner-logo"
                                                 target="_blank"
-                                                to="https://www.damocles.it/"
+                                                to=""
                                             >
                                                 <OptimizedImage
-                                                    alt="damocles-icon"
+                                                    alt="parthner-icon"
                                                     height={37}
-                                                    src={DamoclesIcon}
+                                                    src=""
                                                     width={124}
                                                 />
-                                            </Link>
+                                            </Link> */}
                                         </div>
                                     </div>
                                 </div>
@@ -256,14 +256,20 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
                                 className="email-input"
                                 id="email"
                                 name="email"
-                                onChange={(event) =>
-                                    setEmail(event.target.value)
-                                }
+                                onChange={(event) => {
+                                    setEmail(event.target.value);
+
+                                    if (emailError) setEmailError('');
+                                }}
                                 placeholder="Inserisci e-mail"
                                 required
                                 type="email"
                                 value={email}
                             />
+
+                            {emailError && (
+                                <p className="error-message">{emailError}</p>
+                            )}
 
                             <button
                                 className="subscribe-button"
@@ -295,6 +301,15 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
         ) {
             e.preventDefault();
+
+            if (!email || !validateEmail(email)) {
+                setEmailError(
+                    'Per favore, inserisci un indirizzo e-mail valido',
+                );
+                return;
+            }
+
+            setEmailError('');
             setEmailStatus('loading');
 
             const response = await databases.createDocument(
@@ -308,6 +323,11 @@ const Home = React.forwardRef<HTMLDivElement, HomeProps>(
             else setEmailStatus('error');
 
             setEmail('');
+        }
+
+        function validateEmail(email: string) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
         }
     },
 );
