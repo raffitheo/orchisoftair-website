@@ -1,49 +1,36 @@
-<img src="READMEdocs/orchi-logo.png" height="200px" align="right"/>
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# A.S.D. Gli Orchi Trieste - Softair Team
+## Getting Started
 
-![CI/CD](https://vercelbadge.vercel.app/api/raffitheo/orchisoftair-website?style=for-the-badge)
-[![GitHub license](https://img.shields.io/github/license/raffitheo/orchisoftair-website?style=for-the-badge)](https://github.com/raffitheo/orchisoftair-website/blob/master/LICENSE)
-[![Node Version](https://img.shields.io/static/v1?label=Node&message=^22.14.0&color=026e00&style=for-the-badge)](https://nodejs.org)
-[![npm Version](https://img.shields.io/static/v1?label=npm&message=^11.1.0&color=cb0000&style=for-the-badge)](https://nodejs.org)
+First, run the development server:
 
-The official website for the italian airsoft team, A.S.D. Gli Orchi Trieste - Softair Team.
-<br />
-Currently, the website, is italian-only and there are no plans for localization.
-<br />
-The website is hosted on [Vercel](https://vercel.com/) and uses [Appwrite](https://appwrite.io/) to provide the content (i.e. the news).
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About the project</a>
-    </li>
-    <li>
-        <a href="#technology-stack">Technology stack</a>
-    </li>
-    <li>
-        <a href="#release-notes">Release notes</a>
-    </li>
-  </ol>
-</details>
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## About the project
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-[![Site preview](/public/social-image.png)](https://orchisoftair-website.vercel.app/)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Technology stack
+## Learn More
 
-Dependencies defined in package.json:
+To learn more about Next.js, take a look at the following resources:
 
-[Reactjs](https://reactjs.org/)
-| [Vite](https://vitejs.dev/)
-| [Typescript](https://www.typescriptlang.org/)
-| [Prettier](https://prettier.io/)
-| [ESLint](https://eslint.org/)
-| [Appwrite](https://appwrite.io/)
-| [SASS](https://sass-lang.com/)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Release notes
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-https://github.com/raffitheo/orchisoftair-website/releases
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
