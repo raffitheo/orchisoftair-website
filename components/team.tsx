@@ -5,15 +5,7 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import { supabase } from '@/lib/supabase';
 import Loader from './ui/loader';
-
-interface TeamMember {
-  bio: string;
-  id: number;
-  image_url: string;
-  name: string;
-  field_name: string;
-  role: string;
-}
+import TeamMember from '@/interfaces/team-member';
 
 const Team = () => {
   const [loading, setLoading] = useState(true);
@@ -86,7 +78,7 @@ const Team = () => {
               >
                 <div className="aspect-square overflow-hidden">
                   <div
-                    className="w-full h-full bg-cover bg-center"
+                    className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
                     style={{ backgroundImage: `url(${member.image_url})` }}
                   />
                 </div>

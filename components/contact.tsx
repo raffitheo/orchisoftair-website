@@ -67,94 +67,98 @@ const Contact = () => {
             </ul>
           </div>
 
-          <div className="decorated-border p-8 bg-orchi relative">
-            <div className="absolute top-0 left-0 -mt-4 -ml-4 bg-orchi-red p-2">
-              <span className="text-white tactical-text">CONTATTACI</span>
+          <div className="mt-20 p-8 bg-orchi-gray/20 border border-orchi-gray relative">
+            <div className="absolute inset-0 bg-tactical-pattern opacity-5"></div>
+
+            <div className="relative z-10">
+              <h2 className="tactical-text text-3xl text-center text-orchi-light mb-4">
+                CONTATTACI
+              </h2>
+
+              <form className="space-y-6">
+                <div>
+                  <label
+                    className="block text-orchi-light mb-2 tactical-text"
+                    htmlFor="name"
+                  >
+                    NOME <span className="text-orchi-red">*</span>
+                  </label>
+
+                  <input
+                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    id="name"
+                    name="name"
+                    onChange={handleChange}
+                    required
+                    type="text"
+                    value={formData.name}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-orchi-light mb-2 tactical-text"
+                    htmlFor="email"
+                  >
+                    EMAIL <span className="text-orchi-red">*</span>
+                  </label>
+
+                  <input
+                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    id="email"
+                    name="email"
+                    onChange={handleChange}
+                    required
+                    type="email"
+                    value={formData.email}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-orchi-light mb-2 tactical-text"
+                    htmlFor="phone"
+                  >
+                    TELEFONO
+                  </label>
+
+                  <input
+                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    id="phone"
+                    name="phone"
+                    onChange={handleChange}
+                    type="tel"
+                    value={formData.phone}
+                  />
+                </div>
+
+                <div>
+                  <label
+                    className="block text-orchi-light mb-2 tactical-text"
+                    htmlFor="message"
+                  >
+                    MESSAGGIO <span className="text-orchi-red">*</span>
+                  </label>
+
+                  <textarea
+                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    id="message"
+                    name="message"
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                    value={formData.message}
+                  ></textarea>
+                </div>
+
+                <Button
+                  className="w-full bg-orchi-red hover:bg-orchi-gold tactical-text py-3 transition-colors duration-300"
+                  type="submit"
+                >
+                  INVIA
+                </Button>
+              </form>
             </div>
-
-            <form className="space-y-6">
-              <div>
-                <label
-                  className="block text-orchi-light mb-2 tactical-text"
-                  htmlFor="name"
-                >
-                  NOME <span className="text-orchi-red">*</span>
-                </label>
-
-                <input
-                  className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                  id="name"
-                  name="name"
-                  onChange={handleChange}
-                  required
-                  type="text"
-                  value={formData.name}
-                />
-              </div>
-
-              <div>
-                <label
-                  className="block text-orchi-light mb-2 tactical-text"
-                  htmlFor="email"
-                >
-                  EMAIL <span className="text-orchi-red">*</span>
-                </label>
-
-                <input
-                  className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                  id="email"
-                  name="email"
-                  onChange={handleChange}
-                  required
-                  type="email"
-                  value={formData.email}
-                />
-              </div>
-
-              <div>
-                <label
-                  className="block text-orchi-light mb-2 tactical-text"
-                  htmlFor="phone"
-                >
-                  TELEFONO
-                </label>
-
-                <input
-                  className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                  id="phone"
-                  name="phone"
-                  onChange={handleChange}
-                  type="tel"
-                  value={formData.phone}
-                />
-              </div>
-
-              <div>
-                <label
-                  className="block text-orchi-light mb-2 tactical-text"
-                  htmlFor="message"
-                >
-                  MESSAGGIO <span className="text-orchi-red">*</span>
-                </label>
-
-                <textarea
-                  className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                  id="message"
-                  name="message"
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  value={formData.message}
-                ></textarea>
-              </div>
-
-              <Button
-                className="w-full bg-orchi-red hover:bg-orchi-gold tactical-text py-3 transition-colors duration-300"
-                type="submit"
-              >
-                INVIA
-              </Button>
-            </form>
           </div>
         </div>
       </div>
