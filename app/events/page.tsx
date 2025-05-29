@@ -1,19 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { supabase } from '@/lib/supabase';
+import { Calendar } from 'lucide-react';
+import Loader from '@/components/ui/loader';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import Event from '@/types/event';
+import Link from 'next/link';
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
-import { Calendar } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { supabase } from '@/lib/supabase';
-import Loader from './ui/loader';
-import Event from '@/types/event';
-import { Card, CardContent, CardHeader } from './ui/card';
 
-const Events = () => {
-  const [events, setEvents] = useState<Event[]>([]);
+const EventsPage = () => {
   const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState<Event[]>([]);
 
   useEffect(() => {
     fetchEvents();
@@ -25,8 +24,7 @@ const Events = () => {
         .from('events')
         .select('*')
         .gte('start_date', new Date().toISOString())
-        .order('start_date', { ascending: true })
-        .limit(3);
+        .order('start_date', { ascending: true });
 
       if (error) throw error;
       setEvents(data || []);
@@ -38,11 +36,15 @@ const Events = () => {
   };
 
   return (
-    <section className="py-20 bg-orchi" id="eventi">
+    <main className="pt-24 pb-28">
       <div className="container mx-auto px-4">
-        <h2 className="display-text text-4xl md:text-5xl text-orchi-light mb-4 text-center">
-          PROSSIMI <span className="text-orchi-red">EVENTI</span>
-        </h2>
+        <div className="flex items-center justify-center gap-4 mt-10 mb-4">
+          <Calendar className="text-orchi-red" size={32} />
+
+          <h1 className="display-text text-5xl md:text-6xl text-orchi-light">
+            PROSSIMI <span className="text-orchi-red">EVENTI</span>
+          </h1>
+        </div>
 
         <p className="text-orchi-light/70 mb-12">
           Non perdere l'occasione di unirti ai nostri prossimi, entusiasmanti
@@ -59,7 +61,7 @@ const Events = () => {
           indimenticabile e ricca di soddisfazioni ti attende!
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.length === 0 ? (
             loading ? (
               <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
@@ -68,11 +70,11 @@ const Events = () => {
             ) : (
               <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
                 <span className="text-lg text-center text-orghi-light mx-auto mt-auto">
-                  Non ci sono eventi in programma!
+                  Non ci sono membri nella squadra!
                 </span>
 
                 <span className="text-center text-orchi-light/70 mx-auto mb-auto">
-                  Non ci sono eventi in calendario al momento, ma non temere:
+                  Non ci sono membri nella squadra al momento, ma non temere:
                   siamo costantemente all'opera per creare nuove ed
                   entusiasmanti attività e contenuti esclusivi per i nostri
                   soci! Tieni d'occhio questa pagina per tutti gli
@@ -84,7 +86,7 @@ const Events = () => {
             events.map((event) => (
               <Link
                 className="block h-full"
-                href={`/eventi/${event.id}`}
+                href={`/events/${event.id}`}
                 key={event.id}
               >
                 <Card className="bg-orchi-gray/30 border border-orchi-gray hover:border-orchi-gold transition-colors group h-full flex flex-col">
@@ -170,6 +172,10 @@ const Events = () => {
 
                     <p className="text-orchi-light/80 mb-6">{event.location}</p>
 
+                    <p className="text-orchi-light/70 mb-6 line-clamp-3">
+                      {event.description}
+                    </p>
+
                     <div className="mt-auto">
                       <span className="inline-block tactical-text text-orchi-gold border-b border-orchi-gold group-hover:text-orchi-red group-hover:border-orchi-red transition-colors">
                         DETTAGLI
@@ -182,17 +188,27 @@ const Events = () => {
           )}
         </div>
 
-        <div className="text-center mt-12">
-          <Button
-            asChild
-            className="inline-block bg-orchi-gray hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
-          >
-            <Link href="/events">TUTTI GLI EVENTI</Link>
-          </Button>
+        <div className="mt-20 p-8 bg-orchi-gray/20 border border-orchi-gray relative">
+          <div className="absolute inset-0 bg-tactical-pattern opacity-5"></div>
+
+          <div className="relative z-10">
+            <h2 className="tactical-text text-3xl text-center text-orchi-light mb-4">
+              SCARICA IL CALENDARIO COMPLETO
+            </h2>
+
+            <div className="text-center">
+              <Link
+                className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+                href="#"
+              >
+                CALENDARIO 2025
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 
-export default Events;
+export default EventsPage;
