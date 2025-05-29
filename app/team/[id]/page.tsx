@@ -1,9 +1,9 @@
 'use client';
 
-import { Fragment, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrowLeft, User } from 'lucide-react';
 import Link from 'next/link';
-import TeamMember from '@/interfaces/team-member';
+import TeamMember from '@/types/team-member';
 import { Card, CardContent } from '@/components/ui/card';
 import { supabase } from '@/lib/supabase';
 import { useParams } from 'next/navigation';
@@ -33,9 +33,9 @@ const TeamMemberDetailPage = () => {
         .single();
 
       if (error) throw error;
-      setTeamMember(data || []);
+      setTeamMember(data || null);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error('Error fetching the team member:', error);
     } finally {
       setLoadingTeamMember(false);
     }
@@ -51,7 +51,7 @@ const TeamMemberDetailPage = () => {
       if (error) throw error;
       setTeamMembers(data || []);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error('Error fetching team members:', error);
     } finally {
       setLoadingTeamMembers(false);
     }
@@ -97,7 +97,7 @@ const TeamMemberDetailPage = () => {
                     <div
                       className="w-full h-full bg-cover bg-center"
                       style={{
-                        backgroundImage: `url(${teamMember?.image_url})`,
+                        backgroundImage: `url(${teamMember?.image_url || '/team-member-placeholder.png'})`,
                       }}
                     />
                   </div>
@@ -214,34 +214,34 @@ const TeamMemberDetailPage = () => {
                   )}
 
                   {/* {teamMember?.stats && (
-      <>
-        <h3 className="tactical-text text-xl text-orchi-gold mb-4">
-          STATISTICHE
-        </h3>
-        <div className="grid grid-cols-3 gap-4 mb-8">
-          <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-            <div className="text-3xl font-bold text-orchi-light mb-1">
-              {teamMember?.stats.games}
-            </div>
-            <div className="text-orchi-light/60 text-sm">Partite</div>
-          </div>
-          <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-            <div className="text-3xl font-bold text-orchi-red mb-1">
-              {teamMember?.stats.wins}
-            </div>
-            <div className="text-orchi-light/60 text-sm">
-              Vittorie
-            </div>
-          </div>
-          <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-            <div className="text-3xl font-bold text-orchi-gold mb-1">
-              {teamMember?.stats.mvps}
-            </div>
-            <div className="text-orchi-light/60 text-sm">MVP</div>
-          </div>
-        </div>
-      </>
-    )} */}
+                    <>
+                      <h3 className="tactical-text text-xl text-orchi-gold mb-4">
+                        STATISTICHE
+                      </h3>
+                      <div className="grid grid-cols-3 gap-4 mb-8">
+                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
+                          <div className="text-3xl font-bold text-orchi-light mb-1">
+                            {teamMember?.stats.games}
+                          </div>
+                          <div className="text-orchi-light/60 text-sm">Partite</div>
+                        </div>
+                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
+                          <div className="text-3xl font-bold text-orchi-red mb-1">
+                            {teamMember?.stats.wins}
+                          </div>
+                          <div className="text-orchi-light/60 text-sm">
+                            Vittorie
+                          </div>
+                        </div>
+                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
+                          <div className="text-3xl font-bold text-orchi-gold mb-1">
+                            {teamMember?.stats.mvps}
+                          </div>
+                          <div className="text-orchi-light/60 text-sm">MVP</div>
+                        </div>
+                      </div>
+                    </>
+                  )} */}
 
                   {teamMember?.team_member_equipment && (
                     <>
@@ -325,26 +325,46 @@ const TeamMemberDetailPage = () => {
             ) : (
               teamMembers.map((otherMember) => (
                 <Link
-                  className="group"
+                  className="block h-full"
                   href={`/team/${otherMember.id}`}
                   key={otherMember.id}
                 >
-                  <div className="aspect-square overflow-hidden mb-2">
-                    <div
-                      className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                      style={{
-                        backgroundImage: `url(${otherMember.image_url})`,
-                      }}
-                    />
-                  </div>
+                  <Card className="overflow-hidden bg-orchi-gray/10 border-orchi-gray hover:border-orchi-gold transition-all group h-full">
+                    <div className="aspect-square overflow-hidden">
+                      <div
+                        className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                        style={{
+                          backgroundImage: `url(${otherMember.image_url || '/team-member-placeholder.png'})`,
+                        }}
+                      />
+                    </div>
 
-                  <div className="text-orchi-light group-hover:text-orchi-gold transition-colors text-center">
-                    {otherMember.name}
-                  </div>
+                    <CardContent className="p-6">
+                      <h2 className="tactical-text text-3xl text-orchi-light mb-1">
+                        {otherMember.name}
+                      </h2>
 
-                  <div className="text-orchi-light/60 text-sm text-center">
-                    {otherMember.role}
-                  </div>
+                      <p className="text-orchi-red font-semibold mb-2">
+                        {otherMember.field_name}
+                      </p>
+
+                      <div className="flex items-center mb-4">
+                        <span className="text-orchi-light/80 text-sm mr-2">
+                          Ruolo:
+                        </span>
+
+                        <span className="text-orchi-gold">
+                          {otherMember.role}
+                        </span>
+                      </div>
+
+                      <div className="flex justify-between items-center">
+                        <span className="ml-auto inline-block tactical-text text-orchi-gold border-b border-orchi-gold group-hover:text-orchi-red group-hover:border-orchi-red transition-colors">
+                          PROFILO COMPLETO
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </Link>
               ))
             )}
