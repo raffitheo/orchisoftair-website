@@ -187,7 +187,7 @@ const EventsPage = () => {
                     <p className="text-orchi-light/80 mb-6">{event.location}</p>
 
                     <p className="text-orchi-light/70 mb-6 line-clamp-3">
-                      {event.description}
+                      {event.description?.replace(/\\n/g, '\n')}
                     </p>
 
                     <div className="mt-auto">

@@ -152,7 +152,7 @@ const EventDetailPage = () => {
                     DESCRIZIONE
                   </h2>
                   <p className="text-orchi-light/80 mb-6 whitespace-pre-line">
-                    {event?.description}
+                    {event?.description?.replace(/\\n/g, '\n')}
                   </p>
 
                   {event?.rules && (
