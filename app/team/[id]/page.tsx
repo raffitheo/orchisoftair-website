@@ -24,6 +24,17 @@ const TeamMemberDetailPage = () => {
     fetchTeamMembers();
   }, [id]);
 
+  useEffect(() => {
+    if (loadingTeamMember)
+      document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento membro della squadra...`;
+    else {
+      if (teamMember)
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${teamMember.name} - ${teamMember.field_name}`;
+      else
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Membro della squadra non trovato`;
+    }
+  }, [loadingTeamMember, teamMember]);
+
   const fetchTeamMember = async () => {
     try {
       const { data, error } = await supabase

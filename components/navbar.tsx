@@ -30,8 +30,8 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Eventi', path: '/events' },
-    { name: 'La Squadra', path: '/team' },
+    { name: 'Gli eventi', path: '/events' },
+    { name: 'La squadra', path: '/team' },
     { name: 'Contatti', path: '#contacts' },
   ];
 

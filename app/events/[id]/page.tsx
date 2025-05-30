@@ -16,12 +16,28 @@ const EventDetailPage = () => {
   const params = useParams();
   const id = params.id;
 
-  const [loading, setLoading] = useState(true);
   const [event, setEvent] = useState<Event | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!id) {
+      setLoading(false);
+      return;
+    }
+
     fetchEvent();
   }, [id]);
+
+  useEffect(() => {
+    if (loading)
+      document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento evento...`;
+    else {
+      if (event)
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${event.title} ${dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}${event.end_date ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}` : ''}`;
+      else
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Evento non trovato`;
+    }
+  }, [event, loading]);
 
   const fetchEvent = async () => {
     try {

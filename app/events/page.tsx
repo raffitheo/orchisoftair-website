@@ -11,20 +11,34 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/it';
 
 const EventsPage = () => {
-  const [loading, setLoading] = useState(true);
   const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchEvents();
   }, []);
+
+  useEffect(() => {
+    if (loading)
+      document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento eventi...`;
+    else {
+      if (events)
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Gli eventi`;
+      else
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Nessun evento trovato`;
+    }
+  }, [events, loading]);
 
   const fetchEvents = async () => {
     try {
       const { data, error } = await supabase
         .from('events')
         .select('*')
-        .gte('start_date', new Date().toISOString())
-        .order('start_date', { ascending: true });
+        .gte(
+          'start_date',
+          new Date(`01 01 ${new Date().getFullYear()}`).toISOString(),
+        )
+        .order('start_date', { ascending: false });
 
       if (error) throw error;
       setEvents(data || []);
@@ -42,23 +56,23 @@ const EventsPage = () => {
           <Calendar className="text-orchi-red" size={32} />
 
           <h1 className="display-text text-5xl md:text-6xl text-orchi-light">
-            PROSSIMI <span className="text-orchi-red">EVENTI</span>
+            GLI <span className="text-orchi-red">EVENTI</span>
           </h1>
         </div>
 
         <p className="text-orchi-light/70 mb-12">
-          Non perdere l'occasione di unirti ai nostri prossimi, entusiasmanti
-          eventi: sono l'ambiente ideale per farti brillare e mostrare appieno
-          il tuo vero talento sul campo! Sia che tu sia attratto dall'adrenalina
-          pulsante dei grandi tornei competitivi, dove ogni partita è una sfida
-          esaltante e un'opportunità per misurare le tue capacità contro
-          avversari di valore, sia che tu preferisca le nostre sessioni di
-          allenamento mirate, specificamente create e personalizzate per la tua
-          crescita tecnica, tattica e personale, da noi troverai sempre
-          un'esperienza profondamente stimolante e gratificante. Preparati a
-          superare i tuoi limiti, ad apprendere nuove strategie e a vivere la
-          passione per il gioco come mai prima d'ora: un'avventura sportiva
-          indimenticabile e ricca di soddisfazioni ti attende!
+          Non perdere l'occasione di unirti ai nostri entusiasmanti eventi: sono
+          l'ambiente ideale per farti brillare e mostrare appieno il tuo vero
+          talento sul campo! Sia che tu sia attratto dall'adrenalina pulsante
+          dei grandi tornei competitivi, dove ogni partita è una sfida esaltante
+          e un'opportunità per misurare le tue capacità contro avversari di
+          valore, sia che tu preferisca le nostre sessioni di allenamento
+          mirate, specificamente create e personalizzate per la tua crescita
+          tecnica, tattica e personale, da noi troverai sempre un'esperienza
+          profondamente stimolante e gratificante. Preparati a superare i tuoi
+          limiti, ad apprendere nuove strategie e a vivere la passione per il
+          gioco come mai prima d'ora: un'avventura sportiva indimenticabile e
+          ricca di soddisfazioni ti attende!
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

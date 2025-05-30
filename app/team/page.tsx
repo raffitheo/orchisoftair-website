@@ -16,6 +16,17 @@ const TeamPage = () => {
     fetchTeamMembers();
   }, []);
 
+  useEffect(() => {
+    if (loading)
+      document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento squadra...`;
+    else {
+      if (teamMembers.length > 0)
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | La squadra`;
+      else
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Nessun membro trovato`;
+    }
+  }, [teamMembers, loading]);
+
   const fetchTeamMembers = async () => {
     try {
       const { data, error } = await supabase.from('team_members').select('*');
