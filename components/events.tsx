@@ -84,7 +84,7 @@ const Events = () => {
             events.map((event) => (
               <Link
                 className="block h-full"
-                href={`/eventi/${event.id}`}
+                href={`/events/${event.id}`}
                 key={event.id}
               >
                 <Card className="bg-orchi-gray/30 border border-orchi-gray hover:border-orchi-gold transition-colors group h-full flex flex-col">

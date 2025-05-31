@@ -11,6 +11,8 @@ import 'dayjs/locale/it';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Loader from '@/components/ui/loader';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import EventPdfDocument from '@/components/pdf/event-pdf-document';
 
 const EventDetailPage = () => {
   const params = useParams();
@@ -100,12 +102,13 @@ const EventDetailPage = () => {
                       : 'PARTITA'}
                 </span>
               </div>
+
               <h1 className="display-text text-4xl md:text-6xl text-orchi-light mb-4">
                 {event?.title}
               </h1>
 
               <div className="flex items-center mb-2">
-                <Calendar size={20} className="text-orchi-red mr-2" />
+                <Calendar className="text-orchi-red mr-2" size={20} />
 
                 <span className="text-orchi-gold">
                   {dayjs(event?.start_date)
@@ -151,6 +154,7 @@ const EventDetailPage = () => {
                   <h2 className="tactical-text text-2xl text-orchi-light mb-4">
                     DESCRIZIONE
                   </h2>
+
                   <p className="text-orchi-light/80 mb-6 whitespace-pre-line">
                     {event?.description?.replace(/\\n/g, '\n')}
                   </p>
@@ -179,11 +183,12 @@ const EventDetailPage = () => {
                         {event?.schedule?.map((item, index) => (
                           <div
                             key={index}
-                            className="flex border-b border-orchi-gray/30 pb-2"
+                            className="flex border-b border-orchi-gray pb-2"
                           >
                             <div className="w-24 font-bold text-orchi-red">
                               {item.time}
                             </div>
+
                             <div className="flex-grow text-orchi-light">
                               {item.activity}
                             </div>
@@ -287,6 +292,18 @@ const EventDetailPage = () => {
                       >
                         CONTATTACI
                       </Link>
+                    </div>
+
+                    <div className="pt-2">
+                      <PDFDownloadLink
+                        className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
+                        document={<EventPdfDocument event={event} />}
+                        fileName={`${event.title.toLowerCase().replace(/ /g, '-')}_${dayjs(event.start_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}${event.end_date ? `_${dayjs(event.end_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}` : ''}.pdf`}
+                      >
+                        {({ loading }) =>
+                          loading ? 'GENERAZIONE PDF...' : 'SCARICA PDF'
+                        }
+                      </PDFDownloadLink>
                     </div>
                   </div>
                 </Card>
