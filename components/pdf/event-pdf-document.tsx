@@ -106,11 +106,11 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
+interface Props {
   event: Event;
-};
+}
 
-const EventPdfDocument = ({ event }: Props) => {
+const EventPDFDocument = ({ event }: Props) => {
   return (
     <Document>
       <Page size="A4" style={styles.page} wrap>
@@ -267,4 +267,4 @@ const EventPdfDocument = ({ event }: Props) => {
   );
 };
 
-export default EventPdfDocument;
+export default EventPDFDocument;

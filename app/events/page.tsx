@@ -9,6 +9,8 @@ import Event from '@/types/event';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import EventsPDFDocument from '@/components/pdf/events-pdf-document';
 
 const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -38,7 +40,8 @@ const EventsPage = () => {
           'start_date',
           new Date(`01 01 ${new Date().getFullYear()}`).toISOString(),
         )
-        .order('start_date', { ascending: false });
+        .order('start_date', { ascending: false })
+        .limit(12);
 
       if (error) throw error;
       setEvents(data || []);
@@ -211,12 +214,17 @@ const EventsPage = () => {
             </h2>
 
             <div className="text-center">
-              <Link
+              <PDFDownloadLink
                 className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
-                href="#"
+                document={<EventsPDFDocument />}
+                fileName={`eventi-2025.pdf`}
               >
-                CALENDARIO 2025
-              </Link>
+                {({ loading }) =>
+                  loading
+                    ? 'GENERAZIONE CALENDARIO...'
+                    : 'SCARICA CALENDARIO 2025'
+                }
+              </PDFDownloadLink>
             </div>
           </div>
         </div>
