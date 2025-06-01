@@ -89,6 +89,7 @@ const Contact = () => {
                     id="name"
                     name="name"
                     onChange={handleChange}
+                    placeholder="Mario Rossi"
                     required
                     type="text"
                     value={formData.name}
@@ -108,6 +109,7 @@ const Contact = () => {
                     id="email"
                     name="email"
                     onChange={handleChange}
+                    placeholder="la.tua.email@esempio.it"
                     required
                     type="email"
                     value={formData.email}
@@ -119,7 +121,7 @@ const Contact = () => {
                     className="block text-orchi-light mb-2 tactical-text"
                     htmlFor="phone"
                   >
-                    TELEFONO
+                    TELEFONO (opzionale)
                   </label>
 
                   <input
@@ -127,6 +129,7 @@ const Contact = () => {
                     id="phone"
                     name="phone"
                     onChange={handleChange}
+                    placeholder="+39 123 456 7890"
                     type="tel"
                     value={formData.phone}
                   />
@@ -145,6 +148,7 @@ const Contact = () => {
                     id="message"
                     name="message"
                     onChange={handleChange}
+                    placeholder="Raccontaci la tua esperienza nel softair e perché vuoi unirti agli Orchi..."
                     required
                     rows={4}
                     value={formData.message}
