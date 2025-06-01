@@ -69,7 +69,7 @@ const TeamMemberDetailPage = () => {
   };
 
   return (
-    <main className="pt-24 pb-20">
+    <main className="pt-24 pb-28">
       <div className="container mx-auto px-4 mt-8">
         <div className="mb-6">
           <Link

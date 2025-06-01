@@ -59,7 +59,7 @@ const EventDetailPage = () => {
   };
 
   return (
-    <main className="pt-24 pb-20">
+    <main className="pt-24 pb-28">
       {!event ? (
         loading ? (
           <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
