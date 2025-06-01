@@ -39,14 +39,9 @@ const Team = () => {
         </h2>
 
         <p className="text-orchi-light/70 mb-12">
-          Gli Orchi sono un team forgiato da una dedizione che non conosce
-          limiti e da una passione ardente che infiamma ogni nostra azione. Ogni
-          membro è uno specialista esperto, maestro nel proprio ruolo cruciale,
-          e contribuisce in modo vitale all'equilibrio e all'efficacia della
-          nostra strategia complessiva. È questa profonda sinergia, unita alla
-          nostra incrollabile coesione e alla fiducia reciproca, che ci
-          trasforma in una forza imbattibile sul campo, sempre pronti a lottare
-          fianco a fianco per conquistare la vittoria.
+          Gli Orchi sono più di un team: siamo una vera unità. Ogni membro è
+          fondamentale, ogni ruolo conta. Con passione, disciplina e spirito di
+          squadra affrontiamo ogni sfida insieme.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -49,7 +49,7 @@ const Contact = () => {
               <li className="flex items-center">
                 <div className="bg-orchi-red w-2 h-2 mr-3"></div>
                 <span className="text-orchi-light">
-                  Sessioni di allenamento settimanali
+                  Sessioni di allenamento o giocate settimanali
                 </span>
               </li>
               <li className="flex items-center">

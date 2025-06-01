@@ -52,14 +52,20 @@ const TeamPage = () => {
         </div>
 
         <p className="text-orchi-light/70 mb-12">
-          Gli Orchi sono un team forgiato da una dedizione che non conosce
-          limiti e da una passione ardente che infiamma ogni nostra azione. Ogni
-          membro è uno specialista esperto, maestro nel proprio ruolo cruciale,
-          e contribuisce in modo vitale all'equilibrio e all'efficacia della
-          nostra strategia complessiva. È questa profonda sinergia, unita alla
-          nostra incrollabile coesione e alla fiducia reciproca, che ci
-          trasforma in una forza imbattibile sul campo, sempre pronti a lottare
-          fianco a fianco per conquistare la vittoria.
+          Siamo Gli Orchi Trieste, una squadra unita da una passione
+          incrollabile per il softair e forgiata da anni di esperienza sul
+          campo. Ogni giocatore è un elemento essenziale del nostro equilibrio
+          tattico, con competenze specifiche che contribuiscono alla forza e
+          all’efficacia del gruppo.
+          <br />
+          Non siamo solo un insieme di ruoli: siamo una squadra vera, coesa,
+          dove la fiducia reciproca e la collaborazione sono il cuore di ogni
+          missione. Allenamento dopo allenamento, abbiamo costruito una sinergia
+          solida, che ci permette di affrontare ogni sfida con determinazione,
+          lucidità e spirito di sacrificio.
+          <br />
+          Essere un Orco significa dare il massimo, supportare i compagni e
+          crescere insieme, dentro e fuori dal campo.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

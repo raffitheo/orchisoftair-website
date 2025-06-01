@@ -45,18 +45,9 @@ const Events = () => {
         </h2>
 
         <p className="text-orchi-light/70 mb-12">
-          Non perdere l'occasione di unirti ai nostri prossimi, entusiasmanti
-          eventi: sono l'ambiente ideale per farti brillare e mostrare appieno
-          il tuo vero talento sul campo! Sia che tu sia attratto dall'adrenalina
-          pulsante dei grandi tornei competitivi, dove ogni partita è una sfida
-          esaltante e un'opportunità per misurare le tue capacità contro
-          avversari di valore, sia che tu preferisca le nostre sessioni di
-          allenamento mirate, specificamente create e personalizzate per la tua
-          crescita tecnica, tattica e personale, da noi troverai sempre
-          un'esperienza profondamente stimolante e gratificante. Preparati a
-          superare i tuoi limiti, ad apprendere nuove strategie e a vivere la
-          passione per il gioco come mai prima d'ora: un'avventura sportiva
-          indimenticabile e ricca di soddisfazioni ti attende!
+          Unisciti a noi nei prossimi eventi! Che si tratti di tornei
+          competitivi o sessioni di allenamento, ogni occasione è perfetta per
+          mettersi alla prova, imparare e vivere la vera adrenalina del softair.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

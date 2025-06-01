@@ -31,8 +31,7 @@ const Hero = () => {
         </h1>
 
         <p className="tactical-text text-xl md:text-2xl text-orchi-light mb-8 max-w-2xl">
-          ASSOCIAZIONE SPORTIVA DILETTANTISTICA "GLI ORCHI TRIESTE - SOFTAIR
-          TEAM"
+          Una squadra, una famiglia, una passione condivisa!
         </p>
 
         <Button

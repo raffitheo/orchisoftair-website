@@ -64,18 +64,13 @@ const EventsPage = () => {
         </div>
 
         <p className="text-orchi-light/70 mb-12">
-          Non perdere l'occasione di unirti ai nostri entusiasmanti eventi: sono
-          l'ambiente ideale per farti brillare e mostrare appieno il tuo vero
-          talento sul campo! Sia che tu sia attratto dall'adrenalina pulsante
-          dei grandi tornei competitivi, dove ogni partita è una sfida esaltante
-          e un'opportunità per misurare le tue capacità contro avversari di
-          valore, sia che tu preferisca le nostre sessioni di allenamento
-          mirate, specificamente create e personalizzate per la tua crescita
-          tecnica, tattica e personale, da noi troverai sempre un'esperienza
-          profondamente stimolante e gratificante. Preparati a superare i tuoi
-          limiti, ad apprendere nuove strategie e a vivere la passione per il
-          gioco come mai prima d'ora: un'avventura sportiva indimenticabile e
-          ricca di soddisfazioni ti attende!
+          Il nostro calendario è sempre ricco di appuntamenti pensati per ogni
+          tipo di giocatore, dal neofita all’appassionato più esperto.
+          <br />
+          Partecipa a tornei adrenalinici, allenamenti strategici e giocate
+          immersive che mettono alla prova tecnica, resistenza e spirito di
+          squadra. Ogni evento è un’occasione per crescere, divertirsi e vivere
+          il softair nella sua forma più autentica.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
