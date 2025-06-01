@@ -92,7 +92,7 @@ const Events = () => {
                     <div
                       className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
                       style={{
-                        backgroundImage: `url(${event.image_url || '/tactical-bg.jpg'})`,
+                        backgroundImage: `url(${event.image_url || '/event-placeholder.webp'})`,
                       }}
                     />
                   </div>

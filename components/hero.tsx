@@ -21,7 +21,7 @@ const Hero = () => {
             alt="Gli Orchi Softair Team Logo"
             className="w-full animate-slow-pulse"
             height={512}
-            src="/orchi_logo.png"
+            src="/logo-orchi.webp"
             width={512}
           />
         </div>

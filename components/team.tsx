@@ -82,7 +82,7 @@ const Team = () => {
                     <div
                       className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
                       style={{
-                        backgroundImage: `url(${member.image_url || '/team-member-placeholder.png'})`,
+                        backgroundImage: `url(${member.image_url || '/team-member-placeholder.webp'})`,
                       }}
                     />
                   </div>

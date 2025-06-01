@@ -84,11 +84,10 @@ const EventDetailPage = () => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `url(${event?.image_url || '/tactical-bg.jpg'})`,
+                backgroundImage: `url(${event?.image_url || '/event-placeholder.webp'})`,
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-orchi to-transparent opacity-90"></div>
-            <div className="absolute inset-0 bg-tactical-pattern opacity-10"></div>
 
             <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-end pb-12">
               <div

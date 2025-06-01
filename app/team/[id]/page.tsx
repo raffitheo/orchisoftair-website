@@ -108,7 +108,7 @@ const TeamMemberDetailPage = () => {
                     <div
                       className="w-full h-full bg-cover bg-center"
                       style={{
-                        backgroundImage: `url(${teamMember?.image_url || '/team-member-placeholder.png'})`,
+                        backgroundImage: `url(${teamMember?.image_url || '/team-member-placeholder.webp'})`,
                       }}
                     />
                   </div>
@@ -345,7 +345,7 @@ const TeamMemberDetailPage = () => {
                       <div
                         className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
                         style={{
-                          backgroundImage: `url(${otherMember.image_url || '/team-member-placeholder.png'})`,
+                          backgroundImage: `url(${otherMember.image_url || '/team-member-placeholder.webp'})`,
                         }}
                       />
                     </div>

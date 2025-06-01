@@ -11,7 +11,7 @@ const Footer = () => {
                 alt="Gli Orchi Softair Team Logo"
                 className="w-20 h-20"
                 height={80}
-                src="/orchi_logo.png"
+                src="/logo-orchi.webp"
                 width={80}
               />
 
