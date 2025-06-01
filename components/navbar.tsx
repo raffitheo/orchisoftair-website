@@ -90,7 +90,7 @@ const Navbar = () => {
             </Button>
           </SheetTrigger>
 
-          <SheetContent className="bg-orchi border-orchi-gray w-[80%] sm:max-w-md">
+          <SheetContent className="bg-orchi border border-orchi-gray w-[80%] sm:max-w-md">
             <SheetHeader className="border-b border-orchi-gray pb-4 mb-4">
               <SheetTitle className="tactical-text text-orchi-red text-2xl">
                 GLI ORCHI TRIESTE

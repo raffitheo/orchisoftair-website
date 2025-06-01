@@ -72,7 +72,7 @@ const Team = () => {
                 href={`/team/${member.id}`}
                 key={member.id}
               >
-                <Card className="overflow-hidden bg-orchi-gray/10 border-orchi-gray hover:border-orchi-gold transition-all group h-full">
+                <Card className="overflow-hidden bg-orchi-gray/10 border border-orchi-gray hover:border-orchi-gold transition-all group h-full">
                   <div className="aspect-square overflow-hidden">
                     <div
                       className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"

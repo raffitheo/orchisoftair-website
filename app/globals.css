@@ -160,21 +160,6 @@
     @apply font-tactical uppercase tracking-wider;
   }
 
-  /* .decorated-border {
-    @apply relative border-2 border-orchi-gray;
-  }
-
-  .decorated-border::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: -5px;
-    bottom: -5px;
-    background: rgba(184, 134, 11, 0.3);
-    z-index: -1;
-  } */
-
   .gritty-shadow {
     text-shadow: 3px 3px 0px rgba(139, 0, 0, 0.7);
   }

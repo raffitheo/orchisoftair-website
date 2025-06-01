@@ -89,7 +89,7 @@ const GalleryPage = () => {
           ) : (
             galleryImages.map((image) => (
               <div
-                className="group relative overflow-hidden decorated-border bg-orchi-gray/20 hover:bg-orchi-gray/30 transition-all duration-300"
+                className="group relative overflow-hidden border border-orchi-gray bg-orchi-gray/20 hover:bg-orchi-gray/30 transition-all duration-300"
                 key={image.id}
               >
                 <div className="aspect-square overflow-hidden">

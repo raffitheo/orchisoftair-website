@@ -103,7 +103,7 @@ const TeamMemberDetailPage = () => {
           ) : (
             <>
               <div>
-                <Card className="overflow-hidden bg-orchi-gray/10 border-orchi-gray mb-6 sticky top-24">
+                <Card className="overflow-hidden bg-orchi-gray/10 border border-orchi-gray mb-6 sticky top-24">
                   <div className="aspect-square overflow-hidden">
                     <div
                       className="w-full h-full bg-cover bg-center"
@@ -202,7 +202,7 @@ const TeamMemberDetailPage = () => {
               </div>
 
               <div className="lg:col-span-2">
-                <Card className="bg-orchi-gray/10 border-orchi-gray p-6 mb-6">
+                <Card className="bg-orchi-gray/10 border border-orchi-gray p-6 mb-6">
                   <h2 className="tactical-text text-2xl text-orchi-light mb-4">
                     BIOGRAFIA
                   </h2>
@@ -340,7 +340,7 @@ const TeamMemberDetailPage = () => {
                   href={`/team/${otherMember.id}`}
                   key={otherMember.id}
                 >
-                  <Card className="overflow-hidden bg-orchi-gray/10 border-orchi-gray hover:border-orchi-gold transition-all group h-full">
+                  <Card className="overflow-hidden bg-orchi-gray/10 border border-orchi-gray hover:border-orchi-gold transition-all group h-full">
                     <div className="aspect-square overflow-hidden">
                       <div
                         className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"

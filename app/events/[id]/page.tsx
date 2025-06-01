@@ -149,7 +149,7 @@ const EventDetailPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
-                <Card className="bg-orchi-gray/10 border-orchi-gray p-6 mb-6">
+                <Card className="bg-orchi-gray/10 border border-orchi-gray p-6 mb-6">
                   <h2 className="tactical-text text-2xl text-orchi-light mb-4">
                     DESCRIZIONE
                   </h2>
@@ -214,7 +214,7 @@ const EventDetailPage = () => {
               </div>
 
               <div>
-                <Card className="bg-orchi-gray/10 border-orchi-gray p-6 mb-6 sticky top-24">
+                <Card className="bg-orchi-gray/10 border border-orchi-gray p-6 mb-6 sticky top-24">
                   <h3 className="tactical-text text-xl text-orchi-light mb-4">
                     INFORMAZIONI
                   </h3>
