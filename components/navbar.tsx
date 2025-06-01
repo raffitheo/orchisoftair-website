@@ -19,7 +19,7 @@ const navItems = [
   { name: 'Gli eventi', path: '/events' },
   { name: 'La squadra', path: '/team' },
   { name: 'Galleria orchi', path: '/gallery' },
-  { name: 'Contatti', path: '#contacts' },
+  { name: 'Scrivici ora', path: '/join-us' },
 ];
 
 const Navbar = () => {

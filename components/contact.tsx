@@ -72,7 +72,7 @@ const Contact = () => {
 
             <div className="relative z-10">
               <h2 className="tactical-text text-3xl text-center text-orchi-light mb-4">
-                CONTATTACI
+                SCRIVICI ORA
               </h2>
 
               <form className="space-y-6">

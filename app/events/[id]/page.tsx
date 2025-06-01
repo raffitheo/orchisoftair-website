@@ -289,7 +289,7 @@ const EventDetailPage = () => {
                         className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
                         href="/join-us"
                       >
-                        CONTATTACI
+                        SCRIVICI ORA
                       </Link>
                     </div>
 

@@ -162,7 +162,7 @@ const TeamPage = () => {
                 className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
                 href="/join-us"
               >
-                CANDIDATI ORA
+                SCRIVICI ORA
               </Link>
             </div>
           </div>
