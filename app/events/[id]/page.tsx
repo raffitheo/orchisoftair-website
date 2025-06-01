@@ -12,7 +12,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Loader from '@/components/ui/loader';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import EventPdfDocument from '@/components/pdf/event-pdf-document';
+import EventPDFDocument from '@/components/pdf/event-pdf-document';
 
 const EventDetailPage = () => {
   const params = useParams();
@@ -297,7 +297,7 @@ const EventDetailPage = () => {
                     <div className="pt-2">
                       <PDFDownloadLink
                         className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
-                        document={<EventPdfDocument event={event} />}
+                        document={<EventPDFDocument event={event} />}
                         fileName={`${event.title.toLowerCase().replace(/ /g, '-')}_${dayjs(event.start_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}${event.end_date ? `_${dayjs(event.end_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}` : ''}.pdf`}
                       >
                         {({ loading }) =>
