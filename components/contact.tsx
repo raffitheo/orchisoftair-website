@@ -45,25 +45,12 @@ const Contact = () => {
               prova.
             </p>
 
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center">
-                <div className="bg-orchi-red w-2 h-2 mr-3"></div>
-                <span className="text-orchi-light">
-                  Sessioni di allenamento o giocate settimanali
-                </span>
-              </li>
-              <li className="flex items-center">
-                <div className="bg-orchi-red w-2 h-2 mr-3"></div>
-                <span className="text-orchi-light">
-                  Partecipazione a tornei locali, regionali e nazionali
-                </span>
-              </li>
-              <li className="flex items-center">
-                <div className="bg-orchi-red w-2 h-2 mr-3"></div>
-                <span className="text-orchi-light">
-                  Atmosfera amichevole ma competitiva
-                </span>
-              </li>
+            <ul className="list-disc list-inside space-y-1 text-orchi-light/80">
+              <li>Sessioni di allenamento e/o giocate settimanali</li>
+
+              <li>Partecipazione a tornei locali, regionali e nazionali</li>
+
+              <li>Atmosfera amichevole ma competitiva</li>
             </ul>
           </div>
 
@@ -72,7 +59,7 @@ const Contact = () => {
 
             <div className="relative z-10">
               <h2 className="tactical-text text-3xl text-center text-orchi-light mb-4">
-                SCRIVICI ORA
+                FORM DI CONTATTO
               </h2>
 
               <form className="space-y-6">

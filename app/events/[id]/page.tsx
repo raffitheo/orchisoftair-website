@@ -174,7 +174,7 @@ const EventDetailPage = () => {
 
                   {event?.schedule && (
                     <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-4">
+                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
                         PROGRAMMA
                       </h3>
 

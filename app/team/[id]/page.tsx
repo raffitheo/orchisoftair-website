@@ -212,7 +212,7 @@ const TeamMemberDetailPage = () => {
 
                   {teamMember?.achievements && (
                     <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-3">
+                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
                         ACHIEVEMENTS
                       </h3>
 
@@ -224,39 +224,9 @@ const TeamMemberDetailPage = () => {
                     </>
                   )}
 
-                  {/* {teamMember?.stats && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-4">
-                        STATISTICHE
-                      </h3>
-                      <div className="grid grid-cols-3 gap-4 mb-8">
-                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-                          <div className="text-3xl font-bold text-orchi-light mb-1">
-                            {teamMember?.stats.games}
-                          </div>
-                          <div className="text-orchi-light/60 text-sm">Partite</div>
-                        </div>
-                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-                          <div className="text-3xl font-bold text-orchi-red mb-1">
-                            {teamMember?.stats.wins}
-                          </div>
-                          <div className="text-orchi-light/60 text-sm">
-                            Vittorie
-                          </div>
-                        </div>
-                        <div className="text-center p-4 bg-orchi-gray/20 border border-orchi-gray">
-                          <div className="text-3xl font-bold text-orchi-gold mb-1">
-                            {teamMember?.stats.mvps}
-                          </div>
-                          <div className="text-orchi-light/60 text-sm">MVP</div>
-                        </div>
-                      </div>
-                    </>
-                  )} */}
-
                   {teamMember?.team_member_equipment && (
                     <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-4">
+                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
                         EQUIPAGGIAMENTO
                       </h3>
 
@@ -289,7 +259,7 @@ const TeamMemberDetailPage = () => {
                               Altro
                             </div>
 
-                            <ul className="list-disc list-inside space-y-1 pl-2 text-orchi-light/80">
+                            <ul className="list-disc list-inside space-y-1 pl-4 text-orchi-light/80">
                               {teamMember?.team_member_equipment?.other.map(
                                 (item, index) => <li key={index}>{item}</li>,
                               )}
