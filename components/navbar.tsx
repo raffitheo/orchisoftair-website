@@ -12,28 +12,39 @@ import {
   SheetClose,
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
+import { usePathname } from 'next/navigation';
+
+const navItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Gli eventi', path: '/events' },
+  { name: 'La squadra', path: '/team' },
+  { name: 'Contatti', path: '#contacts' },
+];
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  const [currentRoute, setCurrentRoute] = useState('');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      if (window.scrollY > 20) setScrolled(true);
+      else setScrolled(false);
     };
+
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Gli eventi', path: '/events' },
-    { name: 'La squadra', path: '/team' },
-    { name: 'Contatti', path: '#contacts' },
-  ];
+  useEffect(() => {
+    console.log('Current pathname:', pathname);
+
+    if (navItems.some((item) => item.path === `/${pathname.split('/')[1]}`))
+      setCurrentRoute(`/${pathname.split('/')[1]}`);
+    else setCurrentRoute('');
+  }, [pathname]);
 
   return (
     <header
@@ -56,10 +67,11 @@ const Navbar = () => {
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => (
             <Link
-              className="tactical-text text-orchi-light hover:text-orchi-gold transition-colors duration-200"
+              className={`tactical-text ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'}`}
               href={item.path}
               key={item.name}
               scroll={item.path.startsWith('#') ? false : true}
+              tabIndex={currentRoute === item.path ? -1 : undefined}
             >
               {item.name}
             </Link>
@@ -92,9 +104,10 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <SheetClose asChild key={item.name}>
                   <Link
-                    className="tactical-text text-xl text-orchi-light hover:text-orchi-gold transition-colors duration-200 flex items-center"
+                    className={`tactical-text text-xl ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'} flex items-center`}
                     href={item.path}
                     scroll={item.path.startsWith('#') ? false : true}
+                    tabIndex={currentRoute === item.path ? -1 : undefined}
                   >
                     {item.name}
                   </Link>
