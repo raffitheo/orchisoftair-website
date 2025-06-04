@@ -97,7 +97,7 @@ const JoinUsPage = () => {
                   <div className="flex flex-col lg:flex-row space-between w-full gap-2">
                     <div className="flex-1">
                       <p className="text-orchi-light font-semibold">
-                        Incontir in sede
+                        Incontri in sede
                       </p>
 
                       <p className="text-orchi-light/80">Mercoledì</p>

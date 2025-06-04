@@ -6,7 +6,7 @@ import { Button } from './ui/button';
 import { supabase } from '@/lib/supabase';
 import Loader from './ui/loader';
 import TeamMember from '@/types/team-member';
-import { Card, CardContent, CardHeader } from './ui/card';
+import { Card, CardContent } from './ui/card';
 
 const Team = () => {
   const [loading, setLoading] = useState(true);
@@ -18,12 +18,14 @@ const Team = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data, error } = await supabase.rpc('get_random_team_members', {
-        limit_count: 6,
-      });
+      const { data: randomTeamMembersData, error: randomTeamMembersError } =
+        await supabase.rpc('get_random_team_members', {
+          limit_count: 6,
+        });
 
-      if (error) throw error;
-      setTeamMembers(data || []);
+      if (randomTeamMembersError) throw randomTeamMembersError;
+
+      setTeamMembers(randomTeamMembersData || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
     } finally {
@@ -56,7 +58,7 @@ const Team = () => {
                   Non ci sono membri nella squadra!
                 </span>
 
-                <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                <span className="text-orchi-light/70 mx-auto mb-auto">
                   Non ci sono membri nella squadra al momento, ma non temere:
                   siamo costantemente all'opera per creare nuove ed
                   entusiasmanti attività e contenuti esclusivi per i nostri

@@ -37,14 +37,14 @@ const TeamMemberDetailPage = () => {
 
   const fetchTeamMember = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: teamMembersData, error: teamMembersError } = await supabase
         .from('team_members')
         .select('*, team_member_socials(*), team_member_equipment(*)')
         .eq('id', id)
         .single();
 
-      if (error) throw error;
-      setTeamMember(data || null);
+      if (teamMembersError) throw teamMembersError;
+      setTeamMember(teamMembersData || null);
     } catch (error) {
       console.error('Error fetching the team member:', error);
     } finally {
@@ -54,13 +54,15 @@ const TeamMemberDetailPage = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data, error } = await supabase.rpc('get_random_team_members', {
-        limit_count: 5,
-        user_id: id,
-      });
+      const { data: randomTeamMemberData, error: randomTeamMemberError } =
+        await supabase.rpc('get_random_team_members', {
+          limit_count: 5,
+          user_id: id,
+        });
 
-      if (error) throw error;
-      setTeamMembers(data || []);
+      if (randomTeamMemberError) throw randomTeamMemberError;
+
+      setTeamMembers(randomTeamMemberData || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
     } finally {
@@ -128,7 +130,7 @@ const TeamMemberDetailPage = () => {
 
                     <div className="flex items-center mb-4">
                       <span className="text-orchi-light/80 text-sm mr-2">
-                        Specialità:
+                        Ruolo:
                       </span>
 
                       <span className="text-orchi-gold">

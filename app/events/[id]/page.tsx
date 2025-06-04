@@ -43,14 +43,15 @@ const EventDetailPage = () => {
 
   const fetchEvent = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: eventData, error: eventError } = await supabase
         .from('events')
         .select('*')
         .eq('id', id)
         .single();
 
-      if (error) throw error;
-      setEvent(data || null);
+      if (eventError) throw eventError;
+
+      setEvent(eventData || null);
     } catch (error) {
       console.error('Error fetching the event:', error);
     } finally {

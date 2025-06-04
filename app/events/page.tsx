@@ -33,18 +33,16 @@ const EventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: eventsData, error: eventsError } = await supabase
         .from('events')
         .select('*')
-        .gte(
-          'start_date',
-          new Date(`01 01 ${new Date().getFullYear()}`).toISOString(),
-        )
+        .gte('start_date', new Date(`01 01 ${dayjs().year()}`).toISOString())
         .order('start_date', { ascending: false })
         .limit(12);
 
-      if (error) throw error;
-      setEvents(data || []);
+      if (eventsError) throw eventsError;
+
+      setEvents(eventsData || []);
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
@@ -85,7 +83,7 @@ const EventsPage = () => {
                   Non ci sono membri nella squadra!
                 </span>
 
-                <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                <span className="text-orchi-light/70 mx-auto mb-auto">
                   Non ci sono membri nella squadra al momento, ma non temere:
                   siamo costantemente all'opera per creare nuove ed
                   entusiasmanti attività e contenuti esclusivi per i nostri

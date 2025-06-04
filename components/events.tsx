@@ -21,15 +21,16 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: eventsData, error: eventsError } = await supabase
         .from('events')
         .select('*')
-        .gte('start_date', new Date().toISOString())
+        .gte('start_date', dayjs().toISOString())
         .order('start_date', { ascending: true })
         .limit(3);
 
-      if (error) throw error;
-      setEvents(data || []);
+      if (eventsError) throw eventsError;
+
+      setEvents(eventsData || []);
     } catch (error) {
       console.error('Error fetching events:', error);
     } finally {
@@ -62,7 +63,7 @@ const Events = () => {
                   Non ci sono eventi in programma!
                 </span>
 
-                <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                <span className="text-orchi-light/70 mx-auto mb-auto">
                   Non ci sono eventi in calendario al momento, ma non temere:
                   siamo costantemente all'opera per creare nuove ed
                   entusiasmanti attività e contenuti esclusivi per i nostri

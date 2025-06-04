@@ -29,13 +29,15 @@ const GalleryPage = () => {
 
   const fetchGalleryImages = async () => {
     try {
-      const { data, error } = await supabase
-        .from('gallery_images')
-        .select('*')
-        .order('created_at', { ascending: true });
+      const { data: galleryImagesData, error: galleryImagesError } =
+        await supabase
+          .from('gallery_images')
+          .select('*')
+          .order('created_at', { ascending: true });
 
-      if (error) throw error;
-      setGalleryImages(data || []);
+      if (galleryImagesError) throw galleryImagesError;
+
+      setGalleryImages(galleryImagesData || []);
     } catch (error) {
       console.error('Error fetching gallery images:', error);
     } finally {
@@ -78,7 +80,7 @@ const GalleryPage = () => {
                   Non ci sono membri nella squadra!
                 </span>
 
-                <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                <span className="text-orchi-light/70 mx-auto mb-auto">
                   Non ci sono immagini al momento, ma non temere: siamo
                   costantemente all'opera per creare nuove ed entusiasmanti
                   attività e contenuti esclusivi per i nostri soci! Tieni

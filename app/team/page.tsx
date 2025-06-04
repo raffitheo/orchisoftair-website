@@ -29,10 +29,13 @@ const TeamPage = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data, error } = await supabase.from('team_members').select('*');
+      const { data: teamMembersData, error: teamMembersError } = await supabase
+        .from('team_members')
+        .select('*');
 
-      if (error) throw error;
-      setTeamMembers(data || []);
+      if (teamMembersError) throw teamMembersError;
+
+      setTeamMembers(teamMembersData || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
     } finally {
@@ -80,7 +83,7 @@ const TeamPage = () => {
                   Non ci sono membri nella squadra!
                 </span>
 
-                <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                <span className="text-orchi-light/70 mx-auto mb-auto">
                   Non ci sono membri nella squadra al momento, ma non temere:
                   siamo costantemente all'opera per creare nuove ed
                   entusiasmanti attività e contenuti esclusivi per i nostri

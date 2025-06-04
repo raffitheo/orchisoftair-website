@@ -82,17 +82,15 @@ const EventsPDFDocument = () => {
 
   const fetchEvents = async () => {
     try {
-      const { data, error } = await supabase
+      const { data: eventsData, error: eventsError } = await supabase
         .from('events')
         .select('*')
-        .gte(
-          'start_date',
-          new Date(`01 01 ${new Date().getFullYear()}`).toISOString(),
-        )
+        .gte('start_date', new Date(`01 01 ${dayjs().year()}`).toISOString())
         .order('start_date', { ascending: true });
 
-      if (error) throw error;
-      setEvents(data || []);
+      if (eventsError) throw eventsError;
+
+      setEvents(eventsData || []);
     } catch (error) {
       console.error('Error fetching events:', error);
     }
