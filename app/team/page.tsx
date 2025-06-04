@@ -7,8 +7,12 @@ import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
+import { useAuth } from '@/lib/auth-context';
+import { Button } from '@/components/ui/button';
 
 const TeamPage = () => {
+  const { loadingAuth, profile } = useAuth();
+
   const [loading, setLoading] = useState(true);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
 
@@ -173,12 +177,21 @@ const TeamPage = () => {
             </p>
 
             <div className="text-center">
-              <Link
-                className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
-                href="/join-us"
-              >
-                SCRIVICI ORA
-              </Link>
+              {profile && !loadingAuth ? (
+                <Button
+                  className="inline-block bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 px-8 cursor-not-allowed"
+                  disabled
+                >
+                  SCRIVICI ORA
+                </Button>
+              ) : (
+                <Link
+                  className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+                  href="/join-us"
+                >
+                  SCRIVICI ORA
+                </Link>
+              )}
             </div>
           </div>
         </div>

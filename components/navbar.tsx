@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -13,16 +13,19 @@ import {
 } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { usePathname } from 'next/navigation';
+import NavigationItem from '@/types/navigation-item';
+import { useAuth } from '@/lib/auth-context';
 
-const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Gli eventi', path: '/events' },
-  { name: 'La squadra', path: '/team' },
-  { name: 'Galleria orchi', path: '/gallery' },
-  { name: 'Scrivici ora', path: '/join-us' },
+const navigationItems: NavigationItem[] = [
+  { id: 1, name: 'Home', path: '/', separator: false },
+  { id: 2, name: 'Gli eventi', path: '/events', separator: false },
+  { id: 3, name: 'La squadra', path: '/team', separator: false },
+  { id: 4, name: 'Galleria orchi', path: '/gallery', separator: false },
+  { id: 5, name: 'Scrivici ora', path: '/join-us', separator: false },
 ];
 
 const Navbar = () => {
+  const { loadingAuth, profile, signOut } = useAuth();
   const pathname = usePathname();
 
   const [currentRoute, setCurrentRoute] = useState('');
@@ -40,9 +43,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    console.log('Current pathname:', pathname);
-
-    if (navItems.some((item) => item.path === `/${pathname.split('/')[1]}`))
+    if (
+      navigationItems.some((item) => item.path === `/${pathname.split('/')[1]}`)
+    )
       setCurrentRoute(`/${pathname.split('/')[1]}`);
     else setCurrentRoute('');
   }, [pathname]);
@@ -66,24 +69,55 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <Link
-              className={`tactical-text ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'}`}
-              href={item.path}
-              key={item.name}
-              scroll={item.path.startsWith('#') ? false : true}
-              tabIndex={currentRoute === item.path ? -1 : undefined}
-            >
-              {item.name}
-            </Link>
+          {navigationItems.map((item) => (
+            <Fragment key={item.id}>
+              {item.separator && (
+                <span className="border-l border-orchi-gray h-6"></span>
+              )}
+
+              <Link
+                className={`tactical-text ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'}`}
+                href={item.path}
+                scroll={item.path.startsWith('#') ? false : true}
+                tabIndex={currentRoute === item.path ? -1 : undefined}
+              >
+                {item.name}
+              </Link>
+            </Fragment>
           ))}
+
+          {!profile && !loadingAuth ? (
+            <>
+              <span className="border-l border-orchi-gray h-6"></span>
+
+              <Link
+                className={`tactical-text ${currentRoute === '/login' ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'}`}
+                href="/login"
+                scroll={'/login'.startsWith('#') ? false : true}
+                tabIndex={currentRoute === '/login' ? -1 : undefined}
+              >
+                Entra
+              </Link>
+            </>
+          ) : (
+            <>
+              <span className="border-l border-orchi-gray h-6"></span>
+
+              <Button
+                className="bg-transparent cursor-pointer p-0 h-auto w-auto tactical-text text-orchi-light hover:text-orchi-gold hover:bg-transparent transition-colors duration-200"
+                onClick={signOut}
+              >
+                Esci
+              </Button>
+            </>
+          )}
         </nav>
 
         <Sheet>
           <SheetTrigger asChild>
             <Button
               aria-label="Toggle menu"
-              className="md:hidden h-auto p-2 text-orchi-light hover:text-orchi-gold hover:bg-transparent transition-colors duration-300"
+              className="cursor-pointer md:hidden h-auto p-2 text-orchi-light hover:text-orchi-gold hover:bg-transparent transition-colors duration-300"
               variant="ghost"
             >
               <Menu size={24} />
@@ -102,18 +136,57 @@ const Navbar = () => {
             </SheetHeader>
 
             <nav className="flex flex-col space-y-6">
-              {navItems.map((item) => (
-                <SheetClose asChild key={item.name}>
-                  <Link
-                    className={`tactical-text text-xl ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'} flex items-center`}
-                    href={item.path}
-                    scroll={item.path.startsWith('#') ? false : true}
-                    tabIndex={currentRoute === item.path ? -1 : undefined}
-                  >
-                    {item.name}
-                  </Link>
-                </SheetClose>
+              {navigationItems.map((item) => (
+                <>
+                  {item.separator && (
+                    <span
+                      className="border-b border-orchi-gray h-px w-full"
+                      key={`separator-${item.id}`}
+                    ></span>
+                  )}
+
+                  <SheetClose asChild key={item.id}>
+                    <Link
+                      className={`tactical-text text-xl ${currentRoute === item.path ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'} flex items-center`}
+                      href={item.path}
+                      scroll={item.path.startsWith('#') ? false : true}
+                      tabIndex={currentRoute === item.path ? -1 : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  </SheetClose>
+                </>
               ))}
+
+              {!profile && !loadingAuth ? (
+                <>
+                  <span className="border-b border-orchi-gray h-px w-full"></span>
+
+                  <SheetClose asChild>
+                    <Link
+                      className={`tactical-text text-xl ${currentRoute === '/login' ? 'text-orchi-red pointer-events-none' : 'text-orchi-light hover:text-orchi-gold transition-colors duration-200'} flex items-center`}
+                      href="/login"
+                      scroll={'/login'.startsWith('#') ? false : true}
+                      tabIndex={currentRoute === '/login' ? -1 : undefined}
+                    >
+                      Entra
+                    </Link>
+                  </SheetClose>
+                </>
+              ) : (
+                <>
+                  <span className="border-b border-orchi-gray h-px w-full"></span>
+
+                  <SheetClose asChild>
+                    <Button
+                      className="bg-transparent cursor-pointer p-0 h-auto tactical-text text-xl text-orchi-light hover:text-orchi-gold hover:bg-transparent transition-colors duration-200 flex items-left justify-start"
+                      onClick={signOut}
+                    >
+                      Esci
+                    </Button>
+                  </SheetClose>
+                </>
+              )}
             </nav>
           </SheetContent>
         </Sheet>

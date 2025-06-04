@@ -1,10 +1,15 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { useAuth } from '@/lib/auth-context';
 import { Clock, Mail, MapPin, Signature } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const JoinUsPage = () => {
+  const { loadingAuth, profile } = useAuth();
+
   const [formData, setFormData] = useState({
     email: '',
     message: '',
@@ -156,7 +161,7 @@ const JoinUsPage = () => {
                 FORM DI CONTATTO
               </h2>
 
-              <form className="space-y-6">
+              <form className="space-y-2">
                 <div>
                   <label
                     className="block text-orchi-light mb-2 tactical-text"
@@ -165,8 +170,9 @@ const JoinUsPage = () => {
                     NOME <span className="text-orchi-red">*</span>
                   </label>
 
-                  <input
+                  <Input
                     className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    disabled={profile && !loadingAuth ? true : false}
                     id="name"
                     name="name"
                     onChange={handleChange}
@@ -185,8 +191,9 @@ const JoinUsPage = () => {
                     EMAIL <span className="text-orchi-red">*</span>
                   </label>
 
-                  <input
+                  <Input
                     className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    disabled={profile && !loadingAuth ? true : false}
                     id="email"
                     name="email"
                     onChange={handleChange}
@@ -205,8 +212,9 @@ const JoinUsPage = () => {
                     TELEFONO (opzionale)
                   </label>
 
-                  <input
+                  <Input
                     className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    disabled={profile && !loadingAuth ? true : false}
                     id="phone"
                     name="phone"
                     onChange={handleChange}
@@ -224,24 +232,35 @@ const JoinUsPage = () => {
                     MESSAGGIO <span className="text-orchi-red">*</span>
                   </label>
 
-                  <textarea
+                  <Textarea
                     className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
+                    disabled={profile && !loadingAuth ? true : false}
                     id="message"
                     name="message"
                     onChange={handleChange}
                     placeholder="Raccontaci la tua esperienza nel softair e perché vuoi unirti agli Orchi..."
                     required
-                    rows={4}
+                    rows={6}
                     value={formData.message}
-                  ></textarea>
+                  />
                 </div>
 
-                <Button
-                  className="w-full bg-orchi-red hover:bg-orchi-gold tactical-text py-3 transition-colors duration-300"
-                  type="submit"
-                >
-                  INVIA
-                </Button>
+                {profile && !loadingAuth ? (
+                  <Button
+                    className="w-full bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 cursor-not-allowed"
+                    disabled
+                    type="submit"
+                  >
+                    INVIA
+                  </Button>
+                ) : (
+                  <Button
+                    className="cursor-pointer w-full bg-orchi-red hover:bg-orchi-gold tactical-text py-3 transition-colors duration-300"
+                    type="submit"
+                  >
+                    INVIA
+                  </Button>
+                )}
               </form>
             </div>
           </div>

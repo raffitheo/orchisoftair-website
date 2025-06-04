@@ -13,8 +13,10 @@ import { Button } from '@/components/ui/button';
 import Loader from '@/components/ui/loader';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import EventPDFDocument from '@/components/pdf/event-pdf-document';
+import { useAuth } from '@/lib/auth-context';
 
 const EventDetailPage = () => {
+  const { loadingAuth, profile } = useAuth();
   const params = useParams();
 
   const [event, setEvent] = useState<Event | null>(null);
@@ -268,32 +270,34 @@ const EventDetailPage = () => {
                       </div>
                     </div>
 
-                    <div className="pt-4">
-                      {event?.registration_open ? (
-                        <Link
-                          className="block w-full text-center bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-2 px-4"
-                          href="#"
-                        >
-                          REGISTRATI
-                        </Link>
+                    {event?.registration_open ? (
+                      profile && !loadingAuth ? (
+                        <div className="pt-4">
+                          <Link
+                            className="block w-full text-center bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-2 px-4"
+                            href="#"
+                          >
+                            REGISTRATI
+                          </Link>
+                        </div>
                       ) : (
-                        <Button
-                          className="w-full bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 cursor-not-allowed"
-                          disabled
-                        >
-                          ISCRIZIONI CHIUSE
-                        </Button>
-                      )}
-                    </div>
-
-                    <div className="pt-2">
-                      <Link
-                        className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
-                        href="/join-us"
+                        <div className="pt-2">
+                          <Link
+                            className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
+                            href="/join-us"
+                          >
+                            SCRIVICI ORA
+                          </Link>
+                        </div>
+                      )
+                    ) : (
+                      <Button
+                        className="w-full bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 cursor-not-allowed"
+                        disabled
                       >
-                        SCRIVICI ORA
-                      </Link>
-                    </div>
+                        ISCRIZIONI CHIUSE
+                      </Button>
+                    )}
 
                     <div className="pt-2">
                       <PDFDownloadLink
