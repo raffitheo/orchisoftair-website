@@ -9,10 +9,15 @@ import { supabase } from '@/lib/supabase';
 import { useParams } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
 import Loader from '@/components/ui/loader';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/lib/auth-context';
+import TeamMemberEdit from '@/components/add-and-edit/team-member-edit';
 
 const TeamMemberDetailPage = () => {
+  const { loadingAuth, profile } = useAuth();
   const params = useParams();
 
+  const [editing, setEditing] = useState(false);
   const [loadingTeamMember, setLoadingTeamMember] = useState(true);
   const [loadingTeamMembers, setLoadingTeamMembers] = useState(true);
   const [teamMember, setTeamMember] = useState<TeamMember | null>(null);
@@ -71,10 +76,22 @@ const TeamMemberDetailPage = () => {
     }
   };
 
+  if (teamMember && editing)
+    return (
+      <TeamMemberEdit
+        onCancelEdit={() => setEditing(false)}
+        onUpdated={(updatedTeamMember) => {
+          setEditing(false);
+          setTeamMember(updatedTeamMember);
+        }}
+        teamMember={teamMember}
+      />
+    );
+
   return (
     <main className="pt-24 pb-28">
       <div className="container mx-auto px-4 mt-8">
-        <div className="mb-6">
+        <div className="mb-6 w-full justify-between flex items-center">
           <Link
             className="inline-flex items-center tactical-text text-orchi-light hover:text-orchi-gold transition-colors"
             href="/team"
@@ -82,6 +99,20 @@ const TeamMemberDetailPage = () => {
             <ArrowLeft size={16} className="mr-1" />
             TORNA ALLA SQUADRA
           </Link>
+
+          {teamMember &&
+            profile &&
+            !loadingAuth &&
+            (profile.teamMember?.is_admin ||
+              teamMember.id === profile.user?.id) && (
+              <Button
+                className="cursor-pointer bg-orchi-gold hover:bg-orchi-gold/80 tactical-text opacity-80 hover:opacity-100"
+                onClick={() => setEditing(true)}
+                size="sm"
+              >
+                MODIFICA
+              </Button>
+            )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
