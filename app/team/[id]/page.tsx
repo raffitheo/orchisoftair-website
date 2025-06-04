@@ -12,12 +12,13 @@ import Loader from '@/components/ui/loader';
 
 const TeamMemberDetailPage = () => {
   const params = useParams();
-  const id = params.id;
 
   const [loadingTeamMember, setLoadingTeamMember] = useState(true);
   const [loadingTeamMembers, setLoadingTeamMembers] = useState(true);
   const [teamMember, setTeamMember] = useState<TeamMember | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+
+  const id = params.id;
 
   useEffect(() => {
     fetchTeamMember();
@@ -134,7 +135,17 @@ const TeamMemberDetailPage = () => {
                       </span>
 
                       <span className="text-orchi-gold">
-                        {teamMember?.role}
+                        {teamMember?.role === 'president'
+                          ? 'Presidente'
+                          : teamMember?.role === 'vice_president'
+                            ? 'Vice Presidente'
+                            : teamMember?.role === 'advisor'
+                              ? 'Consigliere'
+                              : teamMember?.role === 'secretary'
+                                ? 'Segretario'
+                                : teamMember?.role === 'member'
+                                  ? 'Socio'
+                                  : ''}
                       </span>
                     </div>
 
@@ -146,59 +157,55 @@ const TeamMemberDetailPage = () => {
                       {teamMember?.year_joined}
                     </div>
 
-                    {teamMember?.team_member_socials && (
-                      <div className="pt-2">
-                        <p className="text-orchi-light/60 text-sm mb-2">
-                          Social
-                        </p>
+                    <div className="pt-2">
+                      <p className="text-orchi-light/60 text-sm mb-2">Social</p>
 
-                        <div className="flex gap-4">
-                          {teamMember?.team_member_socials?.instagram && (
-                            <a
-                              className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
-                              href={`https://instagram.com/${teamMember?.team_member_socials?.instagram}`}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              Instagram
-                            </a>
-                          )}
+                      <div className="flex gap-4">
+                        {teamMember?.team_member_socials.instagram && (
+                          <a
+                            className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                            href={`https://instagram.com/${teamMember?.team_member_socials.instagram}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            Instagram
+                          </a>
+                        )}
 
-                          {teamMember?.team_member_socials?.facebook && (
-                            <a
-                              className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
-                              href={`https://facebook.com/${teamMember?.team_member_socials?.facebook}`}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              Facebook
-                            </a>
-                          )}
+                        {teamMember?.team_member_socials.facebook && (
+                          <a
+                            className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                            href={`https://facebook.com/${teamMember?.team_member_socials.facebook}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            Facebook
+                          </a>
+                        )}
 
-                          {teamMember?.team_member_socials?.twitter && (
-                            <a
-                              className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
-                              href={`https://twitter.com/${teamMember?.team_member_socials?.twitter}`}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              Twitter
-                            </a>
-                          )}
+                        {teamMember?.team_member_socials.twitter && (
+                          <a
+                            className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                            href={`https://twitter.com/${teamMember?.team_member_socials.twitter}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            Twitter/X
+                          </a>
+                        )}
 
-                          {teamMember?.team_member_socials?.youtube && (
-                            <a
-                              className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
-                              href={`https://twitter.com/${teamMember?.team_member_socials?.youtube}`}
-                              rel="noopener noreferrer"
-                              target="_blank"
-                            >
-                              YouTube
-                            </a>
-                          )}
-                        </div>
+                        {teamMember?.team_member_socials.youtube && (
+                          <a
+                            className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                            href={`https://youtube.com/${teamMember?.team_member_socials.youtube}`}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                          >
+                            YouTube
+                          </a>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -208,69 +215,78 @@ const TeamMemberDetailPage = () => {
                   <h2 className="tactical-text text-2xl text-orchi-light mb-4">
                     BIOGRAFIA
                   </h2>
+
                   <p className="text-orchi-light/80 mb-8 whitespace-pre-line">
-                    {teamMember?.bio?.replace(/\\n/g, '\n')}
+                    {teamMember?.bio?.replace(/\\n/g, '\n') ||
+                      'Nessuna descrizione disponibile.'}
                   </p>
 
-                  {teamMember?.achievements && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
-                        ACHIEVEMENTS
-                      </h3>
+                  <h3 className="tactical-text text-xl text-orchi-gold mb-2">
+                    ACHIEVEMENTS
+                  </h3>
 
-                      <ul className="list-disc list-inside space-y-1 pl-4 mb-8 text-orchi-light/80">
-                        {teamMember?.achievements.map((achievement, index) => (
-                          <li key={index}>{achievement}</li>
+                  <div className="space-y-4">
+                    {teamMember?.achivements &&
+                    teamMember?.achivements.length >= 1 ? (
+                      <ul
+                        className={`list-disc list-inside space-y-1 pl-4 ${editing ? '' : 'mb-8'} text-orchi-light/80`}
+                      >
+                        {teamMember?.achivements?.map((item, index) => (
+                          <li key={index}>{item}</li>
                         ))}
                       </ul>
-                    </>
-                  )}
+                    ) : (
+                      <p className="mb-8 text-orchi-light/80">
+                        Non ci soono achivements.
+                      </p>
+                    )}
+                  </div>
 
-                  {teamMember?.team_member_equipment && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
-                        EQUIPAGGIAMENTO
-                      </h3>
+                  <h3 className="tactical-text text-xl text-orchi-gold mb-2">
+                    EQUIPAGGIAMENTO
+                  </h3>
 
-                      <div className="space-y-4 mb-6">
-                        <div>
-                          <div className="text-orchi-light/60 text-sm">
-                            Replica Primaria
-                          </div>
-
-                          <div className="text-orchi-light">
-                            {teamMember?.team_member_equipment?.primary}
-                          </div>
-                        </div>
-
-                        {teamMember?.team_member_equipment?.secondary && (
-                          <div>
-                            <div className="text-orchi-light/60 text-sm">
-                              Replica Secondaria
-                            </div>
-
-                            <div className="text-orchi-light">
-                              {teamMember?.team_member_equipment?.secondary}
-                            </div>
-                          </div>
-                        )}
-
-                        {teamMember?.team_member_equipment?.other && (
-                          <div>
-                            <div className="text-orchi-light/60 text-sm mb-1">
-                              Altro
-                            </div>
-
-                            <ul className="list-disc list-inside space-y-1 pl-4 text-orchi-light/80">
-                              {teamMember?.team_member_equipment?.other.map(
-                                (item, index) => <li key={index}>{item}</li>,
-                              )}
-                            </ul>
-                          </div>
-                        )}
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-orchi-light/60 text-sm">
+                        Replica Primaria
                       </div>
-                    </>
-                  )}
+
+                      <div className="text-orchi-light">
+                        {teamMember?.team_member_equipment.primary || 'Nessuna'}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-orchi-light/60 text-sm">
+                        Replica Secondaria
+                      </div>
+
+                      <div className="text-orchi-light">
+                        {teamMember?.team_member_equipment.secondary ||
+                          'Nessuna'}
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="text-orchi-light/60 text-sm mb-1">
+                        Altro
+                      </div>
+
+                      {teamMember?.team_member_equipment.other &&
+                      teamMember?.team_member_equipment.other.length >= 1 ? (
+                        <ul className="list-disc list-inside space-y-1 pl-4 text-orchi-light/80">
+                          {teamMember?.team_member_equipment.other?.map(
+                            (item, index) => <li key={index}>{item}</li>,
+                          )}
+                        </ul>
+                      ) : (
+                        <p className="text-orchi-light/80">
+                          Non ci soono altri equipaggiamenti.
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </Card>
               </div>
             </>
@@ -296,7 +312,7 @@ const TeamMemberDetailPage = () => {
                     Non ci sono altri membri nella squadra!
                   </span>
 
-                  <span className="text-center text-orchi-light/70 mx-auto mb-auto">
+                  <span className="text-orchi-light/70 mx-auto mb-auto">
                     Non ci sono altri membri nella squadra al momento, ma non
                     temere: siamo costantemente all'opera per creare nuove ed
                     entusiasmanti attività e contenuti esclusivi per i nostri
@@ -337,7 +353,17 @@ const TeamMemberDetailPage = () => {
                         </span>
 
                         <span className="text-orchi-gold">
-                          {otherMember.role}
+                          {otherMember.role === 'president'
+                            ? 'Presidente'
+                            : otherMember.role === 'vice_president'
+                              ? 'Vice Presidente'
+                              : otherMember.role === 'advisor'
+                                ? 'Consigliere'
+                                : otherMember.role === 'secretary'
+                                  ? 'Segretario'
+                                  : otherMember.role === 'member'
+                                    ? 'Socio'
+                                    : ''}
                         </span>
                       </div>
 

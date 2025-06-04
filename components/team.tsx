@@ -98,7 +98,19 @@ const Team = () => {
                         Ruolo:
                       </span>
 
-                      <span className="text-orchi-gold">{member.role}</span>
+                      <span className="text-orchi-gold">
+                        {member.role === 'president'
+                          ? 'Presidente'
+                          : member.role === 'vice_president'
+                            ? 'Vice Presidente'
+                            : member.role === 'advisor'
+                              ? 'Consigliere'
+                              : member.role === 'secretary'
+                                ? 'Segretario'
+                                : member.role === 'member'
+                                  ? 'Socio'
+                                  : ''}
+                      </span>
                     </div>
 
                     <div className="flex justify-between items-center">

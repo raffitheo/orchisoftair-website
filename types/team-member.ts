@@ -1,20 +1,21 @@
 interface TeamMember {
-  achievements?: string[];
+  achivements?: string[];
   bio: string;
-  equipment?: number;
+  equipment_id: number;
   field_name: string;
-  id: number;
+  id: string;
+  is_admin: boolean;
   image_url?: string;
   year_joined: number;
   name: string;
-  role: string;
-  soical?: number;
-  team_member_equipment?: {
+  role: 'president' | 'vice_president' | 'advisor' | 'secretary' | 'member';
+  soical_id: number;
+  team_member_equipment: {
     other?: string[];
     primary?: string;
     secondary?: string;
   };
-  team_member_socials?: {
+  team_member_socials: {
     facebook?: string;
     instagram?: string;
     twitter?: string;

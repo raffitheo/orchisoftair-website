@@ -16,10 +16,11 @@ import EventPDFDocument from '@/components/pdf/event-pdf-document';
 
 const EventDetailPage = () => {
   const params = useParams();
-  const id = params.id;
 
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const id = params.id;
 
   useEffect(() => {
     if (!id) {
