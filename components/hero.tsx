@@ -1,7 +1,6 @@
 import { ArrowDown } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from './ui/button';
 
 const Hero = () => {
   return (
@@ -34,12 +33,12 @@ const Hero = () => {
           Una squadra, una famiglia, una passione condivisa!
         </p>
 
-        <Button
-          asChild
+        <Link
           className="inline-block bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+          href="#about-us"
         >
-          <Link href="#about-us">SCOPRI DI PIÙ</Link>
-        </Button>
+          SCOPRI DI PIÙ
+        </Link>
       </div>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">

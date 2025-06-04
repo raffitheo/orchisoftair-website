@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Button } from './ui/button';
 import { supabase } from '@/lib/supabase';
 import Loader from './ui/loader';
 import TeamMember from '@/types/team-member';
@@ -126,12 +125,12 @@ const Team = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button
-            asChild
+          <Link
             className="inline-block bg-orchi-gray hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+            href="/team"
           >
-            <Link href="/team">SCOPRI LA SQUADRA</Link>
-          </Button>
+            SCOPRI LA SQUADRA
+          </Link>
         </div>
       </div>
     </section>

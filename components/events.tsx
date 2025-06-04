@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/it';
 import { Calendar } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from './ui/button';
 import { supabase } from '@/lib/supabase';
 import Loader from './ui/loader';
 import Event from '@/types/event';
@@ -175,12 +174,12 @@ const Events = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button
-            asChild
+          <Link
             className="inline-block bg-orchi-gray hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+            href="/events"
           >
-            <Link href="/events">TUTTI GLI EVENTI</Link>
-          </Button>
+            TUTTI GLI EVENTI
+          </Link>
         </div>
       </div>
     </section>
