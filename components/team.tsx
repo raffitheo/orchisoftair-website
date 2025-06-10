@@ -1,11 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
+
 import { supabase } from '@/lib/supabase';
-import Loader from './ui/loader';
 import TeamMember from '@/types/team-member';
+
 import { Card, CardContent } from './ui/card';
+import Loader from './ui/loader';
 
 const Team = () => {
   const [loading, setLoading] = useState(true);
@@ -17,10 +22,12 @@ const Team = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data: randomTeamMembersData, error: randomTeamMembersError } =
-        await supabase.rpc('get_random_team_members', {
-          limit_count: 6,
-        });
+      const { data: randomTeamMembersData, error: randomTeamMembersError } = await supabase.rpc(
+        'get_random_team_members',
+        {
+          limit_count: 8,
+        }
+      );
 
       if (randomTeamMembersError) throw randomTeamMembersError;
 
@@ -32,72 +39,86 @@ const Team = () => {
     }
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="py-20 bg-orchi" id="the-team">
-      <div className="container mx-auto px-4">
-        <h2 className="display-text text-4xl md:text-5xl text-orchi-light mb-4 text-center">
-          LA <span className="text-orchi-red">SQUADRA</span>
-        </h2>
+    <section className="py-24 bg-orchi relative overflow-hidden" id="the-team">
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          animate="animate"
+          className="my-auto"
+          initial="initial"
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          variants={fadeInUp}
+        >
+          <h2 className="display-text text-5xl md:text-6xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-8">
+            LA SQUADRA
+          </h2>
 
-        <p className="text-orchi-light/70 mb-12">
-          Gli Orchi sono più di un team: siamo una vera unità. Ogni membro è
-          fondamentale, ogni ruolo conta. Con passione, disciplina e spirito di
-          squadra affrontiamo ogni sfida insieme.
-        </p>
+          <p className="text-orchi-light/90 mb-10 text-lg leading-relaxed">
+            Gli Orchi sono più di un team: siamo una vera unità. Ogni membro è fondamentale, ogni ruolo conta. Con
+            passione, disciplina e spirito di squadra affrontiamo ogni sfida insieme.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          animate="animate"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          initial="initial"
+          transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+          variants={fadeInUp}
+        >
           {teamMembers.length === 0 ? (
             loading ? (
-              <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
+              <div className="flex flex-col col-span-1 md:col-span-2 lg:col-span-4">
                 <Loader className="m-auto" text="Caricamento in corso..." />
               </div>
             ) : (
-              <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
-                <span className="text-lg text-center text-orghi-light mx-auto mt-auto">
-                  Non ci sono membri nella squadra!
-                </span>
+              <div className="flex flex-col col-span-1 md:col-span-2 lg:col-span-4">
+                <span className="tactical-text text-2xl text-orchi-light mb-2">Non ci sono membri nella squadra!</span>
 
-                <span className="text-orchi-light/70 mx-auto mb-auto">
-                  Non ci sono membri nella squadra al momento, ma non temere:
-                  siamo costantemente all'opera per creare nuove ed
-                  entusiasmanti attività e contenuti esclusivi per i nostri
-                  soci! Tieni d'occhio questa pagina per tutti gli
-                  aggiornamenti!
+                <span className="text-orchi-light/75">
+                  Non ci sono membri nella squadra al momento, ma non temere: siamo costantemente all'opera per creare
+                  nuove ed entusiasmanti attività e contenuti esclusivi per i nostri soci! Tieni d'occhio questa pagina
+                  per tutti gli aggiornamenti!
                 </span>
               </div>
             )
           ) : (
-            teamMembers.map((member) => (
-              <Link
-                className="block h-full"
-                href={`/team/${member.id}`}
+            teamMembers.map((member, index) => (
+              <Card
+                className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden"
                 key={member.id}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Card className="overflow-hidden bg-orchi-gray/10 border border-orchi-gray hover:border-orchi-gold transition-all group h-full">
-                  <div className="aspect-square overflow-hidden">
-                    <div
-                      className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                      style={{
-                        backgroundImage: `url(${member.image_url || '/team-member-placeholder.webp'})`,
-                      }}
+                <div className="relative aspect-square overflow-hidden rounded-t-xl">
+                  <motion.div layoutId={`card-image-${member.id}`} className="w-full h-full">
+                    <Image
+                      alt={member.field_name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      height={512}
+                      src={member.image_url || '/team-member-placeholder.webp'}
+                      width={512}
                     />
+                  </motion.div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-orchi/80 to-transparent" />
+
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="display-text text-3xl md:text-4xl text-white mb-1">{member.name}</h3>
+
+                    <p className="text-orchi-gold text-sm">{member.field_name}</p>
                   </div>
+                </div>
 
-                  <CardContent className="p-6">
-                    <h2 className="tactical-text text-3xl text-orchi-light mb-1">
-                      {member.name}
-                    </h2>
-
-                    <p className="text-orchi-red font-semibold mb-2">
-                      {member.field_name}
-                    </p>
-
-                    <div className="flex items-center mb-4">
-                      <span className="text-orchi-light/80 text-sm mr-2">
-                        Ruolo:
-                      </span>
-
-                      <span className="text-orchi-gold">
+                <CardContent className="p-6">
+                  <div className="space-y-3 mb-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-orchi-light/80">Ruolo:</span>
+                      <span className="text-orchi-light text-sm">
                         {member.role === 'president'
                           ? 'Presidente'
                           : member.role === 'vice_president'
@@ -111,22 +132,27 @@ const Team = () => {
                                   : ''}
                       </span>
                     </div>
-
                     <div className="flex justify-between items-center">
-                      <span className="ml-auto inline-block tactical-text text-orchi-gold border-b border-orchi-gold group-hover:text-orchi-red group-hover:border-orchi-red transition-colors">
-                        PROFILO COMPLETO
-                      </span>
+                      <span className="text-orchi-light/80">Membro dal:</span>
+                      <span className="text-orchi-gold text-sm font-semibold">{member.year_joined}</span>
                     </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                  </div>
+
+                  <Link
+                    className="flex flex-col items-center justify-center h-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
+                    href={`/team/${member.id}`}
+                  >
+                    PROFILO COMPLETO
+                  </Link>
+                </CardContent>
+              </Card>
             ))
           )}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-12">
+        <div className="flex items-center justify-center mt-12">
           <Link
-            className="inline-block bg-orchi-gray hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+            className="flex flex-col items-center justify-center h-auto w-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
             href="/team"
           >
             SCOPRI LA SQUADRA

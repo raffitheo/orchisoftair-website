@@ -6,6 +6,19 @@ interface Event {
   id: number;
   image_url?: string;
   location: string;
+  maximum_participants?: number;
+  organization: {
+    contacts: {
+      email?: string;
+      phone?: string;
+    };
+    name: string;
+  }[];
+  participants: {
+    type: 'guest' | 'registered-user';
+    value: string;
+  }[];
+  price?: number;
   registration_open: boolean;
   rules: string[];
   schedule: { activity: string; time: string }[];

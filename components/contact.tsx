@@ -1,10 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+
+import { motion } from 'framer-motion';
+import { AtSign, Mail, Phone, User } from 'lucide-react';
+
 import { useAuth } from '@/lib/auth-context';
+import { cn } from '@/lib/utils';
+
+import { Button } from './ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
+import InputWithIcon from './ui/input-with-icon';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
 
 const Contact = () => {
   const { loadingAuth, profile } = useAuth();
@@ -16,160 +24,205 @@ const Contact = () => {
     phone: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  return (
-    <section className="py-20 bg-orchi relative" id="contacts">
-      <div className="absolute inset-0 bg-[url('/join-bg.jpg')] bg-cover bg-center opacity-20"></div>
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+  };
+
+  const isDisabled = !!profile && !!loadingAuth;
+
+  const perks = [
+    'Sessioni di allenamento e/o giocate settimanali',
+    'Partecipazione a tornei locali, regionali e nazionali',
+    'Atmosfera amichevole ma competitiva',
+  ];
+
+  const contactFields = [
+    {
+      displayName: 'NOME',
+      icon: User,
+      id: 'name',
+      field: 'input',
+      name: 'name',
+      placeholder: 'Mario Rossi',
+      required: true,
+      type: 'text',
+      value: formData.name,
+    },
+    {
+      displayName: 'EMAIL',
+      icon: AtSign,
+      id: 'email',
+      field: 'input',
+      name: 'email',
+      placeholder: 'la.tua.email@esempio.it',
+      required: true,
+      type: 'email',
+      value: formData.email,
+    },
+    {
+      displayName: 'TELEFONO',
+      icon: Phone,
+      id: 'phone',
+      field: 'input',
+      name: 'phone',
+      placeholder: '+39 123 456 7890',
+      required: false,
+      type: 'tel',
+      value: formData.phone,
+    },
+    {
+      displayName: 'MESSAGGIO',
+      id: 'message',
+      field: 'textarea',
+      name: 'message',
+      placeholder: 'Raccontaci la tua esperienza nel softair e perché vuoi unirti agli Orchi...',
+      required: true,
+      type: 'text',
+      value: formData.message,
+    },
+  ];
+
+  return (
+    <section
+      className="py-24 bg-gradient-to-br from-orchi via-orchi/95 to-orchi relative overflow-hidden"
+      id="contacts"
+    >
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-center display-text text-4xl md:text-5xl text-orchi-light mb-4">
-              UNISCITI <span className="text-orchi-red">AGLI ORCHI</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <motion.div
+            animate="animate"
+            className="my-auto"
+            initial="initial"
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            variants={fadeInUp}
+          >
+            <h2 className="display-text text-5xl md:text-6xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-8">
+              UNISCITI AGLI ORCHI
             </h2>
 
-            <p className="text-orchi-light/80 mb-6">
-              Stai cercando una squadra di softair seria ma amichevole a
-              Trieste? Gli Orchi sono sempre alla ricerca di nuovi membri
-              appassionati che vogliano crescere insieme a noi.
+            <p className="text-orchi-light/90 mb-8 text-lg leading-relaxed">
+              Stai cercando una squadra di softair seria ma amichevole a Trieste? Gli Orchi sono sempre alla ricerca di
+              nuovi membri appassionati che vogliano crescere insieme a noi.
             </p>
 
-            <p className="text-orchi-light/80 mb-6">
-              Non importa il tuo livello di esperienza, quello che conta è la
-              passione per il softair e la voglia di fare squadra. Contattaci
-              per maggiori informazioni o per partecipare a una sessione di
-              prova.
+            <p className="text-orchi-light/90 mb-10 text-lg leading-relaxed">
+              Non importa il tuo livello di esperienza, quello che conta è la passione per il softair e la voglia di
+              fare squadra. Contattaci per maggiori informazioni o per partecipare a una sessione di prova.
             </p>
 
-            <ul className="list-disc list-inside space-y-1 text-orchi-light/80">
-              <li>Sessioni di allenamento e/o giocate settimanali</li>
+            <ul className="space-y-6">
+              {perks.map((oerk, index) => (
+                <li
+                  className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
+                  key={index}
+                >
+                  <div className="bg-orchi-red w-2 h-2 rounded-full" />
 
-              <li>Partecipazione a tornei locali, regionali e nazionali</li>
-
-              <li>Atmosfera amichevole ma competitiva</li>
+                  <span className="text-orchi-light text-lg">{oerk}</span>
+                </li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="mt-20 p-8 bg-orchi-gray/20 border border-orchi-gray relative">
-            <div className="absolute inset-0 bg-tactical-pattern opacity-5"></div>
-
-            <div className="relative z-10">
-              <h2 className="tactical-text text-3xl text-center text-orchi-light mb-4">
-                FORM DI CONTATTO
-              </h2>
-
-              <form className="space-y-2">
-                <div>
-                  <label
-                    className="block text-orchi-light mb-2 tactical-text"
-                    htmlFor="name"
-                  >
-                    NOME <span className="text-orchi-red">*</span>
-                  </label>
-
-                  <Input
-                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                    disabled={profile && !loadingAuth ? true : false}
-                    id="name"
-                    name="name"
-                    onChange={handleChange}
-                    placeholder="Mario Rossi"
-                    required
-                    type="text"
-                    value={formData.name}
-                  />
+          <motion.div
+            animate="animate"
+            initial="initial"
+            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            variants={fadeInUp}
+          >
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+              <CardHeader className="text-center">
+                <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orchi-red to-orchi-gold rounded-full flex items-center justify-center mb-4">
+                  <Mail className="h-8 w-8 text-white" />
                 </div>
 
-                <div>
-                  <label
-                    className="block text-orchi-light mb-2 tactical-text"
-                    htmlFor="email"
-                  >
-                    EMAIL <span className="text-orchi-red">*</span>
-                  </label>
+                <CardTitle className="display-text text-3xl text-orchi-light">FORM DI CONTATTO</CardTitle>
 
-                  <Input
-                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                    disabled={profile && !loadingAuth ? true : false}
-                    id="email"
-                    name="email"
-                    onChange={handleChange}
-                    placeholder="la.tua.email@esempio.it"
-                    required
-                    type="email"
-                    value={formData.email}
-                  />
-                </div>
+                <CardDescription className="text-orchi-light/70">
+                  Scrivici un messaggio, ti risponderemo a breve!
+                </CardDescription>
+              </CardHeader>
 
-                <div>
-                  <label
-                    className="block text-orchi-light mb-2 tactical-text"
-                    htmlFor="phone"
-                  >
-                    TELEFONO (opzionale)
-                  </label>
+              <CardContent>
+                <form className="space-y-6" onSubmit={handleSubmit}>
+                  {contactFields.map((field, index) => {
+                    const IconComponent = field.icon;
 
-                  <Input
-                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                    disabled={profile && !loadingAuth ? true : false}
-                    id="phone"
-                    name="phone"
-                    onChange={handleChange}
-                    placeholder="+39 123 456 7890"
-                    type="tel"
-                    value={formData.phone}
-                  />
-                </div>
+                    return (
+                      <div className="space-y-2" key={index}>
+                        <Label className="tactical-text text-orchi-light text-sm" htmlFor={field.id}>
+                          {field.displayName}
+                          {field.required && (
+                            <>
+                              {' '}
+                              <span className="text-orchi-red">*</span>
+                            </>
+                          )}
+                        </Label>
 
-                <div>
-                  <label
-                    className="block text-orchi-light mb-2 tactical-text"
-                    htmlFor="message"
-                  >
-                    MESSAGGIO <span className="text-orchi-red">*</span>
-                  </label>
+                        {field.field === 'input' ? (
+                          <InputWithIcon
+                            disabled={isDisabled}
+                            icon={
+                              IconComponent && (
+                                <IconComponent className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orchi-light/60" />
+                              )
+                            }
+                            id={field.id}
+                            onChange={handleChange}
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            type={field.type}
+                            value={field.value}
+                          />
+                        ) : (
+                          <Textarea
+                            className="bg-orchi-gray/20 border-orchi-gray/40 text-orchi-light placeholder:text-orchi-light/50 focus:border-orchi-gold mt-1"
+                            disabled={isDisabled}
+                            id={field.id}
+                            name={field.name}
+                            onChange={handleChange}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            rows={6}
+                            value={field.value}
+                          />
+                        )}
+                      </div>
+                    );
+                  })}
 
-                  <Textarea
-                    className="w-full bg-orchi-gray/50 border border-orchi-gray text-orchi-light p-3 focus:border-orchi-gold focus:outline-none"
-                    disabled={profile && !loadingAuth ? true : false}
-                    id="message"
-                    name="message"
-                    onChange={handleChange}
-                    placeholder="Raccontaci la tua esperienza nel softair e perché vuoi unirti agli Orchi..."
-                    required
-                    rows={6}
-                    value={formData.message}
-                  />
-                </div>
-
-                {profile && !loadingAuth ? (
                   <Button
-                    className="w-full bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 cursor-not-allowed"
-                    disabled
+                    className={cn(
+                      'w-full tactical-text transition-all duration-300',
+                      isDisabled
+                        ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
+                        : 'cursor-pointer'
+                    )}
+                    tabIndex={isDisabled ? -1 : undefined}
                     type="submit"
                   >
                     INVIA
                   </Button>
-                ) : (
-                  <Button
-                    className="cursor-pointer w-full bg-orchi-red hover:bg-orchi-gold tactical-text py-3 transition-colors duration-300"
-                    type="submit"
-                  >
-                    INVIA
-                  </Button>
-                )}
-              </form>
-            </div>
-          </div>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </section>

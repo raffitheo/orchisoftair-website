@@ -1,19 +1,38 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Event from '@/types/event';
-import { useParams } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-import { ArrowLeft, Calendar } from 'lucide-react';
-import Link from 'next/link';
+
 import dayjs from 'dayjs';
+import { motion } from 'framer-motion';
+import {
+  ArrowLeft,
+  Banknote,
+  Building,
+  Calendar,
+  Clock,
+  Info,
+  LogIn,
+  MapPin,
+  NotepadText,
+  Target,
+  User,
+  Users,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import 'dayjs/locale/it';
-import { Card } from '@/components/ui/card';
+import { useParams } from 'next/navigation';
+
+import Footer from '@/components/footer';
+import Navbar from '@/components/navbar';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import EventPDFDocument from '@/components/pdf/event-pdf-document';
 import { useAuth } from '@/lib/auth-context';
+import { supabase } from '@/lib/supabase';
+import { cn } from '@/lib/utils';
+import Event from '@/types/event';
 
 const EventDetailPage = () => {
   const { loadingAuth, profile } = useAuth();
@@ -34,23 +53,17 @@ const EventDetailPage = () => {
   }, [id]);
 
   useEffect(() => {
-    if (loading)
-      document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento evento...`;
+    if (loading) document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento evento...`;
     else {
       if (event)
         document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${event.title} ${dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}${event.end_date ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}` : ''}`;
-      else
-        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Evento non trovato`;
+      else document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Evento non trovato`;
     }
   }, [event, loading]);
 
   const fetchEvent = async () => {
     try {
-      const { data: eventData, error: eventError } = await supabase
-        .from('events')
-        .select('*')
-        .eq('id', id)
-        .single();
+      const { data: eventData, error: eventError } = await supabase.from('events').select('*').eq('id', id).single();
 
       if (eventError) throw eventError;
 
@@ -62,262 +75,429 @@ const EventDetailPage = () => {
     }
   };
 
+  const eventSubscribeUnsubscrive = async (subscribe: boolean) => {
+    if (!profile || loadingAuth || !profile.user) return;
+
+    try {
+      let participantsList = [...event!.participants];
+
+      if (subscribe)
+        participantsList.push({
+          type: 'registered-user',
+          value: profile!.user!.id || '',
+        });
+      else participantsList = participantsList.filter((partecipant) => partecipant.value !== profile!.user!.id);
+
+      const { error: eventUpdateError } = await supabase
+        .from('events')
+        .update({
+          participants: participantsList,
+        })
+        .eq('id', id);
+
+      if (eventUpdateError) throw eventUpdateError;
+
+      setLoading(true);
+      fetchEvent();
+    } catch (error) {
+      console.error('Error fetching the event:', error);
+    }
+  };
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+  };
+
+  const isDisabled =
+    !profile ||
+    loadingAuth ||
+    event?.participants
+      .filter((participants) => participants.type === 'registered-user')
+      .find((participants) => participants.value === profile.user?.id) ||
+    !event?.registration_open ||
+    (event.maximum_participants ? event.participants.length >= event.maximum_participants : false);
+
   return (
-    <main className="pt-24 pb-28">
-      {!event ? (
-        loading ? (
-          <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
-            <Loader className="m-auto" text="Caricamento in corso..." />
-          </div>
-        ) : (
-          <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
-            <span className="text-lg text-center text-orghi-light mx-auto mt-auto">
-              Evento non trovato!
-            </span>
+    <div className="min-h-screen bg-orchi text-orchi-light relative overflow-hidden">
+      <Navbar />
 
-            <span className="text-center text-orchi-light/70 mx-auto mb-auto">
-              L'evento che stai cercando non esiste o non è disponibile al
-              momento. Se hai bisogno di assistenza, contatta il nostro team di
-              supporto.
-            </span>
-          </div>
-        )
-      ) : (
-        <>
-          <div className="relative h-80 md:h-96 overflow-hidden">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${event?.image_url || '/event-placeholder.webp'})`,
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-orchi to-transparent opacity-90"></div>
+      <main className="pt-32 pb-12 relative z-10">
+        <div className="container mx-auto px-4">
+          <motion.div
+            animate="animate"
+            className="mb-6 w-full justify-between flex items-center"
+            initial="initial"
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+            variants={fadeInUp}
+          >
+            <Link
+              className="group flex flex-row items-center justify-center h-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
+              href={`/events`}
+            >
+              <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+              TORNA AGLI EVENTI
+            </Link>
+          </motion.div>
 
-            <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-end pb-12">
-              <div
-                className={`inline-block ${event?.event_type === 'tournament' ? 'bg-orchi-red' : event?.event_type === 'training' ? 'bg-orchi-gold' : 'bg-orchi-gray'} px-3 py-1 mb-4`}
-              >
-                <span className="text-white text-xs font-bold">
-                  {event?.event_type === 'tournament'
-                    ? 'TORNEO'
-                    : event?.event_type === 'training'
-                      ? 'ALLENAMENTO'
-                      : 'PARTITA'}
-                </span>
-              </div>
+          <motion.div
+            animate="animate"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            initial="initial"
+            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            variants={fadeInUp}
+          >
+            {!event ? (
+              loading ? (
+                <div className="flex flex-col col-span-1 md:col-span-3">
+                  <Loader className="m-auto" text="Caricamento in corso..." />
+                </div>
+              ) : (
+                <div className="flex flex-col col-span-1 md:col-span-3">
+                  <span className="tactical-text text-2xl text-orchi-light mb-2">Evento non trovato!</span>
 
-              <h1 className="display-text text-4xl md:text-6xl text-orchi-light mb-4">
-                {event?.title}
-              </h1>
+                  <span className="text-orchi-light/75">
+                    L'evento che stai cercando non esiste o non è disponibile al momento. Se hai bisogno di assistenza,
+                    contatta il nostro team di supporto.
+                  </span>
+                </div>
+              )
+            ) : (
+              <>
+                <div className="lg:col-span-2 space-y-8">
+                  <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <div className="relative overflow-hidden rounded-xl">
+                      <motion.div className="w-full h-80" layoutId={`card-image-${event.id}`}>
+                        <Image
+                          alt={event.title}
+                          className="object-cover w-full h-full"
+                          fill
+                          src={event.image_url || '/event-placeholder.webp'}
+                          quality={100}
+                        />
+                      </motion.div>
 
-              <div className="flex items-center mb-2">
-                <Calendar className="text-orchi-red mr-2" size={20} />
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-orchi/80 via-transparent to-transparent" />
 
-                <span className="text-orchi-gold">
-                  {dayjs(event?.start_date)
-                    .locale('it')
-                    .format('DD MMM YYYY')
-                    .toUpperCase()}
-                </span>
+                      <div className="absolute bottom-0 left-0 right-0 z-20 flex flex-col justify-end">
+                        <div className="flex h-28 flex-col justify-end">
+                          <div className="px-6 pb-6 flex flex-row w-full justify-between">
+                            <div className="flex flex-col">
+                              <h1 className="display-text text-4xl md:text-5xl text-white mb-2">{event.title}</h1>
 
-                {event?.end_date && (
-                  <>
-                    <span className="text-orchi-gold mx-2">-</span>
-
-                    <span className="text-orchi-gold">
-                      {dayjs(event?.end_date)
-                        .locale('it')
-                        .format('DD MMM YYYY')
-                        .toUpperCase()}
-                    </span>
-                  </>
-                )}
-
-                <span className="mx-2">•</span>
-
-                <span className="text-orchi-light">{event?.location}</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="container mx-auto px-4 mt-8">
-            <div className="mb-6">
-              <Link
-                className="inline-flex items-center tactical-text text-orchi-light hover:text-orchi-gold transition-colors"
-                href="/events"
-              >
-                <ArrowLeft size={16} className="mr-1" />
-                TORNA AGLI EVENTI
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <div className="lg:col-span-2">
-                <Card className="bg-orchi-gray/10 border border-orchi-gray p-6 mb-6">
-                  <h2 className="tactical-text text-2xl text-orchi-light mb-4">
-                    DESCRIZIONE
-                  </h2>
-
-                  <p className="text-orchi-light/80 mb-6 whitespace-pre-line">
-                    {event?.description?.replace(/\\n/g, '\n')}
-                  </p>
-
-                  {event?.rules && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
-                        REGOLAMENTO
-                      </h3>
-
-                      <ul className="list-disc list-inside space-y-1 pl-4 mb-6 text-orchi-light/80">
-                        {event?.rules?.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-
-                  {event?.schedule && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
-                        PROGRAMMA
-                      </h3>
-
-                      <div className="space-y-3 mb-6">
-                        {event?.schedule?.map((item, index) => (
-                          <div
-                            key={index}
-                            className="flex border-b border-orchi-gray pb-2"
-                          >
-                            <div className="w-24 font-bold text-orchi-red">
-                              {item.time}
-                            </div>
-
-                            <div className="flex-grow text-orchi-light">
-                              {item.activity}
+                              <div className="flex items-center text-orchi-gold">
+                                {event.event_type === 'tournament'
+                                  ? 'Torneo'
+                                  : event.event_type === 'training'
+                                    ? 'Allenamento'
+                                    : 'Partita'}
+                              </div>
                             </div>
                           </div>
-                        ))}
+                        </div>
                       </div>
-                    </>
-                  )}
+                    </div>
+                  </Card>
 
-                  {event?.equipment && (
-                    <>
-                      <h3 className="tactical-text text-xl text-orchi-gold mb-2">
-                        EQUIPAGGIAMENTO RICHIESTO
-                      </h3>
+                  <motion.div
+                    animate="animate"
+                    initial="initial"
+                    transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+                    variants={fadeInUp}
+                  >
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                      <CardHeader>
+                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                          <NotepadText className="h-8 w-8 my-auto" />
+                          DESCRIZIONE EVENTO
+                        </CardTitle>
+                      </CardHeader>
 
-                      <ul className="list-disc list-inside space-y-1 pl-4 mb-6 text-orchi-light/80">
-                        {event?.equipment?.map((item, index) => (
-                          <li key={index}>{item}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </Card>
-              </div>
+                      <CardContent>
+                        <p className="text-orchi-light/90 leading-relaxed whitespace-pre-line">
+                          {(event.description || 'Nessuna descrizione disponibile.').replace(/\\n/g, '\n')}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
 
-              <div>
-                <Card className="bg-orchi-gray/10 border border-orchi-gray p-6 mb-6 sticky top-24">
-                  <h3 className="tactical-text text-xl text-orchi-light mb-4">
-                    INFORMAZIONI
-                  </h3>
+                  <motion.div
+                    animate="animate"
+                    initial="initial"
+                    transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
+                    variants={fadeInUp}
+                  >
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                      <CardHeader>
+                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                          <Target className="h-8 w-8 my-auto" />
+                          EQUIPAGGIAMENTO RICHIESTO
+                        </CardTitle>
+                      </CardHeader>
 
-                  <div className="space-y-4">
-                    <div>
-                      <div className="text-orchi-light/60 text-sm">Data</div>
+                      <CardContent>
+                        <ul className="space-y-6">
+                          {event.equipment.map((equipment, index) => (
+                            <li
+                              className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
+                              key={index}
+                            >
+                              <div className="bg-orchi-red w-2 h-2 rounded-full" />
 
-                      <div className="flex">
-                        <div className="text-orchi-gold">
-                          {dayjs(event?.start_date)
-                            .locale('it')
-                            .format('DD MMM YYYY')
-                            .toUpperCase()}
+                              <span className="text-orchi-light text-lg">{equipment}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+
+                  <motion.div
+                    animate="animate"
+                    initial="initial"
+                    transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
+                    variants={fadeInUp}
+                  >
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                      <CardHeader>
+                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                          <Clock className="h-8 w-8 my-auto" />
+                          PROGRAMMA DELLA GIORNATA
+                        </CardTitle>
+                      </CardHeader>
+
+                      <CardContent>
+                        <ul className="space-y-6">
+                          {event.schedule.map((item, index) => (
+                            <li
+                              className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
+                              key={index}
+                            >
+                              <div className="tactical-text text-orchi-red text-md mt-auto flex-shrink-0">
+                                {item.time}
+                              </div>
+
+                              <div className="text-orchi-light text-lg ml-4">{item.activity}</div>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </div>
+
+                <motion.div
+                  animate="animate"
+                  className="space-y-6"
+                  initial="initial"
+                  transition={{ duration: 0.5, delay: 1, ease: 'easeInOut' }}
+                  variants={fadeInUp}
+                >
+                  <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <CardHeader>
+                      <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                        <Info className="h-8 w-8 my-auto" />
+                        INFO EVENTO
+                      </CardTitle>
+                    </CardHeader>
+
+                    <CardContent>
+                      <div className="space-y-6">
+                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
+                          <Calendar className="h-8 w-8 text-orchi-red" />
+
+                          <div className="flex flex-col lg:flex-row space-between w-full">
+                            <div className="flex-1">
+                              <p className="text-orchi-light font-semibold">Data</p>
+
+                              <p className="text-orchi-light/80">
+                                {dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}
+                                {event.end_date
+                                  ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}`
+                                  : ''}
+                              </p>
+                            </div>
+                          </div>
                         </div>
 
-                        {event?.end_date && (
-                          <>
-                            <span className="text-orchi-gold mx-2">-</span>
+                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
+                          <Clock className="h-8 w-8 text-orchi-red" />
 
-                            <span className="text-orchi-gold">
-                              {dayjs(event?.end_date)
-                                .locale('it')
-                                .format('DD MMM YYYY')
-                                .toUpperCase()}
-                            </span>
-                          </>
+                          <div className="flex flex-col lg:flex-row space-between w-full">
+                            <div className="flex-1">
+                              <p className="text-orchi-light font-semibold">Orario</p>
+
+                              <p className="text-orchi-light/80">
+                                {event.schedule[0].time} - {event.schedule[event.schedule.length - 1].time}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
+                          <MapPin className="h-8 w-8 text-orchi-red" />
+
+                          <div className="flex flex-col lg:flex-row space-between w-full">
+                            <div className="flex-1">
+                              <p className="text-orchi-light font-semibold">Luogo</p>
+
+                              <p className="text-orchi-light/80">{event.location}</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
+                          <Users className="h-8 w-8 text-orchi-red" />
+
+                          <div className="flex flex-col lg:flex-row space-between w-full">
+                            <div className="flex-1">
+                              <p className="text-orchi-light font-semibold">Partecipanti</p>
+
+                              <p className="text-orchi-light/80">
+                                {event.participants.length}
+                                {event.maximum_participants ? `/${event.maximum_participants}` : ''}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {event.price && (
+                          <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
+                            <Banknote className="h-8 w-8 text-orchi-red" />
+
+                            <div className="flex flex-col lg:flex-row space-between w-full">
+                              <div className="flex-1">
+                                <p className="text-orchi-light font-semibold">Quota partecipazione</p>
+
+                                <p className="text-orchi-light/80">€{event.price}</p>
+                              </div>
+                            </div>
+                          </div>
                         )}
                       </div>
-                    </div>
+                    </CardContent>
+                  </Card>
 
-                    <div>
-                      <div className="text-orchi-light/60 text-sm">
-                        Location
-                      </div>
+                  <motion.div
+                    animate="animate"
+                    initial="initial"
+                    transition={{ duration: 0.5, delay: 1.2, ease: 'easeInOut' }}
+                    variants={fadeInUp}
+                  >
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                      <CardHeader>
+                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                          <LogIn className="h-8 w-8 my-auto" />
+                          REGISTRAZIONE
+                        </CardTitle>
+                      </CardHeader>
 
-                      <div className="text-orchi-light">{event?.location}</div>
-                    </div>
+                      <CardContent className="space-y-4">
+                        <Button
+                          className={cn(
+                            'w-full tactical-text transition-all duration-300',
+                            isDisabled
+                              ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
+                              : 'cursor-pointer'
+                          )}
+                          onClick={() => eventSubscribeUnsubscrive(true)}
+                          tabIndex={isDisabled ? -1 : undefined}
+                        >
+                          ISCRIVITI ALL'EVENTO
+                        </Button>
 
-                    <div>
-                      <div className="text-orchi-light/60 text-sm">Tipo</div>
+                        <p className="text-orchi-light/70 text-sm text-center">
+                          {!profile || loadingAuth
+                            ? "Per iscriverti in autonomia all'envento devi essere un membro degli Orchi. Se sei un ospite o un esterno e vuoi partecipare, per favore contattaci direttamente."
+                            : event?.participants
+                                  .filter((participants) => participants.type === 'registered-user')
+                                  .find((participants) => participants.value === profile.user?.id)
+                              ? 'Stai già partecipando a questo evento.'
+                              : !event.registration_open
+                                ? 'Le registrazioni sono al momento chiuse.'
+                                : (
+                                      event.maximum_participants
+                                        ? event.participants.length >= event.maximum_participants
+                                        : false
+                                    )
+                                  ? 'È stato raggiunto il numero massimo di partecipanti, le iscrizioni sono chiuse.'
+                                  : "Le registrazioni si chiudono automaticamente all'inizio dell'evento."}
+                        </p>
 
-                      <div className="text-orchi-light">
-                        {event?.event_type === 'tournament'
-                          ? 'TORNEO'
-                          : event?.event_type === 'training'
-                            ? 'ALLENAMENTO'
-                            : 'PARTITA'}
-                      </div>
-                    </div>
-
-                    {event?.registration_open ? (
-                      profile && !loadingAuth ? (
-                        <div className="pt-4">
+                        {!profile || loadingAuth ? (
                           <Link
-                            className="block w-full text-center bg-orchi-red hover:bg-orchi-gold text-white tactical-text py-2 px-4"
-                            href="#"
-                          >
-                            REGISTRATI
-                          </Link>
-                        </div>
-                      ) : (
-                        <div className="pt-2">
-                          <Link
-                            className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
-                            href="/join-us"
+                            className="flex flex-col items-center justify-center h-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
+                            href={`/contact-us`}
                           >
                             SCRIVICI ORA
                           </Link>
-                        </div>
-                      )
-                    ) : (
-                      <Button
-                        className="w-full bg-orchi-gray/50 text-orchi-light/50 tactical-text py-3 cursor-not-allowed"
-                        disabled
-                      >
-                        ISCRIZIONI CHIUSE
-                      </Button>
-                    )}
+                        ) : (
+                          event?.participants
+                            .filter((participants) => participants.type === 'registered-user')
+                            .find((participants) => participants.value === profile.user?.id) && (
+                            <Button
+                              className="w-full tactical-text transition-all duration-300 cursor-pointer"
+                              onClick={() => eventSubscribeUnsubscrive(false)}
+                            >
+                              DISISCRIVITI DALL'EVENTO
+                            </Button>
+                          )
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
 
-                    <div className="pt-2">
-                      <PDFDownloadLink
-                        className="block w-full text-center tactical-text text-orchi-gold border border-orchi-gold hover:bg-orchi-gold/10 transition-colors py-2 px-4"
-                        document={<EventPDFDocument event={event} />}
-                        fileName={`${event.title.toLowerCase().replace(/ /g, '-')}_${dayjs(event.start_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}${event.end_date ? `_${dayjs(event.end_date).locale('it').format('DD MMM YYYY').replace(/ /g, '-')}` : ''}.pdf`}
-                      >
-                        {({ loading }) =>
-                          loading ? 'GENERAZIONE PDF...' : 'SCARICA PDF'
-                        }
-                      </PDFDownloadLink>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </main>
+                  <motion.div
+                    animate="animate"
+                    initial="initial"
+                    transition={{ duration: 0.5, delay: 1.4, ease: 'easeInOut' }}
+                    variants={fadeInUp}
+                  >
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                      <CardHeader>
+                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
+                          <Building className="h-8 w-8 my-auto" />
+                          ORGANIZZAZIONE
+                        </CardTitle>
+                      </CardHeader>
+
+                      <CardContent>
+                        <ul className="space-y-6">
+                          {event.organization.map((organizer, index) => (
+                            <li
+                              className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
+                              key={index}
+                            >
+                              <User className="h-8 w-8 text-orchi-red" />
+
+                              <div className="flex flex-col lg:flex-row space-between w-full">
+                                <div className="flex-1">
+                                  <p className="text-orchi-light font-semibold">{organizer.name}</p>
+
+                                  {organizer.contacts.email && (
+                                    <p className="text-orchi-light/80">Email: {organizer.contacts.email}</p>
+                                  )}
+
+                                  {organizer.contacts.phone && (
+                                    <p className="text-orchi-light/80">Telefono: {organizer.contacts.phone}</p>
+                                  )}
+                                </div>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
+              </>
+            )}
+          </motion.div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 

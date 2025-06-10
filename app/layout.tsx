@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+
 import './globals.css';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
 import { AuthProvider } from '@/lib/auth-context';
 
 const geistSans = Geist({
@@ -41,17 +40,8 @@ export default function RootLayout({
       <head>
         <meta httpEquiv="Content-Language" content="it" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        id="root"
-      >
-        <AuthProvider>
-          <div className="min-h-screen bg-orchi text-orchi-light">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        </AuthProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} id="root">
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

@@ -1,14 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
-import { Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
+
 import { supabase } from '@/lib/supabase';
-import Loader from './ui/loader';
 import Event from '@/types/event';
-import { Card, CardContent, CardHeader } from './ui/card';
+
+import { Card, CardContent, CardDescription, CardHeader } from './ui/card';
+import Loader from './ui/loader';
 
 const Events = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -37,145 +41,132 @@ const Events = () => {
     }
   };
 
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section className="py-20 bg-orchi" id="eventi">
-      <div className="container mx-auto px-4">
-        <h2 className="display-text text-4xl md:text-5xl text-orchi-light mb-4 text-center">
-          PROSSIMI <span className="text-orchi-red">EVENTI</span>
-        </h2>
+    <section className="py-24 bg-orchi relative overflow-hidden" id="eventi">
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          animate="animate"
+          className="my-auto"
+          initial="initial"
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          variants={fadeInUp}
+        >
+          <h2 className="display-text text-5xl md:text-6xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-8">
+            PROSSIMI EVENTI
+          </h2>
 
-        <p className="text-orchi-light/70 mb-12">
-          Unisciti a noi nei prossimi eventi! Che si tratti di tornei
-          competitivi o sessioni di allenamento, ogni occasione è perfetta per
-          mettersi alla prova, imparare e vivere la vera adrenalina del softair.
-        </p>
+          <p className="text-orchi-light/90 mb-10 text-lg leading-relaxed">
+            Unisciti a noi nei prossimi eventi! Che si tratti di tornei competitivi o sessioni di allenamento, ogni
+            occasione è perfetta per mettersi alla prova, imparare e vivere la vera adrenalina del softair.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          animate="animate"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          initial="initial"
+          transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+          variants={fadeInUp}
+        >
           {events.length === 0 ? (
             loading ? (
-              <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
+              <div className="flex flex-col col-span-1 md:col-span-2 lg:col-span-4">
                 <Loader className="m-auto" text="Caricamento in corso..." />
               </div>
             ) : (
-              <div className="flex flex-col col-span-1 md:col-span-3 h-[17.25rem]">
-                <span className="text-lg text-center text-orghi-light mx-auto mt-auto">
-                  Non ci sono eventi in programma!
+              <div className="flex flex-col col-span-1 md:col-span-2 lg:col-span-4">
+                <span className="tactical-text text-2xl text-orchi-light mb-2">
+                  Non ci sono prossimi eventi in programma!
                 </span>
 
-                <span className="text-orchi-light/70 mx-auto mb-auto">
-                  Non ci sono eventi in calendario al momento, ma non temere:
-                  siamo costantemente all'opera per creare nuove ed
-                  entusiasmanti attività e contenuti esclusivi per i nostri
-                  soci! Tieni d'occhio questa pagina per tutti gli
-                  aggiornamenti!
+                <span className="text-orchi-light/75">
+                  Non ci sono prossimi eventi in calendario al momento, ma non temere: siamo costantemente all'opera per
+                  creare nuove ed entusiasmanti attività e contenuti esclusivi per i nostri soci! Tieni d'occhio questa
+                  pagina per tutti gli aggiornamenti!
                 </span>
               </div>
             )
           ) : (
-            events.map((event) => (
-              <Link
-                className="block h-full"
-                href={`/events/${event.id}`}
+            events.map((event, index) => (
+              <Card
+                className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden flex flex-col"
                 key={event.id}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <Card className="bg-orchi-gray/30 border border-orchi-gray hover:border-orchi-gold transition-colors group h-full flex flex-col">
-                  <div className="aspect-video w-full overflow-hidden">
-                    <div
-                      className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                      style={{
-                        backgroundImage: `url(${event.image_url || '/event-placeholder.webp'})`,
-                      }}
+                <div className="relative overflow-hidden rounded-t-xl">
+                  <motion.div className="w-full h-full" layoutId={`card-image-${event.id}`}>
+                    <Image
+                      alt={event.title}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      height={512}
+                      src={event.image_url || '/event-placeholder.webp'}
+                      width={512}
                     />
+                  </motion.div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-orchi/80 to-transparent" />
+
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-orchi-red to-orchi-gold text-white px-3 py-1 rounded-full text-sm tactical-text">
+                    {dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}
+                    {event.end_date
+                      ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}`
+                      : ''}
                   </div>
 
-                  <CardHeader
-                    className={`p-1 ${
-                      event.event_type === 'tournament'
-                        ? 'bg-orchi-red'
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <h3 className="display-text text-3xl md:text-4xl text-white mb-1">{event.title}</h3>
+
+                    <p className="text-orchi-gold text-sm">
+                      {event.event_type === 'tournament'
+                        ? 'Torneo'
                         : event.event_type === 'training'
-                          ? 'bg-orchi-gold'
-                          : 'bg-orchi-gray'
-                    }`}
+                          ? 'Allenamento'
+                          : 'Partita'}
+                    </p>
+                  </div>
+                </div>
+
+                <CardHeader>
+                  <CardDescription className="text-orchi-light/90 leading-relaxed whitespace-pre-line line-clamp-3">
+                    {(event.description || 'Nessuna descrizione disponibile.').replace(/\\n/g, '\n')}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="mt-auto p-6 pt-0">
+                  <div className="space-y-3 mb-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-orchi-light/80">Luogo:</span>
+
+                      <span className="text-orchi-light text-sm">{event.location}</span>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <span className="text-orchi-light/80">Partecipanti:</span>
+
+                      <span className="text-orchi-gold text-sm font-semibold">{event.participants.length}</span>
+                    </div>
+                  </div>
+
+                  <Link
+                    className="flex flex-col items-center justify-center h-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
+                    href={`/events/${event.id}`}
                   >
-                    <div className="flex items-center justify-between px-3 py-2">
-                      <span className="tactical-text text-white text-sm">
-                        {event.event_type === 'tournament'
-                          ? 'TORNEO'
-                          : event.event_type === 'training'
-                            ? 'ALLENAMENTO'
-                            : 'PARTITA'}
-                      </span>
-
-                      <Calendar className="text-white" size={16} />
-                    </div>
-                  </CardHeader>
-
-                  <CardContent className="p-6 flex-grow flex flex-col">
-                    <h3 className="tactical-text text-2xl text-orchi-light mb-2 group-hover:text-orchi-gold transition-colors">
-                      {event.title}
-                    </h3>
-
-                    <div className="flex flex-row mb-4">
-                      <div className="flex items-center">
-                        <span className="text-3xl font-bold text-orchi-red">
-                          {dayjs(event.start_date).locale('it').format('DD')}
-                        </span>
-
-                        <div className="ml-2 flex flex-col">
-                          <span className="text-orchi-gold uppercase">
-                            {dayjs(event.start_date).locale('it').format('MMM')}
-                          </span>
-
-                          <span className="text-orchi-light">
-                            {dayjs(event.start_date)
-                              .locale('it')
-                              .format('YYYY')}
-                          </span>
-                        </div>
-
-                        {event.end_date && (
-                          <>
-                            <div className="text-orchi-light mx-4">-</div>
-
-                            <span className="text-3xl font-bold text-orchi-red">
-                              {dayjs(event.end_date!).locale('it').format('DD')}
-                            </span>
-
-                            <div className="ml-2 flex flex-col">
-                              <span className="text-orchi-gold uppercase">
-                                {dayjs(event.end_date!)
-                                  .locale('it')
-                                  .format('MMM')}
-                              </span>
-
-                              <span className="text-orchi-light">
-                                {dayjs(event.end_date!)
-                                  .locale('it')
-                                  .format('YYYY')}
-                              </span>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-
-                    <p className="text-orchi-light/80 mb-6">{event.location}</p>
-
-                    <div className="mt-auto">
-                      <span className="inline-block tactical-text text-orchi-gold border-b border-orchi-gold group-hover:text-orchi-red group-hover:border-orchi-red transition-colors">
-                        DETTAGLI
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
+                    DETTAGLI EVENTO
+                  </Link>
+                </CardContent>
+              </Card>
             ))
           )}
-        </div>
+        </motion.div>
 
-        <div className="text-center mt-12">
+        <div className="flex items-center justify-center mt-12">
           <Link
-            className="inline-block bg-orchi-gray hover:bg-orchi-gold text-white tactical-text py-3 px-8 transition-colors duration-300"
+            className="flex flex-col items-center justify-center h-auto w-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
             href="/events"
           >
             TUTTI GLI EVENTI

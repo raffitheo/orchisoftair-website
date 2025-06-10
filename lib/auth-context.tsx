@@ -1,9 +1,12 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+
 import { Session, User } from '@supabase/supabase-js';
-import { supabase } from './supabase';
+
 import TeamMember from '@/types/team-member';
+
+import { supabase } from './supabase';
 
 interface AuthContextType {
   loadingAuth: boolean;
@@ -31,12 +34,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [teamMember, setTeamMember] = useState<TeamMember | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
-  const fetchTeamMember = async (user: User) => {
-    const { data: teamMemberData } = await supabase
-      .from('team_members')
-      .select('*')
-      .eq('id', user.id)
-      .single();
+  const fetchTeamMember = async (userId: string) => {
+    const { data: teamMemberData } = await supabase.from('team_members').select('*').eq('id', userId).single();
 
     setTeamMember(teamMemberData ?? null);
   };
@@ -49,7 +48,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       setUser(session?.user ?? null);
 
-      if (session?.user) fetchTeamMember(session.user);
+      if (session?.user) fetchTeamMember(session.user.id);
 
       setLoadingAuth(false);
     };
@@ -61,7 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user ?? null);
 
-      if (session?.user) fetchTeamMember(session.user);
+      if (session?.user) fetchTeamMember(session.user.id);
 
       setLoadingAuth(false);
     });

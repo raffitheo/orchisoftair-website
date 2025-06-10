@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { cn } from '@/lib/utils';
 
 interface LoaderProps {
@@ -24,22 +25,11 @@ const Loader: React.FC<LoaderProps> = ({ className, size = 'md', text }) => {
   };
 
   return (
-    <div
-      className={cn(
-        'flex flex-col items-center justify-center space-y-3',
-        className,
-      )}
-    >
+    <div className={cn('flex flex-col items-center justify-center space-y-3', className)}>
       <div
-        className={cn(
-          'border-4 border-orchi-gray rounded-full animate-spin',
-          'border-t-orchi-red',
-          sizeClasses[size],
-        )}
+        className={cn('border-4 border-orchi-gray rounded-full animate-spin', 'border-t-orchi-red', sizeClasses[size])}
       />
-      {text && (
-        <p className={cn('text-orchi-light', textSizeClasses[size])}>{text}</p>
-      )}
+      {text && <p className={cn('text-orchi-light', textSizeClasses[size])}>{text}</p>}
     </div>
   );
 };

@@ -1,18 +1,16 @@
 'use client';
 
+import * as React from 'react';
+
 import { composeEventHandlers } from '@radix-ui/primitive';
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
 import { Primitive } from '@radix-ui/react-primitive';
 import { Slot } from '@radix-ui/react-slot';
-import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
-export type InputBaseContextProps = Pick<
-  InputBaseProps,
-  'autoFocus' | 'disabled'
-> & {
+export type InputBaseContextProps = Pick<InputBaseProps, 'autoFocus' | 'disabled'> & {
   controlRef: React.RefObject<HTMLElement | null>;
   onFocusedChange: (focused: boolean) => void;
 };
@@ -33,21 +31,13 @@ function useInputBase() {
   return context;
 }
 
-export interface InputBaseProps
-  extends React.ComponentProps<typeof Primitive.div> {
+export interface InputBaseProps extends React.ComponentProps<typeof Primitive.div> {
   autoFocus?: boolean;
   disabled?: boolean;
   error?: boolean;
 }
 
-function InputBase({
-  autoFocus,
-  disabled,
-  className,
-  onClick,
-  error,
-  ...props
-}: InputBaseProps) {
+function InputBase({ autoFocus, disabled, className, onClick, error, ...props }: InputBaseProps) {
   const [focused, setFocused] = React.useState(false);
   const controlRef = React.useRef<HTMLElement>(null);
 
@@ -72,7 +62,7 @@ function InputBase({
           disabled && 'pointer-events-none cursor-not-allowed opacity-50',
           focused && 'border-orchi-gold ring-2 ring-orchi-gold ring-offset-2',
           error && 'border-destructive ring-destructive/40',
-          className,
+          className
         )}
         {...props}
       />
@@ -80,25 +70,13 @@ function InputBase({
   );
 }
 
-function InputBaseFlexWrapper({
-  className,
-  ...props
-}: React.ComponentProps<typeof Primitive.div>) {
+function InputBaseFlexWrapper({ className, ...props }: React.ComponentProps<typeof Primitive.div>) {
   return (
-    <Primitive.div
-      data-slot="input-base-flex-wrapper"
-      className={cn('flex flex-1 flex-wrap', className)}
-      {...props}
-    />
+    <Primitive.div data-slot="input-base-flex-wrapper" className={cn('flex flex-1 flex-wrap', className)} {...props} />
   );
 }
 
-function InputBaseControl({
-  ref,
-  onFocus,
-  onBlur,
-  ...props
-}: React.ComponentProps<typeof Slot>) {
+function InputBaseControl({ ref, onFocus, onBlur, ...props }: React.ComponentProps<typeof Slot>) {
   const { controlRef, autoFocus, disabled, onFocusedChange } = useInputBase();
 
   const composedRefs = useComposedRefs(controlRef, ref);
@@ -120,12 +98,7 @@ export interface InputBaseAdornmentProps extends React.ComponentProps<'div'> {
   asChild?: boolean;
 }
 
-function InputBaseAdornment({
-  className,
-  asChild,
-  children,
-  ...props
-}: InputBaseAdornmentProps) {
+function InputBaseAdornment({ className, asChild, children, ...props }: InputBaseAdornmentProps) {
   const Comp = asChild ? Slot : typeof children === 'string' ? 'p' : 'div';
 
   return (
@@ -134,7 +107,7 @@ function InputBaseAdornment({
       className={cn(
         'text-muted-foreground flex items-center [&_svg:not([class*="size-"])]:size-4',
         '[&:not(:has(button))]:pointer-events-none',
-        className,
+        className
       )}
       {...props}
     >
@@ -160,25 +133,19 @@ function InputBaseAdornmentButton({
       variant={variant}
       size={size}
       disabled={disabled || disabledProp}
-      className={cn(
-        'size-6 text-orchi-light hover:bg-orchi-gold/10',
-        className,
-      )}
+      className={cn('size-6 text-orchi-light hover:bg-orchi-gold/10', className)}
       {...props}
     />
   );
 }
 
-function InputBaseInput({
-  className,
-  ...props
-}: React.ComponentProps<typeof Primitive.input>) {
+function InputBaseInput({ className, ...props }: React.ComponentProps<typeof Primitive.input>) {
   return (
     <Primitive.input
       data-slot="input-base-input"
       className={cn(
         'w-full flex-1 bg-transparent text-orchi-light text-sm placeholder:text-orchi-light/40 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground focus:outline-none disabled:pointer-events-none',
-        className,
+        className
       )}
       {...props}
     />

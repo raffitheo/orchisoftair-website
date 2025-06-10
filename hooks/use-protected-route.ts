@@ -1,8 +1,10 @@
 'use client';
 
-import { useAuth } from './auth-context';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+
+import { useRouter } from 'next/navigation';
+
+import { useAuth } from '@/lib/auth-context';
 
 export const useProtectedRoute = () => {
   const { loadingAuth, profile } = useAuth();
