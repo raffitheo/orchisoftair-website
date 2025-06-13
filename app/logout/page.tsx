@@ -2,16 +2,21 @@
 
 import { useEffect } from 'react';
 
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import Loader from '@/components/ui/loader';
 import { useAuth } from '@/lib/auth-context';
 
 const LogoutPage = () => {
   const { signOut } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    signOut().then(() => redirect('/'));
+    document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Uscita in corso...`;
+  }, []);
+
+  useEffect(() => {
+    signOut().then(() => router.push('/'));
   }, []);
 
   return (
