@@ -130,7 +130,7 @@ const Footer = () => {
 
             <div className="flex flex-col space-y-4 mb-8">
               <Link
-                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
+                className="group mr-auto flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors"
                 href="https://www.facebook.com/orchitrieste/"
                 target="_blank"
               >
@@ -140,7 +140,7 @@ const Footer = () => {
               </Link>
 
               <Link
-                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
+                className="group mr-auto flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors"
                 href="https://www.instagram.com/orchisoftair_official/"
                 target="_blank"
               >
@@ -153,15 +153,24 @@ const Footer = () => {
             <h4 className="tactical-text text-orchi-gold mb-4 text-sm">LINK UTILI</h4>
 
             <div className="flex flex-col space-y-2">
-              <Link className="block text-orchi-light/60 hover:text-orchi-light transition-colors text-xs" href="#">
+              <Link
+                className="block mr-auto text-orchi-light/60 hover:text-orchi-light transition-colors text-xs"
+                href="#"
+              >
                 Informativa sulla privacy
               </Link>
 
-              <Link className="block text-orchi-light/60 hover:text-orchi-light transition-colors text-xs" href="#">
+              <Link
+                className="block mr-auto text-orchi-light/60 hover:text-orchi-light transition-colors text-xs"
+                href="#"
+              >
                 Modello organizzativo
               </Link>
 
-              <Link className="block text-orchi-light/60 hover:text-orchi-light transition-colors text-xs" href="#">
+              <Link
+                className="block mr-auto text-orchi-light/60 hover:text-orchi-light transition-colors text-xs"
+                href="#"
+              >
                 Codice di condotta
               </Link>
             </div>
