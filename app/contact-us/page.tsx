@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Label } from '@radix-ui/react-label';
 import { motion } from 'framer-motion';
@@ -46,7 +46,7 @@ const JoinUsPage = () => {
     animate: { opacity: 1, y: 0 },
   };
 
-  const isDisabled = !!profile && !!loadingAuth;
+  const isDisabled = !!profile || loadingAuth;
 
   const contactInfo = [
     {
@@ -360,6 +360,13 @@ const JoinUsPage = () => {
                     >
                       INVIA
                     </Button>
+
+                    {isDisabled && (
+                      <p className="text-orchi-light/70 text-sm text-center">
+                        Essendo già membro degli Orchi, la possibilità di inviarci una richiesta di contatto è stata
+                        disabilitata.
+                      </p>
+                    )}
                   </form>
                 </CardContent>
               </Card>

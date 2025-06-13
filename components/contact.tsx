@@ -42,7 +42,7 @@ const Contact = () => {
     animate: { opacity: 1, y: 0 },
   };
 
-  const isDisabled = !!profile && !!loadingAuth;
+  const isDisabled = !!profile || loadingAuth;
 
   const perks = [
     'Sessioni di allenamento e/o giocate settimanali',
@@ -219,6 +219,13 @@ const Contact = () => {
                   >
                     INVIA
                   </Button>
+
+                  {isDisabled && (
+                    <p className="text-orchi-light/70 text-sm text-center">
+                      Essendo già membro degli Orchi, la possibilità di inviarci una richiesta di contatto è stata
+                      disabilitata.
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
