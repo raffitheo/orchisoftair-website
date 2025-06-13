@@ -102,14 +102,14 @@ const Events = () => {
           ) : (
             events.map((event) => (
               <Card
-                className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden flex flex-col"
+                className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden flex flex-col"
                 key={event.id}
               >
                 <div className="relative overflow-hidden rounded-t-xl">
                   <motion.div className="w-full h-full" layoutId={`card-image-${event.id}`}>
                     <Image
                       alt={event.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                       height={512}
                       src={event.image_url || '/event-placeholder.webp'}
                       width={512}
@@ -145,7 +145,7 @@ const Events = () => {
                 </CardHeader>
 
                 <CardContent className="mt-auto p-6 pt-0">
-                  <div className="space-y-3 mb-4">
+                  <div className="flex flex-col space-y-3 mb-4">
                     <div className="flex justify-between items-center">
                       <span className="text-orchi-light/80">Luogo:</span>
 
