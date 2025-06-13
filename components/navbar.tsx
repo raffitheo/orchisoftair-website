@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-500',
+        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
         isScrolled ? 'bg-orchi/95 backdrop-blur-lg border-b border-orchi-gray/20 py-3' : 'bg-transparent py-6'
       )}
     >
