@@ -6,6 +6,7 @@ import { PostgrestError } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 import { supabase } from '@/lib/supabase';
 import TeamMember from '@/types/team-member';
