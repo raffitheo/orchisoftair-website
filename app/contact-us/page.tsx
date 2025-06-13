@@ -54,7 +54,7 @@ const JoinUsPage = () => {
       info: [
         {
           title: 'Email',
-          value: 'orchitriestesoftair@gmail.com',
+          value: process.env.NEXT_PUBLIC_EMAIL,
         },
       ],
     },
@@ -67,7 +67,7 @@ const JoinUsPage = () => {
         },
         {
           title: 'Sede legale',
-          value: 'Via Caccia 11, Trieste, 34129 Italia',
+          value: process.env.NEXT_PUBLIC_ADDRESS,
         },
       ],
     },

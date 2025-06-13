@@ -27,8 +27,7 @@ export const metadata: Metadata = {
       url: 'https://orchisoftair-website.vercel.app/',
     },
   ],
-  description:
-    "Sei pront* a vivere l'emozione del softair a Trieste? Dal 2007, l'A.S.D. Gli Orchi Trieste è il punto di riferimento per gli appassionati che vogliono mettere alla prova le proprie abilità in un ambiente stimolante e divertente. Entra a far parte della nostra community! Iscriviti alla newsletter per non perderti neanche un evento o una novità. Ti aspettiamo!",
+  description: `Sei pront* a vivere l\`emozione del softair a Trieste? Dal ${process.env.NEXT_PUBLIC_CREATION_YEAR}, l\`A.S.D. Gli Orchi Trieste è il punto di riferimento per gli appassionati che vogliono mettere alla prova le proprie abilità in un ambiente stimolante e divertente. Entra a far parte della nostra community! Iscriviti alla newsletter per non perderti neanche un evento o una novità. Ti aspettiamo!`,
   title: process.env.NEXT_PUBLIC_BASSE_TITLE,
 };
 

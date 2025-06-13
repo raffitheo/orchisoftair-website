@@ -87,7 +87,9 @@ const Footer = () => {
                 <div className="flex items-center justify-center mb-2">
                   <Blocks className="w-5 h-5 text-orchi-gold mr-2" />
 
-                  <span className="tactical-text text-xl text-orchi-light">2007</span>
+                  <span className="tactical-text text-xl text-orchi-light">
+                    {process.env.NEXT_PUBLIC_CREATION_YEAR}
+                  </span>
                 </div>
 
                 <p className="text-orchi-light/60 text-xs">FONDAZIONE</p>
@@ -100,25 +102,25 @@ const Footer = () => {
 
             <div className="flex flex-col space-y-4">
               <Link
-                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
-                href="mailto:orchitriestesoftair@gmail.com"
+                className="group flex mr-auto items-center text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                 target="_blank"
               >
                 <Mail className="w-4 h-4 mr-3 group-hover:scale-110 transition-transform" />
 
-                <span className="text-sm">orchitriestesoftair@gmail.com</span>
+                <span className="text-sm">{process.env.NEXT_PUBLIC_EMAIL}</span>
               </Link>
 
               <div className="flex items-center text-orchi-light/80">
                 <IdCard className="w-4 h-4 mr-3" />
 
-                <span className="text-sm">C.F. 90114470322</span>
+                <span className="text-sm">C.F. {process.env.NEXT_PUBLIC_CF}</span>
               </div>
 
               <div className="flex items-center text-orchi-light/80">
                 <MapPin className="w-4 h-4 mr-3" />
 
-                <span className="text-sm">Via Caccia 11, Trieste, 34129 Italia</span>
+                <span className="text-sm">{process.env.NEXT_PUBLIC_ADDRESS}</span>
               </div>
             </div>
           </div>

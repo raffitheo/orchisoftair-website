@@ -25,9 +25,9 @@ const About = () => {
           </h2>
 
           <p className="text-orchi-light/90 mb-10 text-lg leading-relaxed">
-            Nati nel 2007, Gli Orchi Trieste sono un punto di riferimento per il softair nella città e in tutta la
-            regione Friuli-Venezia Giulia. Da quasi vent’anni promuoviamo questo sport con passione, serietà e spirito
-            di squadra, unendo competizione, strategia e divertimento.
+            Nati nel {process.env.NEXT_PUBLIC_CREATION_YEAR}, Gli Orchi Trieste sono un punto di riferimento per il
+            softair nella città e in tutta la regione Friuli-Venezia Giulia. Da quasi vent’anni promuoviamo questo sport
+            con passione, serietà e spirito di squadra, unendo competizione, strategia e divertimento.
             <br />
             <br />
             Partecipiamo attivamente a eventi locali, regionali e nazionali, organizziamo partite amichevoli e tornei,

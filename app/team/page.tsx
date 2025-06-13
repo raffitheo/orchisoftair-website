@@ -142,7 +142,7 @@ const TeamPage = () => {
                 <Dumbbell className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
                 <div className="text-3xl font-bold text-orchi-gold mb-2">
-                  {dayjs().diff(dayjs('01-01-2007'), 'year')}
+                  {dayjs().diff(dayjs(`01-01-${process.env.NEXT_PUBLIC_CREATION_YEAR}`), 'year')}
                 </div>
 
                 <div className="text-orchi-light/80 tactical-text">ANNI DI ESPERIENZA</div>
