@@ -16,7 +16,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
-import { cn } from '@/lib/utils';
 import { default as GalleryImageType } from '@/types/gallery-image';
 
 const GalleryPage = () => {
@@ -159,12 +158,12 @@ const GalleryPage = () => {
 
           <motion.div
             animate="animate"
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
             initial="initial"
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <Images className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -174,7 +173,7 @@ const GalleryPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <ImageUp className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -184,7 +183,7 @@ const GalleryPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <Archive className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -196,7 +195,7 @@ const GalleryPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <BicepsFlexed className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -209,7 +208,7 @@ const GalleryPage = () => {
 
           <motion.div
             animate="animate"
-            className="mb-16"
+            className="mb-12"
             initial="initial"
             transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
             variants={fadeInUp}
@@ -220,12 +219,9 @@ const GalleryPage = () => {
 
                 return (
                   <Button
-                    className={cn(
-                      'tactical-text transition-all duration-300',
-                      selectedCategory === category.id
-                        ? 'cursor-not-allowed bg-orchi-gold hover:scale-100'
-                        : 'cursor-pointer'
-                    )}
+                    className={
+                      selectedCategory === category.id ? 'cursor-not-allowed bg-orchi-gold hover:scale-100' : ''
+                    }
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
                     tabIndex={selectedCategory === category.id ? -1 : undefined}
@@ -276,7 +272,7 @@ const GalleryPage = () => {
                     <div className="w-full h-full">
                       <Image
                         alt={image.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         height={512}
                         src={image.url}
                         width={512}

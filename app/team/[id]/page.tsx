@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -187,8 +188,8 @@ const TeamMemberDetailPage = () => {
               )
             ) : (
               <>
-                <div className="lg:col-span-2 space-y-8">
-                  <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                <div className="lg:col-span-2 flex flex-col space-y-8">
+                  <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <div className="relative aspect-square overflow-hidden rounded-xl">
                       <motion.div className="w-full h-full" layoutId={`card-image-${teamMember.id}`}>
                         <Image
@@ -201,7 +202,7 @@ const TeamMemberDetailPage = () => {
                       </motion.div>
 
                       <div
-                        className={`absolute inset-0 z-10 bg-gradient-to-t from-orchi/80 via-transparent to-transparent lg:group-hover:translate-y-[var(--animated-translate-y)] transform transition-transform duration-500`}
+                        className={`absolute inset-0 z-10 bg-gradient-to-t from-orchi/80 via-transparent to-transparent lg:group-hover:translate-y-[var(--animated-translate-y)] transform transition-transform duration-300`}
                         style={
                           {
                             '--animated-translate-y': `-${imageHoverHeight - 112}px`,
@@ -210,7 +211,7 @@ const TeamMemberDetailPage = () => {
                       />
 
                       <div
-                        className="absolute bottom-0 left-0 right-0 z-20 flex flex-col justify-end transform transition-transform duration-500 translate-y-[calc(100%-112px)] lg:group-hover:translate-y-0"
+                        className="absolute bottom-0 left-0 right-0 z-20 flex flex-col justify-end transform transition-transform duration-300 translate-y-[calc(100%-112px)] lg:group-hover:translate-y-0"
                         ref={imageHoverRef}
                       >
                         <div className="flex h-28 flex-col justify-end">
@@ -225,7 +226,7 @@ const TeamMemberDetailPage = () => {
                               animate={{
                                 y: [0, 10, 0],
                               }}
-                              className="opacity-100 z-20 group-hover:opacity-0 transition-opacity duration-500 hidden lg:block"
+                              className="opacity-100 z-20 group-hover:opacity-0 transition-opacity duration-300 hidden lg:block"
                               transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                             >
                               <div className="flex flex-col items-center gap-2">
@@ -240,10 +241,10 @@ const TeamMemberDetailPage = () => {
                         </div>
 
                         <div className="bg-orchi/80 p-6 pt-0">
-                          <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                          <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                             <CardHeader>
                               <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                                <Book className="h-8 w-8 my-auto" />
+                                <Book className="h-8 w-8" />
                                 BIOGRAFIA
                               </CardTitle>
                             </CardHeader>
@@ -265,10 +266,10 @@ const TeamMemberDetailPage = () => {
                     transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 lg:hidden">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 lg:hidden">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Book className="h-8 w-8 my-auto" />
+                          <Book className="h-8 w-8" />
                           BIOGRAFIA
                         </CardTitle>
                       </CardHeader>
@@ -287,16 +288,16 @@ const TeamMemberDetailPage = () => {
                     transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Luggage className="h-8 w-8 my-auto" />
+                          <Luggage className="h-8 w-8" />
                           EQUIPAGGIAMENTO
                         </CardTitle>
                       </CardHeader>
 
                       <CardContent>
-                        <div className="space-y-6">
+                        <div className="flex flex-col space-y-6">
                           <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                             <Tally1 className="h-8 w-8 text-orchi-red" />
 
@@ -348,21 +349,21 @@ const TeamMemberDetailPage = () => {
 
                 <motion.div
                   animate="animate"
-                  className="space-y-6"
+                  className="flex flex-col space-y-6"
                   initial="initial"
                   transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
                   variants={fadeInUp}
                 >
-                  <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                  <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <CardHeader>
                       <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                        <Info className="h-8 w-8 my-auto" />
+                        <Info className="h-8 w-8" />
                         INFORMAZIONI
                       </CardTitle>
                     </CardHeader>
 
                     <CardContent>
-                      <div className="space-y-6">
+                      <div className="flex flex-col space-y-6">
                         <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                           <Star className="h-8 w-8 text-orchi-red" />
 
@@ -392,7 +393,7 @@ const TeamMemberDetailPage = () => {
 
                           <div className="flex flex-col lg:flex-row space-between w-full">
                             <div className="flex-1">
-                              <p className="text-orchi-light font-semibold">Location</p>
+                              <p className="text-orchi-light font-semibold">Posizione</p>
 
                               <p className="text-orchi-light/80">{teamMember.location}</p>
                             </div>
@@ -420,16 +421,16 @@ const TeamMemberDetailPage = () => {
                     transition={{ duration: 0.5, delay: 1, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Trophy className="h-8 w-8 my-auto" />
+                          <Trophy className="h-8 w-8" />
                           ACHIVEMENTS
                         </CardTitle>
                       </CardHeader>
 
                       <CardContent>
-                        <ul className="space-y-6">
+                        <ul className="flex flex-col space-y-6">
                           {teamMember.achivements?.map((achivement, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -451,15 +452,15 @@ const TeamMemberDetailPage = () => {
                     transition={{ duration: 0.5, delay: 1.2, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Contact className="h-8 w-8 my-auto" />
+                          <Contact className="h-8 w-8" />
                           SOCIAL
                         </CardTitle>
                       </CardHeader>
 
-                      <CardContent className="space-y-3">
+                      <CardContent className="flex flex-col space-y-3">
                         {teamMember?.socials.facebook && (
                           <Link
                             className="group flex flex-row items-center justify-center h-auto rounded-lg bg-transparent border-2 border-orchi-gray/50 text-orchi-light tactical-text transform hover:scale-105 hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60 py-4 px-8 transition-all duration-300"
@@ -557,7 +558,7 @@ const TeamMemberDetailPage = () => {
               ) : (
                 teamMembers.map((member, index) => (
                   <Card
-                    className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden"
+                    className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden"
                     key={member.id}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
@@ -565,7 +566,7 @@ const TeamMemberDetailPage = () => {
                       <motion.div className="w-full h-full" layoutId={`card-image-${member.id}`}>
                         <Image
                           alt={member.field_name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           height={512}
                           src={member.image_url || '/team-member-placeholder.webp'}
                           width={512}
@@ -582,9 +583,10 @@ const TeamMemberDetailPage = () => {
                     </div>
 
                     <CardContent className="p-6">
-                      <div className="space-y-3 mb-4">
+                      <div className="flex flex-col space-y-3 mb-4">
                         <div className="flex justify-between items-center">
                           <span className="text-orchi-light/80">Ruolo:</span>
+
                           <span className="text-orchi-light text-sm">
                             {member.role === 'president'
                               ? 'Presidente'
@@ -599,8 +601,10 @@ const TeamMemberDetailPage = () => {
                                       : ''}
                           </span>
                         </div>
+
                         <div className="flex justify-between items-center">
                           <span className="text-orchi-light/80">Membro dal:</span>
+
                           <span className="text-orchi-gold text-sm font-semibold">{member.year_joined}</span>
                         </div>
                       </div>

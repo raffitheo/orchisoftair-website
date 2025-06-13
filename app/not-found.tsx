@@ -56,10 +56,10 @@ export default function NotFound() {
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
-              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                 <CardHeader>
                   <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                    <Home className="h-8 w-8 my-auto" />
+                    <Home className="h-8 w-8" />
                     CAMPO BASE
                   </CardTitle>
 
@@ -85,10 +85,10 @@ export default function NotFound() {
               transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
-              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                 <CardHeader>
                   <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                    <Link2 className="h-8 w-8 my-auto" />
+                    <Link2 className="h-8 w-8" />
                     LINK RAPIDI
                   </CardTitle>
 

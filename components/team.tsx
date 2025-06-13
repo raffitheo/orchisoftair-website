@@ -98,7 +98,7 @@ const Team = () => {
           ) : (
             teamMembers.map((member, index) => (
               <Card
-                className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden"
+                className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden"
                 key={member.id}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -106,7 +106,7 @@ const Team = () => {
                   <motion.div layoutId={`card-image-${member.id}`} className="w-full h-full">
                     <Image
                       alt={member.field_name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       height={512}
                       src={member.image_url || '/team-member-placeholder.webp'}
                       width={512}
@@ -123,7 +123,7 @@ const Team = () => {
                 </div>
 
                 <CardContent className="p-6">
-                  <div className="space-y-3 mb-4">
+                  <div className="flex flex-col space-y-3 mb-4">
                     <div className="flex justify-between items-center">
                       <span className="text-orchi-light/80">Ruolo:</span>
 

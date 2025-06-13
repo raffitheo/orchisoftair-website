@@ -103,7 +103,7 @@ const LoginPage = () => {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
-              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                 <CardHeader className="text-center">
                   <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orchi-red to-orchi-gold rounded-full flex items-center justify-center mb-4">
                     <Shield className="h-8 w-8 text-white" />
@@ -117,8 +117,8 @@ const LoginPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                  <form className="space-y-6" onSubmit={handleSubmit}>
-                    <div className="space-y-2">
+                  <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
+                    <div className="flex flex-col space-y-2">
                       <Label className="tactical-text text-orchi-light text-sm" htmlFor="email">
                         EMAIL <span className="text-orchi-red">*</span>
                       </Label>
@@ -138,7 +138,7 @@ const LoginPage = () => {
                       />
                     </div>
 
-                    <div className="space-y-2">
+                    <div className="flex flex-col space-y-2">
                       <Label className="tactical-text text-orchi-light text-sm" htmlFor="password">
                         PASSWORD <span className="text-orchi-red">*</span>
                       </Label>
@@ -174,10 +174,8 @@ const LoginPage = () => {
 
                     <Button
                       className={cn(
-                        'w-full tactical-text transition-all duration-300',
-                        isSubmitting
-                          ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
-                          : 'cursor-pointer'
+                        'w-full',
+                        isSubmitting ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
                       )}
                       tabIndex={isSubmitting ? -1 : undefined}
                       type="submit"
@@ -190,10 +188,7 @@ const LoginPage = () => {
                     <div className="text-center text-sm text-orchi-light/70">Non hai ancora un account?</div>
 
                     <Button
-                      className={cn(
-                        'w-full mt-3 tactical-text transition-all duration-300',
-                        isSubmitting ? 'cursor-not-allowed' : 'cursor-pointer'
-                      )}
+                      className={cn('w-full mt-3', isSubmitting ? 'cursor-not-allowed' : '')}
                       tabIndex={isSubmitting ? -1 : undefined}
                       variant="outline"
                     >
@@ -210,13 +205,13 @@ const LoginPage = () => {
               transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
-              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 mt-6">
+              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 mt-6">
                 <CardContent className="p-6 text-center">
                   <h3 className="tactical-text text-orchi-gold mb-3">AREA RISERVATA AI MEMBRI</h3>
 
                   <p className="text-orchi-light/70 text-sm leading-relaxed">
-                    L'accesso è riservato ai membri attivi del team Gli Orchi Trieste. Se vuoi unirti a noi, contattaci
-                    attraverso la sezione contatti.
+                    L'accesso è riservato ai membri attivi della squadra Gli Orchi Trieste. Se vuoi unirti a noi,
+                    contattaci attraverso la sezione dedicata.
                   </p>
                 </CardContent>
               </Card>

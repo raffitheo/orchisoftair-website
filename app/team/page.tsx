@@ -118,12 +118,12 @@ const TeamPage = () => {
 
           <motion.div
             animate="animate"
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
             initial="initial"
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <Users className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -133,11 +133,11 @@ const TeamPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6"></CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <Dumbbell className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -149,7 +149,7 @@ const TeamPage = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 text-center">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
               <CardContent className="p-6">
                 <Target className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
@@ -162,7 +162,7 @@ const TeamPage = () => {
 
           <motion.div
             animate="animate"
-            className="mb-16"
+            className="mb-12"
             initial="initial"
             key={teamMembersKey}
             transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
@@ -194,7 +194,7 @@ const TeamPage = () => {
               ) : (
                 teamMembers.map((member, index) => (
                   <Card
-                    className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden"
+                    className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden"
                     key={member.id}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
@@ -202,7 +202,7 @@ const TeamPage = () => {
                       <motion.div layoutId={`card-image-${member.id}`} className="w-full h-full">
                         <Image
                           alt={member.field_name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           height={512}
                           src={member.image_url || '/team-member-placeholder.webp'}
                           width={512}
@@ -219,9 +219,10 @@ const TeamPage = () => {
                     </div>
 
                     <CardContent className="p-6">
-                      <div className="space-y-3 mb-4">
+                      <div className="flex flex-col space-y-3 mb-4">
                         <div className="flex justify-between items-center">
                           <span className="text-orchi-light/80">Ruolo:</span>
+
                           <span className="text-orchi-light text-sm">
                             {member.role === 'president'
                               ? 'Presidente'
@@ -236,8 +237,10 @@ const TeamPage = () => {
                                       : ''}
                           </span>
                         </div>
+
                         <div className="flex justify-between items-center">
                           <span className="text-orchi-light/80">Membro dal:</span>
+
                           <span className="text-orchi-gold text-sm font-semibold">{member.year_joined}</span>
                         </div>
                       </div>

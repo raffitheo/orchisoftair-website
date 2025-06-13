@@ -98,9 +98,9 @@ const Footer = () => {
           <div>
             <h4 className="tactical-text text-orchi-gold mb-6 text-lg">CONTATTI</h4>
 
-            <div className="space-y-4">
+            <div className="flex flex-col space-y-4">
               <Link
-                className="flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
+                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
                 href="mailto:orchitriestesoftair@gmail.com"
                 target="_blank"
               >
@@ -126,9 +126,9 @@ const Footer = () => {
           <div>
             <h4 className="tactical-text text-orchi-gold mb-6 text-lg">SEGUICI</h4>
 
-            <div className="space-y-4 mb-8">
+            <div className="flex flex-col space-y-4 mb-8">
               <Link
-                className="flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
+                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
                 href="https://www.facebook.com/orchitrieste/"
                 target="_blank"
               >
@@ -138,7 +138,7 @@ const Footer = () => {
               </Link>
 
               <Link
-                className="flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
+                className="group flex items-center text-orchi-light/80 hover:text-orchi-gold transition-colors group"
                 href="https://www.instagram.com/orchisoftair_official/"
                 target="_blank"
               >
@@ -150,7 +150,7 @@ const Footer = () => {
 
             <h4 className="tactical-text text-orchi-gold mb-4 text-sm">LINK UTILI</h4>
 
-            <div className="space-y-2">
+            <div className="flex flex-col space-y-2">
               <Link className="block text-orchi-light/60 hover:text-orchi-light transition-colors text-xs" href="#">
                 Informativa sulla privacy
               </Link>

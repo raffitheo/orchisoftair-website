@@ -182,8 +182,8 @@ const EventDetailPage = () => {
               )
             ) : (
               <>
-                <div className="lg:col-span-2 space-y-8">
-                  <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                <div className="lg:col-span-2 flex flex-col space-y-8">
+                  <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <div className="relative overflow-hidden rounded-xl">
                       <motion.div className="w-full h-80" layoutId={`card-image-${event.id}`}>
                         <Image
@@ -223,10 +223,10 @@ const EventDetailPage = () => {
                     transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <NotepadText className="h-8 w-8 my-auto" />
+                          <NotepadText className="h-8 w-8" />
                           DESCRIZIONE EVENTO
                         </CardTitle>
                       </CardHeader>
@@ -245,16 +245,16 @@ const EventDetailPage = () => {
                     transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Target className="h-8 w-8 my-auto" />
+                          <Target className="h-8 w-8" />
                           EQUIPAGGIAMENTO RICHIESTO
                         </CardTitle>
                       </CardHeader>
 
                       <CardContent>
-                        <ul className="space-y-6">
+                        <ul className="flex flex-col space-y-6">
                           {event.equipment.map((equipment, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -276,16 +276,16 @@ const EventDetailPage = () => {
                     transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Clock className="h-8 w-8 my-auto" />
+                          <Clock className="h-8 w-8" />
                           PROGRAMMA DELLA GIORNATA
                         </CardTitle>
                       </CardHeader>
 
                       <CardContent>
-                        <ul className="space-y-6">
+                        <ul className="flex flex-col space-y-6">
                           {event.schedule.map((item, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -306,21 +306,21 @@ const EventDetailPage = () => {
 
                 <motion.div
                   animate="animate"
-                  className="space-y-6"
+                  className="flex flex-col space-y-6"
                   initial="initial"
                   transition={{ duration: 0.5, delay: 1, ease: 'easeInOut' }}
                   variants={fadeInUp}
                 >
-                  <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                  <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <CardHeader>
                       <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                        <Info className="h-8 w-8 my-auto" />
+                        <Info className="h-8 w-8" />
                         INFO EVENTO
                       </CardTitle>
                     </CardHeader>
 
                     <CardContent>
-                      <div className="space-y-6">
+                      <div className="flex flex-col space-y-6">
                         <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                           <Calendar className="h-8 w-8 text-orchi-red" />
 
@@ -402,23 +402,21 @@ const EventDetailPage = () => {
                     transition={{ duration: 0.5, delay: 1.2, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <LogIn className="h-8 w-8 my-auto" />
+                          <LogIn className="h-8 w-8" />
                           REGISTRAZIONE
                         </CardTitle>
                       </CardHeader>
 
-                      <CardContent className="space-y-4">
+                      <CardContent className="flex flex-col space-y-4">
                         <Button
                           className={cn(
-                            'w-full tactical-text transition-all duration-300',
-                            isDisabled
-                              ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
-                              : 'cursor-pointer'
+                            'w-full',
+                            isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
                           )}
-                          onClick={() => eventSubscribeUnsubscrive(true)}
+                          onClick={() => eventUpdateUserPresance(true)}
                           tabIndex={isDisabled ? -1 : undefined}
                         >
                           ISCRIVITI ALL'EVENTO
@@ -452,11 +450,8 @@ const EventDetailPage = () => {
                         ) : (
                           event?.participants
                             .filter((participants) => participants.type === 'registered-user')
-                            .find((participants) => participants.value === profile.user?.id) && (
-                            <Button
-                              className="w-full tactical-text transition-all duration-300 cursor-pointer"
-                              onClick={() => eventSubscribeUnsubscrive(false)}
-                            >
+                            .find((participants) => participants.value === profile.id) && (
+                            <Button className="w-full" onClick={() => eventUpdateUserPresance(false)}>
                               DISISCRIVITI DALL'EVENTO
                             </Button>
                           )
@@ -471,16 +466,16 @@ const EventDetailPage = () => {
                     transition={{ duration: 0.5, delay: 1.4, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Building className="h-8 w-8 my-auto" />
+                          <Building className="h-8 w-8" />
                           ORGANIZZAZIONE
                         </CardTitle>
                       </CardHeader>
 
                       <CardContent>
-                        <ul className="space-y-6">
+                        <ul className="flex flex-col space-y-6">
                           {event.organization.map((organizer, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"

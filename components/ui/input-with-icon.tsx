@@ -1,17 +1,19 @@
 'use client';
 
+import * as React from 'react';
+
 import { Input } from './input';
 
 interface InputWithIconProps {
-  disabled: boolean;
+  disabled?: boolean;
   icon: React.ReactNode;
-  id: string;
-  name: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder: string;
+  id?: string;
+  name?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
   required?: boolean;
-  type: string;
-  value: string;
+  type?: React.HTMLInputTypeAttribute;
+  value?: string | number | readonly string[];
 }
 
 const InputWithIcon = ({

@@ -159,7 +159,7 @@ const JoinUsPage = () => {
             transition={{ duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            <h1 className="display-text text-5xl md:text-7xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-6 animate-scale-in">
+            <h1 className="display-text text-5xl md:text-7xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-6">
               SCRIVICI ORA
             </h1>
 
@@ -172,23 +172,23 @@ const JoinUsPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="space-y-8">
+            <div className="flex flex-col space-y-8">
               <motion.div
                 animate="animate"
                 initial="initial"
                 transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
                 variants={fadeInUp}
               >
-                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                      <Mail className="h-8 w-8 my-auto" />
+                      <Mail className="h-8 w-8" />
                       INFORMAZIONI DI CONTATTO
                     </CardTitle>
                   </CardHeader>
 
                   <CardContent>
-                    <div className="space-y-6">
+                    <div className="flex flex-col space-y-6">
                       {contactInfo.map((contact, contactIndex) => {
                         const IconComponent = contact.icon;
 
@@ -222,16 +222,16 @@ const JoinUsPage = () => {
                 transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
                 variants={fadeInUp}
               >
-                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                      <Octagon className="h-8 w-8 my-auto" />
+                      <Octagon className="h-8 w-8" />
                       REQUISITI PER UNIRSI
                     </CardTitle>
                   </CardHeader>
 
                   <CardContent>
-                    <ul className="space-y-6">
+                    <ul className="flex flex-col space-y-6">
                       {requirements.map((requirement, index) => (
                         <li
                           className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -253,16 +253,16 @@ const JoinUsPage = () => {
                 transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
                 variants={fadeInUp}
               >
-                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+                <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                      <HandHelping className="h-8 w-8 my-auto" />
+                      <HandHelping className="h-8 w-8" />
                       COSA OFFRIAMO
                     </CardTitle>
                   </CardHeader>
 
                   <CardContent>
-                    <ul className="space-y-6">
+                    <ul className="flex flex-col space-y-6">
                       {ourOffer.map((offer, index) => (
                         <li
                           className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -285,7 +285,7 @@ const JoinUsPage = () => {
               transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
-              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+              <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                 <CardHeader className="text-center">
                   <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orchi-red to-orchi-gold rounded-full flex items-center justify-center mb-4">
                     <Mail className="h-8 w-8 text-white" />
@@ -299,7 +299,7 @@ const JoinUsPage = () => {
                 </CardHeader>
 
                 <CardContent>
-                  <form className="space-y-6" onSubmit={handleSubmit}>
+                  <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
                     {contactFields.map((field, index) => {
                       const IconComponent = field.icon;
 
@@ -350,10 +350,8 @@ const JoinUsPage = () => {
 
                     <Button
                       className={cn(
-                        'w-full tactical-text transition-all duration-300',
-                        isDisabled
-                          ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
-                          : 'cursor-pointer'
+                        'w-full',
+                        isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
                       )}
                       tabIndex={isDisabled ? -1 : undefined}
                       type="submit"

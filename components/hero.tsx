@@ -62,6 +62,7 @@ const Hero = () => {
           <Link
             className="inline-block rounded-lg bg-orchi-red hover:bg-orchi-gold text-white tactical-text transform hover:scale-105 h-12 py-3 px-8 transition-all duration-300"
             href="#about-us"
+            scroll
           >
             SCOPRI DI PIÙ
           </Link>
@@ -76,7 +77,7 @@ const Hero = () => {
         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
       >
         <div className="flex flex-col items-center gap-2">
-          <ArrowDown className="text-orchi-light/80 hover:text-orchi-gold transition-colors duration-300" size={30} />
+          <ArrowDown className="text-orchi-light/80" size={30} />
           <span className="tactical-text text-xs text-orchi-light/90">SCORRI</span>
         </div>
       </motion.div>

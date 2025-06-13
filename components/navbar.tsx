@@ -140,7 +140,7 @@ const Navbar = () => {
             <SheetTrigger asChild>
               <Button
                 aria-label="Toggle menu"
-                className="lg:hidden h-auto p-2 text-orchi-light hover:text-orchi-gold hover:bg-orchi-gray/20 transition-all duration-300"
+                className="lg:hidden h-auto p-2 text-orchi-light hover:text-orchi-gold hover:bg-orchi-gray/20"
                 variant="ghost"
               >
                 <Menu size={24} />
@@ -169,6 +169,7 @@ const Navbar = () => {
                           : 'text-orchi-light hover:text-orchi-gold'
                       )}
                       href="/login"
+                      scroll={!'/login'.startsWith('#')}
                       tabIndex={currentRoute === '/login' ? -1 : undefined}
                     >
                       ENTRA

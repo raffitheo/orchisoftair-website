@@ -124,7 +124,7 @@ const Contact = () => {
               fare squadra. Contattaci per maggiori informazioni o per partecipare a una sessione di prova.
             </p>
 
-            <ul className="space-y-6">
+            <ul className="flex flex-col space-y-6">
               {perks.map((oerk, index) => (
                 <li
                   className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
@@ -144,7 +144,7 @@ const Contact = () => {
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
+            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
               <CardHeader className="text-center">
                 <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orchi-red to-orchi-gold rounded-full flex items-center justify-center mb-4">
                   <Mail className="h-8 w-8 text-white" />
@@ -158,12 +158,12 @@ const Contact = () => {
               </CardHeader>
 
               <CardContent>
-                <form className="space-y-6" onSubmit={handleSubmit}>
+                <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
                   {contactFields.map((field, index) => {
                     const IconComponent = field.icon;
 
                     return (
-                      <div className="space-y-2" key={index}>
+                      <div className="flex flex-col space-y-2" key={index}>
                         <Label className="tactical-text text-orchi-light text-sm" htmlFor={field.id}>
                           {field.displayName}
                           {field.required && (
@@ -209,10 +209,8 @@ const Contact = () => {
 
                   <Button
                     className={cn(
-                      'w-full tactical-text transition-all duration-300',
-                      isDisabled
-                        ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100'
-                        : 'cursor-pointer'
+                      'w-full',
+                      isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
                     )}
                     tabIndex={isDisabled ? -1 : undefined}
                     type="submit"

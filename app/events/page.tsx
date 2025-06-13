@@ -19,7 +19,6 @@ import { supabase } from '@/lib/supabase';
 import Event from '@/types/event';
 
 import 'dayjs/locale/it';
-import { cn } from '@/lib/utils';
 
 const EventsPage = () => {
   const [events, setEvents] = useState<Event[]>([]);
@@ -107,7 +106,7 @@ const EventsPage = () => {
 
           <motion.div
             animate="animate"
-            className="mb-16"
+            className="mb-12"
             initial="initial"
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
             variants={fadeInUp}
@@ -115,10 +114,7 @@ const EventsPage = () => {
             <div className="flex flex-wrap gap-4 justify-center">
               {[2025, 2024, 2023, 2022, 2021, 2020].map((year) => (
                 <Button
-                  className={cn(
-                    'tactical-text transition-all duration-300',
-                    selectedYear === year ? 'cursor-not-allowed bg-orchi-gold hover:scale-100' : 'cursor-pointer'
-                  )}
+                  className={selectedYear === year ? 'cursor-not-allowed bg-orchi-gold hover:scale-100' : ''}
                   key={year}
                   onClick={() => setSelectedYear(year)}
                   tabIndex={selectedYear === year ? -1 : undefined}
@@ -157,7 +153,7 @@ const EventsPage = () => {
             ) : (
               events.map((event, index) => (
                 <Card
-                  className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden flex flex-col"
+                  className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden flex flex-col"
                   key={event.id}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -165,7 +161,7 @@ const EventsPage = () => {
                     <motion.div className="w-full h-full" layoutId={`card-image-${event.id}`}>
                       <Image
                         alt={event.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                         height={512}
                         src={event.image_url || '/event-placeholder.webp'}
                         width={512}
@@ -201,7 +197,7 @@ const EventsPage = () => {
                   </CardHeader>
 
                   <CardContent className="mt-auto p-6 pt-0">
-                    <div className="space-y-3 mb-4">
+                    <div className="flex flex-col space-y-3 mb-4">
                       <div className="flex justify-between items-center">
                         <span className="text-orchi-light/80">Luogo:</span>
 
