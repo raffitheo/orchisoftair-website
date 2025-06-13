@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import { Blocks, Facebook, IdCard, Instagram, Mail, MapPin, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 import { supabase } from '@/lib/supabase';
 
@@ -19,15 +21,23 @@ const Footer = () => {
 
   const countTeamMembers = async () => {
     try {
-      const { count: galleryImagesCount, error: galleryImagesError } = await supabase
+      const { count: teamMembersCount, error: teamMembersError } = await supabase
         .from('team_members')
         .select('*', { count: 'exact', head: true });
 
-      if (galleryImagesError) throw galleryImagesError;
+      if (teamMembersError) throw teamMembersError;
 
-      setTeamMembersCount(galleryImagesCount ?? 0);
+      setTeamMembersCount(teamMembersCount ?? 0);
     } catch (error) {
-      console.error('Error counting gallery images:', error);
+      console.error('Error counting team members:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il conteggio dei membri della squadra. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
+
+      setTeamMembersCount(-1);
     }
   };
 

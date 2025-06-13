@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import 'dayjs/locale/it';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 import { supabase } from '@/lib/supabase';
 import Event from '@/types/event';
@@ -36,6 +38,12 @@ const Events = () => {
       setEvents(eventsData || []);
     } catch (error) {
       console.error('Error fetching events:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento degli eventi. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoading(false);
     }

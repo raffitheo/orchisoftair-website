@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Archive, BicepsFlexed, Calendar, Dumbbell, Images, ImageUp, Search, Square, Users } from 'lucide-react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -56,6 +58,14 @@ const GalleryPage = () => {
       setGalleryImagesCount(galleryImagesCount ?? 0);
     } catch (error) {
       console.error('Error counting gallery images:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il conteggio delle immagini della galleria. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
+
+      setGalleryImagesCount(-1);
     }
   };
 
@@ -74,6 +84,12 @@ const GalleryPage = () => {
       setGalleryImages(galleryImagesData || []);
     } catch (error) {
       console.error('Error fetching gallery images:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento delle immagini della galleria. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoading(false);
       setGalleryKey(dayjs().valueOf());

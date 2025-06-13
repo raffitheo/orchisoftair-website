@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -59,6 +61,12 @@ const EventsPage = () => {
       setEvents(eventsData || []);
     } catch (error) {
       console.error('Error fetching events:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento degli eventi. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoading(false);
       setEventsKey(dayjs().valueOf());

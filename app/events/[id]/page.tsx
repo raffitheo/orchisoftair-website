@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import {
@@ -23,6 +24,7 @@ import Link from 'next/link';
 
 import 'dayjs/locale/it';
 import { useParams } from 'next/navigation';
+import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -70,6 +72,12 @@ const EventDetailPage = () => {
       setEvent(eventData || null);
     } catch (error) {
       console.error('Error fetching the event:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento dell'evento. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoading(false);
     }
@@ -97,10 +105,20 @@ const EventDetailPage = () => {
 
       if (eventUpdateError) throw eventUpdateError;
 
+      toast.success("Aggiornamento della presenza all'evento avvenuto con successso!");
+
       setLoading(true);
       fetchEvent();
     } catch (error) {
-      console.error('Error fetching the event:', error);
+      console.error("Error updating the user's presance at the event", error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante l'aggiornamento della presenza all'evento. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
+    } finally {
+      setLoadingOperation(false);
     }
   };
 

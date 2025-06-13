@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -34,6 +35,12 @@ const Team = () => {
       setTeamMembers(randomTeamMembersData || []);
     } catch (error) {
       console.error('Error fetching team members:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento dei membri della squadra. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoading(false);
     }
@@ -118,6 +125,7 @@ const Team = () => {
                   <div className="space-y-3 mb-4">
                     <div className="flex justify-between items-center">
                       <span className="text-orchi-light/80">Ruolo:</span>
+
                       <span className="text-orchi-light text-sm">
                         {member.role === 'president'
                           ? 'Presidente'
@@ -132,8 +140,10 @@ const Team = () => {
                                   : ''}
                       </span>
                     </div>
+
                     <div className="flex justify-between items-center">
                       <span className="text-orchi-light/80">Membro dal:</span>
+
                       <span className="text-orchi-gold text-sm font-semibold">{member.year_joined}</span>
                     </div>
                   </div>

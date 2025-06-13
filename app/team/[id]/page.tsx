@@ -25,6 +25,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -93,6 +94,12 @@ const TeamMemberDetailPage = () => {
       setTeamMember(teamMembersData || null);
     } catch (error) {
       console.error('Error fetching the team member:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il caricamento del membro della squadra. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setLoadingTeamMember(false);
     }

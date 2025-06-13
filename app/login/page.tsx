@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+import { PostgrestError } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import { AtSign, Lock, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -55,13 +57,17 @@ const LoginPage = () => {
         password: formData.password,
       });
 
-      if (signInError) {
-        console.error('Login error:', signInError.message);
-        alert("Errore durante l'accesso. Riprova.");
-      } else router.push('/');
+      if (signInError) throw signInError;
+
+      router.push('/');
     } catch (error) {
-      console.error('Unexpected error during login:', error);
-      alert("Errore imprevisto durante l'accesso. Riprova più tardi.");
+      console.error('Error logging in the user:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il login. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
     } finally {
       setIsSubmitting(false);
     }
