@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { motion } from 'framer-motion';
 import { AlertTriangle, ArrowLeft, Calendar, Home, Images, Link2, Mail, Users } from 'lucide-react';
 import Link from 'next/link';
@@ -10,6 +12,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function NotFound() {
+  useEffect(() => {
+    document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | 404 - Obiettivo non trovato`;
+  }, []);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
@@ -33,15 +39,13 @@ export default function NotFound() {
                 <AlertTriangle className="h-12 w-12 text-white" />
               </div>
 
-              <h1 className="display-text text-8xl md:text-9xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-4">
-                404
-              </h1>
+              <h1 className="display-text text-8xl md:text-9xl text-orchi-light mb-8">404</h1>
 
               <h2 className="tactical-text text-2xl md:text-3xl text-orchi-light mb-6">OBIETTIVO NON TROVATO</h2>
 
               <p className="text-orchi-light/80 text-lg mb-8 leading-relaxed">
-                La pagina che stai cercando è stata trovata. Potrebbe essere stata eliminata, spostata o forse non è mai
-                esistita.
+                La pagina che stai cercando non è stata trovata. Potrebbe essere stata eliminata, spostata o forse non è
+                mai esistita.
               </p>
             </motion.div>
 
@@ -126,22 +130,17 @@ export default function NotFound() {
                       <Mail className="w-8 h-8 mb-2 group-hover:-translate-y-1 transition-transform" />
                       <span className="tactical-text text-xs">SCRIVICI ORA</span>
                     </Link>
+
+                    <Button
+                      className="group h-auto col-span-2 md:col-span-4 bg-transparent border-2 border-orchi-gray/50 text-orchi-light hover:bg-orchi-gray/20 hover:text-orchi-gold hover:border-orchi-gold/60"
+                      onClick={() => window.history.back()}
+                    >
+                      <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                      TORNA INDIETRO
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-
-            <motion.div
-              animate="animate"
-              className="mt-8"
-              initial="initial"
-              transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
-              variants={fadeInUp}
-            >
-              <Button className="group" onClick={() => window.history.back()} variant="outline">
-                <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                TORNA INDIETRO
-              </Button>
             </motion.div>
           </div>
         </div>
