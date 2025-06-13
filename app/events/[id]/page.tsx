@@ -42,6 +42,7 @@ const EventDetailPage = () => {
 
   const [event, setEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
+  const [loadingOperation, setLoadingOperation] = useState(false);
 
   const id = params.id;
 
@@ -83,8 +84,10 @@ const EventDetailPage = () => {
     }
   };
 
-  const eventSubscribeUnsubscrive = async (subscribe: boolean) => {
-    if (!profile || loadingAuth || !profile.user) return;
+  const eventUpdateUserPresance = async (subscribe: boolean) => {
+    if (!profile || loadingAuth) return;
+
+    setLoadingOperation(true);
 
     try {
       let participantsList = [...event!.participants];
@@ -92,9 +95,9 @@ const EventDetailPage = () => {
       if (subscribe)
         participantsList.push({
           type: 'registered-user',
-          value: profile!.user!.id || '',
+          value: profile!.id || '',
         });
-      else participantsList = participantsList.filter((partecipant) => partecipant.value !== profile!.user!.id);
+      else participantsList = participantsList.filter((partecipant) => partecipant.value !== profile!.id);
 
       const { error: eventUpdateError } = await supabase
         .from('events')
@@ -132,7 +135,7 @@ const EventDetailPage = () => {
     loadingAuth ||
     event?.participants
       .filter((participants) => participants.type === 'registered-user')
-      .find((participants) => participants.value === profile.user?.id) ||
+      .find((participants) => participants.value === profile.id) ||
     !event?.registration_open ||
     (event.maximum_participants ? event.participants.length >= event.maximum_participants : false);
 
@@ -427,7 +430,7 @@ const EventDetailPage = () => {
                             ? "Per iscriverti in autonomia all'envento devi essere un membro degli Orchi. Se sei un ospite o un esterno e vuoi partecipare, per favore contattaci direttamente."
                             : event?.participants
                                   .filter((participants) => participants.type === 'registered-user')
-                                  .find((participants) => participants.value === profile.user?.id)
+                                  .find((participants) => participants.value === profile.id)
                               ? 'Stai già partecipando a questo evento.'
                               : !event.registration_open
                                 ? 'Le registrazioni sono al momento chiuse.'

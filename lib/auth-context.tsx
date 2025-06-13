@@ -2,18 +2,19 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { Session, User } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 
 import TeamMember from '@/types/team-member';
 
 import { supabase } from './supabase';
 
+interface UserWithAdmin extends User {
+  admin: boolean;
+}
+
 interface AuthContextType {
   loadingAuth: boolean;
-  profile: {
-    teamMember: TeamMember | null;
-    user: User | null;
-  } | null;
+  profile: UserWithAdmin | null;
   signOut: () => Promise<void>;
 }
 
@@ -30,14 +31,14 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [admin, setAdmin] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(true);
-  const [teamMember, setTeamMember] = useState<TeamMember | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
   const fetchTeamMember = async (userId: string) => {
     const { data: teamMemberData } = await supabase.from('team_members').select('*').eq('id', userId).single();
 
-    setTeamMember(teamMemberData ?? null);
+    setAdmin(teamMemberData ? (teamMemberData as TeamMember).is_admin : false);
   };
 
   useEffect(() => {
@@ -74,13 +75,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const value = {
     loadingAuth,
-    profile:
-      teamMember && user
-        ? {
-            teamMember,
-            user,
-          }
-        : null,
+    profile: user
+      ? ({
+          ...user,
+          admin: admin,
+        } as UserWithAdmin)
+      : null,
     signOut,
   };
 

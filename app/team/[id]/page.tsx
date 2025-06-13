@@ -30,16 +30,13 @@ import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase';
 import TeamMember from '@/types/team-member';
 
 const TeamMemberDetailPage = () => {
-  const { loadingAuth, profile } = useAuth();
   const params = useParams();
 
   const [imageHoverHeight, setImageHoverHeight] = useState(0);
@@ -151,15 +148,6 @@ const TeamMemberDetailPage = () => {
               <ArrowLeft className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform" />
               TORNA ALLA SQUADRA
             </Link>
-
-            {teamMember &&
-              profile &&
-              !loadingAuth &&
-              (profile.teamMember?.is_admin || teamMember.id === profile.user?.id) && (
-                <Button className="cursor-pointer bg-orchi-gold hover:bg-orchi-gold/80 tactical-text opacity-80 hover:opacity-100">
-                  MODIFICA
-                </Button>
-              )}
           </motion.div>
 
           <motion.div
