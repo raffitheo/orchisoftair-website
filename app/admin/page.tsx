@@ -11,19 +11,15 @@ import { toast } from 'sonner';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/lib/auth-context';
+import { useProtectedRoute } from '@/hooks/use-protected-route';
 import { supabase } from '@/lib/supabase';
-import { useRouter } from 'next/navigation';
 
 const AdminPage = () => {
-  const { loadingAuth, profile } = useAuth();
-  const router = useRouter();
+  const { loadingAuth, profile } = useProtectedRoute(true, '/');
 
   const [eventsCount, setEventsCount] = useState(0);
   const [galleryImagesCount, setGalleryImagesCount] = useState(0);
   const [teamMembersCount, setTeamMembersCount] = useState(0);
-
-  const roleChecked = useRef(false);
 
   useEffect(() => {
     countEvents();
@@ -32,20 +28,6 @@ const AdminPage = () => {
 
     document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Pannello admin`;
   }, []);
-
-  useEffect(() => {
-    if (loadingAuth || roleChecked.current) return;
-
-    roleChecked.current = true;
-
-    if (!profile || !profile.admin) {
-      toast.error('Non sei un amministratore!', {
-        description: 'Non è stato assegnato il ruolo per visualizzare questo contenuto, sei stat* riportat* alla home.',
-      });
-
-      router.push('/');
-    }
-  }, [loadingAuth, profile, router]);
 
   const countEvents = async () => {
     try {
