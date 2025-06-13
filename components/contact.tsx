@@ -146,8 +146,8 @@ const Contact = () => {
           >
             <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
               <CardHeader className="text-center">
-                <div className="mx-auto w-16 h-16 bg-gradient-to-r from-orchi-red to-orchi-gold rounded-full flex items-center justify-center mb-4">
-                  <Mail className="h-8 w-8 text-white" />
+                <div className="mx-auto w-12 h-12 bg-gradient-to-r from-orchi-gold to-orchi-red rounded-lg flex items-center justify-center mb-4">
+                  <Mail className="h-6 w-6 text-white" />
                 </div>
 
                 <CardTitle className="display-text text-3xl text-orchi-light">FORM DI CONTATTO</CardTitle>

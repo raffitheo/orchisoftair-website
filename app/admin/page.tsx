@@ -206,12 +206,12 @@ const AdminPage = () => {
                   className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden flex flex-col"
                   key={index}
                 >
-                  <CardHeader>
-                    <div className="w-12 h-12 bg-gradient-to-r from-orchi-gold to-orchi-red rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <CardHeader className="text-center">
+                    <div className="mx-auto w-12 h-12 bg-gradient-to-r from-orchi-gold to-orchi-red rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
 
-                    <CardTitle className="text-orchi-light">{section.title}</CardTitle>
+                    <CardTitle className="display-text text-3xl text-orchi-light">{section.title}</CardTitle>
 
                     <CardDescription className="text-orchi-light/70">{section.description}</CardDescription>
                   </CardHeader>
