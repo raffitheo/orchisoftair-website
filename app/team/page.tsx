@@ -5,14 +5,14 @@ import { useEffect, useState } from 'react';
 import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
-import { Brain, Dumbbell, Target, Users } from 'lucide-react';
+import { Dumbbell, Target, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
 import TeamMember from '@/types/team-member';
@@ -168,10 +168,6 @@ const TeamPage = () => {
             transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            <h2 className="tactical-text text-4xl text-orchi-gold mb-8 flex items-center">
-              <Users className="h-8 w-8 mr-3" />I NOSTRI GUERRIERI
-            </h2>
-
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {teamMembers.length === 0 ? (
                 loading ? (
@@ -255,54 +251,6 @@ const TeamPage = () => {
                 ))
               )}
             </div>
-          </motion.div>
-
-          <motion.div
-            animate="animate"
-            initial="initial"
-            transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
-            variants={fadeInUp}
-          >
-            <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500">
-              <CardHeader>
-                <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                  <Brain className="h-8 w-8 my-auto" />
-                  FILOSOFIA DEGLI ORCHI
-                </CardTitle>
-              </CardHeader>
-
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="flex flex-col space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                    <h3 className="text-xl tactical-text text-orchi-gold mb-4">UNITÀ E STRATEGIA</h3>
-
-                    <p className="text-orchi-light/90 leading-relaxed mb-4">
-                      Crediamo che la forza di una squadra risieda nell'unità e nella coordinazione. Ogni membro
-                      contribuisce con le proprie competenze uniche per raggiungere obiettivi comuni.
-                    </p>
-
-                    <p className="text-orchi-light/90 leading-relaxed">
-                      La strategia e la tattica sono fondamentali, ma senza il rispetto reciproco e la fiducia, anche il
-                      piano migliore può fallire.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                    <h3 className="text-xl tactical-text text-orchi-gold mb-4">CRESCITA CONTINUA</h3>
-
-                    <p className="text-orchi-light/90 leading-relaxed mb-4">
-                      Non smettiamo mai di imparare e migliorare. Ogni battaglia è un'opportunità per crescere, sia
-                      individualmente che come squadra.
-                    </p>
-
-                    <p className="text-orchi-light/90 leading-relaxed">
-                      Accogliamo nuovi membri con entusiasmo e li aiutiamo a sviluppare le loro abilità in un ambiente
-                      positivo e stimolante.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </motion.div>
         </div>
       </main>
