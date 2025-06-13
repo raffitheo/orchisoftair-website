@@ -13,7 +13,7 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
 import { default as GalleryImageType } from '@/types/gallery-image';
@@ -316,6 +316,8 @@ const GalleryPage = () => {
             open={!!fullscreenImage}
           >
             <DialogContent className="max-w-[95vw] max-h-[95vh] h-full p-0 bg-black/95 border-orchi-gray/40 focus:outline-none [&>button]:absolute [&>button]:top-4 [&>button]:right-4 [&>button]:z-50 [&>button]:bg-black/50 [&>button]:hover:bg-black/70 [&>button]:rounded-full [&>button]:p-2 [&>button]:transition-colors [&>button]:opacity-100 [&>button]:cursor-pointer [&>button_svg]:h-6 [&>button_svg]:w-6 [&>button_svg]:text-white">
+              <DialogTitle className="hidden"></DialogTitle>
+
               <motion.div
                 animate={{ opacity: 1 }}
                 className="relative w-full h-full"
