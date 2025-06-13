@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Archive, BicepsFlexed, Calendar, Dumbbell, Images, ImageUp, Search, Square, Users } from 'lucide-react';
+import { Archive, BicepsFlexed, Calendar, Dumbbell, Images, ImageUp, Luggage, Search, Users } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
 
@@ -122,7 +122,7 @@ const GalleryPage = () => {
       name: 'SQUADRA',
     },
     {
-      icon: Square,
+      icon: Luggage,
       id: 'equipment',
       name: 'EQUIPAGGIAMENTO',
     },
