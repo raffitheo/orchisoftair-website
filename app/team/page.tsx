@@ -192,11 +192,10 @@ const TeamPage = () => {
                   </div>
                 )
               ) : (
-                teamMembers.map((member, index) => (
+                teamMembers.map((member) => (
                   <Card
                     className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden"
                     key={member.id}
-                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="relative aspect-square overflow-hidden rounded-t-xl">
                       <motion.div layoutId={`card-image-${member.id}`} className="w-full h-full">

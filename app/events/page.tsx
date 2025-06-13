@@ -151,11 +151,10 @@ const EventsPage = () => {
                 </div>
               )
             ) : (
-              events.map((event, index) => (
+              events.map((event) => (
                 <Card
                   className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden flex flex-col"
                   key={event.id}
-                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div className="relative overflow-hidden rounded-t-xl">
                     <motion.div className="w-full h-full" layoutId={`card-image-${event.id}`}>

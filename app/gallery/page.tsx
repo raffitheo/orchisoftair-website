@@ -259,11 +259,10 @@ const GalleryPage = () => {
                 </div>
               )
             ) : (
-              galleryImages.map((image, index) => (
+              galleryImages.map((image) => (
                 <Card
+                  className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 overflow-hidden"
                   key={image.id}
-                  className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-500 overflow-hidden"
-                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <div
                     className="relative aspect-square overflow-hidden cursor-pointer"
