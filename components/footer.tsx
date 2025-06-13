@@ -182,7 +182,15 @@ const Footer = () => {
         <div className="pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-orchi-light/60 text-xs mb-4 md:mb-0">
-              &copy; 2024-2025 Raffaele Valenti. Tutti i diritti riservati.
+              &copy; 2024-2025{' '}
+              <Link
+                className="text-orchi-light/80 hover:text-orchi-gold transition-colors"
+                href="https://www.raffaelevalenti.it/"
+                target="_blank"
+              >
+                Raffaele Valenti
+              </Link>
+              . Tutti i diritti riservati.
             </p>
 
             <div className="flex items-center space-x-6">
