@@ -70,7 +70,7 @@ export default function NotFound() {
 
                 <CardContent>
                   <Link
-                    className="inline-block rounded-lg bg-orchi-red hover:bg-orchi-gold text-white tactical-text transform hover:scale-105 h-12 py-3 px-8 transition-all duration-300"
+                    className="inline-block w-full rounded-lg bg-orchi-red hover:bg-orchi-gold text-white tactical-text transform hover:scale-105 h-12 py-3 px-8 transition-all duration-300"
                     href="/"
                   >
                     TORNA ALLA HOME
