@@ -157,13 +157,13 @@ const EventsPage = () => {
                   key={event.id}
                 >
                   <div className="relative overflow-hidden rounded-t-xl">
-                    <motion.div className="w-full h-full" layoutId={`card-image-${event.id}`}>
+                    <motion.div className="aspect-video w-full h-auto" layoutId={`card-image-${event.id}`}>
                       <Image
                         alt={event.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                        height={512}
+                        className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                        fill
                         src={event.image_url || '/event-placeholder.webp'}
-                        width={512}
+                        quality={100}
                       />
                     </motion.div>
 
