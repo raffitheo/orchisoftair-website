@@ -53,7 +53,7 @@ export default function NotFound() {
               animate="animate"
               className="mb-12"
               initial="initial"
-              transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+              transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
               <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -82,7 +82,7 @@ export default function NotFound() {
             <motion.div
               animate="animate"
               initial="initial"
-              transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+              transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
               <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">

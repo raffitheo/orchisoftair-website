@@ -5,21 +5,7 @@ import { useEffect, useState } from 'react';
 import { PostgrestError } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
-import {
-  ArrowLeft,
-  Banknote,
-  Building,
-  Calendar,
-  Clock,
-  Info,
-  LogIn,
-  MapPin,
-  NotepadText,
-  Target,
-  Trophy,
-  User,
-  Users,
-} from 'lucide-react';
+import { ArrowLeft, Building, Calendar, Clock, LogIn, MapPin, NotepadText, Target, Trophy, User } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -179,7 +165,7 @@ const EventDetailPage = () => {
             animate="animate"
             className="grid grid-cols-1 lg:grid-cols-3 gap-8"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             {!event ? (
@@ -253,7 +239,7 @@ const EventDetailPage = () => {
                     animate="animate"
                     className="grid grid-cols-2 md:grid-cols-4 gap-4"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+                    transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
@@ -296,7 +282,7 @@ const EventDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
+                    transition={{ delay: 0.3, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -318,7 +304,7 @@ const EventDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
+                    transition={{ delay: 0.4, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -351,7 +337,7 @@ const EventDetailPage = () => {
                   animate="animate"
                   className="flex flex-col space-y-6"
                   initial="initial"
-                  transition={{ duration: 0.5, delay: 1.0, ease: 'easeInOut' }}
+                  transition={{ delay: 0.5, duration: 0.5, ease: 'easeInOut' }}
                   variants={fadeInUp}
                 >
                   <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -414,7 +400,7 @@ const EventDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 1.2, ease: 'easeInOut' }}
+                    transition={{ delay: 0.6, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -447,7 +433,7 @@ const EventDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 1.4, ease: 'easeInOut' }}
+                    transition={{ delay: 0.7, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">

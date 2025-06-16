@@ -154,7 +154,7 @@ const TeamMemberDetailPage = () => {
             animate="animate"
             className="grid grid-cols-1 lg:grid-cols-3 gap-8"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             {!teamMember ? (
@@ -251,7 +251,7 @@ const TeamMemberDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+                    transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 lg:hidden">
@@ -273,7 +273,7 @@ const TeamMemberDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
+                    transition={{ delay: 0.3, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -339,7 +339,7 @@ const TeamMemberDetailPage = () => {
                   animate="animate"
                   className="flex flex-col space-y-6"
                   initial="initial"
-                  transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
+                  transition={{ delay: 0.4, duration: 0.5, ease: 'easeInOut' }}
                   variants={fadeInUp}
                 >
                   <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -437,7 +437,7 @@ const TeamMemberDetailPage = () => {
                   <motion.div
                     animate="animate"
                     initial="initial"
-                    transition={{ duration: 0.5, delay: 1.2, ease: 'easeInOut' }}
+                    transition={{ delay: 0.5, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
@@ -510,7 +510,7 @@ const TeamMemberDetailPage = () => {
             <motion.div
               animate="animate"
               initial="initial"
-              transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
+              transition={{ delay: 0.6, duration: 0.5, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
               <h4 className="display-text text-3xl md:text-6xl text-transparent bg-gradient-to-r from-orchi-gold via-orchi-red to-orchi-gold bg-clip-text mb-8">
@@ -522,7 +522,7 @@ const TeamMemberDetailPage = () => {
               animate="animate"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
               initial="initial"
-              transition={{ duration: 0.5, delay: 0.8, ease: 'easeInOut' }}
+              transition={{ delay: 0.7, duration: 0.5, ease: 'easeInOut' }}
               variants={fadeInUp}
             >
               {teamMembers.length === 0 ? (

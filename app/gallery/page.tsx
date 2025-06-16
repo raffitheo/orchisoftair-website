@@ -160,7 +160,7 @@ const GalleryPage = () => {
             animate="animate"
             className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
@@ -210,7 +210,7 @@ const GalleryPage = () => {
             animate="animate"
             className="mb-12"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+            transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             <div className="flex flex-wrap gap-4 justify-center">
@@ -239,7 +239,7 @@ const GalleryPage = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             initial="initial"
             key={galleryKey}
-            transition={{ duration: 0.5, delay: 0.6, ease: 'easeInOut' }}
+            transition={{ delay: 0.3, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             {galleryImages.length === 0 ? (

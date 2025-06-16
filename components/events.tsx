@@ -78,7 +78,7 @@ const Events = () => {
           animate="animate"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           initial="initial"
-          transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+          transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
           variants={fadeInUp}
         >
           {events.length === 0 ? (

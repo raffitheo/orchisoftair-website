@@ -108,7 +108,7 @@ const EventsPage = () => {
             animate="animate"
             className="mb-12"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             <div className="flex flex-wrap gap-4 justify-center">
@@ -131,7 +131,7 @@ const EventsPage = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             initial="initial"
             key={eventsKey}
-            transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+            transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             {events.length === 0 ? (

@@ -40,7 +40,7 @@ const Hero = () => {
           animate="animate"
           className="mb-8"
           initial="initial"
-          transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+          transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
           variants={fadeInUp}
         >
           <h1 className="display-text text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-orchi-light mb-4 leading-tight">
@@ -56,7 +56,7 @@ const Hero = () => {
         <motion.div
           animate="animate"
           initial="initial"
-          transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+          transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
           variants={fadeInUp}
         >
           <Link

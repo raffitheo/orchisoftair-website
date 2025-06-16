@@ -147,7 +147,7 @@ const AdminPage = () => {
             animate="animate"
             className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.2, ease: 'easeInOut' }}
+            transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
@@ -195,7 +195,7 @@ const AdminPage = () => {
             animate="animate"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             initial="initial"
-            transition={{ duration: 0.5, delay: 0.4, ease: 'easeInOut' }}
+            transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
             {adminSections.map((section, index) => {
