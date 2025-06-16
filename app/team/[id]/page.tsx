@@ -1,22 +1,19 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { PostgrestError } from '@supabase/supabase-js';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
-  ArrowUp,
   Book,
   Calendar,
   CircleEllipsis,
   Contact,
   Facebook,
-  Info,
   Instagram,
   Luggage,
   MapPin,
-  Star,
   Tally1,
   Tally2,
   Trophy,
@@ -39,13 +36,10 @@ import TeamMember from '@/types/team-member';
 const TeamMemberDetailPage = () => {
   const params = useParams();
 
-  const [imageHoverHeight, setImageHoverHeight] = useState(0);
   const [loadingTeamMember, setLoadingTeamMember] = useState(true);
   const [loadingTeamMembers, setLoadingTeamMembers] = useState(true);
   const [teamMember, setTeamMember] = useState<TeamMember | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-
-  const imageHoverRef = useRef<HTMLDivElement>(null);
 
   const id = params.id;
 
@@ -62,22 +56,6 @@ const TeamMemberDetailPage = () => {
         document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${teamMember.name} - ${teamMember.field_name}`;
       else document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Membro della squadra non trovato`;
     }
-  }, [loadingTeamMember, teamMember]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setTimeout(() => {
-        if (imageHoverRef.current) setImageHoverHeight(imageHoverRef.current.clientHeight);
-      }, 100);
-    };
-
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, [loadingTeamMember, teamMember]);
 
   const fetchTeamMember = async () => {
@@ -178,71 +156,58 @@ const TeamMemberDetailPage = () => {
               <>
                 <div className="lg:col-span-2 flex flex-col space-y-8">
                   <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                    <div className="relative aspect-square overflow-hidden rounded-xl">
-                      <motion.div className="w-full h-full" layoutId={`card-image-${teamMember.id}`}>
-                        <Image
-                          alt={teamMember.field_name}
-                          className="object-cover w-full h-full"
-                          fill
-                          src={teamMember.image_url || '/team-member-placeholder.webp'}
-                          quality={100}
-                        />
-                      </motion.div>
+                    <div className="flex flex-col lg:flex-row">
+                      <div className="lg:w-2/5 relative">
+                        <motion.div
+                          className="aspect-square relative overflow-hidden"
+                          layoutId={`card-image-${teamMember.id}`}
+                        >
+                          <Image
+                            alt={teamMember.field_name}
+                            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+                            fill
+                            src={teamMember.image_url || '/team-member-placeholder.webp'}
+                            quality={100}
+                          />
+                        </motion.div>
 
-                      <div
-                        className={`absolute inset-0 z-10 bg-gradient-to-t from-orchi/80 via-transparent to-transparent lg:group-hover:translate-y-[var(--animated-translate-y)] transform transition-transform duration-300`}
-                        style={
-                          {
-                            '--animated-translate-y': `-${imageHoverHeight - 112}px`,
-                          } as React.CSSProperties
-                        }
-                      />
+                        <div className="absolute inset-0 bg-gradient-to-t from-orchi via-orchi/40 to-transparent lg:bg-gradient-to-r lg:from-orchi/60 lg:via-orchi/20 lg:to-transparent"></div>
+                      </div>
 
-                      <div
-                        className="absolute bottom-0 left-0 right-0 z-20 flex flex-col justify-end transform transition-transform duration-300 translate-y-[calc(100%-112px)] lg:group-hover:translate-y-0"
-                        ref={imageHoverRef}
-                      >
-                        <div className="flex h-28 flex-col justify-end">
-                          <div className="px-6 pb-6 flex flex-row w-full justify-between">
-                            <div className="flex flex-col">
-                              <h1 className="display-text text-4xl md:text-5xl text-white mb-2">{teamMember.name}</h1>
+                      <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
+                        <div className="space-y-6">
+                          <div>
+                            <h1 className="display-text text-4xl lg:text-5xl text-orchi-light mb-3">
+                              {teamMember.name}
+                            </h1>
 
-                              <div className="flex items-center text-orchi-gold">{teamMember.field_name}</div>
+                            <div className="tactical-text text-orchi-gold text-xl mb-4">{teamMember.field_name}</div>
+
+                            <div className="tactical-text text-orchi-light/80 text-lg mb-6">
+                              {teamMember.role === 'president'
+                                ? 'Presidente'
+                                : teamMember.role === 'vice_president'
+                                  ? 'Vice Presidente'
+                                  : teamMember.role === 'advisor'
+                                    ? 'Consigliere'
+                                    : teamMember.role === 'secretary'
+                                      ? 'Segretario'
+                                      : teamMember.role === 'member'
+                                        ? 'Socio'
+                                        : ''}
                             </div>
-
-                            <motion.div
-                              animate={{
-                                y: [0, 10, 0],
-                              }}
-                              className="opacity-100 z-20 group-hover:opacity-0 transition-opacity duration-300 hidden lg:block"
-                              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                            >
-                              <div className="flex flex-col items-center gap-2">
-                                <ArrowUp
-                                  className="text-orchi-light/90 hover:text-orchi-gold transition-colors duration-300"
-                                  size={30}
-                                />
-                                <span className="tactical-text text-xs text-orchi-light/90">BIOGRAFIA</span>
-                              </div>
-                            </motion.div>
                           </div>
-                        </div>
 
-                        <div className="bg-orchi/80 p-6 pt-0">
-                          <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                            <CardHeader>
-                              <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                                <Book className="h-8 w-8" />
-                                BIOGRAFIA
-                              </CardTitle>
-                            </CardHeader>
-
-                            <CardContent>
-                              <p className="text-orchi-light/90 leading-relaxed whitespace-pre-line overflow-y-auto max-h-50">
-                                {teamMember?.bio?.replace(/\\n/g, '\n') || 'Nessuna biografia disponibile.'}
-                              </p>
-                            </CardContent>
-                          </Card>
+                          <div className="flex flex-wrap gap-6 text-sm">
+                            <div className="flex items-center text-orchi-light/90">
+                              <MapPin className="h-5 w-5 mr-2 text-orchi-gold" />
+                              {teamMember.location}
+                            </div>
+                            <div className="flex items-center text-orchi-light/90">
+                              <Calendar className="h-5 w-5 mr-2 text-orchi-gold" />
+                              Membro dal {teamMember.year_joined}
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -254,7 +219,7 @@ const TeamMemberDetailPage = () => {
                     transition={{ delay: 0.2, duration: 0.5, ease: 'easeInOut' }}
                     variants={fadeInUp}
                   >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 lg:hidden">
+                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                       <CardHeader>
                         <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
                           <Book className="h-8 w-8" />
@@ -263,7 +228,7 @@ const TeamMemberDetailPage = () => {
                       </CardHeader>
 
                       <CardContent>
-                        <p className="text-orchi-light/90 leading-relaxed whitespace-pre-line overflow-y-auto max-h-50">
+                        <p className="text-orchi-light/90 leading-relaxed whitespace-pre-line overflow-y-auto">
                           {teamMember?.bio?.replace(/\\n/g, '\n') || 'Nessuna biografia disponibile.'}
                         </p>
                       </CardContent>
@@ -317,7 +282,7 @@ const TeamMemberDetailPage = () => {
                               <div className="flex-1">
                                 <p className="text-orchi-light font-semibold">Altro</p>
 
-                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 my-2">
+                                <ul className="flex flex-col my-2">
                                   {teamMember.equipment?.other?.map((other, index) => (
                                     <li className="flex items-center space-x-4 p-0 border-0" key={index}>
                                       <div className="bg-orchi-red w-2 h-2 rounded-full" />
@@ -345,94 +310,26 @@ const TeamMemberDetailPage = () => {
                   <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <CardHeader>
                       <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                        <Info className="h-8 w-8" />
-                        INFORMAZIONI
+                        <Trophy className="h-8 w-8" />
+                        ACHIVEMENTS
                       </CardTitle>
                     </CardHeader>
 
                     <CardContent>
-                      <div className="flex flex-col space-y-6">
-                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                          <Star className="h-8 w-8 text-orchi-red" />
+                      <ul className="flex flex-col space-y-6">
+                        {teamMember.achivements?.map((achivement, index) => (
+                          <li
+                            className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
+                            key={index}
+                          >
+                            <div className="bg-orchi-red w-2 h-2 rounded-full" />
 
-                          <div className="flex flex-col lg:flex-row space-between w-full">
-                            <div className="flex-1">
-                              <p className="text-orchi-light font-semibold">Ruolo</p>
-
-                              <p className="text-orchi-light/80">
-                                {teamMember.role === 'president'
-                                  ? 'Presidente'
-                                  : teamMember.role === 'vice_president'
-                                    ? 'Vice Presidente'
-                                    : teamMember.role === 'advisor'
-                                      ? 'Consigliere'
-                                      : teamMember.role === 'secretary'
-                                        ? 'Segretario'
-                                        : teamMember.role === 'member'
-                                          ? 'Socio'
-                                          : ''}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                          <MapPin className="h-8 w-8 text-orchi-red" />
-
-                          <div className="flex flex-col lg:flex-row space-between w-full">
-                            <div className="flex-1">
-                              <p className="text-orchi-light font-semibold">Posizione</p>
-
-                              <p className="text-orchi-light/80">{teamMember.location}</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                          <Calendar className="h-8 w-8 text-orchi-red" />
-
-                          <div className="flex flex-col lg:flex-row space-between w-full">
-                            <div className="flex-1">
-                              <p className="text-orchi-light font-semibold">Membro dal</p>
-
-                              <p className="text-orchi-light/80">{teamMember.year_joined}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                            <span className="text-orchi-light text-lg">{achivement}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </CardContent>
                   </Card>
-
-                  <motion.div
-                    animate="animate"
-                    initial="initial"
-                    transition={{ duration: 0.5, delay: 1, ease: 'easeInOut' }}
-                    variants={fadeInUp}
-                  >
-                    <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
-                      <CardHeader>
-                        <CardTitle className="flex gap-4 display-text text-3xl text-orchi-gold">
-                          <Trophy className="h-8 w-8" />
-                          ACHIVEMENTS
-                        </CardTitle>
-                      </CardHeader>
-
-                      <CardContent>
-                        <ul className="flex flex-col space-y-6">
-                          {teamMember.achivements?.map((achivement, index) => (
-                            <li
-                              className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
-                              key={index}
-                            >
-                              <div className="bg-orchi-red w-2 h-2 rounded-full" />
-
-                              <span className="text-orchi-light text-lg">{achivement}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
 
                   <motion.div
                     animate="animate"
