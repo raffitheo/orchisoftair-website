@@ -198,7 +198,7 @@ const EventDetailPage = () => {
                         />
                       </motion.div>
 
-                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-orchi/80 via-transparent to-transparent" />
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-orchi via-orchi/40 to-transparent" />
 
                       <div className="absolute bottom-6 left-6 right-6 z-20">
                         <h1 className="display-text text-4xl md:text-5xl text-white mb-4">{event.title}</h1>
