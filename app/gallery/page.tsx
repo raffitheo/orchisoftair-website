@@ -219,9 +219,8 @@ const GalleryPage = () => {
 
                 return (
                   <Button
-                    className={
-                      selectedCategory === category.id ? 'cursor-not-allowed bg-orchi-gold hover:scale-100' : ''
-                    }
+                    className={selectedCategory === category.id ? 'bg-orchi-gold disabled:opacity-100' : ''}
+                    disabled={selectedCategory === category.id}
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
                     tabIndex={selectedCategory === category.id ? -1 : undefined}

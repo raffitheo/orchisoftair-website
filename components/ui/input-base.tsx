@@ -57,7 +57,7 @@ function InputBase({ autoFocus, disabled, className, onClick, error, ...props }:
         })}
         className={cn(
           'flex min-h-10 w-full items-center gap-2 rounded-md border border-orchi-gray bg-orchi-gray/20 px-3 py-2 text-sm text-orchi-light ring-offset-background shadow-xs outline-none transition-[color,box-shadow]',
-          disabled && 'pointer-events-none cursor-not-allowed opacity-50',
+          disabled && 'pointer-events-none opacity-50',
           focused && 'border-orchi-gold ring-2 ring-orchi-gold ring-offset-2',
           error && 'border-destructive ring-destructive/40',
           className

@@ -18,7 +18,6 @@ import InputWithIcon from '@/components/ui/input-with-icon';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase';
-import { cn } from '@/lib/utils';
 
 const LoginPage = () => {
   const { loadingAuth, profile } = useAuth();
@@ -173,10 +172,8 @@ const LoginPage = () => {
                     </div>
 
                     <Button
-                      className={cn(
-                        'w-full',
-                        isSubmitting ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
-                      )}
+                      className="w-full"
+                      disabled={isSubmitting}
                       tabIndex={isSubmitting ? -1 : undefined}
                       type="submit"
                     >
@@ -188,7 +185,8 @@ const LoginPage = () => {
                     <div className="text-center text-sm text-orchi-light/70">Non hai ancora un account?</div>
 
                     <Button
-                      className={cn('w-full mt-3', isSubmitting ? 'cursor-not-allowed' : '')}
+                      className="w-full mt-3"
+                      disabled={isSubmitting}
                       tabIndex={isSubmitting ? -1 : undefined}
                       variant="outline"
                     >

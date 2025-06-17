@@ -114,7 +114,8 @@ const EventsPage = () => {
             <div className="flex flex-wrap gap-4 justify-center">
               {[2025, 2024, 2023, 2022, 2021, 2020].map((year) => (
                 <Button
-                  className={selectedYear === year ? 'cursor-not-allowed bg-orchi-gold hover:scale-100' : ''}
+                  className={selectedYear === year ? 'bg-orchi-gold disabled:opacity-100' : ''}
+                  disabled={selectedYear === year}
                   key={year}
                   onClick={() => setSelectedYear(year)}
                   tabIndex={selectedYear === year ? -1 : undefined}

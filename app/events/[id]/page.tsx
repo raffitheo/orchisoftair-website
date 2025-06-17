@@ -20,7 +20,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase';
-import { cn } from '@/lib/utils';
 import Event from '@/types/event';
 
 const EventDetailPage = () => {
@@ -130,14 +129,13 @@ const EventDetailPage = () => {
     animate: { opacity: 1, y: 0 },
   };
 
-  const isDisabled =
-    !profile ||
-    loadingAuth ||
-    event?.participants
-      .filter((participants) => participants.type === 'registered-user')
-      .find((participants) => participants.value === profile.id) ||
-    !event?.registration_open ||
-    (event.maximum_participants ? event.participants.length >= event.maximum_participants : false);
+  const isUserRegistered = event?.participants.some(
+    (participant) => participant.type === 'registered-user' && participant.value === profile?.id
+  );
+
+  const isEventFull = event?.maximum_participants ? event.participants.length >= event.maximum_participants : false;
+
+  const isDisabled: boolean = !profile || loadingAuth || !event?.registration_open || isUserRegistered || isEventFull;
 
   return (
     <div className="min-h-screen bg-orchi text-orchi-light relative overflow-hidden">
@@ -350,10 +348,8 @@ const EventDetailPage = () => {
 
                     <CardContent className="flex flex-col space-y-4">
                       <Button
-                        className={cn(
-                          'w-full',
-                          isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
-                        )}
+                        className="w-full"
+                        disabled={isDisabled}
                         onClick={() => eventUpdateUserPresance(true)}
                         tabIndex={isDisabled ? -1 : undefined}
                       >

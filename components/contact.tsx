@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import { AtSign, Mail, Phone, User } from 'lucide-react';
 
 import { useAuth } from '@/lib/auth-context';
-import { cn } from '@/lib/utils';
 
 import { Button } from './ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
@@ -207,14 +206,7 @@ const Contact = () => {
                     );
                   })}
 
-                  <Button
-                    className={cn(
-                      'w-full',
-                      isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
-                    )}
-                    tabIndex={isDisabled ? -1 : undefined}
-                    type="submit"
-                  >
+                  <Button className="w-full" disabled={isDisabled} tabIndex={isDisabled ? -1 : undefined} type="submit">
                     INVIA
                   </Button>
 

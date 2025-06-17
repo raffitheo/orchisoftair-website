@@ -13,7 +13,6 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import InputWithIcon from '@/components/ui/input-with-icon';
 import { Textarea } from '@/components/ui/textarea';
 import { useAuth } from '@/lib/auth-context';
-import { cn } from '@/lib/utils';
 
 const JoinUsPage = () => {
   const { loadingAuth, profile } = useAuth();
@@ -349,10 +348,8 @@ const JoinUsPage = () => {
                     })}
 
                     <Button
-                      className={cn(
-                        'w-full',
-                        isDisabled ? 'cursor-not-allowed bg-orchi-gray/50 text-orchi-light/50 hover:scale-100' : ''
-                      )}
+                      className="w-full"
+                      disabled={isDisabled}
                       tabIndex={isDisabled ? -1 : undefined}
                       type="submit"
                     >
