@@ -2,7 +2,6 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
-import importPlugin from 'eslint-plugin-import';
 import prettierPlugin from 'eslint-plugin-prettier';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,13 +17,12 @@ const eslintConfig = [
   },
   ...compat.extends('next/core-web-vitals'),
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
-      import: importPlugin,
       prettier: prettierPlugin,
     },
     rules: {
       'prettier/prettier': 'error',
-      'import/no-unresolved': 'error',
       'import/order': [
         'error',
         {
@@ -35,6 +33,10 @@ const eslintConfig = [
               group: 'external',
               position: 'before',
             },
+            {
+              pattern: '@/**',
+              group: 'internal',
+            },
           ],
           pathGroupsExcludedImportTypes: ['react'],
           'newlines-between': 'always',
@@ -44,17 +46,6 @@ const eslintConfig = [
           },
         },
       ],
-    },
-    settings: {
-      'import/parsers': {
-        '@typescript-eslint/parser': ['.ts', '.tsx'],
-      },
-      'import/resolver': {
-        typescript: {
-          alwaysTryTypes: true,
-          project: './tsconfig.json',
-        },
-      },
     },
   },
 ];
