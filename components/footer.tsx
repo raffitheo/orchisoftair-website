@@ -21,13 +21,13 @@ const Footer = () => {
 
   const countTeamMembers = async () => {
     try {
-      const { count: teamMembersCount, error: teamMembersError } = await supabase
+      const { count: teamMembersCount, error } = await supabase
         .from('team_members')
         .select('*', { count: 'exact', head: true });
 
-      if (teamMembersError) throw teamMembersError;
+      if (error) throw error;
 
-      setTeamMembersCount(teamMembersCount ?? 0);
+      setTeamMembersCount(teamMembersCount || 0);
     } catch (error) {
       console.error('Error counting team members:', error);
       toast.error(

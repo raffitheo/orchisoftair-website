@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 
 import { supabase } from '@/lib/supabase';
-import Event from '@/types/event';
+import Event, { EventSchema } from '@/types/event';
 
 import { Card, CardContent, CardDescription, CardHeader } from './ui/card';
 import Loader from './ui/loader';
@@ -26,16 +26,20 @@ const Events = () => {
 
   const fetchEvents = async () => {
     try {
-      const { data: eventsData, error: eventsError } = await supabase
+      const { data: events, error } = await supabase
         .from('events')
         .select('*')
         .gte('start_date', dayjs().toISOString())
         .order('start_date', { ascending: true })
         .limit(3);
 
-      if (eventsError) throw eventsError;
+      if (error) throw error;
 
-      setEvents(eventsData || []);
+      if (events) {
+        const validatedEvents = EventSchema.array().parse(events);
+
+        setEvents(validatedEvents);
+      } else setEvents([]);
     } catch (error) {
       console.error('Error fetching events:', error);
       toast.error(

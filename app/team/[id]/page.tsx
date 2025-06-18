@@ -31,7 +31,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/lib/supabase';
-import TeamMember from '@/types/team-member';
+import TeamMember, { TeamMemberSchema } from '@/types/team-member';
 
 const TeamMemberDetailPage = () => {
   const params = useParams();
@@ -44,6 +44,8 @@ const TeamMemberDetailPage = () => {
   const id = params.id;
 
   useEffect(() => {
+    if (!id) return;
+
     fetchTeamMember();
     fetchTeamMembers();
   }, [id]);
@@ -60,14 +62,19 @@ const TeamMemberDetailPage = () => {
 
   const fetchTeamMember = async () => {
     try {
-      const { data: teamMembersData, error: teamMembersError } = await supabase
+      const { data: teamMember, error } = await supabase
         .from('team_members')
         .select('*')
-        .eq('id', id)
+        .eq('id', id!.toString())
         .single();
 
-      if (teamMembersError) throw teamMembersError;
-      setTeamMember(teamMembersData || null);
+      if (error) throw error;
+
+      if (teamMember) {
+        const validatedTeamMember = TeamMemberSchema.parse(teamMember);
+
+        setTeamMember(validatedTeamMember);
+      } else setTeamMember(null);
     } catch (error) {
       console.error('Error fetching the team member:', error);
       toast.error(
@@ -83,17 +90,18 @@ const TeamMemberDetailPage = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data: randomTeamMemberData, error: randomTeamMemberError } = await supabase.rpc(
-        'get_random_team_members',
-        {
-          limit_count: 4,
-          user_id: id,
-        }
-      );
+      const { data: teamMembers, error } = await supabase.rpc('get_random_team_members', {
+        limit_count: 4,
+        user_id: id!.toString(),
+      });
 
-      if (randomTeamMemberError) throw randomTeamMemberError;
+      if (error) throw error;
 
-      setTeamMembers(randomTeamMemberData || []);
+      if (teamMembers) {
+        const validatedTeamMember = TeamMemberSchema.array().parse(teamMembers);
+
+        setTeamMembers(validatedTeamMember);
+      } else setTeamMembers([]);
     } catch (error) {
       console.error('Error fetching team members:', error);
     } finally {

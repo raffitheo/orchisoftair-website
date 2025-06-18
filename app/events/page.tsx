@@ -16,7 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
-import Event from '@/types/event';
+import Event, { EventSchema } from '@/types/event';
 
 import 'dayjs/locale/it';
 
@@ -47,7 +47,7 @@ const EventsPage = () => {
 
   const fetchEvents = async () => {
     try {
-      const { data: eventsData, error: eventsError } = await supabase
+      const { data: events, error } = await supabase
         .from('events')
         .select('*')
         .gte('start_date', dayjs(`01 01 ${selectedYear}`).toISOString())
@@ -55,9 +55,13 @@ const EventsPage = () => {
         .order('start_date', { ascending: false })
         .limit(12);
 
-      if (eventsError) throw eventsError;
+      if (error) throw error;
 
-      setEvents(eventsData || []);
+      if (events) {
+        const validatedEvents = EventSchema.array().parse(events);
+
+        setEvents(validatedEvents);
+      } else setEvents([]);
     } catch (error) {
       console.error('Error fetching events:', error);
       toast.error(

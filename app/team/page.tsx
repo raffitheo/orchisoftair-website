@@ -15,7 +15,7 @@ import Navbar from '@/components/navbar';
 import { Card, CardContent } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
-import TeamMember from '@/types/team-member';
+import TeamMember, { TeamMemberSchema } from '@/types/team-member';
 
 const TeamPage = () => {
   const [loading, setLoading] = useState(true);
@@ -38,13 +38,13 @@ const TeamPage = () => {
 
   const countTeamMembers = async () => {
     try {
-      const { count: teamMembersCount, error: teamMembersError } = await supabase
+      const { count: teamMembersCount, error } = await supabase
         .from('team_members')
         .select('*', { count: 'exact', head: true });
 
-      if (teamMembersError) throw teamMembersError;
+      if (error) throw error;
 
-      setTeamMembersCount(teamMembersCount ?? 0);
+      setTeamMembersCount(teamMembersCount || 0);
     } catch (error) {
       console.error('Error counting team members:', error);
       toast.error(
@@ -60,11 +60,15 @@ const TeamPage = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data: teamMembersData, error: teamMembersError } = await supabase.from('team_members').select('*');
+      const { data: teamMembers, error } = await supabase.from('team_members').select('*');
 
-      if (teamMembersError) throw teamMembersError;
+      if (error) throw error;
 
-      setTeamMembers(teamMembersData || []);
+      if (teamMembers) {
+        const validatedTeamMember = TeamMemberSchema.array().parse(teamMembers);
+
+        setTeamMembers(validatedTeamMember);
+      } else setTeamMembers([]);
     } catch (error) {
       console.error('Error fetching team members:', error);
       toast.error(

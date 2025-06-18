@@ -31,13 +31,11 @@ const AdminPage = () => {
 
   const countEvents = async () => {
     try {
-      const { count: eventsCount, error: eventsError } = await supabase
-        .from('events')
-        .select('*', { count: 'exact', head: true });
+      const { count: eventsCount, error } = await supabase.from('events').select('*', { count: 'exact', head: true });
 
-      if (eventsError) throw eventsError;
+      if (error) throw error;
 
-      setEventsCount(eventsCount ?? 0);
+      setEventsCount(eventsCount || 0);
     } catch (error) {
       console.error('Error counting events:', error);
       toast.error(
@@ -53,13 +51,13 @@ const AdminPage = () => {
 
   const countGalleryImages = async () => {
     try {
-      const { count: galleryImagesCount, error: galleryImagesError } = await supabase
+      const { count: galleryImagesCount, error } = await supabase
         .from('gallery_images')
         .select('*', { count: 'exact', head: true });
 
-      if (galleryImagesError) throw galleryImagesError;
+      if (error) throw error;
 
-      setGalleryImagesCount(galleryImagesCount ?? 0);
+      setGalleryImagesCount(galleryImagesCount || 0);
     } catch (error) {
       console.error('Error counting gallery images:', error);
       toast.error(
@@ -75,13 +73,13 @@ const AdminPage = () => {
 
   const countTeamMembers = async () => {
     try {
-      const { count: teamMembersCount, error: teamMembersError } = await supabase
+      const { count: teamMembersCount, error } = await supabase
         .from('team_members')
         .select('*', { count: 'exact', head: true });
 
-      if (teamMembersError) throw teamMembersError;
+      if (error) throw error;
 
-      setTeamMembersCount(teamMembersCount ?? 0);
+      setTeamMembersCount(teamMembersCount || 0);
     } catch (error) {
       console.error('Error counting team members:', error);
       toast.error(

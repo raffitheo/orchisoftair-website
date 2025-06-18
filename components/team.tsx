@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { toast } from 'sonner';
 
 import { supabase } from '@/lib/supabase';
-import TeamMember from '@/types/team-member';
+import TeamMember, { TeamMemberSchema } from '@/types/team-member';
 
 import { Card, CardContent } from './ui/card';
 import Loader from './ui/loader';
@@ -24,16 +24,17 @@ const Team = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const { data: randomTeamMembersData, error: randomTeamMembersError } = await supabase.rpc(
-        'get_random_team_members',
-        {
-          limit_count: 8,
-        }
-      );
+      const { data: teamMembers, error } = await supabase.rpc('get_random_team_members', {
+        limit_count: 8,
+      });
 
-      if (randomTeamMembersError) throw randomTeamMembersError;
+      if (error) throw error;
 
-      setTeamMembers(randomTeamMembersData || []);
+      if (teamMembers) {
+        const validatedTeamMember = TeamMemberSchema.array().parse(teamMembers);
+
+        setTeamMembers(validatedTeamMember);
+      } else setTeamMembers([]);
     } catch (error) {
       console.error('Error fetching team members:', error);
       toast.error(

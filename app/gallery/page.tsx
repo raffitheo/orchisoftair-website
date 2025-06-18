@@ -16,7 +16,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
-import { default as GalleryImageType } from '@/types/gallery-image';
+import { GalleryImageSchema, default as GalleryImageType } from '@/types/gallery-image';
+import z from 'zod';
+
+const GalleryImageCategorySchema = z.enum(['any', 'event', 'equipment', 'team', 'training']);
+
+type GalleryImageCategory = z.infer<typeof GalleryImageCategorySchema>;
 
 const GalleryPage = () => {
   const [fullscreenImage, setFullscreenImage] = useState<GalleryImageType | null>(null);
@@ -24,7 +29,7 @@ const GalleryPage = () => {
   const [galleryImagesCount, setGalleryImagesCount] = useState(0);
   const [galleryKey, setGalleryKey] = useState(dayjs().valueOf());
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState<GalleryImageCategory>('any');
 
   useEffect(() => {
     countGalleryImages();
@@ -48,13 +53,13 @@ const GalleryPage = () => {
 
   const countGalleryImages = async () => {
     try {
-      const { count: galleryImagesCount, error: galleryImagesError } = await supabase
+      const { count: galleryImagesCount, error } = await supabase
         .from('gallery_images')
         .select('*', { count: 'exact', head: true });
 
-      if (galleryImagesError) throw galleryImagesError;
+      if (error) throw error;
 
-      setGalleryImagesCount(galleryImagesCount ?? 0);
+      setGalleryImagesCount(galleryImagesCount || 0);
     } catch (error) {
       console.error('Error counting gallery images:', error);
       toast.error(
@@ -72,7 +77,7 @@ const GalleryPage = () => {
     try {
       let query = supabase.from('gallery_images').select('*').order('created_at', { ascending: true });
 
-      if (selectedCategory !== 'all') {
+      if (selectedCategory !== 'any') {
         query = query.eq('category', selectedCategory);
       }
 
@@ -222,7 +227,7 @@ const GalleryPage = () => {
                     className={selectedCategory === category.id ? 'bg-orchi-gold disabled:opacity-100' : ''}
                     disabled={selectedCategory === category.id}
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
+                    onClick={() => setSelectedCategory(GalleryImageCategorySchema.parse(category.id))}
                     tabIndex={selectedCategory === category.id ? -1 : undefined}
                   >
                     <IconComponent className="h-5 w-5 mr-2" />

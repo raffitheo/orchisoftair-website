@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { User } from '@supabase/supabase-js';
 
-import TeamMember from '@/types/team-member';
+import TeamMember, { TeamMemberSchema } from '@/types/team-member';
 
 import { supabase } from './supabase';
 
@@ -36,9 +36,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const fetchTeamMember = async (userId: string) => {
-    const { data: teamMemberData } = await supabase.from('team_members').select('*').eq('id', userId).single();
+    const { data: teamMember } = await supabase.from('team_members').select('*').eq('id', userId).single();
 
-    setAdmin(teamMemberData ? (teamMemberData as TeamMember).is_admin : false);
+    const validatedTeamMember = TeamMemberSchema.parse(teamMember);
+    setAdmin(teamMember ? validatedTeamMember.is_admin : false);
   };
 
   useEffect(() => {

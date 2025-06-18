@@ -51,12 +51,12 @@ const LoginPage = () => {
     setIsSubmitting(true);
 
     try {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email: formData.email,
         password: formData.password,
       });
 
-      if (signInError) throw signInError;
+      if (error) throw error;
 
       router.push('/');
     } catch (error) {

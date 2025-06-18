@@ -20,13 +20,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Loader from '@/components/ui/loader';
 import { useAuth } from '@/lib/auth-context';
 import { supabase } from '@/lib/supabase';
-import Event from '@/types/event';
+import Event, { EventSchema } from '@/types/event';
 
 const EventDetailPage = () => {
   const { loadingAuth, profile } = useAuth();
   const params = useParams();
 
-  const [event, setEvent] = useState<Event | null>(null);
+  const [currentEvent, setCurrentEvent] = useState<Event | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingOperation, setLoadingOperation] = useState(false);
 
@@ -44,21 +44,29 @@ const EventDetailPage = () => {
   useEffect(() => {
     if (loading) document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Caricamento evento...`;
     else {
-      if (event)
-        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${event.title} ${dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}${event.end_date ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}` : ''}`;
+      if (currentEvent)
+        document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | ${currentEvent.title} ${dayjs(currentEvent.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}${currentEvent.end_date ? ` - ${dayjs(currentEvent.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}` : ''}`;
       else document.title = `${process.env.NEXT_PUBLIC_BASSE_TITLE} | Evento non trovato`;
     }
-  }, [event, loading]);
+  }, [currentEvent, loading]);
 
   const fetchEvent = async () => {
     try {
-      const { data: eventData, error: eventError } = await supabase.from('events').select('*').eq('id', id).single();
+      const { data: event, error } = await supabase
+        .from('events')
+        .select('*')
+        .eq('id', parseInt(id!.toString()))
+        .single();
 
-      if (eventError) throw eventError;
+      if (error) throw error;
 
-      setEvent(eventData || null);
+      if (event) {
+        const validatedEvent = EventSchema.parse(event);
+
+        setCurrentEvent(validatedEvent);
+      } else setCurrentEvent(null);
     } catch (error) {
-      console.error('Error fetching the event:', error);
+      console.error('Error fetching the currentEvent:', error);
       toast.error(
         `Si è verificato un errore imprevisto durante il caricamento dell'evento. Codice errore: ${(error as PostgrestError).code}`,
         {
@@ -71,35 +79,42 @@ const EventDetailPage = () => {
   };
 
   const eventUpdateUserPresance = async (subscribe: boolean) => {
-    if (!profile || loadingAuth) return;
+    if (!profile || loadingAuth || !currentEvent) return;
 
     setLoadingOperation(true);
 
     try {
-      let participantsList = [...event!.participants];
+      let participantsList = [...currentEvent.participants];
 
-      if (subscribe)
+      if (subscribe) {
         participantsList.push({
           type: 'registered-user',
-          value: profile!.id || '',
+          value: profile.id || '',
         });
-      else participantsList = participantsList.filter((partecipant) => partecipant.value !== profile!.id);
+      } else {
+        participantsList = participantsList.filter((partecipant) => partecipant.value !== profile.id);
+      }
 
-      const { error: eventUpdateError } = await supabase
+      const { data: event, error } = await supabase
         .from('events')
         .update({
-          participants: participantsList,
+          participants: participantsList as any,
         })
-        .eq('id', id);
+        .eq('id', parseInt(id!.toString()))
+        .select()
+        .single();
 
-      if (eventUpdateError) throw eventUpdateError;
+      if (error) throw error;
 
       toast.success("Aggiornamento della presenza all'evento avvenuto con successso!");
 
-      setLoading(true);
-      fetchEvent();
+      if (event) {
+        const validatedEvent = EventSchema.parse(event);
+
+        setCurrentEvent(validatedEvent);
+      } else setCurrentEvent(null);
     } catch (error) {
-      console.error("Error updating the user's presance at the event", error);
+      console.error("Error updating the user's presence at the currentEvent", error);
       toast.error(
         `Si è verificato un errore imprevisto durante l'aggiornamento della presenza all'evento. Codice errore: ${(error as PostgrestError).code}`,
         {
@@ -114,9 +129,11 @@ const EventDetailPage = () => {
   const getEventLength = () => {
     let length = 0;
 
-    const beginDate = dayjs(`${dayjs(event!.start_date).format('YYYY-MM-DD')}T${event!.schedule[0].time}`);
+    const beginDate = dayjs(
+      `${dayjs(currentEvent!.start_date).format('YYYY-MM-DD')}T${currentEvent!.schedule[0].time}`
+    );
     const endDate = dayjs(
-      `${dayjs(event!.end_date || event!.start_date).format('YYYY-MM-DD')}T${event!.schedule[event!.schedule.length - 1].time}`
+      `${dayjs(currentEvent!.end_date || currentEvent!.start_date).format('YYYY-MM-DD')}T${currentEvent!.schedule[currentEvent!.schedule.length - 1].time}`
     );
 
     length = endDate.diff(beginDate, 'hour');
@@ -129,13 +146,16 @@ const EventDetailPage = () => {
     animate: { opacity: 1, y: 0 },
   };
 
-  const isUserRegistered = event?.participants.some(
+  const isUserRegistered = currentEvent?.participants?.some(
     (participant) => participant.type === 'registered-user' && participant.value === profile?.id
   );
 
-  const isEventFull = event?.maximum_participants ? event.participants.length >= event.maximum_participants : false;
+  const isEventFull = currentEvent?.maximum_participants
+    ? currentEvent.participants.length >= currentEvent.maximum_participants
+    : false;
 
-  const isDisabled: boolean = !profile || loadingAuth || !event?.registration_open || isUserRegistered || isEventFull;
+  const isDisabled: boolean =
+    !profile || loadingAuth || !currentEvent?.registration_open || isUserRegistered || isEventFull;
 
   return (
     <div className="min-h-screen bg-orchi text-orchi-light relative overflow-hidden">
@@ -166,7 +186,7 @@ const EventDetailPage = () => {
             transition={{ delay: 0.1, duration: 0.5, ease: 'easeInOut' }}
             variants={fadeInUp}
           >
-            {!event ? (
+            {!currentEvent ? (
               loading ? (
                 <div className="flex flex-col col-span-1 md:col-span-3">
                   <Loader className="m-auto" text="Caricamento in corso..." />
@@ -186,12 +206,12 @@ const EventDetailPage = () => {
                 <div className="lg:col-span-2 flex flex-col space-y-8">
                   <Card className="group glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300">
                     <div className="relative overflow-hidden rounded-xl">
-                      <motion.div className="aspect-video w-full h-auto" layoutId={`card-image-${event.id}`}>
+                      <motion.div className="aspect-video w-full h-auto" layoutId={`card-image-${currentEvent.id}`}>
                         <Image
-                          alt={event.title}
+                          alt={currentEvent.title}
                           className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
                           fill
-                          src={event.image_url || '/event-placeholder.webp'}
+                          src={currentEvent.image_url || '/event-placeholder.webp'}
                           quality={100}
                         />
                       </motion.div>
@@ -199,32 +219,33 @@ const EventDetailPage = () => {
                       <div className="absolute inset-0 z-10 bg-gradient-to-t from-orchi via-orchi/40 to-transparent" />
 
                       <div className="absolute bottom-6 left-6 right-6 z-20">
-                        <h1 className="display-text text-4xl md:text-5xl text-white mb-4">{event.title}</h1>
+                        <h1 className="display-text text-4xl md:text-5xl text-white mb-4">{currentEvent.title}</h1>
 
                         <div className="flex flex-wrap gap-4 text-sm">
                           <div className="flex items-center text-orchi-light/90">
                             <Calendar className="h-4 w-4 mr-2 text-orchi-gold" />
-                            {dayjs(event.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}
-                            {event.end_date
-                              ? ` - ${dayjs(event.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}`
+                            {dayjs(currentEvent.start_date).locale('it').format('DD MMM YYYY').toUpperCase()}
+                            {currentEvent.end_date
+                              ? ` - ${dayjs(currentEvent.end_date).locale('it').format('DD MMM YYYY').toUpperCase()}`
                               : ''}
                           </div>
 
                           <div className="flex items-center text-orchi-light/90">
                             <Clock className="h-4 w-4 mr-2 text-orchi-gold" />
-                            {event.schedule[0].time} - {event.schedule[event.schedule.length - 1].time}
+                            {currentEvent.schedule[0].time} -{' '}
+                            {currentEvent.schedule[currentEvent.schedule.length - 1].time}
                           </div>
 
                           <div className="flex items-center text-orchi-light/90">
                             <MapPin className="h-4 w-4 mr-2 text-orchi-gold" />
-                            {event.location}
+                            {currentEvent.location}
                           </div>
 
                           <div className="flex items-center text-orchi-light/90">
                             <Trophy className="h-4 w-4 mr-2 text-orchi-gold" />
-                            {event.event_type === 'tournament'
+                            {currentEvent.event_type === 'tournament'
                               ? 'Torneo'
-                              : event.event_type === 'training'
+                              : currentEvent.event_type === 'training'
                                 ? 'Allenamento'
                                 : 'Partita'}
                           </div>
@@ -242,7 +263,7 @@ const EventDetailPage = () => {
                   >
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
                       <CardContent className="p-6">
-                        <div className="text-3xl font-bold text-orchi-gold">{event.participants.length}</div>
+                        <div className="text-3xl font-bold text-orchi-gold">{currentEvent.participants.length}</div>
 
                         <div className="tactical-text text-orchi-light/60 text-sm">ISCRITTI</div>
                       </CardContent>
@@ -251,7 +272,7 @@ const EventDetailPage = () => {
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
                       <CardContent className="p-6">
                         <div className="text-3xl font-bold text-orchi-gold">
-                          {event.maximum_participants || 'ILLIMITATI'}
+                          {currentEvent.maximum_participants || 'ILLIMITATI'}
                         </div>
 
                         <div className="tactical-text text-orchi-light/60 text-sm">POSTI</div>
@@ -269,7 +290,7 @@ const EventDetailPage = () => {
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
                       <CardContent className="p-6">
                         <div className="text-3xl font-bold text-orchi-gold">
-                          {event.price ? `€${event.price}` : 'NESSUNA'}
+                          {currentEvent.price ? `€${currentEvent.price}` : 'NESSUNA'}
                         </div>
 
                         <div className="tactical-text text-orchi-light/60 text-sm">QUOTA</div>
@@ -293,7 +314,7 @@ const EventDetailPage = () => {
 
                       <CardContent>
                         <p className="text-orchi-light/90 leading-relaxed whitespace-pre-line">
-                          {(event.description || 'Nessuna descrizione disponibile.').replace(/\\n/g, '\n')}
+                          {(currentEvent.description || 'Nessuna descrizione disponibile.').replace(/\\n/g, '\n')}
                         </p>
                       </CardContent>
                     </Card>
@@ -315,7 +336,7 @@ const EventDetailPage = () => {
 
                       <CardContent>
                         <ul className="flex flex-col space-y-6">
-                          {event.equipment.map((equipment, index) => (
+                          {currentEvent.equipment.map((equipment, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
                               key={index}
@@ -359,15 +380,15 @@ const EventDetailPage = () => {
                       <p className="text-orchi-light/70 text-sm text-center">
                         {!profile || loadingAuth
                           ? "Per iscriverti in autonomia all'envento devi essere un membro degli Orchi. Se sei un ospite o un esterno e vuoi partecipare, per favore contattaci direttamente."
-                          : event?.participants
-                                .filter((participants) => participants.type === 'registered-user')
-                                .find((participants) => participants.value === profile.id)
+                          : currentEvent?.participants
+                                .filter((participant) => participant.type === 'registered-user')
+                                .find((participant) => participant.value === profile.id)
                             ? 'Stai già partecipando a questo evento.'
-                            : !event.registration_open
+                            : !currentEvent.registration_open
                               ? 'Le registrazioni sono al momento chiuse.'
                               : (
-                                    event.maximum_participants
-                                      ? event.participants.length >= event.maximum_participants
+                                    currentEvent.maximum_participants
+                                      ? currentEvent.participants.length >= currentEvent.maximum_participants
                                       : false
                                   )
                                 ? 'È stato raggiunto il numero massimo di partecipanti, le iscrizioni sono chiuse.'
@@ -382,9 +403,9 @@ const EventDetailPage = () => {
                           SCRIVICI ORA
                         </Link>
                       ) : (
-                        event?.participants
-                          .filter((participants) => participants.type === 'registered-user')
-                          .find((participants) => participants.value === profile.id) && (
+                        currentEvent?.participants
+                          .filter((participant) => participant && participant.type === 'registered-user')
+                          .find((participant) => participant && participant.value === profile.id) && (
                           <Button className="w-full" onClick={() => eventUpdateUserPresance(false)}>
                             DISISCRIVITI DALL'EVENTO
                           </Button>
@@ -409,7 +430,7 @@ const EventDetailPage = () => {
 
                       <CardContent>
                         <ul className="flex flex-col space-y-6">
-                          {event.schedule.map((item, index) => (
+                          {currentEvent.schedule.map((item, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
                               key={index}
@@ -442,7 +463,7 @@ const EventDetailPage = () => {
 
                       <CardContent>
                         <ul className="flex flex-col space-y-6">
-                          {event.organization.map((organizer, index) => (
+                          {currentEvent.organization?.map((organizer, index) => (
                             <li
                               className="flex items-center space-x-4 p-4 rounded-xl glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300"
                               key={index}
