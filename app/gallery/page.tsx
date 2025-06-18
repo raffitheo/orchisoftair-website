@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Archive, BicepsFlexed, Calendar, Dumbbell, Images, ImageUp, Luggage, Search, Users } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'sonner';
+import z from 'zod';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -17,7 +18,6 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
 import { GalleryImageSchema, default as GalleryImageType } from '@/types/gallery-image';
-import z from 'zod';
 
 const GalleryImageCategorySchema = z.enum(['any', 'event', 'equipment', 'team', 'training']);
 
