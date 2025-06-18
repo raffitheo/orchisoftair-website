@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/tactical-pattern.png')] bg-cover bg-center bg-fixed bg-[rgba(18,18,18,0.7)] bg-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/tactical-pattern.webp')] bg-cover bg-center bg-fixed bg-[rgba(18,18,18,0.7)] bg-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-br from-orchi/90 via-orchi/80 to-orchi/90" />
       </div>
 

@@ -66,8 +66,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   --background-image-gradient-orchi: linear-gradient(135deg, #8b0000 0%, #b8860b 100%);
-  --background-image-noise: url('/noise.png');
-  --background-image-tactical-pattern: url('/tactical-pattern.png');
+  --background-image-noise: url('/noise.webp');
+  --background-image-tactical-pattern: url('/tactical-pattern.webp');
 
   --box-shadow-orchi: 0 10px 40px rgba(139, 0, 0, 0.3);
   --box-shadow-orchi-gold: 0 10px 40px rgba(184, 134, 11, 0.3);
@@ -167,7 +167,7 @@
     @apply bg-orchi text-foreground;
     background-image:
       radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.03) 0%, transparent 50%), url('/noise.png');
+      radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.03) 0%, transparent 50%), url('/noise.webp');
     background-repeat: repeat;
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
