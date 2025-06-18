@@ -44,13 +44,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const getInitialSession = async () => {
+      setLoadingAuth(true);
+
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
       setUser(session?.user ?? null);
 
-      if (session?.user) fetchTeamMember(session.user.id);
+      if (session?.user) await fetchTeamMember(session.user.id);
 
       setLoadingAuth(false);
     };
@@ -60,9 +62,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
+      setLoadingAuth(true);
       setUser(session?.user ?? null);
 
-      if (session?.user) fetchTeamMember(session.user.id);
+      if (session?.user) await fetchTeamMember(session.user.id);
 
       setLoadingAuth(false);
     });
