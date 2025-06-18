@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { PostgrestError } from '@supabase/supabase-js';
-import { Blocks, Calendar, Facebook, IdCard, Images, Instagram, Mail, MapPin, Users } from 'lucide-react';
+import { Cake, Calendar, Facebook, IdCard, Images, Instagram, Mail, MapPin, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -151,7 +151,7 @@ const Footer = () => {
 
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
-                  <Blocks className="w-5 h-5 text-orchi-gold mr-2" />
+                  <Cake className="w-5 h-5 text-orchi-gold mr-2" />
 
                   <span className="tactical-text text-xl text-orchi-light">
                     {process.env.NEXT_PUBLIC_CREATION_YEAR}
