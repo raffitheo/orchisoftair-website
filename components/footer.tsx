@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { PostgrestError } from '@supabase/supabase-js';
-import { Blocks, Facebook, IdCard, Instagram, Mail, MapPin, Users } from 'lucide-react';
+import { Blocks, Calendar, Facebook, IdCard, Images, Instagram, Mail, MapPin, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
@@ -13,11 +13,57 @@ import { supabase } from '@/lib/supabase';
 import { Separator } from './ui/separator';
 
 const Footer = () => {
+  const [eventsCount, setEventsCount] = useState(0);
+  const [galleryImagesCount, setGalleryImagesCount] = useState(0);
   const [teamMembersCount, setTeamMembersCount] = useState(0);
 
   useEffect(() => {
+    countEvents();
+    countGalleryImages();
     countTeamMembers();
   }, []);
+
+  const countEvents = async () => {
+    try {
+      const { count: eventsCount, error } = await supabase.from('events').select('*', { count: 'exact', head: true });
+
+      if (error) throw error;
+
+      setEventsCount(eventsCount || 0);
+    } catch (error) {
+      console.error('Error counting events:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il conteggio degli eventi. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
+
+      setEventsCount(-1);
+    }
+  };
+
+  const countGalleryImages = async () => {
+    try {
+      const { count: galleryImagesCount, error } = await supabase
+        .from('gallery_images')
+        .select('*', { count: 'exact', head: true });
+
+      if (error) throw error;
+
+      setGalleryImagesCount(galleryImagesCount || 0);
+    } catch (error) {
+      console.error('Error counting gallery images:', error);
+      toast.error(
+        `Si è verificato un errore imprevisto durante il conteggio delle immagini della galleria. Codice errore: ${(error as PostgrestError).code}`,
+        {
+          description: (error as PostgrestError).hint,
+        }
+      );
+
+      setGalleryImagesCount(-1);
+    }
+  };
 
   const countTeamMembers = async () => {
     try {
@@ -72,7 +118,17 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6 mt-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+              <div className="text-center">
+                <div className="flex items-center justify-center mb-2">
+                  <Calendar className="w-5 h-5 text-orchi-gold mr-2" />
+
+                  <span className="tactical-text text-xl text-orchi-light">{eventsCount}</span>
+                </div>
+
+                <p className="text-orchi-light/60 text-xs">EVENTI ORGANIZZATI</p>
+              </div>
+
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
                   <Users className="w-5 h-5 text-orchi-gold mr-2" />
@@ -81,6 +137,16 @@ const Footer = () => {
                 </div>
 
                 <p className="text-orchi-light/60 text-xs">MEMBRI ATTIVI</p>
+              </div>
+
+              <div className="text-center">
+                <div className="flex items-center justify-center mb-2">
+                  <Images className="w-5 h-5 text-orchi-gold mr-2" />
+
+                  <span className="tactical-text text-xl text-orchi-light">{galleryImagesCount}</span>
+                </div>
+
+                <p className="text-orchi-light/60 text-xs">IMMAGINI CARICATE</p>
               </div>
 
               <div className="text-center">
