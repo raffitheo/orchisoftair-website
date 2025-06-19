@@ -1,19 +1,28 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Anton, Bebas_Neue, Inter } from 'next/font/google';
 
 import { Toaster } from '@/components/ui/sonner';
 import { AuthProvider } from '@/lib/auth-context';
 
 import './globals.css';
+import { cn } from '@/lib/utils';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const anton = Anton({
   subsets: ['latin'],
+  variable: '--font-anton',
+  weight: '400',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
+  variable: '--font-bebas-neue',
+  weight: '400',
+});
+
+const inter = Inter({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -37,11 +46,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
+    <html className={cn(anton.variable, bebasNeue.variable, inter.variable)} lang="it" suppressHydrationWarning>
       <head>
         <meta httpEquiv="Content-Language" content="it" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} id="root">
+      <body className={cn('antialiased', anton.className, bebasNeue.className, inter.className)} id="root">
         <AuthProvider>{children}</AuthProvider>
 
         <Toaster expand position="bottom-center" richColors />
