@@ -272,7 +272,7 @@ const EventDetailPage = () => {
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
                       <CardContent className="p-6">
                         <div className="text-3xl font-bold text-orchi-gold">
-                          {currentEvent.maximum_participants || 'ILLIMITATI'}
+                          {currentEvent.maximum_participants || '∞'}
                         </div>
 
                         <div className="tactical-text text-orchi-light/60 text-sm">POSTI</div>
@@ -290,7 +290,7 @@ const EventDetailPage = () => {
                     <Card className="glass-effect border-orchi-gray/40 hover:border-orchi-gold/50 transition-all duration-300 text-center">
                       <CardContent className="p-6">
                         <div className="text-3xl font-bold text-orchi-gold">
-                          {currentEvent.price ? `€${currentEvent.price}` : 'NESSUNA'}
+                          {currentEvent.price ? `€${currentEvent.price}` : 'NO'}
                         </div>
 
                         <div className="tactical-text text-orchi-light/60 text-sm">QUOTA</div>

@@ -108,7 +108,7 @@ const GalleryPage = () => {
   const categories = [
     {
       icon: Images,
-      id: 'all',
+      id: 'any',
       name: 'TUTTO',
     },
     {
@@ -204,7 +204,7 @@ const GalleryPage = () => {
               <CardContent className="p-6">
                 <BicepsFlexed className="h-8 w-8 text-orchi-red mx-auto mb-3" />
 
-                <div className="text-3xl font-bold text-orchi-gold mb-2">INFINITI</div>
+                <div className="text-3xl font-bold text-orchi-gold mb-2">∞</div>
 
                 <div className="text-orchi-light/80 tactical-text">RICORDI EPICI</div>
               </CardContent>
