@@ -40,7 +40,6 @@ const Navbar = () => {
           <Link className="flex items-center space-x-3 group" href="/">
             <div className="flex flex-col items-start transform group-hover:scale-105 transition-transform duration-300">
               <span className="tactical-text text-orchi-red text-2xl md:text-3xl leading-none">GLI ORCHI TRIESTE</span>
-
               <span className="tactical-text text-orchi-light text-xs md:text-sm leading-none opacity-80">
                 SOFTAIR TEAM
               </span>
@@ -49,97 +48,62 @@ const Navbar = () => {
 
           <nav className="hidden lg:flex items-center">
             <div className="flex items-center space-x-8 mr-8">
-              {navigationItems.map((navigationItem) => (
-                <React.Fragment key={navigationItem.id}>
-                  {navigationItem.separator && <span className="border-l border-orchi-gray h-6" />}
+              {navigationItems.map((navigationItem) => {
+                const isCurrent = currentRoute === navigationItem.path;
 
-                  <Link
-                    className={cn(
-                      'tactical-text text-sm transition-all duration-300 relative group py-2',
-                      currentRoute === navigationItem.path
-                        ? 'pointer-events-none text-orchi-gold'
-                        : 'text-orchi-light hover:text-orchi-gold'
-                    )}
-                    href={navigationItem.path}
-                    scroll={!navigationItem.path.startsWith('#')}
-                    tabIndex={currentRoute === navigationItem.path ? -1 : undefined}
-                  >
-                    {navigationItem.name}
-                    <span
+                return (
+                  <React.Fragment key={navigationItem.id}>
+                    {navigationItem.separator && <span className="border-l border-orchi-gray h-6" />}
+
+                    <Link
                       className={cn(
-                        'absolute bottom-0 left-0 w-0 h-0.5 bg-orchi-gold transition-all duration-300',
-                        currentRoute === navigationItem.path ? 'w-full' : 'group-hover:w-full'
+                        'tactical-text text-sm transition-all duration-300 relative group py-2',
+                        isCurrent ? 'pointer-events-none text-orchi-gold' : 'text-orchi-light hover:text-orchi-gold'
                       )}
-                    />
-                  </Link>
-                </React.Fragment>
-              ))}
+                      href={navigationItem.path}
+                      scroll={!navigationItem.path.startsWith('#')}
+                      tabIndex={isCurrent ? -1 : undefined}
+                    >
+                      {navigationItem.name}
+                      <span
+                        className={cn(
+                          'absolute bottom-0 left-0 w-0 h-0.5 bg-orchi-gold transition-all duration-300',
+                          isCurrent ? 'w-full' : 'group-hover:w-full'
+                        )}
+                      />
+                    </Link>
+                  </React.Fragment>
+                );
+              })}
 
               <span className="border-l border-orchi-gray h-6" />
 
               {profile && !loadingAuth ? (
                 <>
-                  <Link
-                    className={cn(
-                      'tactical-text text-sm transition-all duration-300 relative group py-2',
-                      currentRoute === '/profile'
-                        ? 'pointer-events-none text-orchi-gold'
-                        : 'text-orchi-light hover:text-orchi-gold'
-                    )}
-                    href="/profile"
-                    scroll={!'/profile'.startsWith('#')}
-                    tabIndex={currentRoute === '/profile' ? -1 : undefined}
-                  >
-                    PROFILO
-                    <span
-                      className={cn(
-                        'absolute bottom-0 left-0 w-0 h-0.5 bg-orchi-gold transition-all duration-300',
-                        currentRoute === '/profile' ? 'w-full' : 'group-hover:w-full'
-                      )}
-                    />
-                  </Link>
-
-                  {profile!.admin && (
+                  {['/profile', ...(profile.admin ? ['/admin'] : []), '/logout'].map((path) => (
                     <Link
+                      key={path}
                       className={cn(
                         'tactical-text text-sm transition-all duration-300 relative group py-2',
-                        currentRoute === '/admin'
+                        currentRoute === path
                           ? 'pointer-events-none text-orchi-gold'
                           : 'text-orchi-light hover:text-orchi-gold'
                       )}
-                      href="/admin"
-                      scroll={!'/admin'.startsWith('#')}
-                      tabIndex={currentRoute === '/admin' ? -1 : undefined}
+                      href={path}
+                      scroll={!path.startsWith('#')}
+                      tabIndex={currentRoute === path ? -1 : undefined}
                     >
-                      PANNELLO ADMIN
+                      {path === '/profile' && 'PROFILO'}
+                      {path === '/admin' && 'PANNELLO ADMIN'}
+                      {path === '/logout' && 'ESCI'}
                       <span
                         className={cn(
                           'absolute bottom-0 left-0 w-0 h-0.5 bg-orchi-gold transition-all duration-300',
-                          currentRoute === '/admin' ? 'w-full' : 'group-hover:w-full'
+                          currentRoute === path ? 'w-full' : 'group-hover:w-full'
                         )}
                       />
                     </Link>
-                  )}
-
-                  <Link
-                    className={cn(
-                      'tactical-text text-sm transition-all duration-300 relative group py-2',
-                      currentRoute === '/logout'
-                        ? 'pointer-events-none text-orchi-gold'
-                        : 'text-orchi-light hover:text-orchi-gold'
-                    )}
-                    href="/logout"
-                    scroll={!'/logout'.startsWith('#')}
-                    tabIndex={currentRoute === '/logout' ? -1 : undefined}
-                  >
-                    ESCI
-                    <span
-                      className={cn(
-                        'absolute bottom-0 left-0 w-0 h-0.5 bg-orchi-gold transition-all duration-300',
-                        currentRoute === '/logout' ? 'w-full' : 'group-hover:w-full'
-                      )}
-                    />
-                  </Link>
+                  ))}
                 </>
               ) : (
                 <Link
@@ -150,7 +114,7 @@ const Navbar = () => {
                       : 'text-orchi-light hover:text-orchi-gold'
                   )}
                   href="/login"
-                  scroll={!'/login'.startsWith('#')}
+                  scroll
                   tabIndex={currentRoute === '/login' ? -1 : undefined}
                 >
                   ENTRA
@@ -179,62 +143,57 @@ const Navbar = () => {
             <SheetContent className="bg-orchi/95 backdrop-blur-xl border-orchi-gray/30 w-[85%] sm:max-w-md">
               <SheetHeader className="border-b border-orchi-gray/30 pb-6 mb-6">
                 <SheetTitle className="tactical-text text-orchi-red text-2xl">GLI ORCHI TRIESTE</SheetTitle>
-
                 <span className="tactical-text text-orchi-light text-sm opacity-80">SOFTAIR TEAM</span>
               </SheetHeader>
 
               <nav className="flex flex-col space-y-6">
-                {navigationItems.map((navigationItem) => (
-                  <React.Fragment key={navigationItem.id}>
-                    {navigationItem.separator && <span className="border-b border-orchi-gray h-px w-full" />}
+                {navigationItems.map((navigationItem) => {
+                  const isCurrent = currentRoute === navigationItem.path;
 
-                    <SheetClose asChild>
-                      <Link
-                        className={cn(
-                          'tactical-text text-lg transition-colors duration-300 flex items-center py-2',
-                          currentRoute === navigationItem.path
-                            ? 'pointer-events-none text-orchi-gold'
-                            : 'text-orchi-light hover:text-orchi-gold'
-                        )}
-                        href={navigationItem.path}
-                        scroll={!navigationItem.path.startsWith('#')}
-                        tabIndex={currentRoute === navigationItem.path ? -1 : undefined}
-                      >
-                        {navigationItem.name}
-                      </Link>
-                    </SheetClose>
-                  </React.Fragment>
-                ))}
+                  return (
+                    <React.Fragment key={navigationItem.id}>
+                      {navigationItem.separator && <span className="border-b border-orchi-gray h-px w-full" />}
+
+                      <SheetClose asChild>
+                        <Link
+                          className={cn(
+                            'tactical-text text-lg transition-colors duration-300 flex items-center py-2',
+                            isCurrent ? 'pointer-events-none text-orchi-gold' : 'text-orchi-light hover:text-orchi-gold'
+                          )}
+                          href={navigationItem.path}
+                          scroll={!navigationItem.path.startsWith('#')}
+                          tabIndex={isCurrent ? -1 : undefined}
+                        >
+                          {navigationItem.name}
+                        </Link>
+                      </SheetClose>
+                    </React.Fragment>
+                  );
+                })}
 
                 <span className="border-b border-orchi-gray h-px w-full" />
 
                 <SheetClose asChild>
                   {profile && !loadingAuth ? (
-                    <>
+                    <div className="flex flex-col space-y-6">
                       <Link
                         className={cn(
                           'tactical-text text-lg text-orchi-light hover:text-orchi-gold transition-colors duration-300 flex items-center py-2',
-                          currentRoute === '/profile'
-                            ? 'pointer-events-none text-orchi-gold'
-                            : 'text-orchi-light hover:text-orchi-gold'
+                          currentRoute === '/profile' ? 'pointer-events-none text-orchi-gold' : ''
                         )}
                         href="/profile"
-                        scroll={!'/profile'.startsWith('#')}
                         tabIndex={currentRoute === '/profile' ? -1 : undefined}
                       >
                         PROFILO
                       </Link>
 
-                      {profile!.admin && (
+                      {profile.admin && (
                         <Link
                           className={cn(
                             'tactical-text text-lg text-orchi-light hover:text-orchi-gold transition-colors duration-300 flex items-center py-2',
-                            currentRoute === '/admin'
-                              ? 'pointer-events-none text-orchi-gold'
-                              : 'text-orchi-light hover:text-orchi-gold'
+                            currentRoute === '/admin' ? 'pointer-events-none text-orchi-gold' : ''
                           )}
                           href="/admin"
-                          scroll={!'/admin'.startsWith('#')}
                           tabIndex={currentRoute === '/admin' ? -1 : undefined}
                         >
                           PANNELLO ADMIN
@@ -244,27 +203,21 @@ const Navbar = () => {
                       <Link
                         className={cn(
                           'tactical-text text-lg text-orchi-light hover:text-orchi-gold transition-colors duration-300 flex items-center py-2',
-                          currentRoute === '/logout'
-                            ? 'pointer-events-none text-orchi-gold'
-                            : 'text-orchi-light hover:text-orchi-gold'
+                          currentRoute === '/logout' ? 'pointer-events-none text-orchi-gold' : ''
                         )}
                         href="/logout"
-                        scroll={!'/logout'.startsWith('#')}
                         tabIndex={currentRoute === '/logout' ? -1 : undefined}
                       >
                         ESCI
                       </Link>
-                    </>
+                    </div>
                   ) : (
                     <Link
                       className={cn(
                         'tactical-text text-lg text-orchi-light hover:text-orchi-gold transition-colors duration-300 flex items-center py-2',
-                        currentRoute === '/login'
-                          ? 'pointer-events-none text-orchi-gold'
-                          : 'text-orchi-light hover:text-orchi-gold'
+                        currentRoute === '/login' ? 'pointer-events-none text-orchi-gold' : ''
                       )}
                       href="/login"
-                      scroll={!'/login'.startsWith('#')}
                       tabIndex={currentRoute === '/login' ? -1 : undefined}
                     >
                       ENTRA
