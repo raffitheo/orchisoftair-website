@@ -1,9 +1,13 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+
 import { User } from '@supabase/supabase-js';
+
 import { TeamMemberSchema } from '@/types/team-member';
-import { supabase } from '@/lib/supabase';
+
+import { supabase } from './supabase';
+
 interface UserWithAdmin extends User {
   admin: boolean;
 }
@@ -27,41 +31,43 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [admin, setAdmin] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(true);
-  const [profile, setProfile] = useState<UserWithAdmin | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  const fetchTeamMember = async (userId: string) => {
+    const { data: teamMember } = await supabase.from('team_members').select('*').eq('id', userId).single();
+
+    const validatedTeamMember = TeamMemberSchema.parse(teamMember);
+    setAdmin(teamMember ? validatedTeamMember.is_admin : false);
+  };
 
   useEffect(() => {
+    const getInitialSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      setUser(session?.user ?? null);
+
+      if (session?.user) fetchTeamMember(session.user.id);
+
+      setLoadingAuth(false);
+    };
+
+    getInitialSession();
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (session?.user) {
-        try {
-          const { data: teamMember } = await supabase
-            .from('team_members')
-            .select('*')
-            .eq('id', session.user.id)
-            .single();
+      setUser(session?.user ?? null);
 
-          const validatedTeamMember = TeamMemberSchema.parse(teamMember);
-
-          setProfile({
-            ...session.user,
-            admin: validatedTeamMember.is_admin,
-          });
-        } catch (error) {
-          console.error('Error fetching or validating team member profile:', error);
-
-          await supabase.auth.signOut();
-          setProfile(null);
-        }
-      } else setProfile(null);
+      if (session?.user) fetchTeamMember(session.user.id);
 
       setLoadingAuth(false);
     });
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
   const signOut = async () => {
@@ -70,7 +76,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const value = {
     loadingAuth,
-    profile,
+    profile: user
+      ? ({
+          ...user,
+          admin: admin,
+        } as UserWithAdmin)
+      : null,
     signOut,
   };
 
