@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Input } from './input';
+import { Input } from '@/components/ui/input';
 
 interface InputWithIconProps {
   disabled?: boolean;

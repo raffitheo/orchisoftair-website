@@ -10,11 +10,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
+import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
 import Event, { EventSchema } from '@/types/event';
-
-import { Card, CardContent, CardDescription, CardHeader } from './ui/card';
-import Loader from './ui/loader';
 
 const Events = () => {
   const [events, setEvents] = useState<Event[]>([]);

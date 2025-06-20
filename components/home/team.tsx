@@ -8,11 +8,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
+import { Card, CardContent } from '@/components/ui/card';
+import Loader from '@/components/ui/loader';
 import { supabase } from '@/lib/supabase';
 import TeamMember, { TeamMemberSchema } from '@/types/team-member';
-
-import { Card, CardContent } from './ui/card';
-import Loader from './ui/loader';
 
 const Team = () => {
   const [loading, setLoading] = useState(true);

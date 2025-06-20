@@ -8,9 +8,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
+import { Separator } from '@/components/ui/separator';
 import { supabase } from '@/lib/supabase';
-
-import { Separator } from './ui/separator';
 
 const Footer = () => {
   const [eventsCount, setEventsCount] = useState(0);

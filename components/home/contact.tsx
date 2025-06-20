@@ -5,13 +5,12 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AtSign, Mail, Phone, User } from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import InputWithIcon from '@/components/ui/input-with-icon';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { useAuth } from '@/lib/auth-context';
-
-import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import InputWithIcon from './ui/input-with-icon';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
 
 const Contact = () => {
   const { loadingAuth, profile } = useAuth();

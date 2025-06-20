@@ -4,7 +4,7 @@ import { Anton, Bebas_Neue, Inter } from 'next/font/google';
 import { Toaster } from '@/components/ui/sonner';
 import { AuthProvider } from '@/lib/auth-context';
 
-import './globals.css';
+import '@/app/globals.css';
 import { cn } from '@/lib/utils';
 
 const anton = Anton({
@@ -50,6 +50,7 @@ export default function RootLayout({
       <head>
         <meta httpEquiv="Content-Language" content="it" />
       </head>
+
       <body className={cn('antialiased', anton.className, bebasNeue.className, inter.className)} id="root">
         <AuthProvider>{children}</AuthProvider>
 

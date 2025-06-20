@@ -4,9 +4,8 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 import { User } from '@supabase/supabase-js';
 
+import { supabase } from '@/lib/supabase';
 import { TeamMemberSchema } from '@/types/team-member';
-
-import { supabase } from './supabase';
 
 interface UserWithAdmin extends User {
   admin: boolean;
